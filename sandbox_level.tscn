@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://blgnpk61vbef4"]
+[gd_scene load_steps=7 format=3 uid="uid://blgnpk61vbef4"]
 
-[ext_resource type="Script" uid="uid://8kckw4tfcpn5" path="res://player.gd" id="1_s6xw7"]
+[ext_resource type="PackedScene" uid="uid://703h7fkmxdhp" path="res://player.tscn" id="1_s6xw7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s6xw7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -19,13 +19,6 @@ glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xftbl"]
 albedo_color = Color(1, 0.26666668, 0.20392157, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ram5n"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vg0gq"]
-albedo_color = Color(0.047058824, 0.9019608, 0, 1)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mx8re"]
 
 [node name="SandboxLevel" type="Node3D"]
 
@@ -48,20 +41,8 @@ material_override = SubResource("StandardMaterial3D_xftbl")
 use_collision = true
 size = Vector3(5.0776367, 0.0859375, 7.758789)
 
-[node name="Player" type="CharacterBody3D" parent="."]
-script = ExtResource("1_s6xw7")
-
-[node name="PlayerBody" type="CSGMesh3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0000001, 0)
-mesh = SubResource("CapsuleMesh_ram5n")
-material = SubResource("StandardMaterial3D_vg0gq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_mx8re")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.52019, 0.8540505, 0, -0.8540505, 0.52019, 0, 5, 5)
+[node name="Player" parent="." instance=ExtResource("1_s6xw7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0036719, 0)
 
 [node name="wall1" type="CSGBox3D" parent="."]
 transform = Transform3D(0.99984723, 0.014876128, -0.009177065, -0.01480125, 0.99985707, 0.008174945, 0.009297351, -0.00803788, 0.9999245, 15.446389, 2.5910103, -8.927974)
