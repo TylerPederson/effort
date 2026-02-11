@@ -59,6 +59,22 @@ shape = SubResource("CapsuleShape3D_mx8re")
 [node name="Camera3D" type="Camera3D" parent="." unique_id=562333410]
 transform = Transform3D(1, 0, 0, 0, 0.52019, 0.8540505, 0, -0.8540505, 0.52019, 0, 5, 5)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1712702810]
-transform = Transform3D(0.99984723, 0.014876128, -0.009177065, -0.01480125, 0.99985707, 0.008174945, 0.009297351, -0.00803788, 0.9999245, 15.3942175, 3.4137647, -6.483803)
-size = Vector3(1, 5.1221924, 53.763885)
+[node name="wall1" type="CSGBox3D" parent="." unique_id=1712702810]
+transform = Transform3D(0.99984723, 0.014876128, -0.009177065, -0.01480125, 0.99985707, 0.008174945, 0.009297351, -0.00803788, 0.9999245, 15.446389, 2.5910103, -8.927974)
+use_collision = true
+size = Vector3(0.6795654, 5.949768, 59.908012)
+
+[node name="wall2" type="CSGBox3D" parent="." unique_id=220416115]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4292717, 2.3866854, -37.604168)
+use_collision = true
+size = Vector3(32.062134, 5.6206055, 2.5688534)
+
+[node name="wall3" type="CSGBox3D" parent="." unique_id=1413501894]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.810717, 2.9563818, -8.817545)
+use_collision = true
+size = Vector3(1.8071318, 6.1466064, 59.068542)
+
+[node name="wall4" type="CSGBox3D" parent="." unique_id=1028778654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2159472, 2.6614265, 19.42992)
+use_collision = true
+size = Vector3(33.739746, 6.4058228, 2.679657)
