@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://blgnpk61vbef4"]
+[gd_scene format=3 uid="uid://blgnpk61vbef4"]
 
 [ext_resource type="Script" uid="uid://8kckw4tfcpn5" path="res://player.gd" id="1_s6xw7"]
 
@@ -24,36 +24,41 @@ albedo_color = Color(1, 0.26666668, 0.20392157, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mx8re"]
 
-[node name="SandboxLevel" type="Node3D"]
+[node name="SandboxLevel" type="Node3D" unique_id=1111620582]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1212507525]
 environment = SubResource("Environment_xftbl")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=167210266]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Floor" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2778988, -0.49632835, -9.588551)
+[node name="Floor" type="CSGBox3D" parent="." unique_id=772865222]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2778988, -0.49632835, -8.972507)
 material_override = SubResource("StandardMaterial3D_s6xw7")
 use_collision = true
-size = Vector3(32.52643, 1, 58.71576)
+size = Vector3(32.52643, 1, 59.947845)
 
-[node name="Obstacle" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5351505, -4.4674025)
+[node name="Obstacle" type="CSGBox3D" parent="." unique_id=1441433658]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.115777, 0.22902489, -5.9290514)
 material_override = SubResource("StandardMaterial3D_xftbl")
 use_collision = true
+size = Vector3(5.0776367, 0.0859375, 7.758789)
 
-[node name="Player" type="CharacterBody3D" parent="."]
+[node name="Player" type="CharacterBody3D" parent="." unique_id=1786776377]
 script = ExtResource("1_s6xw7")
 
-[node name="PlayerBody" type="CSGMesh3D" parent="Player"]
+[node name="PlayerBody" type="CSGMesh3D" parent="Player" unique_id=1689781592]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0000001, 0)
 mesh = SubResource("CapsuleMesh_ram5n")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=58956422]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_mx8re")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=562333410]
 transform = Transform3D(1, 0, 0, 0, 0.52019, 0.8540505, 0, -0.8540505, 0.52019, 0, 5, 5)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1712702810]
+transform = Transform3D(0.99984723, 0.014876128, -0.009177065, -0.01480125, 0.99985707, 0.008174945, 0.009297351, -0.00803788, 0.9999245, 15.3942175, 3.4137647, -6.483803)
+size = Vector3(1, 5.1221924, 53.763885)
