@@ -1,14 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://clerkr85kk6ww"]
+[gd_scene load_steps=3 format=3 uid="uid://clerkr85kk6ww"]
 
 [ext_resource type="PackedScene" uid="uid://703h7fkmxdhp" path="res://player.tscn" id="1_ve44f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ve44f"]
+albedo_color = Color(0.08627451, 1, 1, 1)
 
 [node name="BossRoom" type="Node3D"]
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
-transform = Transform3D(52.034306, 0, 0, 0, 0.9999996, 0, 0, 0, 56.829365, 0, -10.8442335, 0)
+transform = Transform3D(52.034306, 0, 0, 0, 0.9999996, 0, 0, 0, 56.829365, 0, -10, 0)
 use_collision = true
+radius = 0.4
 height = 23.688477
 sides = 64
+material = SubResource("StandardMaterial3D_ve44f")
 
 [node name="Wall" type="CSGBox3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.6001434, 17.344639, -48.997257)
@@ -17,6 +22,11 @@ size = Vector3(1, 56.87329, 95.49501)
 [node name="Wall2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.692577, 18.23383, -1.6358681)
 size = Vector3(1, 55.371094, 93.50058)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Wall2"]
+transform = Transform3D(1.2706714, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.097, -10, 1.636)
+operation = 2
+size = Vector3(5, 13.015922, 10)
 
 [node name="Wall3" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.502747, 17.57661, -2.3530836)
@@ -28,3 +38,6 @@ size = Vector3(0.65283203, 57.8692, 86.69642)
 
 [node name="Player" parent="." instance=ExtResource("1_ve44f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0200787, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5709572, 0.82097983, 0, -0.82097983, 0.5709572, 0, 15.381807, 0)
