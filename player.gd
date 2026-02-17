@@ -17,7 +17,7 @@ var _look := Vector2.ZERO
 
 #Inventory vars
 @onready var inventory_controller: Node = %"Inventory Controller/CanvasLayer/Inventory UI"
-var invOpen : bool = false
+var inv_open : bool = false
 
 
 # To properly move, the player camera needs the mouse to be captured
@@ -49,17 +49,17 @@ func _physics_process(delta: float) -> void:
 # Handle Inventory Opening/Closing
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("inventory"):
-		if not invOpen:
+		if not inv_open:
 			inventory_controller.visible = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			# Here we would disable things that use the mouse, like looking around
 			# or interacting / attacking, would depending on ho the final Player camera is set up
-			invOpen = true
+			inv_open = true
 		else:
 			inventory_controller.visible = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			# Here we would re-enable whatever was disabled above
-			invOpen = false
+			inv_open = false
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
