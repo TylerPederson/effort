@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://703h7fkmxdhp"]
+[gd_scene load_steps=7 format=3 uid="uid://703h7fkmxdhp"]
 
 [ext_resource type="Script" uid="uid://8kckw4tfcpn5" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://cuonab4cx0tiy" path="res://Inventory/inventory_controller.tscn" id="2_onrkg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ram5n"]
 
@@ -32,3 +33,6 @@ transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0)
 [node name="HorizontalPivot" type="Node3D" parent="."]
 
 [node name="VerticalPivot" type="Node3D" parent="HorizontalPivot"]
+
+[node name="Inventory Controller" parent="." instance=ExtResource("2_onrkg")]
+unique_name_in_owner = true
