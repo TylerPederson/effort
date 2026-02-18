@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://clerkr85kk6ww"]
+[gd_scene load_steps=6 format=3 uid="uid://clerkr85kk6ww"]
 
 [ext_resource type="PackedScene" uid="uid://703h7fkmxdhp" path="res://player.tscn" id="1_ve44f"]
 [ext_resource type="Script" uid="uid://23jmmfc02jmu" path="res://door_pivot.gd" id="2_any6y"]
@@ -8,6 +8,9 @@ albedo_color = Color(0.08627451, 1, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_any6y"]
 albedo_color = Color(0.07450981, 0.19215687, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_any6y"]
+size = Vector3(1, 2.223755, 10.147156)
 
 [node name="BossRoom" type="Node3D"]
 
@@ -46,7 +49,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5709572, 0.82097983, 0, -0.82097983, 0.570
 
 [node name="Door2" type="CSGBox3D" parent="."]
 transform = Transform3D(-5.554281e-08, -0.99999994, 0, 1.2706714, -4.3711385e-08, 0, 0, 0, 0.99999994, 46.15594, 1.4357145, 0.00013196468)
-visible = false
 use_collision = true
 size = Vector3(1, 18, 10)
 
@@ -62,3 +64,12 @@ material = SubResource("StandardMaterial3D_any6y")
 
 [node name="Player" parent="." instance=ExtResource("1_ve44f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.16895, 3.0710502, -1.1252131)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.126076, 2.9044192, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61187744, -0.15383911)
+shape = SubResource("BoxShape3D_any6y")
+
+[connection signal="body_entered" from="Area3D" to="DoorPivot" method="_on_area_3d_body_entered"]
