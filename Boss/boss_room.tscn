@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://clerkr85kk6ww"]
 
-[ext_resource type="PackedScene" uid="uid://703h7fkmxdhp" path="res://player.tscn" id="1_ve44f"]
-[ext_resource type="Script" uid="uid://23jmmfc02jmu" path="res://door_pivot.gd" id="2_any6y"]
+[ext_resource type="Script" uid="uid://23jmmfc02jmu" path="res://Boss/door_pivot.gd" id="1_0yjcu"]
+[ext_resource type="PackedScene" uid="uid://703h7fkmxdhp" path="res://player.tscn" id="2_r2qyn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ve44f"]
 albedo_color = Color(0.08627451, 1, 1, 1)
@@ -57,7 +57,7 @@ size = Vector3(1, 18, 10)
 
 [node name="DoorPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.22316, 1.6857758, 0)
-script = ExtResource("2_any6y")
+script = ExtResource("1_0yjcu")
 
 [node name="Door" type="CSGBox3D" parent="DoorPivot"]
 transform = Transform3D(1.2706714, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.37241745, 9.276922, 0.00013196468)
@@ -65,7 +65,7 @@ use_collision = true
 size = Vector3(1, 18, 10)
 material = SubResource("StandardMaterial3D_any6y")
 
-[node name="Player" parent="." instance=ExtResource("1_ve44f")]
+[node name="Player" parent="." instance=ExtResource("2_r2qyn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.16895, 3.0710502, -1.1252131)
 
 [node name="DoorTriggerOpen" type="Area3D" parent="."]
