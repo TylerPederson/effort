@@ -26,8 +26,8 @@ sides = 64
 material = SubResource("StandardMaterial3D_ve44f")
 
 [node name="Wall" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.059101, 17.344639, -48.997257)
-size = Vector3(1, 56.87329, 86.577095)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.7705536, 17.344639, -48.997257)
+size = Vector3(1, 56.87329, 82)
 
 [node name="Wall2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.692577, 18.23383, -1.6358681)

@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://di4k0x1b5852r"]
+
+[ext_resource type="Script" uid="uid://b8y7rivbw35ad" path="res://boss.gd" id="1_0bnu1"]
+[ext_resource type="Script" uid="uid://dd4wpxl6enyas" path="res://BossStates/StateMachine.gd" id="2_6xxrv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6xxrv"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_skx2t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnbgr"]
+albedo_color = Color(0.7396013, 0.09577314, 0.035735637, 1)
+
+[node name="Boss" type="CharacterBody3D"]
+script = ExtResource("1_0bnu1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_6xxrv")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+mesh = SubResource("CapsuleMesh_skx2t")
+material = SubResource("StandardMaterial3D_lnbgr")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_6xxrv")
