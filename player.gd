@@ -17,7 +17,9 @@ var _look := Vector2.ZERO
 
 #Inventory vars
 @onready var inventory_controller: Node = %"Inventory Controller/CanvasLayer/Inventory UI"
+
 var inv_open : bool = false
+@onready var raycast: RayCast3D = $RayCast3D
 
 
 # To properly move, the player camera needs the mouse to be captured
@@ -26,6 +28,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	frame_camera_rotation()
+	try_taking_item()
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -46,8 +49,8 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-# Handle Inventory Opening/Closing
 func _input(_event: InputEvent) -> void:
+	# Handle Inventory Opening/Closing
 	if Input.is_action_just_pressed("inventory"):
 		if not inv_open:
 			inventory_controller.visible = true
@@ -72,6 +75,32 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+func try_taking_item() -> void:
+	if !Input.is_action_just_pressed("interact"):
+		return
+	if !raycast.is_colliding():
+		print("not colliding!")
+		return
+	print("Raycast Collided!")
+	
+	var obj = raycast.get_collider()
+	var child = obj.get_node("ItemInteract")
+	
+	if child == null:
+		return
+	print("object is an item!")
+	
+	if !child.item_data.has_method("interact"):
+		print("Item cannot be picked up!")
+		return
+	print(obj.name)
+	child.item_data.parent_node = obj
+	child.item_data.interact()
+
+func _on_item_collected(item: Node):
+	print("Collected Item: ", item)
+	item.queue_free()
+
 # Calculates the desired movement direction based on input direction and which way the player is facing
 func get_movement_direction() -> Vector3:
 	# global movement direction
@@ -80,7 +109,6 @@ func get_movement_direction() -> Vector3:
 	# transforms movement to be based on the horizontal facing direction
 	var direction := horizontal_pivot.global_transform.basis * input_vector
 	return direction
-
 
 # rotates pivot nodes to store how much the player has rotated based on how much
 # the mouse moves  each from

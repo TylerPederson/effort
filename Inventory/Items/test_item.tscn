@@ -1,0 +1,35 @@
+[gd_scene load_steps=9 format=3 uid="uid://wwkycn4pfa1g"]
+
+[ext_resource type="PackedScene" uid="uid://vei5oj44pyjd" path="res://Inventory/item_interact.tscn" id="1_skauc"]
+[ext_resource type="Script" uid="uid://do0rwc71a384u" path="res://Inventory/Actions/consumable_action.gd" id="2_oum6m"]
+[ext_resource type="Script" uid="uid://du5u3pregm218" path="res://Inventory/item_data.gd" id="3_oum6m"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mmqn2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d6ppk"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qrtod"]
+
+[sub_resource type="Resource" id="Resource_d8khe"]
+script = ExtResource("2_oum6m")
+modifier_name = "test_consume"
+modifier_value = 25
+metadata/_custom_type_script = "uid://do0rwc71a384u"
+
+[sub_resource type="Resource" id="Resource_85j88"]
+script = ExtResource("3_oum6m")
+item_name = "test_item"
+Item_icon = SubResource("PlaceholderTexture2D_qrtod")
+action_data = SubResource("Resource_d8khe")
+metadata/_custom_type_script = "uid://du5u3pregm218"
+
+[node name="TestItem" type="StaticBody3D" groups=["items"]]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_mmqn2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_d6ppk")
+
+[node name="ItemInteract" parent="." instance=ExtResource("1_skauc")]
+item_data = SubResource("Resource_85j88")
