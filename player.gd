@@ -15,19 +15,23 @@ var _look := Vector2.ZERO
 @onready var horizontal_pivot: Node3D = $HorizontalPivot
 @onready var vertical_pivot: Node3D = $HorizontalPivot/VerticalPivot
 
-#Inventory vars
+#Inventory variables and signals
 @onready var inventory_controller: Node = %"Inventory Controller/CanvasLayer/Inventory UI"
-
-var inv_open : bool = false
 @onready var raycast: RayCast3D = $RayCast3D
 
+var inv_open : bool = false
+
+signal invent_on_item_collected(item)
 
 # To properly move, the player camera needs the mouse to be captured
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	invent_on_item_collected.connect(inventory_controller.pickup_item)
 
 func _physics_process(delta: float) -> void:
 	frame_camera_rotation()
+	# interaction function
 	try_taking_item()
 	
 	# Add the gravity.
@@ -75,6 +79,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+# Handles interaction using RayCast3D
+# Object must have "ItemInteract" to be an item that is interactable
+# "ItemInteract" holds item/action data
 func try_taking_item() -> void:
 	if !Input.is_action_just_pressed("interact"):
 		return
@@ -83,23 +90,59 @@ func try_taking_item() -> void:
 		return
 	print("Raycast Collided!")
 	
-	var obj = raycast.get_collider()
-	var child = obj.get_node("ItemInteract")
+	var obj = find_interaction_component(raycast.get_collider())
 	
-	if child == null:
+	if obj == null:
+		print("This is not an item!")
 		return
 	print("object is an item!")
 	
-	if !child.item_data.has_method("interact"):
+	if !obj.has_method("interact"):
 		print("Item cannot be picked up!")
 		return
 	print(obj.name)
-	child.item_data.parent_node = obj
-	child.item_data.interact()
+	obj.item_collected.connect(_on_item_collected)
+	print("signal connected")
+	obj.interact()
 
+# Handles finding the "ItemInteract" nodes of objects
+func find_interaction_component(object: Node) -> Node:
+	return object.get_node("ItemInteract")
+
+# Signal emmited when item is picked up
 func _on_item_collected(item: Node):
 	print("Collected Item: ", item)
+	
+	var ic = find_interaction_component(item)
+	if not ic:
+		return
+	
+	# Add item to player inventory
+	add_item_to_inventory(ic.item_data)
+	# play item pickup sound effect
+	play_sound_effect(ic.collect_sound_effect)
+	# delete item from 3D world
 	item.queue_free()
+
+# Handles playing the pickup sound affect of a given item
+func play_sound_effect(sound_effect: AudioStream) -> void:
+	if not sound_effect:
+		return
+	
+	var audio_player := AudioStreamPlayer.new()
+	add_child(audio_player)
+	audio_player.stream = sound_effect
+	
+	audio_player.finished.connect(audio_player.queue_free)
+	audio_player.play()
+
+# Handles adding Item to Inventory
+func add_item_to_inventory(Item_data: ItemData) -> void:
+	if Item_data != null:
+		invent_on_item_collected.emit(Item_data)
+		return
+	 
+	print("No item data found") 
 
 # Calculates the desired movement direction based on input direction and which way the player is facing
 func get_movement_direction() -> Vector3:
