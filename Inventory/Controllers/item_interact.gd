@@ -5,6 +5,10 @@ extends Node
 
 signal item_collected(item: Node)
 
+func _ready() -> void:
+	var scene_path = get_parent().scene_file_path
+	item_data.item_prefab = load(scene_path)
+
 # Called when item is interacted with
 func interact() -> void:
 	print("singal emitted")

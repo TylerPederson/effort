@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cuonab4cx0tiy"]
 
-[ext_resource type="Script" uid="uid://beno7a8uf42k0" path="res://Inventory/inventory_controller.gd" id="1_r6q0g"]
+[ext_resource type="Script" uid="uid://beno7a8uf42k0" path="res://Inventory/Controllers/inventory_controller.gd" id="1_2clvf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7spk5"]
 content_margin_left = 0.0
@@ -32,7 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_r6q0g")
+script = ExtResource("1_2clvf")
 
 [node name="Panel" type="Panel" parent="CanvasLayer/Inventory UI"]
 custom_minimum_size = Vector2(100, 100)
@@ -67,4 +67,4 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-columns = 5
+columns = 7

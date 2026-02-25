@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://703h7fkmxdhp"]
+[gd_scene load_steps=8 format=3 uid="uid://703h7fkmxdhp"]
 
 [ext_resource type="Script" uid="uid://8kckw4tfcpn5" path="res://player.gd" id="1_4flbx"]
-[ext_resource type="PackedScene" uid="uid://cuonab4cx0tiy" path="res://Inventory/inventory_controller.tscn" id="2_onrkg"]
+[ext_resource type="PackedScene" uid="uid://cuonab4cx0tiy" path="res://Inventory/Controllers/inventory_controller.tscn" id="2_onrkg"]
+[ext_resource type="PackedScene" uid="uid://5ajj6hvux3jy" path="res://Inventory/Controllers/interaction_controller.tscn" id="3_i3pqv"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ram5n"]
 
@@ -37,6 +38,8 @@ transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0)
 [node name="Inventory Controller" parent="." instance=ExtResource("2_onrkg")]
 unique_name_in_owner = true
 
+[node name="InteractionController" parent="." instance=ExtResource("3_i3pqv")]
+
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.005550176, -0.9999849, 0, 0.9999849, 0.005550176, 0, -0.63206935, 0)
-target_position = Vector3(0, -2, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.67341006, 0)
+target_position = Vector3(0, -3, 0)

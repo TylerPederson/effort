@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://wwkycn4pfa1g"]
 
-[ext_resource type="PackedScene" uid="uid://vei5oj44pyjd" path="res://Inventory/item_interact.tscn" id="1_skauc"]
+[ext_resource type="PackedScene" uid="uid://vei5oj44pyjd" path="res://Inventory/Controllers/item_interact.tscn" id="1_skauc"]
 [ext_resource type="Texture2D" uid="uid://v2qp0scpj4s8" path="res://Inventory/Items/Icons/TestItemIcon.png" id="2_d8khe"]
 [ext_resource type="Script" uid="uid://do0rwc71a384u" path="res://Inventory/Actions/consumable_action.gd" id="2_oum6m"]
 [ext_resource type="Script" uid="uid://du5u3pregm218" path="res://Inventory/item_data.gd" id="3_oum6m"]
@@ -23,7 +23,7 @@ Item_icon = ExtResource("2_d8khe")
 action_data = SubResource("Resource_d8khe")
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
-[node name="TestItem" type="StaticBody3D"]
+[node name="TestItem" type="RigidBody3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_mmqn2")

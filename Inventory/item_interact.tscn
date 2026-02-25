@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://vei5oj44pyjd"]
-
-[ext_resource type="Script" uid="uid://cqu2ni3xiygu3" path="res://Inventory/item_interact.gd" id="1_kkp0g"]
-
-[node name="ItemInteract" type="Node"]
-script = ExtResource("1_kkp0g")
