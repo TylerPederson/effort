@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://lufehvu5wiic"]
+[gd_scene load_steps=12 format=3 uid="uid://lufehvu5wiic"]
 
 [ext_resource type="PackedScene" uid="uid://703h7fkmxdhp" path="res://player.tscn" id="1_5puvd"]
 [ext_resource type="PackedScene" uid="uid://cnyqybv3bcgfh" path="res://stats-and-combat/Components/health_component.tscn" id="2_7c1hg"]
 [ext_resource type="PackedScene" uid="uid://dkb233trnmk0q" path="res://stats-and-combat/Components/hitbox_component.tscn" id="3_5m3bv"]
 [ext_resource type="PackedScene" uid="uid://cm6ekv7xheido" path="res://Spikes/spikes.tscn" id="4_clqtg"]
+[ext_resource type="PackedScene" uid="uid://bad74nx0no6g8" path="res://TargetDummy/target_dummy.tscn" id="5_67b5x"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s6xw7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -84,3 +85,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0)
 
 [node name="Spikes2" parent="Obstacles" instance=ExtResource("4_clqtg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 6)
+
+[node name="Dummies" type="Node3D" parent="."]
+
+[node name="TargetDummy" parent="Dummies" instance=ExtResource("5_67b5x")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.4105654, 0, 15.1486435)
+
+[node name="TargetDummy2" parent="Dummies" instance=ExtResource("5_67b5x")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 2.3822904, 0, 15.1486435)
+
+[node name="TargetDummy3" parent="Dummies" instance=ExtResource("5_67b5x")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6.38242, 0, 15.1486435)
+
+[node name="TargetDummy4" parent="Dummies" instance=ExtResource("5_67b5x")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 10.234814, 0, 15.1486435)
