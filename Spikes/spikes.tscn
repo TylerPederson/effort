@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://cm6ekv7xheido"]
+
+[ext_resource type="PackedScene" uid="uid://1omebjldyn42" path="res://stats-and-combat/Components/damage_component.tscn" id="2_nrdsm"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_t3eke"]
+top_radius = 0.0
+bottom_radius = 0.2
+height = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8fhau"]
+size = Vector3(1, 0.8479614, 1)
+
+[node name="Spikes" type="Node3D"]
+
+[node name="Spike_mesh" type="Node3D" parent="."]
+
+[node name="Spike_1" type="MeshInstance3D" parent="Spike_mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("CylinderMesh_t3eke")
+skeleton = NodePath("../..")
+
+[node name="Spike_2" type="MeshInstance3D" parent="Spike_mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+mesh = SubResource("CylinderMesh_t3eke")
+skeleton = NodePath("../..")
+
+[node name="Spike_3" type="MeshInstance3D" parent="Spike_mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, -0.5)
+mesh = SubResource("CylinderMesh_t3eke")
+skeleton = NodePath("../..")
+
+[node name="Spike_4" type="MeshInstance3D" parent="Spike_mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, -0.5)
+mesh = SubResource("CylinderMesh_t3eke")
+skeleton = NodePath("../..")
+
+[node name="Spike_5" type="MeshInstance3D" parent="Spike_mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, 0.5)
+mesh = SubResource("CylinderMesh_t3eke")
+skeleton = NodePath("../..")
+
+[node name="damage_component" parent="." instance=ExtResource("2_nrdsm")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="damage_component"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4239807, 0)
+shape = SubResource("BoxShape3D_8fhau")

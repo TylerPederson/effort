@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://clerkr85kk6ww"]
+
+[ext_resource type="Script" uid="uid://23jmmfc02jmu" path="res://Boss/door_pivot.gd" id="1_0yjcu"]
+[ext_resource type="PackedScene" uid="uid://703h7fkmxdhp" path="res://player.tscn" id="2_r2qyn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ve44f"]
+albedo_color = Color(0.08627451, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_any6y"]
+albedo_color = Color(0.07450981, 0.19215687, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_any6y"]
+size = Vector3(1, 2.223755, 10.147156)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n8ie0"]
+size = Vector3(2.666504, 4.5301514, 23.122925)
+
+[node name="BossRoom" type="Node3D"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(52.034306, 0, 0, 0, 0.9999996, 0, 0, 0, 56.829365, 0, -10, 0)
+use_collision = true
+radius = 0.4
+height = 23.688477
+sides = 64
+material = SubResource("StandardMaterial3D_ve44f")
+
+[node name="Wall" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.7705536, 17.344639, -48.997257)
+size = Vector3(1, 56.87329, 82)
+
+[node name="Wall2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.692577, 18.23383, -1.6358681)
+use_collision = true
+size = Vector3(1, 55.371094, 93.50058)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Wall2"]
+transform = Transform3D(1.2706714, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.09700012, -7.2711315, 1.636)
+operation = 2
+size = Vector3(5, 18, 10)
+
+[node name="Wall3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.502747, 17.57661, -2.3530836)
+size = Vector3(1, 56.48311, 93.40796)
+
+[node name="Wall4" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.522318, 18.292313, 44.748466)
+size = Vector3(0.65283203, 55.273956, 81.82135)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5709572, 0.82097983, 0, -0.82097983, 0.5709572, 0, 15.381807, 0)
+
+[node name="OutisidePath" type="CSGBox3D" parent="."]
+transform = Transform3D(-5.554281e-08, -0.99999994, 0, 1.2706714, -4.3711385e-08, 0, 0, 0, 0.99999994, 46.15594, 1.4357145, 0.00013196468)
+use_collision = true
+size = Vector3(1, 18, 10)
+
+[node name="DoorPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.22316, 1.6857758, 0)
+script = ExtResource("1_0yjcu")
+
+[node name="Door" type="CSGBox3D" parent="DoorPivot"]
+transform = Transform3D(1.2706714, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.37241745, 9.276922, 0.00013196468)
+use_collision = true
+size = Vector3(1, 18, 10)
+material = SubResource("StandardMaterial3D_any6y")
+
+[node name="Player" parent="." instance=ExtResource("2_r2qyn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.16895, 3.0710502, -1.1252131)
+
+[node name="DoorTriggerOpen" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.126076, 2.9044192, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorTriggerOpen"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61187744, -0.15383911)
+shape = SubResource("BoxShape3D_any6y")
+
+[node name="DoorTriggerClose" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.510063, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorTriggerClose"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.83325195, 4.166465, 1.5302124)
+shape = SubResource("BoxShape3D_n8ie0")
+
+[connection signal="body_entered" from="DoorTriggerOpen" to="DoorPivot" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="DoorTriggerClose" to="DoorPivot" method="_on_area_3d_2_body_exited"]

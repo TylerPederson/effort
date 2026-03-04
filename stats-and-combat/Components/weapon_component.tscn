@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctpmannwcqc02"]
+
+[ext_resource type="Script" uid="uid://ceqis4ngjspbn" path="res://stats-and-combat/Components/weapon_component.gd" id="1_tnkkm"]
+[ext_resource type="Script" uid="uid://dejjvloqulsca" path="res://stats-and-combat/Components/attack_cast.gd" id="2_6v18b"]
+[ext_resource type="PackedScene" uid="uid://bad74nx0no6g8" path="res://TargetDummy/target_dummy.tscn" id="2_ptd4s"]
+
+[sub_resource type="Curve3D" id="Curve3D_6v18b"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.5, 0, 0, 0.35, 0, 0.4, -0.35, 0, -0.4, 1, 0, -1, 0.35, 0, -0.4, -0.35, 0, 0.4, -1, 0, -1, 0, 0, 0, 0, 0, 0, -1.5, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[node name="Weapon_Component" type="Node3D"]
+script = ExtResource("1_tnkkm")
+projectile_scene = ExtResource("2_ptd4s")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AttackCast" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+collide_with_areas = true
+script = ExtResource("2_6v18b")
+
+[node name="SwingPath" type="Path3D" parent="."]
+curve = SubResource("Curve3D_6v18b")
+debug_custom_color = Color(0, 0.56698596, 0.4811179, 1)
+
+[node name="SwingPathFollow" type="PathFollow3D" parent="SwingPath"]
+unique_name_in_owner = true
+transform = Transform3D(0.97012407, 0, 0.242531, 0, 0.99999976, 0, -0.242531, 0, 0.97012407, 1.5, 0, 0)
+loop = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
