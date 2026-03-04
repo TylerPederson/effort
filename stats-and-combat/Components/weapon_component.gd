@@ -10,8 +10,9 @@ enum WeaponAttackStyle {
 }
 
 
-var attackStyle : WeaponAttackStyle = WeaponAttackStyle.SWING
+var attackStyle : WeaponAttackStyle = WeaponAttackStyle.SHOOT
 
+@export var projectile_scene : PackedScene
 @export var damage : int = 1
 @export var cooldown : float = 0.5
 @export var attack_range : float = 1.5
@@ -80,4 +81,12 @@ func _swing():
 	attack_cast.target_position = Vector3.FORWARD * attack_range
 
 func _shoot():
-	pass
+	attacking = true
+	attack_cast.enabled = false
+	var projectile = projectile_scene.instantiate()
+	get_tree().get_root().add_child(projectile)
+	projectile.global_position = global_position
+	projectile.global_transform.basis = global_transform.basis
+	projectile.global_position += global_transform.basis * Vector3.FORWARD * 1.5
+	projectile.set_damage(damage)
+	projectile.set_speed(attack_range)

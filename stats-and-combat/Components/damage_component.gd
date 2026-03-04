@@ -1,6 +1,8 @@
 extends Area3D
 class_name DamageComponent
 
+signal successful_hit
+
 @export var damage_value : int = 10
 @export var cooldown : float = 1.0
 var ready_to_damage: bool = true
@@ -24,9 +26,13 @@ func _on_area_entered(body):
 	
 	var hitbox : HitboxComponent = body
 	hitbox.receive_damage(damage_value)
+	successful_hit.emit()
 	
 	ready_to_damage = false
 	cooldown_timer.start()
 
 func on_cooldown_timer_timeout():
 	ready_to_damage = true
+
+func set_damage(_damage: int):
+	damage_value = _damage
