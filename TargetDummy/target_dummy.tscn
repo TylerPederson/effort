@@ -1,0 +1,121 @@
+[gd_scene load_steps=13 format=3 uid="uid://bad74nx0no6g8"]
+
+[ext_resource type="Script" uid="uid://dcrt5ty4uyjlt" path="res://TargetDummy/target_dummy.gd" id="1_cyg6r"]
+[ext_resource type="PackedScene" uid="uid://cnyqybv3bcgfh" path="res://stats-and-combat/Components/health_component.tscn" id="1_dp8ih"]
+[ext_resource type="PackedScene" uid="uid://dkb233trnmk0q" path="res://stats-and-combat/Components/hitbox_component.tscn" id="2_cyg6r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u0npd"]
+albedo_color = Color(0.255, 0.31875, 0.34, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xodyu"]
+size = Vector3(0.52, 0.355, 0.925)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xodyu"]
+albedo_color = Color(0.5410438, 0.35904565, 3.85046e-07, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u0npd"]
+size = Vector3(0.2, 3, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dp8ih"]
+albedo_color = Color(0.88, 0.7768934, 0.55439997, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dp8ih"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_cyg6r"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xe6ap"]
+size = Vector3(3, 0.1, 0.1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xe6ap"]
+radius = 0.71484375
+height = 3.8339844
+
+[node name="TargetDummy" type="Node3D"]
+script = ExtResource("1_cyg6r")
+
+[node name="TargetDummyMesh" type="Node3D" parent="."]
+
+[node name="Rocks_1" type="MeshInstance3D" parent="TargetDummyMesh"]
+transform = Transform3D(0.8822748, 0, 0.47073472, 0, 1, 0, -0.47073472, 0, 0.8822748, -0.34149712, 0, 0.21973932)
+material_override = SubResource("StandardMaterial3D_u0npd")
+mesh = SubResource("BoxMesh_xodyu")
+
+[node name="Rocks_3" type="MeshInstance3D" parent="TargetDummyMesh"]
+transform = Transform3D(0.047751516, 0, 0.9988592, -0.40037155, 0.91615295, 0.019140184, -0.91510785, -0.4008288, 0.043747693, 0.070645094, 0, -0.44666427)
+material_override = SubResource("StandardMaterial3D_u0npd")
+mesh = SubResource("BoxMesh_xodyu")
+
+[node name="Rocks_2" type="MeshInstance3D" parent="TargetDummyMesh"]
+transform = Transform3D(0.63325727, 0.18560554, -0.7123183, -7.450581e-09, 0.95799786, 0.32945973, 0.5376497, -0.21861084, 0.83898634, 0.36911124, 0.1254145, 0.19112028)
+material_override = SubResource("StandardMaterial3D_u0npd")
+mesh = SubResource("BoxMesh_xodyu")
+
+[node name="Stake" type="MeshInstance3D" parent="TargetDummyMesh"]
+transform = Transform3D(0.99747694, 0.07099259, 0, -0.07099259, 0.99747694, 0, 0, 0, 1, 0.078818806, 1.3602631, 0)
+material_override = SubResource("StandardMaterial3D_xodyu")
+mesh = SubResource("BoxMesh_u0npd")
+
+[node name="Body" type="MeshInstance3D" parent="TargetDummyMesh/Stake"]
+transform = Transform3D(0.9997444, 0.022617541, 0, -0.022617541, 0.9997444, 0, 0, 0, 0.5980996, -0.022547975, 0.660902, 0)
+material_override = SubResource("StandardMaterial3D_dp8ih")
+mesh = SubResource("CapsuleMesh_dp8ih")
+skeleton = NodePath("../..")
+
+[node name="Head" type="MeshInstance3D" parent="TargetDummyMesh/Stake"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.74471843, -1.4901161e-08, 2.0452394, 0)
+material_override = SubResource("StandardMaterial3D_dp8ih")
+mesh = SubResource("SphereMesh_cyg6r")
+
+[node name="Arms" type="MeshInstance3D" parent="TargetDummyMesh/Stake"]
+transform = Transform3D(0.9907526, 0.13568099, 0, -0.13568099, 0.9907526, 0, 0, 0, 1, 0, 1.3549273, 0)
+material_override = SubResource("StandardMaterial3D_xodyu")
+mesh = SubResource("BoxMesh_xe6ap")
+
+[node name="DestroyedMesh" type="Node3D" parent="."]
+visible = false
+
+[node name="Rocks_1" type="MeshInstance3D" parent="DestroyedMesh"]
+transform = Transform3D(0.8822748, 0, 0.47073472, 0, 1, 0, -0.47073472, 0, 0.8822748, -0.34149712, 0, 0.21973932)
+material_override = SubResource("StandardMaterial3D_u0npd")
+mesh = SubResource("BoxMesh_xodyu")
+
+[node name="Rocks_3" type="MeshInstance3D" parent="DestroyedMesh"]
+transform = Transform3D(0.047751516, 0, 0.9988592, -0.40037155, 0.91615295, 0.019140184, -0.91510785, -0.4008288, 0.043747693, 0.070645094, 0, -0.44666427)
+material_override = SubResource("StandardMaterial3D_u0npd")
+mesh = SubResource("BoxMesh_xodyu")
+
+[node name="Rocks_2" type="MeshInstance3D" parent="DestroyedMesh"]
+transform = Transform3D(0.63325727, 0.18560554, -0.7123183, -7.450581e-09, 0.95799786, 0.32945973, 0.5376497, -0.21861084, 0.83898634, 0.36911124, 0.1254145, 0.19112028)
+material_override = SubResource("StandardMaterial3D_u0npd")
+mesh = SubResource("BoxMesh_xodyu")
+
+[node name="Stake" type="MeshInstance3D" parent="DestroyedMesh"]
+transform = Transform3D(0.99747694, 0.07099259, 0, -0.07099259, 0.99747694, 0, 0, 0, 1, 0.078818806, 1.3602631, 0)
+material_override = SubResource("StandardMaterial3D_xodyu")
+mesh = SubResource("BoxMesh_u0npd")
+
+[node name="Body" type="MeshInstance3D" parent="DestroyedMesh/Stake"]
+transform = Transform3D(0.7831557, 0.5884532, -0.120202295, 0.12021784, 0.17381999, 0.58458966, 0.6100944, -0.7896265, 0.039107043, 0.7142148, -1.0198569, 0.898957)
+material_override = SubResource("StandardMaterial3D_dp8ih")
+mesh = SubResource("CapsuleMesh_dp8ih")
+skeleton = NodePath("../..")
+
+[node name="Head" type="MeshInstance3D" parent="DestroyedMesh/Stake"]
+transform = Transform3D(0.98541975, 4.656613e-10, 0.12670691, -0.1699776, 0.043776363, 0.73315674, -0.0074481415, -0.99904126, 0.032125756, -1.6585654, -1.1336898, 0)
+material_override = SubResource("StandardMaterial3D_dp8ih")
+mesh = SubResource("SphereMesh_cyg6r")
+
+[node name="Arms" type="MeshInstance3D" parent="DestroyedMesh/Stake"]
+transform = Transform3D(0.72310984, 0.079431064, 0.68614995, -0.15472956, 0.9867486, 0.048834786, -0.67317915, -0.14148074, 0.72581875, 0.53051615, -1.209085, -1.0007769)
+material_override = SubResource("StandardMaterial3D_xodyu")
+mesh = SubResource("BoxMesh_xe6ap")
+
+[node name="Health_Component" parent="." instance=ExtResource("1_dp8ih")]
+max_hp = 40
+
+[node name="Hitbox_Component" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_cyg6r")]
+health_component = NodePath("../Health_Component")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox_Component"]
+transform = Transform3D(0.99423176, 0.10725322, 0, -0.10725322, 0.99423176, 0, 0, 0, 1, 0.0653641, 2.040035, 0)
+shape = SubResource("CapsuleShape3D_xe6ap")
