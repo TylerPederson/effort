@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 class_name WeaponComponent
 
 signal attack_finished
@@ -10,7 +10,7 @@ enum WeaponAttackStyle {
 }
 
 
-var attackStyle : WeaponAttackStyle = WeaponAttackStyle.STAB
+var attackStyle : WeaponAttackStyle = WeaponAttackStyle.SWING
 
 @export var damage : int = 1
 @export var cooldown : float = 0.5
@@ -20,6 +20,7 @@ var attacking : bool = false
 
 @onready var timer: Timer = $Timer
 @onready var attack_cast: RayCast3D = %AttackCast
+@onready var swing_path_follow: PathFollow3D = %SwingPathFollow
 
 func set_attack_style(style: String):
 	match style.to_lower():
@@ -36,6 +37,10 @@ func set_attack_style(style: String):
 func _physics_process(delta: float) -> void:
 	if attacking:
 		attack_cast.deal_damage(damage)
+		
+		if attackStyle == WeaponAttackStyle.SWING:
+			swing_path_follow.progress_ratio += delta / cooldown
+			attack_cast.position = swing_path_follow.position
 
 func can_attack() -> bool:
 	return ready_to_use
@@ -64,10 +69,15 @@ func _on_timer_timeout() -> void:
 func _stab():
 	attacking = true
 	attack_cast.enabled = true
-	attack_cast.target_position = -Vector3.FORWARD * attack_range
+	attack_cast.position = transform.origin
+	attack_cast.target_position = Vector3.FORWARD * attack_range
 
 func _swing():
-	pass
+	attacking = true
+	attack_cast.enabled = true
+	swing_path_follow.progress_ratio = 0.0
+	attack_cast.position = swing_path_follow.position
+	attack_cast.target_position = Vector3.FORWARD * attack_range
 
 func _shoot():
 	pass
