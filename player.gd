@@ -1,6 +1,12 @@
 extends CharacterBody3D
 
 
+signal perform_attack
+signal perform_attack_alternative
+signal perform_sprint
+signal stop_attack_alternative
+signal stop_sprint
+
 const SPEED = 400.0
 const JUMP_VELOCITY = 4.5
 
@@ -27,11 +33,12 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("move_jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# Moves based on input keys and facing direction. Smoothly stops if no key is pressed
 	var direction := get_movement_direction()
+	var move_speed = SPEED
 	if direction:
 		velocity.x = direction.x * SPEED * delta
 		velocity.z = direction.z * SPEED * delta
@@ -47,6 +54,18 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
 			_look += -event.relative * mouse_sensitivity
+		
+		if event.is_action_pressed("combat_attack"):
+			perform_attack.emit()
+		if event.is_action_pressed("combat_alternative"):
+			perform_attack_alternative.emit()
+		if event.is_action_released("combat_alternative"):
+			stop_attack_alternative.emit()
+		if event.is_action_pressed("move_sprint"):
+			perform_sprint.emit()
+		if event.is_action_released("sprint"):
+			stop_sprint.emit()
+		
 	
 	if event.is_action_pressed("ui_cancel"):
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -57,7 +76,7 @@ func _unhandled_input(event: InputEvent) -> void:
 # Calculates the desired movement direction based on input direction and which way the player is facing
 func get_movement_direction() -> Vector3:
 	# global movement direction
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var input_vector := Vector3(input_dir.x, 0, input_dir.y).normalized()
 	# transforms movement to be based on the horizontal facing direction
 	var direction := horizontal_pivot.global_transform.basis * input_vector
