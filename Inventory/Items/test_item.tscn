@@ -24,11 +24,14 @@ action_data = SubResource("Resource_d8khe")
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="TestItem" type="RigidBody3D"]
+mass = 0.5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 mesh = SubResource("BoxMesh_mmqn2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 shape = SubResource("BoxShape3D_d6ppk")
 
 [node name="ItemInteract" parent="." instance=ExtResource("1_skauc")]

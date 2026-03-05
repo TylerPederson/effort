@@ -2,8 +2,10 @@ extends Node
 
 @onready var raycast: RayCast3D = $"../RayCast3D"
 @onready var inventory_controller: Node = %"Inventory Controller/CanvasLayer/Inventory UI"
+@onready var testing_lable: Label = $TestingLable
 
 var inv_open : bool = false
+var test_value : int = 0
 
 signal invent_on_item_collected(item)
 
@@ -92,3 +94,8 @@ func play_sound_effect(sound_effect: AudioStream) -> void:
 # Handles finding the "ItemInteract" nodes of objects
 func find_interaction_component(object: Node) -> Node:
 	return object.get_node("ItemInteract")
+
+# Temp(?) Action Functions
+func update_test_value(amount: int) -> void:
+	test_value += amount
+	testing_lable.text = "Value: " + str(test_value)

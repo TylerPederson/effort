@@ -2,8 +2,11 @@ extends Control
 class_name InventoryController
 
 # Inventory Variables
+@onready var player_camera: Camera3D = $"../../../SpringArm3D/Camera3D"
+@onready var raycast: RayCast3D = $"../../../RayCast3D"
 @onready var inventory_grid: GridContainer = %GridContainer
 @onready var context_menu: PopupMenu = PopupMenu.new()
+@onready var interaction_controller: Node = $"../../../InteractionController"
 
 var inventory_slot_prefab: PackedScene = load("res://Inventory/inventory_slot.tscn")
 
@@ -40,6 +43,16 @@ func pickup_item(item_data: ItemData) -> void:
 			inventory_full = not has_free_slot()
 			return
 	inventory_full = true
+	
+func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
+	var slot: InventorySlot = inventory_slots[data]
+	if not slot.slot_data:
+		return false
+	return true
+
+func _drop_data(_at_position: Vector2, data: Variant) -> void:
+	drop_collectable(data)
+	inventory_full = not has_free_slot()
 
 func _on_item_swapped_on_slot(from_slot_id: int, to_slot_id:int) -> void:
 	var to_slot_item: ItemData = inventory_slots[to_slot_id].slot_data
@@ -54,7 +67,7 @@ func _on_item_double_clicked(slot_id) -> void:
 	
 	match get_item_action_type(slot.slot_data):
 		ActionData.ActionType.CONSUMABLE:
-			return #use thing
+			use_collectable(slot_id)
 		ActionData.ActionType.EQUIPMENT:
 			return # equip thing
 		ActionData.ActionType.INSPECT:
@@ -94,10 +107,10 @@ func _on_context_menu_selected(id: int) -> void:
 		ActionData.ActionType.CONSUMABLE:
 			match id:
 				0:
-					# use_collectable return
+					use_collectable(slot_id)
 					return
 				1:
-					# drop_collectable return
+					drop_collectable(slot_id)
 					return
 		ActionData.ActionType.EQUIPMENT:
 			match id:
@@ -105,7 +118,7 @@ func _on_context_menu_selected(id: int) -> void:
 					# equip_collectable return
 					return
 				1:
-					# drop_collectable return
+					drop_collectable(slot_id)
 					return
 		ActionData.ActionType.INSPECT:
 			match id:
@@ -113,7 +126,7 @@ func _on_context_menu_selected(id: int) -> void:
 					# view_collectable return
 					return
 				1:
-					# drop_collectable return
+					drop_collectable(slot_id)
 					return
 
 func get_item_action_type(item_data: ItemData) -> ActionData.ActionType:
@@ -121,3 +134,65 @@ func get_item_action_type(item_data: ItemData) -> ActionData.ActionType:
 		return ActionData.ActionType.INVALID
 	
 	return item_data.action_data.action_type
+
+# Actions
+func use_collectable(slot_id: int) -> void:
+	var slot: InventorySlot = inventory_slots[slot_id]
+	if not slot.slot_data:
+		return
+	
+	var action_data: ActionData = slot.slot_data.action_data
+	match action_data.modifier_name:
+		"test_consume":
+			interaction_controller.update_test_value(action_data.modifier_value)
+	
+	inventory_full = not has_free_slot()
+	slot.fill_slot(null)
+
+func drop_collectable(slot_id: int) -> void:
+	var slot: InventorySlot = inventory_slots[slot_id]
+	if not slot.slot_data:
+		return
+
+	# 1) Foward Check
+	var drop_distance: float = 3.0
+	var foward_dir: Vector3 = -raycast.global_transform.basis.y.normalized()
+	var target_pos: Vector3 = raycast.global_transform.origin + foward_dir * drop_distance
+	var space_state = raycast.get_world_3d().direct_space_state
+	
+	# 2) obstacle check
+	var obstacle_params = PhysicsRayQueryParameters3D.new()
+	obstacle_params.from = raycast.global_transform.origin + Vector3(0,0,3)
+	obstacle_params.to = target_pos
+	
+	var obstacle_hit: Dictionary = space_state.intersect_ray(obstacle_params)
+	if obstacle_hit:
+		print("can't dorp here")
+		return
+	
+	# 3) find the ground
+	var ground_params = PhysicsRayQueryParameters3D.new()
+	ground_params.from = target_pos + Vector3.UP * 3
+	ground_params.to = target_pos - Vector3.UP * 6
+	
+	var ground_hit: Dictionary = space_state.intersect_ray(ground_params)
+	if not ground_hit:
+		print("no ground")
+		return
+	
+	var ground_pos: Vector3 = ground_hit.position
+	
+	var buffer_height: float = 0.5
+		
+	var instance = slot.slot_data.item_prefab.instantiate() as Node3D
+	
+	if instance is RigidBody3D:
+		get_tree().current_scene.add_child(instance)
+		instance.global_transform.origin = ground_pos + Vector3.UP * buffer_height
+		instance.freeze = false
+		instance.gravity_scale = 1.0
+	else:
+		instance.global_transform.origin = ground_pos + Vector3.UP * 0.01
+	
+	inventory_full = not has_free_slot()
+	slot.fill_slot(null)
