@@ -1,0 +1,61 @@
+[gd_scene load_steps=12 format=3 uid="uid://da7uc6l3gvjq1"]
+
+[ext_resource type="Script" uid="uid://8kckw4tfcpn5" path="res://player.gd" id="1_okpe7"]
+[ext_resource type="PackedScene" uid="uid://ctpmannwcqc02" path="res://stats-and-combat/Components/weapon_component.tscn" id="2_b2k0g"]
+[ext_resource type="PackedScene" uid="uid://bg16ugxonu0ke" path="res://stats-and-combat/Weapons/projectile.tscn" id="3_xaelo"]
+[ext_resource type="PackedScene" uid="uid://cnyqybv3bcgfh" path="res://stats-and-combat/Components/health_component.tscn" id="4_kv11m"]
+[ext_resource type="PackedScene" uid="uid://dkb233trnmk0q" path="res://stats-and-combat/Components/hitbox_component.tscn" id="5_rhe7v"]
+[ext_resource type="PackedScene" uid="uid://dtgglf6kcaaf" path="res://stats-and-combat/Components/attack_component.tscn" id="6_0mgxw"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ram5n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vg0gq"]
+albedo_color = Color(0.047058824, 0.9019608, 0, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mx8re"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_4flbx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qmomh"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_okpe7")
+
+[node name="PlayerBody" type="CSGMesh3D" parent="."]
+visible = false
+mesh = SubResource("CapsuleMesh_ram5n")
+material = SubResource("StandardMaterial3D_vg0gq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_mx8re")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0, 0)
+shape = SubResource("SeparationRayShape3D_4flbx")
+spring_length = 5.5
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0)
+
+[node name="HorizontalPivot" type="Node3D" parent="."]
+
+[node name="VerticalPivot" type="Node3D" parent="HorizontalPivot"]
+
+[node name="WeaponHolder" type="Node3D" parent="HorizontalPivot/VerticalPivot"]
+
+[node name="Weapon_Component" parent="HorizontalPivot/VerticalPivot/WeaponHolder" instance=ExtResource("2_b2k0g")]
+projectile_scene = ExtResource("3_xaelo")
+damage = 5
+cooldown = 0.75
+attack_range = 2.0
+
+[node name="Health_Component" parent="." instance=ExtResource("4_kv11m")]
+
+[node name="Hitbox_Component" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_rhe7v")]
+health_component = NodePath("../Health_Component")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox_Component"]
+shape = SubResource("CapsuleShape3D_qmomh")
+
+[node name="Attack_Component" parent="." node_paths=PackedStringArray("weapon_holder") instance=ExtResource("6_0mgxw")]
+weapon_holder = NodePath("../HorizontalPivot/VerticalPivot/WeaponHolder")

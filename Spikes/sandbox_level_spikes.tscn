@@ -1,13 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://lufehvu5wiic"]
+[gd_scene load_steps=9 format=3 uid="uid://lufehvu5wiic"]
 
-[ext_resource type="PackedScene" uid="uid://703h7fkmxdhp" path="res://player.tscn" id="1_5puvd"]
-[ext_resource type="PackedScene" uid="uid://cnyqybv3bcgfh" path="res://stats-and-combat/Components/health_component.tscn" id="2_7c1hg"]
-[ext_resource type="PackedScene" uid="uid://dkb233trnmk0q" path="res://stats-and-combat/Components/hitbox_component.tscn" id="3_5m3bv"]
-[ext_resource type="PackedScene" uid="uid://bg16ugxonu0ke" path="res://stats-and-combat/Weapons/projectile.tscn" id="3_sjeky"]
+[ext_resource type="PackedScene" uid="uid://da7uc6l3gvjq1" path="res://action_player.tscn" id="1_wtjuy"]
 [ext_resource type="PackedScene" uid="uid://cm6ekv7xheido" path="res://Spikes/spikes.tscn" id="4_clqtg"]
-[ext_resource type="PackedScene" uid="uid://dtgglf6kcaaf" path="res://stats-and-combat/Components/attack_component.tscn" id="4_ylna3"]
 [ext_resource type="PackedScene" uid="uid://bad74nx0no6g8" path="res://TargetDummy/target_dummy.tscn" id="5_67b5x"]
-[ext_resource type="PackedScene" uid="uid://ctpmannwcqc02" path="res://stats-and-combat/Components/weapon_component.tscn" id="5_sjeky"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s6xw7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -26,8 +21,6 @@ glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xftbl"]
 albedo_color = Color(1, 0.26666668, 0.20392157, 1)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qmomh"]
 
 [node name="SandboxLevel" type="Node3D"]
 
@@ -50,30 +43,8 @@ material_override = SubResource("StandardMaterial3D_xftbl")
 use_collision = true
 size = Vector3(5.0776367, 0.0859375, 7.758789)
 
-[node name="Player" parent="." instance=ExtResource("1_5puvd")]
+[node name="Player" parent="." instance=ExtResource("1_wtjuy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0036719, 0)
-
-[node name="PlayerBody" parent="Player" index="0"]
-visible = false
-
-[node name="WeaponHolder" type="Node3D" parent="Player/HorizontalPivot/VerticalPivot" index="0"]
-
-[node name="Weapon_Component" parent="Player/HorizontalPivot/VerticalPivot/WeaponHolder" instance=ExtResource("5_sjeky")]
-projectile_scene = ExtResource("3_sjeky")
-damage = 5
-cooldown = 0.75
-attack_range = 2.0
-
-[node name="Health_Component" parent="Player" instance=ExtResource("2_7c1hg")]
-
-[node name="Hitbox_Component" parent="Player" node_paths=PackedStringArray("health_component") instance=ExtResource("3_5m3bv")]
-health_component = NodePath("../Health_Component")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Hitbox_Component"]
-shape = SubResource("CapsuleShape3D_qmomh")
-
-[node name="Attack_Component" parent="Player" node_paths=PackedStringArray("weapon_holder") instance=ExtResource("4_ylna3")]
-weapon_holder = NodePath("../HorizontalPivot/VerticalPivot/WeaponHolder")
 
 [node name="wall1" type="CSGBox3D" parent="."]
 transform = Transform3D(0.99984723, 0.014876128, -0.009177065, -0.01480125, 0.99985707, 0.008174945, 0.009297351, -0.00803788, 0.9999245, 15.446389, 2.5910103, -8.927974)
@@ -119,5 +90,3 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6.38
 
 [node name="TargetDummy4" parent="Dummies" instance=ExtResource("5_67b5x")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 10.234814, 0, 15.1486435)
-
-[editable path="Player"]
