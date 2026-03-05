@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce0ujwcilhva4"]
+
+[ext_resource type="Script" uid="uid://dl4ol3kv130e2" path="res://stats-and-combat/Components/sprint_component.gd" id="1_lqhdv"]
+
+[node name="Sprint_Component" type="Node3D"]
+script = ExtResource("1_lqhdv")

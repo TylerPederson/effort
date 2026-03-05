@@ -10,6 +10,9 @@ signal stop_sprint
 const SPEED = 400.0
 const JUMP_VELOCITY = 4.5
 
+@onready var sprint_component: SprintComponent = $Sprint_Component
+
+
 # Stores the x-y direction to rotate the player look direction
 var _look := Vector2.ZERO
 
@@ -38,13 +41,13 @@ func _physics_process(delta: float) -> void:
 
 	# Moves based on input keys and facing direction. Smoothly stops if no key is pressed
 	var direction := get_movement_direction()
-	var move_speed = SPEED
+	var move_speed = sprint_component.apply_sprint(SPEED, delta)
 	if direction:
-		velocity.x = direction.x * SPEED * delta
-		velocity.z = direction.z * SPEED * delta
+		velocity.x = direction.x * move_speed * delta
+		velocity.z = direction.z * move_speed * delta
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED * delta)
-		velocity.z = move_toward(velocity.z, 0, SPEED * delta)
+		velocity.x = move_toward(velocity.x, 0, move_speed * delta)
+		velocity.z = move_toward(velocity.z, 0, move_speed * delta)
 
 	move_and_slide()
 
@@ -63,7 +66,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			stop_attack_alternative.emit()
 		if event.is_action_pressed("move_sprint"):
 			perform_sprint.emit()
-		if event.is_action_released("sprint"):
+		if event.is_action_released("move_sprint"):
 			stop_sprint.emit()
 		
 	
@@ -94,7 +97,7 @@ func frame_camera_rotation() -> void:
 		 vertical_pivot.rotation.x,
 		 deg_to_rad(min_look_boundary),
 		 deg_to_rad(max_look_boundary)
-		)
+	)
 	
 	# Spring arm only needs to copy what the vertical pivot has already stored.
 	$SpringArm3D.global_transform = vertical_pivot.global_transform
