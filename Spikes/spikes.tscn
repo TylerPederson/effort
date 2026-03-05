@@ -40,6 +40,7 @@ mesh = SubResource("CylinderMesh_t3eke")
 skeleton = NodePath("../..")
 
 [node name="damage_component" parent="." instance=ExtResource("2_nrdsm")]
+damage_value = 100
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="damage_component"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4239807, 0)
