@@ -25,24 +25,19 @@ func _attach_stamina():
 func _on_sprint_begin():
 	if stamina_component == null:
 		sprinting = true
-		print("Starting sprint")
 		return
 	
 	if not stamina_component.has_stamina(stamina_cost_initial):
-		print("Not enough stamina to sprint")
 		return
 	
 	stamina_component.use_stamina(stamina_cost_initial)
 	sprinting = true
-	print("Starting sprint")
 
 func _on_sprint_end():
 	if stamina_component == null:
-		print("Ending sprint")
 		sprinting = false
 		return
 	
-	print("Ending sprint")
 	sprinting = false
 
 func apply_sprint(movement_speed, delta):
@@ -52,9 +47,9 @@ func apply_sprint(movement_speed, delta):
 	if !stamina_component:
 		return movement_speed * sprint_amplifier
 	
-	if not stamina_component.has_stamina(stamina_drain * delta):
-		_on_sprint_end()
-		return movement_speed
 	
 	stamina_component.use_stamina(stamina_drain * delta)
+	if not stamina_component.has_stamina():
+		_on_sprint_end()
+	
 	return movement_speed * sprint_amplifier
