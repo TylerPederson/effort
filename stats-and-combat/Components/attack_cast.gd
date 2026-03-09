@@ -13,4 +13,3 @@ func deal_damage(damage) -> void:
 	print(hb_component)
 	hb_component.receive_damage(damage)
 	
-	

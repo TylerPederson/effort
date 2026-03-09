@@ -23,6 +23,8 @@ var attacking : bool = false
 @onready var attack_cast: RayCast3D = %AttackCast
 @onready var swing_path_follow: PathFollow3D = %SwingPathFollow
 
+var extra_damage := 0
+
 func set_attack_style(style: String):
 	match style.to_lower():
 		"stab":
@@ -37,18 +39,19 @@ func set_attack_style(style: String):
 
 func _physics_process(delta: float) -> void:
 	if attacking:
-		attack_cast.deal_damage(damage)
+		attack_cast.deal_damage(damage + extra_damage)
 		
 		if attackStyle == WeaponAttackStyle.SWING:
-			swing_path_follow.progress_ratio += delta / cooldown
+			swing_path_follow.progress_ratio += delta / timer.wait_time
 			attack_cast.position = swing_path_follow.position
 
 func can_attack() -> bool:
 	return ready_to_use
 
-func attack():
+func attack(bonus_damage:int = 0, cooldown_reduction:float = 1.0):
+	extra_damage = bonus_damage
 	ready_to_use = false
-	timer.start(cooldown)
+	timer.start(cooldown * cooldown_reduction)
 	attack_cast.clear_exceptions()
 	
 	match attackStyle:
@@ -88,5 +91,5 @@ func _shoot():
 	projectile.global_position = global_position
 	projectile.global_transform.basis = global_transform.basis
 	projectile.global_position += global_transform.basis * Vector3.FORWARD * 1.5
-	projectile.set_damage(damage)
+	projectile.set_damage(damage + extra_damage)
 	projectile.set_speed(attack_range)

@@ -9,6 +9,8 @@ class_name AttackComponent
 var _equipped_weapon: WeaponComponent = null
 var _attacking : bool = false
 var _auto_attack : bool = false
+var bonus_damage : int = 0
+var cooldown_reduction : float = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,7 +41,7 @@ func _try_attack():
 	
 	_attacking = true
 	
-	_equipped_weapon.attack()
+	_equipped_weapon.attack(bonus_damage, cooldown_reduction)
 	
 	await _equipped_weapon.attack_finished
 	

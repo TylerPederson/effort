@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://lufehvu5wiic"]
+[gd_scene load_steps=10 format=3 uid="uid://lufehvu5wiic"]
 
 [ext_resource type="PackedScene" uid="uid://da7uc6l3gvjq1" path="res://action_player.tscn" id="1_wtjuy"]
 [ext_resource type="PackedScene" uid="uid://cm6ekv7xheido" path="res://Spikes/spikes.tscn" id="4_clqtg"]
+[ext_resource type="PackedScene" uid="uid://dvm5c3go8fcxb" path="res://stats-and-combat/Collectible/collectible.tscn" id="4_s0li7"]
 [ext_resource type="PackedScene" uid="uid://bad74nx0no6g8" path="res://TargetDummy/target_dummy.tscn" id="5_67b5x"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s6xw7"]
@@ -90,3 +91,44 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6.38
 
 [node name="TargetDummy4" parent="Dummies" instance=ExtResource("5_67b5x")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 10.234814, 0, 15.1486435)
+
+[node name="Collectibles" type="Node3D" parent="."]
+
+[node name="Collectible" parent="Collectibles" instance=ExtResource("4_s0li7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.0036714, 0)
+
+[node name="Collectible2" parent="Collectibles" instance=ExtResource("4_s0li7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.0036714, -2.5901241)
+type = 1
+
+[node name="Collectible3" parent="Collectibles" instance=ExtResource("4_s0li7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.0036714, -4.989396)
+type = 2
+
+[node name="Collectible4" parent="Collectibles" instance=ExtResource("4_s0li7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.0036714, -7.465068)
+type = 3
+
+[node name="Collectible5" parent="Collectibles" instance=ExtResource("4_s0li7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.0036714, -10.005646)
+type = 4
+
+[node name="Collectible6" parent="Collectibles" instance=ExtResource("4_s0li7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.0036714, -12.727266)
+type = 5
+
+[node name="Collectible7" parent="Collectibles" instance=ExtResource("4_s0li7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.0036714, -15.550373)
+type = 6
+
+[node name="Collectible8" parent="Collectibles" instance=ExtResource("4_s0li7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.0036714, -18.268036)
+type = 7
+
+[node name="Collectible9" parent="Collectibles" instance=ExtResource("4_s0li7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.0036714, -21.11869)
+type = 8
+
+[node name="Collectible10" parent="Collectibles" instance=ExtResource("4_s0li7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.0036714, -23.921019)
+type = 9

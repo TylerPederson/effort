@@ -6,7 +6,9 @@ signal stamina_change(current_stamina, total_stamina)
 @export var max_stamina := 20.0
 @export var exhaustion_cooldown_time := 2.5
 @export var use_cooldown_time := 1.0
-@export var stamina_regen_rate := 3.0
+@export var stamina_regen_rate := 1.0
+
+var stamina_regen_rate_bonus := 0.0
 
 var current_stamina := 1.0:
 	set(new_stamina):
@@ -30,7 +32,7 @@ func _process(delta: float) -> void:
 	if not regenerating_stamina:
 		return
 	
-	gain_stamina(stamina_regen_rate * delta)
+	gain_stamina((stamina_regen_rate + stamina_regen_rate_bonus) * delta)
 
 func has_stamina(amount: float = MIN_STAMINA) -> bool:
 	return current_stamina > amount
@@ -45,7 +47,7 @@ func use_stamina(amount: float):
 		regen_timer.start(use_cooldown_time)
 
 func gain_stamina(amount: float):
-	current_stamina = min(max_stamina, current_stamina + amount)
+	current_stamina = min(max_stamina + bonus_stamina, current_stamina + amount)
 
 
 func _on_regen_timer_timeout() -> void:

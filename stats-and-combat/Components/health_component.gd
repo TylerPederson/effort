@@ -5,6 +5,8 @@ signal death
 signal health_change(current_hp, total_hp)
 
 @export var max_hp : int = 50
+@export var regen : int = 0
+
 var current_hp : int = 50:
 	set(new_health):
 		current_hp = max(0, new_health)
@@ -15,7 +17,7 @@ var bonus_hp : int = 0:
 		bonus_hp = max(0, bonus_hp + new_bonus)
 		current_hp = max(current_hp, bonus_hp + current_hp)
 		health_change.emit(current_hp, max_hp+bonus_hp)
-		
+
 var died : bool = false
 
 var armor_component : ArmorComponent = null
@@ -56,3 +58,8 @@ func heal_damage(amount: int) -> void:
 	if died:
 		return
 	current_hp += amount
+
+
+func _on_regen_timer_timeout() -> void:
+	if regen > 0:
+		current_hp += regen

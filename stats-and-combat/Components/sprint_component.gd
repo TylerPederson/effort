@@ -5,6 +5,8 @@ var controller : Node3D
 var stamina_component : StaminaComponent = null
 var stamina_cost_initial := 5.0
 var stamina_drain := 2.0
+var stamina_use_ratio := 1.0
+var sprint_bonus_multiplier := 1.0
 
 @export var sprint_amplifier := 1.5
 
@@ -27,10 +29,10 @@ func _on_sprint_begin():
 		sprinting = true
 		return
 	
-	if not stamina_component.has_stamina(stamina_cost_initial):
+	if not stamina_component.has_stamina(stamina_cost_initial * stamina_use_ratio):
 		return
 	
-	stamina_component.use_stamina(stamina_cost_initial)
+	stamina_component.use_stamina(stamina_cost_initial * stamina_use_ratio)
 	sprinting = true
 
 func _on_sprint_end():
@@ -48,8 +50,8 @@ func apply_sprint(movement_speed, delta):
 		return movement_speed * sprint_amplifier
 	
 	
-	stamina_component.use_stamina(stamina_drain * delta)
+	stamina_component.use_stamina(stamina_drain * stamina_use_ratio * delta)
 	if not stamina_component.has_stamina():
 		_on_sprint_end()
 	
-	return movement_speed * sprint_amplifier
+	return movement_speed * sprint_amplifier * sprint_bonus_multiplier
