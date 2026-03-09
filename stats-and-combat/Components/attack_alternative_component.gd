@@ -1,6 +1,9 @@
 extends Node3D
 class_name AttackAlternativeComponent
 
+signal perform_active(flag: bool, total: float)
+signal perform_charge_change(amount)
+
 var controller : Node3D
 var stamina_component : StaminaComponent = null
 var attack_component : AttackComponent = null
@@ -16,7 +19,10 @@ var stamina_drain := 4.0
 
 var performing :bool = false
 
-var perform_charge : float = 0.0
+var perform_charge : float = 0.0:
+	set(amount):
+		perform_charge = amount
+		perform_charge_change.emit(perform_charge)
 
 func _ready() -> void:
 	controller = get_parent()
@@ -87,13 +93,17 @@ func _on_perform_begin():
 	
 	perform_charge = 0.0
 	performing = true
+	
+	var max_charge_possible = _get_max_charge_possible()
+	
+	perform_active.emit(true, max_charge_possible)
 
 
 func _on_perform_end():
 	if attack_component == null:
 		return
 	
-	if perform_charge > 0.2:
+	if perform_charge > 0.1:
 		match(attack_component._equipped_weapon.attackStyle):
 			WeaponComponent.WeaponAttackStyle.STAB:
 				var armor_bonus = FlatArmorStrategy.new(ceil(perform_charge), flat_armor_time)
@@ -102,9 +112,25 @@ func _on_perform_end():
 				var armor_bonus = RatioArmorStrategy.new(ratio_armor_amount, perform_charge)
 				armor_component.add_armor_source(armor_bonus)
 			WeaponComponent.WeaponAttackStyle.SHOOT:
-				controller.velocity.y = perform_charge
+				controller.velocity.y += perform_charge
 			_:
 				pass
 
 	perform_charge = 0.0
 	performing = false
+	perform_active.emit(false, 0)
+
+
+func _get_max_charge_possible():
+	var total_stamina = stamina_component.get_total_stamina() - stamina_cost_initial
+	var perform_units = total_stamina / stamina_drain
+	
+	match (attack_component._equipped_weapon.attackStyle):
+		WeaponComponent.WeaponAttackStyle.STAB:
+			return perform_units * flat_armor_amount_rate
+		WeaponComponent.WeaponAttackStyle.SWING:
+			return perform_units * ratio_armor_time_rate
+		WeaponComponent.WeaponAttackStyle.SHOOT:
+			return perform_units * jump_charge_rate
+		_:
+			return perform_units

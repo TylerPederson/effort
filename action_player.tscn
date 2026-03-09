@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://da7uc6l3gvjq1"]
+[gd_scene load_steps=17 format=3 uid="uid://da7uc6l3gvjq1"]
 
 [ext_resource type="Script" uid="uid://bgv7o8b1m5rfj" path="res://action_player.gd" id="1_okpe7"]
 [ext_resource type="PackedScene" uid="uid://ctpmannwcqc02" path="res://stats-and-combat/Components/weapon_component.tscn" id="2_b2k0g"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://d372ir1oklhyk" path="res://stats-and-combat/Components/stamina_component.tscn" id="8_xaelo"]
 [ext_resource type="PackedScene" uid="uid://crap3huqfqyb4" path="res://stats-and-combat/Components/attack_alternative_component.tscn" id="9_kv11m"]
 [ext_resource type="Script" uid="uid://cntmhak4bdieh" path="res://stats-and-combat/Components/armor_component.gd" id="10_rhe7v"]
+[ext_resource type="PackedScene" uid="uid://cs3phbnr8ujn0" path="res://stats-and-combat/Basic_HUD/basic_hud.tscn" id="11_0mgxw"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ram5n"]
 
@@ -24,6 +25,8 @@ albedo_color = Color(0.047058824, 0.9019608, 0, 1)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_okpe7")
+
+[node name="Basic_HUD" parent="." instance=ExtResource("11_0mgxw")]
 
 [node name="PlayerBody" type="CSGMesh3D" parent="."]
 mesh = SubResource("CapsuleMesh_ram5n")
@@ -76,3 +79,7 @@ script = ExtResource("10_rhe7v")
 metadata/_custom_type_script = "uid://cntmhak4bdieh"
 
 [connection signal="perform_attack" from="." to="Attack_Component" method="_on_attack_action"]
+[connection signal="health_change" from="Health_Component" to="Basic_HUD" method="_on_health_component_health_change"]
+[connection signal="stamina_change" from="Stamina_Component" to="Basic_HUD" method="_on_stamina_component_stamina_change"]
+[connection signal="perform_active" from="Attack_Alternative_Component" to="Basic_HUD" method="_on_attack_alternative_component_perform_active"]
+[connection signal="perform_charge_change" from="Attack_Alternative_Component" to="Basic_HUD" method="_on_attack_alternative_component_perform_charge_change"]

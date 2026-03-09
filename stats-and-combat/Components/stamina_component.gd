@@ -1,14 +1,25 @@
 extends Node3D
 class_name StaminaComponent
 
+signal stamina_change(current_stamina, total_stamina)
+
 @export var max_stamina := 20.0
 @export var exhaustion_cooldown_time := 2.5
 @export var use_cooldown_time := 1.0
 @export var stamina_regen_rate := 3.0
 
-var current_stamina
+var current_stamina := 1.0:
+	set(new_stamina):
+		current_stamina = max(0, new_stamina)
+		current_stamina = min(current_stamina, max_stamina + bonus_stamina)
+		stamina_change.emit(current_stamina, max_stamina+bonus_stamina)
+var bonus_stamina := 0.0:
+	set(new_bonus):
+		bonus_stamina = max(0, bonus_stamina + new_bonus)
+		current_stamina = max(current_stamina, bonus_stamina + current_stamina)
+		stamina_change.emit(current_stamina, max_stamina+bonus_stamina)
 var regenerating_stamina : bool = true
-const MIN_STAMINA = 0.07
+const MIN_STAMINA := 0.07
 
 @onready var regen_timer: Timer = $RegenTimer
 
@@ -40,3 +51,6 @@ func gain_stamina(amount: float):
 func _on_regen_timer_timeout() -> void:
 	current_stamina = max(MIN_STAMINA, current_stamina)
 	regenerating_stamina = true
+
+func get_total_stamina() -> float:
+	return max_stamina + bonus_stamina
