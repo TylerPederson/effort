@@ -2,6 +2,7 @@ extends Control
 class_name InventorySlot
 
 @onready var icon_slot: TextureRect = $TextureRect
+@onready var label: Label = $Label
 
 var inventory_slot_id: int = -1
 var slot_filled: bool = false
@@ -17,10 +18,24 @@ func fill_slot(item_data: ItemData) -> void:
 	if slot_data:
 		slot_filled = true
 		icon_slot.texture = item_data.Item_icon
-		
+		update_lable()
 	else:
 		slot_filled = false
 		icon_slot.texture = null
+		update_lable()
+
+func update_lable():
+	if slot_data:
+		label.text = str(slot_data.items_stacked)
+		print("label is curr: " + label.text)
+		if slot_data.items_stacked > 1:
+			label.visible = true
+		else:
+			label.visible = false
+		print("label is visable?: " + str(label.visible))
+		print("label updated")
+	else: 
+		label.visible = false
 
 func _get_drag_data(_at_position: Vector2) -> Variant:
 	if slot_filled:
