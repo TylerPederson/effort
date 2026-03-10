@@ -23,7 +23,7 @@ metadata/_custom_type_script = "uid://do0rwc71a384u"
 [sub_resource type="Resource" id="Resource_qrtod"]
 resource_local_to_scene = true
 script = ExtResource("3_oum6m")
-item_name = "test_item"
+item_name = "Atest_item"
 Item_icon = SubResource("CompressedTexture2D_qrtod")
 action_data = SubResource("Resource_d8khe")
 stack_limit = 5

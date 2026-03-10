@@ -28,6 +28,15 @@ func _ready() -> void:
 	add_child(context_menu)
 	context_menu.connect("id_pressed", Callable(self, "_on_context_menu_selected"))
 
+func clear_inv_grid() -> void:
+	var children := inventory_grid.get_children()
+	
+	print("before" + str(inventory_slots))
+	for i in range(children.size() - 1, -1, -1):
+		var child = children[i]
+		child.queue_free()
+	print("after" + str(inventory_slots))
+
 # Checks if there is an available slot for an item to go into
 func has_free_slot() -> bool:
 	for slot in inventory_slots:
@@ -128,6 +137,45 @@ func _on_item_swapped_on_slot(from_slot_id: int, to_slot_id:int) -> void:
 	
 	inventory_slots[to_slot_id].fill_slot(from_slot_item)
 	inventory_slots[from_slot_id].fill_slot(to_slot_item)
+	
+	# to_slot_item = inventory_slots[to_slot_id].slot_data
+	align_inventory()
+
+func align_inventory() -> void:
+	for slot in inventory_slots:
+		if slot.slot_data != null:
+			align_slot(slot.inventory_slot_id)
+
+func align_slot(init_slot_id: int) -> void:
+	print("Starting align")
+	var prev_empty: bool = true
+	var next_open_slot_id: int
+	var i = 1
+	while prev_empty:
+		var prev := inventory_slots[init_slot_id - i]
+		print ("Checking slot id:" + str(init_slot_id - i))
+		if prev.slot_filled:
+			print("Slot was filled, breaking")
+			next_open_slot_id = (init_slot_id - i) + 1
+			
+			if next_open_slot_id == init_slot_id: break
+			
+			print("aligning to id: " + str(next_open_slot_id))
+			inventory_slots[next_open_slot_id].fill_slot(inventory_slots[init_slot_id].slot_data)
+			inventory_slots[init_slot_id].fill_slot(null)
+			break
+		if (init_slot_id - i) <= 0:
+			print("Slot was id 0, breaking")
+			next_open_slot_id = 0
+			
+			if next_open_slot_id == init_slot_id: break
+			
+			print("Aligning to id 0")
+			inventory_slots[next_open_slot_id].fill_slot(inventory_slots[init_slot_id].slot_data)
+			inventory_slots[init_slot_id].fill_slot(null)
+			break
+		i += 1
+	print("slot align complete")
 
 func _on_item_double_clicked(slot_id) -> void:
 	var slot: InventorySlot = inventory_slots[slot_id]
@@ -238,7 +286,7 @@ func use_collectable(slot_id: int) -> void:
 	if slot.slot_data.items_stacked < 1:
 		inventory_full = not has_free_slot()
 		slot.fill_slot(null)
-	
+	align_inventory()
 
 
 func drop_collectable(slot_id: int, all: bool) -> void:
@@ -289,6 +337,7 @@ func drop_collectable(slot_id: int, all: bool) -> void:
 		slot.slot_data.items_stacked -= 1
 		slot.update_lable()
 	
+	align_inventory()
 	
 	if instance is RigidBody3D:
 		get_tree().current_scene.add_child(instance)
@@ -297,5 +346,3 @@ func drop_collectable(slot_id: int, all: bool) -> void:
 		instance.gravity_scale = 1.0
 	else:
 		instance.global_transform.origin = ground_pos + Vector3.UP * 0.01
-	
-	

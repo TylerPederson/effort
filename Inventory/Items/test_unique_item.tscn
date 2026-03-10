@@ -21,10 +21,10 @@ modifier_name = "test_unique_consume"
 modifier_value = 10
 metadata/_custom_type_script = "uid://do0rwc71a384u"
 
-[sub_resource type="Resource" id="Resource_65p4q"]
+[sub_resource type="Resource" id="Resource_6emm7"]
 resource_local_to_scene = true
 script = ExtResource("3_yud37")
-item_name = "test_unique_item"
+item_name = "Btest_unique_item"
 Item_icon = ExtResource("2_yud37")
 action_data = SubResource("Resource_dhb18")
 stack_limit = 1
@@ -43,7 +43,7 @@ transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 shape = SubResource("BoxShape3D_d6ppk")
 
 [node name="ItemInteract" parent="." instance=ExtResource("1_li0yj")]
-item_data = SubResource("Resource_65p4q")
+item_data = SubResource("Resource_6emm7")
 collect_sound_effect = ExtResource("4_r75ei")
 
 [node name="Label3D" type="Label3D" parent="."]

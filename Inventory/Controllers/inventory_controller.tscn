@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cuonab4cx0tiy"]
+[gd_scene load_steps=4 format=3 uid="uid://cuonab4cx0tiy"]
 
 [ext_resource type="Script" uid="uid://beno7a8uf42k0" path="res://Inventory/Controllers/inventory_controller.gd" id="1_2clvf"]
 
@@ -20,12 +20,14 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 20
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2clvf"]
+bg_color = Color(0.6, 0.6, 0.6, 0.25490198)
+
 [node name="Inventory Controller" type="Node"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Inventory UI" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,6 +75,7 @@ offset_top = -152.0
 offset_right = 525.0
 offset_bottom = 227.0
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2clvf")
 vertical_scroll_mode = 3
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/Inventory UI/Panel/ScrollContainer"]
