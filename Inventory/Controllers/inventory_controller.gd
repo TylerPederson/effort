@@ -2,11 +2,11 @@ extends Control
 class_name InventoryController
 
 # Inventory Variables
-@onready var player_camera: Camera3D = $"../../../SpringArm3D/Camera3D"
 @onready var raycast: RayCast3D = $"../../../RayCast3D"
 @onready var inventory_grid: GridContainer = %GridContainer
 @onready var context_menu: PopupMenu = PopupMenu.new()
 @onready var interaction_controller: Node = $"../../../InteractionController"
+@onready var tooltip_panel: Control = $Panel/tooltip_panel
 
 var inventory_slot_prefab: PackedScene = load("res://Inventory/inventory_slot.tscn")
 
@@ -23,8 +23,9 @@ func _ready() -> void:
 		slot.on_item_swapped.connect(_on_item_swapped_on_slot)
 		slot.on_item_double_clicked.connect(_on_item_double_clicked)
 		slot.on_item_right_clicked.connect(_on_item_right_clicked)
+		slot.on_item_left_clicked.connect(_on_item_left_clicked)
 		inventory_slots.append(slot)
-	
+		
 	add_child(context_menu)
 	context_menu.connect("id_pressed", Callable(self, "_on_context_menu_selected"))
 
@@ -190,7 +191,12 @@ func _on_item_double_clicked(slot_id) -> void:
 		ActionData.ActionType.INSPECT:
 			return # inspect thing
 
-func _on_item_right_clicked(slot_id) -> void:
+func _on_item_left_clicked(slot_id: int) -> void:
+	var slot: InventorySlot = inventory_slots[slot_id]
+	if slot.slot_filled:
+		tooltip_panel.update_panel(slot.slot_data)
+
+func _on_item_right_clicked(slot_id: int) -> void:
 	var slot: InventorySlot = inventory_slots[slot_id]
 	if not slot.slot_data:
 		return
@@ -260,6 +266,9 @@ func _on_context_menu_selected(id: int) -> void:
 				2:
 					drop_collectable(slot_id, true)
 					return
+
+func hide_panel() -> void:
+	tooltip_panel.hide_panel()
 
 func get_item_action_type(item_data: ItemData) -> ActionData.ActionType:
 	if item_data == null or item_data.item_prefab == null:
@@ -336,6 +345,10 @@ func drop_collectable(slot_id: int, all: bool) -> void:
 		ic.item_data.items_stacked = 1
 		slot.slot_data.items_stacked -= 1
 		slot.update_lable()
+		if slot.slot_data.items_stacked < 1:
+			inventory_full = not has_free_slot()
+			slot.fill_slot(null)
+		
 	
 	align_inventory()
 	

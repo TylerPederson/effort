@@ -28,6 +28,7 @@ item_name = "Btest_unique_item"
 Item_icon = ExtResource("2_yud37")
 action_data = SubResource("Resource_dhb18")
 stack_limit = 1
+item_desc = "Same as the last item only [b][i][u][color=purple]UNIQUE[/color][/u][/i][/b], who would've thought? [p] [/p] [color=dark_gray][font_size=10][i][p align=center]Wow we really were creative with this one huh?[/p][p align=center]-Inventory Creator[/p][/font_size][/color]"
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="TestItem" type="RigidBody3D"]

@@ -26,6 +26,7 @@ func _input(_event: InputEvent) -> void:
 			inv_open = true
 		else:
 			inventory_controller.visible = false
+			inventory_controller.hide_panel()
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			# Here we would re-enable whatever was disabled above
 			inv_open = false

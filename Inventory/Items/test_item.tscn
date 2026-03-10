@@ -27,6 +27,7 @@ item_name = "Atest_item"
 Item_icon = SubResource("CompressedTexture2D_qrtod")
 action_data = SubResource("Resource_d8khe")
 stack_limit = 5
+item_desc = "Modifies your [i]test_value[/i] by 25 [p] [/p] [color=dark_gray][font_size=10][p align=center]we had to start somewhere, so here we are[/p][p align=center]- Inventory Maker[/p][/font_size][/color]"
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="TestItem" type="RigidBody3D"]

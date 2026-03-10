@@ -15,5 +15,5 @@ func interact() -> void:
 	print("singal emitted")
 	emit_signal("item_collected", get_parent())
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	label_3d.text = str(item_data.items_stacked)

@@ -11,6 +11,7 @@ var slot_data: ItemData
 signal on_item_swapped(from_slot_id: int, to_slot_id:int)
 signal on_item_double_clicked(slot_id: int)
 signal on_item_right_clicked(slot_id: int)
+signal on_item_left_clicked(slot_id: int)
 
 # Called when item is to be put into an item slot
 func fill_slot(item_data: ItemData) -> void:
@@ -62,3 +63,5 @@ func _gui_input(event: InputEvent) -> void:
 			on_item_double_clicked.emit(inventory_slot_id)
 		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 			on_item_right_clicked.emit(inventory_slot_id)
+		elif event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			on_item_left_clicked.emit(inventory_slot_id)
