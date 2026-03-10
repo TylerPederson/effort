@@ -6,7 +6,7 @@ class_name InventoryController
 @onready var inventory_grid: GridContainer = %GridContainer
 @onready var context_menu: PopupMenu = PopupMenu.new()
 @onready var interaction_controller: Node = $"../../../InteractionController"
-@onready var tooltip_panel: Control = $Panel/tooltip_panel
+@onready var tooltip_panel: Control = %tooltip_panel
 
 var inventory_slot_prefab: PackedScene = load("res://Inventory/inventory_slot.tscn")
 
@@ -16,6 +16,12 @@ var inventory_full: bool = false
 
 func _ready() -> void:
 	# add Inventory slots to the inventory grid and slorts array
+	setup_inventory()
+	
+	add_child(context_menu)
+	context_menu.connect("id_pressed", Callable(self, "_on_context_menu_selected"))
+
+func setup_inventory() -> void:
 	for i in item_slot_count:
 		var slot = inventory_slot_prefab.instantiate() as InventorySlot
 		inventory_grid.add_child(slot)
@@ -25,18 +31,52 @@ func _ready() -> void:
 		slot.on_item_right_clicked.connect(_on_item_right_clicked)
 		slot.on_item_left_clicked.connect(_on_item_left_clicked)
 		inventory_slots.append(slot)
-		
-	add_child(context_menu)
-	context_menu.connect("id_pressed", Callable(self, "_on_context_menu_selected"))
 
-func clear_inv_grid() -> void:
-	var children := inventory_grid.get_children()
+func clear_inventory() -> void:
+	var grid_children := inventory_grid.get_children()
 	
-	print("before" + str(inventory_slots))
-	for i in range(children.size() - 1, -1, -1):
-		var child = children[i]
+	for i in range(grid_children.size() - 1, -1, -1):
+		var child = grid_children[i]
 		child.queue_free()
-	print("after" + str(inventory_slots))
+	
+
+func sort_inventory(method: String) -> void:
+	var item_list: Array[ItemData]
+	for slot in inventory_slots:
+		if not slot.slot_filled:
+			break
+		item_list.append(slot.slot_data)
+	
+	match method:
+		"alpha":
+			item_list.sort_custom(func(a: ItemData, b: ItemData):
+				return a.item_name < b.item_name
+			)
+		"equipment":
+			item_list.sort_custom(func(a: ItemData, b: ItemData):
+				return a.item_name < b.item_name
+			)
+		"consumable":
+			item_list.sort_custom(func(a: ItemData, b: ItemData):
+				return a.item_name < b.item_name
+			)
+		"inspect":
+			item_list.sort_custom(func(a: ItemData, b: ItemData):
+				return a.item_name < b.item_name
+			)
+		"all":
+			item_list.sort_custom(func(a: ItemData, b: ItemData):
+				return a.action_data.action_type < b.action_data.action_type
+			)
+	
+	clear_inventory()
+	inventory_slots.clear()
+	setup_inventory()
+	
+	var i := 0
+	for item in item_list:
+		inventory_slots[i].fill_slot(item)
+		i += 1
 
 # Checks if there is an available slot for an item to go into
 func has_free_slot() -> bool:
@@ -224,7 +264,6 @@ func _on_item_right_clicked(slot_id: int) -> void:
 	var rect: Rect2i = Rect2i(mouse_pos.floor(), Vector2i(1,1))
 	context_menu.popup(rect)
 	
-
 func _on_context_menu_selected(id: int) -> void:
 	var slot_id = context_menu.get_meta("slot_id")
 	var slot: InventorySlot = inventory_slots[slot_id]
@@ -297,7 +336,6 @@ func use_collectable(slot_id: int) -> void:
 		slot.fill_slot(null)
 	align_inventory()
 
-
 func drop_collectable(slot_id: int, all: bool) -> void:
 	var slot: InventorySlot = inventory_slots[slot_id]
 	if not slot.slot_data:
@@ -349,7 +387,6 @@ func drop_collectable(slot_id: int, all: bool) -> void:
 			inventory_full = not has_free_slot()
 			slot.fill_slot(null)
 		
-	
 	align_inventory()
 	
 	if instance is RigidBody3D:
@@ -359,3 +396,19 @@ func drop_collectable(slot_id: int, all: bool) -> void:
 		instance.gravity_scale = 1.0
 	else:
 		instance.global_transform.origin = ground_pos + Vector3.UP * 0.01
+
+
+func _on_alpha_sort_pressed() -> void:
+	sort_inventory("alpha") # Sorts all items alphabetically
+
+func _on_equipment_sort_pressed() -> void:
+	sort_inventory("equipment")
+
+func _on_comsumable_sort_pressed() -> void:
+	sort_inventory("consumable")
+
+func _on_inspect_sort_pressed() -> void:
+	sort_inventory("inspect")
+
+func _on_all_sort_pressed() -> void:
+	sort_inventory("all") # Sorts all items by type
