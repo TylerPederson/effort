@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://db55mayr1jluv"]
+
+[ext_resource type="Texture2D" uid="uid://b2ykjse5m6e3h" path="res://SBS - Tiny Texture Pack 2 - 128x128/128x128/Metal/Metal_17-128x128.png" id="1_f3pie"]
+
+[sub_resource type="Curve3D" id="Curve3D_wtiy6"]
+resource_local_to_scene = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdj2i"]
+albedo_texture = ExtResource("1_f3pie")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t1cyn"]
+size = Vector3(1.7727356, 0.28570557, 1.8740234)
+
+[sub_resource type="Animation" id="Animation_nrvfh"]
+resource_name = "moveupdown"
+length = 10.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3, 8.033334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_hwmc4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qf3lr"]
+_data = {
+&"RESET": SubResource("Animation_hwmc4"),
+&"moveupdown": SubResource("Animation_nrvfh")
+}
+
+[node name="MovingPlatform3d" type="Path3D"]
+curve = SubResource("Curve3D_wtiy6")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="."]
+rotation_mode = 0
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="PathFollow3D"]
+remote_path = NodePath("../../AnimatableBody3D")
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="AnimatableBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0020689964, 0.016050369, 0.036581755)
+material_override = SubResource("StandardMaterial3D_cdj2i")
+size = Vector3(6.00747, 0.27514648, 5.9164352)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6293945e-05, 0.021697998, -0.0043945313)
+shape = SubResource("BoxShape3D_t1cyn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatableBody3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_qf3lr")
+}
+autoplay = "moveupdown"

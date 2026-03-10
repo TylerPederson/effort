@@ -1,8 +1,10 @@
-[gd_scene load_steps=47 format=3 uid="uid://blgnpk61vbef4"]
+[gd_scene load_steps=51 format=3 uid="uid://blgnpk61vbef4"]
 
 [ext_resource type="PackedScene" uid="uid://703h7fkmxdhp" path="res://player.tscn" id="1_s6xw7"]
 [ext_resource type="Texture2D" uid="uid://dhvldx8jcux7e" path="res://SBS - Tiny Texture Pack 2 - 128x128/128x128/Brick/Brick_20-128x128.png" id="1_xftbl"]
+[ext_resource type="Texture2D" uid="uid://1uyjfu37ndu2" path="res://SBS - Tiny Texture Pack 2 - 128x128/128x128/Wood/Wood_11-128x128.png" id="2_mx8re"]
 [ext_resource type="Texture2D" uid="uid://cp15udpjggok2" path="res://SBS - Tiny Texture Pack 2 - 128x128/128x128/Brick/Brick_08-128x128.png" id="2_ram5n"]
+[ext_resource type="PackedScene" uid="uid://db55mayr1jluv" path="res://MovingPlatform3d.tscn" id="5_mx8re"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s6xw7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -25,33 +27,40 @@ albedo_texture = ExtResource("1_xftbl")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k3mmv"]
 albedo_texture = ExtResource("1_xftbl")
+uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v5sjs"]
-albedo_texture = ExtResource("1_xftbl")
+albedo_texture = ExtResource("2_mx8re")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tj8me"]
-albedo_texture = ExtResource("1_xftbl")
+albedo_texture = ExtResource("2_mx8re")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lermm"]
-albedo_texture = ExtResource("1_xftbl")
+albedo_texture = ExtResource("2_mx8re")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2kkqy"]
-albedo_texture = ExtResource("1_xftbl")
+albedo_texture = ExtResource("2_mx8re")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kubtu"]
-albedo_texture = ExtResource("1_xftbl")
+albedo_texture = ExtResource("2_mx8re")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r6n0y"]
 albedo_texture = ExtResource("1_xftbl")
+uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hdxvf"]
 albedo_texture = ExtResource("1_xftbl")
+uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0i0ry"]
 albedo_texture = ExtResource("1_xftbl")
+uv1_triplanar = true
+uv2_scale = Vector3(1.005, 1.005, 1.005)
+uv2_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aon3m"]
 albedo_texture = ExtResource("1_xftbl")
+uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aut6f"]
 albedo_texture = ExtResource("1_xftbl")
@@ -136,6 +145,22 @@ albedo_texture = ExtResource("1_xftbl")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rro4q"]
 albedo_texture = ExtResource("1_xftbl")
+
+[sub_resource type="Curve3D" id="Curve3D_mx8re"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.011497498, 0.034201384, 3.2424927e-05, 0, 0, 0, 0, 0, 0, 0.006603241, 0.09744358, 5.9127808e-05, 0, 0, 0, 0, 0, 0, -0.024806976, 6.505686, 5.9127808e-05),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve3D" id="Curve3D_twn38"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.011497498, 0.034201384, 3.2424927e-05, 0, 0, 0, 0, 0, 0, 0.006603241, 0.09744358, 5.9127808e-05, 0, 0, 0, 0, 0, 0, -0.024806976, 6.505686, 5.9127808e-05),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
 
 [node name="SandboxLevel" type="Node3D"]
 
@@ -230,7 +255,7 @@ use_collision = true
 size = Vector3(30.125795, 1, 52.711254)
 
 [node name="wall (climbing)3" type="CSGBox3D" parent="."]
-transform = Transform3D(1.9106853e-15, 4.3711385e-08, 1, 0.99999994, -4.3711385e-08, 0, 4.3711385e-08, 0.99999994, -4.371139e-08, 41.87899, 14.223569, 9.256277)
+transform = Transform3D(1.9106853e-15, 4.3711385e-08, 1, 0.99999994, -4.3711385e-08, 0, 4.3711385e-08, 0.99999994, -4.371139e-08, 41.87899, 43.845215, 9.256278)
 material_override = SubResource("StandardMaterial3D_aon3m")
 use_collision = true
 size = Vector3(30.331362, 1, 52.711254)
@@ -405,3 +430,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.27138, 29.485634, -6.3817
 material_override = SubResource("StandardMaterial3D_rro4q")
 use_collision = true
 size = Vector3(0.43710363, 48.519882, 2.8090148)
+
+[node name="MovingPlatform3d" parent="." instance=ExtResource("5_mx8re")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.270157, 0.24293995, -20.476812)
+curve = SubResource("Curve3D_mx8re")
+
+[node name="MovingPlatform3d2" parent="." instance=ExtResource("5_mx8re")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.570522, 7.6633663, -27.24481)
+curve = SubResource("Curve3D_twn38")
