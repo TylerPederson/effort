@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh2sywynsva26"]
+
+[ext_resource type="Script" uid="uid://du702rkgl45sr" path="res://stats-and-combat/Collectible/choice_tray.gd" id="1_o3f7e"]
+[ext_resource type="PackedScene" uid="uid://dvm5c3go8fcxb" path="res://stats-and-combat/Collectible/collectible.tscn" id="2_3gojb"]
+
+[node name="Choice_Tray" type="Node3D"]
+script = ExtResource("1_o3f7e")
+
+[node name="Collectible1" parent="." instance=ExtResource("2_3gojb")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Collectible2" parent="." instance=ExtResource("2_3gojb")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 0)
+
+[node name="Collectible3" parent="." instance=ExtResource("2_3gojb")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 0)
+
+[connection signal="collected" from="Collectible1" to="." method="_on_collectible_1_collected"]
+[connection signal="collected" from="Collectible2" to="." method="_on_collectible_2_collected"]
+[connection signal="collected" from="Collectible3" to="." method="_on_collectible_3_collected"]

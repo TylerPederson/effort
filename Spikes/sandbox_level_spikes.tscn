@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://lufehvu5wiic"]
+[gd_scene load_steps=12 format=3 uid="uid://lufehvu5wiic"]
 
 [ext_resource type="PackedScene" uid="uid://da7uc6l3gvjq1" path="res://action_player.tscn" id="1_wtjuy"]
 [ext_resource type="PackedScene" uid="uid://cm6ekv7xheido" path="res://Spikes/spikes.tscn" id="4_clqtg"]
 [ext_resource type="PackedScene" uid="uid://dvm5c3go8fcxb" path="res://stats-and-combat/Collectible/collectible.tscn" id="4_s0li7"]
 [ext_resource type="PackedScene" uid="uid://bad74nx0no6g8" path="res://TargetDummy/target_dummy.tscn" id="5_67b5x"]
+[ext_resource type="PackedScene" uid="uid://dh2sywynsva26" path="res://stats-and-combat/Collectible/choice_tray.tscn" id="5_oyuc4"]
+[ext_resource type="PackedScene" uid="uid://brocav0rddv6" path="res://stats-and-combat/Collectible/choice_tray_spawn.tscn" id="6_oyuc4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s6xw7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -132,3 +134,21 @@ type = 8
 [node name="Collectible10" parent="Collectibles" instance=ExtResource("4_s0li7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.0036714, -23.921019)
 type = 9
+
+[node name="Choice_Tray" parent="Collectibles" instance=ExtResource("5_oyuc4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -27)
+
+[node name="CollectTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="Choice_Tray_Spawn" parent="." instance=ExtResource("6_oyuc4")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0, -9)
+
+[node name="Timer" type="Timer" parent="Choice_Tray_Spawn"]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="CollectTimer" to="Collectibles/Choice_Tray" method="activate"]
+[connection signal="timeout" from="Choice_Tray_Spawn/Timer" to="Choice_Tray_Spawn" method="spawn_collectible_tray"]

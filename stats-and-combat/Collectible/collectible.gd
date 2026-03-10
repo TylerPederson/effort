@@ -1,6 +1,8 @@
 extends Area3D
 class_name Collectible
 
+signal collected(type: TYPE)
+
 enum TYPE {
 	HP_REGEN,
 	HP_BOOST,
@@ -27,6 +29,12 @@ const upgrade_dict = {
 	TYPE.DAMAGE_COOLDOWN : 0.75
 }
 
+const HEALTH_REGEN_MODEL = preload("res://stats-and-combat/Collectible/Meshes/health_regen_model.tscn")
+const HEALTH_BOOST_MODEL = preload("res://stats-and-combat/Collectible/Meshes/health_boost_model.tscn")
+const STAMINA_BOOST_MODEL = preload("res://stats-and-combat/Collectible/Meshes/stamina_boost_model.tscn")
+const STAMINA_REGEN_MODEL = preload("res://stats-and-combat/Collectible/Meshes/stamina_regen_model.tscn")
+
+
 @export var type : TYPE = TYPE.HP_REGEN
 
 func _ready() -> void:
@@ -34,7 +42,26 @@ func _ready() -> void:
 	connect_signal()
 
 func set_data():
-	pass
+	%MeshInstance3D.visible = false
+	
+	for c in %Model.get_children():
+		c.queue_free()
+	
+	match type:
+		TYPE.HP_REGEN:
+			%Model.add_child(HEALTH_REGEN_MODEL.instantiate())
+		TYPE.HP_BOOST:
+			%Model.add_child(HEALTH_BOOST_MODEL.instantiate())
+		TYPE.STAMINA_BOOST:
+			%Model.add_child(STAMINA_BOOST_MODEL.instantiate())
+		TYPE.STAMINA_REGEN:
+			%Model.add_child(STAMINA_REGEN_MODEL.instantiate())
+		_:
+			%MeshInstance3D.visible = true
+
+func set_type(_type: TYPE):
+	type = _type
+	set_data()
 
 func connect_signal() -> void:
 	connect("body_entered", collect)
@@ -99,4 +126,5 @@ func collect(body : Node3D) -> void:
 					print("DAMAGE_COOLDOWN")
 		_:
 			print("collect error")
+	collected.emit(type)
 	queue_free()
