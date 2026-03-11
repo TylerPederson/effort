@@ -19,3 +19,6 @@ mesh = SubResource("CylinderMesh_0nple")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_dl5vh")
+
+[node name="Model" type="Node3D" parent="."]
+unique_name_in_owner = true

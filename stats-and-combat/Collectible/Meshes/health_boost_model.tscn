@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxh45rvfy1lo5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wxip"]
+albedo_color = Color(0.83, 0.1577, 0.1577, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_efgwr"]
+material = SubResource("StandardMaterial3D_0wxip")
+size = Vector3(0.2, 1, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dx7b4"]
+albedo_color = Color(0.13, 0.27499986, 1, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_8gvpd"]
+material = SubResource("StandardMaterial3D_dx7b4")
+size = Vector3(0.2, 0.2, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nksht"]
+material = SubResource("StandardMaterial3D_dx7b4")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Health_Regen_Model" type="Node3D"]
+
+[node name="PlusVert" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_efgwr")
+
+[node name="PlusHorz" type="MeshInstance3D" parent="PlusVert"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_efgwr")
+skeleton = NodePath("../..")
+
+[node name="ArrowHead" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4266101, 0.561081, 0)
+mesh = SubResource("PrismMesh_8gvpd")
+
+[node name="ArrowBody" type="MeshInstance3D" parent="ArrowHead"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1479575, 0)
+mesh = SubResource("BoxMesh_nksht")
+skeleton = NodePath("../..")
