@@ -1,6 +1,6 @@
 extends Node3D
 
-var speed = 7
+var speed = 15
 var drop = false
 var lift = false
 

@@ -7,7 +7,9 @@ func _ready():
 	AIController = get_parent().get_parent()
 	if AIController.Awakening:
 		await AIController.get_node("AnimationTree").animation_finished
-	AIController.get_node("AnimationTree").get("parameters/playback").travel("Idle")
+	AIController.get_node("AnimationTree").get("parameters/playback").travel("Dying")
+	AIController.dying = true
+	
 	
 func _physics_process(delta: float):
 	if AIController:

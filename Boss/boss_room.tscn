@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://clerkr85kk6ww"]
+[gd_scene load_steps=8 format=3 uid="uid://clerkr85kk6ww"]
 
 [ext_resource type="Script" uid="uid://23jmmfc02jmu" path="res://Boss/door_pivot.gd" id="1_0yjcu"]
 [ext_resource type="PackedScene" uid="uid://703h7fkmxdhp" path="res://player.tscn" id="2_r2qyn"]
+[ext_resource type="PackedScene" uid="uid://di4k0x1b5852r" path="res://Boss/boss.tscn" id="3_r2qyn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ve44f"]
 albedo_color = Color(0.08627451, 1, 1, 1)
@@ -81,6 +82,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.510063, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DoorTriggerClose"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.83325195, 4.166465, 1.5302124)
 shape = SubResource("BoxShape3D_n8ie0")
+
+[node name="Boss" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_r2qyn")]
+transform = Transform3D(-0.07074882, 0, 0.99749416, 0, 1, 0, -0.99749416, 0, -0.07074882, -6.83292, 1.8442335, 0.21916246)
+player = NodePath("../Player")
 
 [connection signal="body_entered" from="DoorTriggerOpen" to="DoorPivot" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="DoorTriggerClose" to="DoorPivot" method="_on_area_3d_2_body_exited"]

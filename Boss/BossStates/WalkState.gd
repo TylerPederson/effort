@@ -6,9 +6,9 @@ var run: bool
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	AIController = get_parent().get_parent()
-	if AIController.Attacking:
+	if AIController.attack:
 		await AIController.get_node("AnimationTree").animation_finished
-		AIController.attacking = false
+		AIController.attack = false
 	else:
 		run = false
 		AIController.get_node("AnimationTree").get("parameters/playback").travel("get up")
