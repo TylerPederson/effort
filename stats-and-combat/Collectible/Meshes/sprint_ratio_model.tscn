@@ -1,0 +1,94 @@
+[gd_scene load_steps=10 format=3 uid="uid://blfdmnj8n0cmo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dx7b4"]
+albedo_color = Color(0.70600003, 0.51, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nksht"]
+material = SubResource("StandardMaterial3D_dx7b4")
+size = Vector3(0.03, 0.25, 0.1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_c2r0b"]
+material = SubResource("StandardMaterial3D_dx7b4")
+top_radius = 0.03
+bottom_radius = 0.03
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6h1cd"]
+albedo_color = Color(0.81, 0.47736, 0.18630001, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nn3wp"]
+material = SubResource("StandardMaterial3D_6h1cd")
+size = Vector3(0.5, 0.255, 0.2)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_swgwp"]
+material = SubResource("StandardMaterial3D_6h1cd")
+top_radius = 0.127
+bottom_radius = 0.127
+height = 0.2
+
+[sub_resource type="BoxMesh" id="BoxMesh_qra8r"]
+material = SubResource("StandardMaterial3D_6h1cd")
+size = Vector3(0.225, 0.255, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nn3wp"]
+albedo_color = Color(0.36, 0.053999994, 0.053999994, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1pygg"]
+material = SubResource("StandardMaterial3D_nn3wp")
+size = Vector3(0.595, 0.05, 0.201)
+
+[node name="Sprint_Ratio_Model" type="Node3D"]
+
+[node name="PercentLine" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.63639605, 0.63639605, 0, -0.63639605, 0.63639605, 0, 0, 0, 0.9, 0.4266101, 0.42791924, 0)
+mesh = SubResource("BoxMesh_nksht")
+
+[node name="PercentDot1" type="MeshInstance3D" parent="PercentLine"]
+transform = Transform3D(0.70710677, 3.090862e-08, 0.70710677, 0.70710677, -3.090862e-08, -0.70710677, 0, 1, -4.3711392e-08, -0.08562863, 0.010695219, 0)
+mesh = SubResource("CylinderMesh_c2r0b")
+skeleton = NodePath("../..")
+
+[node name="PercentDot2" type="MeshInstance3D" parent="PercentLine"]
+transform = Transform3D(0.7071067, 3.0908616e-08, 0.7071067, 0.7071067, -3.0908616e-08, -0.7071067, 0, 1, -4.3711392e-08, 0.08403385, 0.006611705, 0)
+mesh = SubResource("CylinderMesh_c2r0b")
+skeleton = NodePath("../..")
+
+[node name="Boots" type="Node3D" parent="."]
+
+[node name="LeftBootSole" type="MeshInstance3D" parent="Boots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3159032, 0.0023247898, 0)
+mesh = SubResource("BoxMesh_nn3wp")
+skeleton = NodePath("../..")
+
+[node name="LeftBootToe" type="MeshInstance3D" parent="Boots/LeftBootSole"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.24693638, 0, 0)
+mesh = SubResource("CylinderMesh_swgwp")
+
+[node name="LeftBootHeel" type="MeshInstance3D" parent="Boots/LeftBootSole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13829751, 0.25220117, 0)
+mesh = SubResource("BoxMesh_qra8r")
+skeleton = NodePath("../../..")
+
+[node name="LeftBootBottom" type="MeshInstance3D" parent="Boots/LeftBootSole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038614094, -0.13095924, 0)
+mesh = SubResource("BoxMesh_1pygg")
+skeleton = NodePath("../../..")
+
+[node name="RightBootSole" type="MeshInstance3D" parent="Boots"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27108407, 0.0023247898, 0)
+mesh = SubResource("BoxMesh_nn3wp")
+skeleton = NodePath("../..")
+
+[node name="RightBootToe" type="MeshInstance3D" parent="Boots/RightBootSole"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.24693638, 0, 0)
+mesh = SubResource("CylinderMesh_swgwp")
+
+[node name="RightBootHeel" type="MeshInstance3D" parent="Boots/RightBootSole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13829751, 0.25220117, 0)
+mesh = SubResource("BoxMesh_qra8r")
+skeleton = NodePath("../../..")
+
+[node name="RightBootBottom" type="MeshInstance3D" parent="Boots/RightBootSole"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04209596, -0.13095924, 0)
+mesh = SubResource("BoxMesh_1pygg")
+skeleton = NodePath("../../..")

@@ -33,6 +33,13 @@ const HEALTH_REGEN_MODEL = preload("res://stats-and-combat/Collectible/Meshes/he
 const HEALTH_BOOST_MODEL = preload("res://stats-and-combat/Collectible/Meshes/health_boost_model.tscn")
 const STAMINA_BOOST_MODEL = preload("res://stats-and-combat/Collectible/Meshes/stamina_boost_model.tscn")
 const STAMINA_REGEN_MODEL = preload("res://stats-and-combat/Collectible/Meshes/stamina_regen_model.tscn")
+const ARMOR_FLAT_MODEL = preload("res://stats-and-combat/Collectible/Meshes/armor_flat_model.tscn")
+const ARMOR_RATIO_MODEL = preload("res://stats-and-combat/Collectible/Meshes/armor_ratio_model.tscn")
+const SPRINT_RATIO_MODEL = preload("res://stats-and-combat/Collectible/Meshes/sprint_ratio_model.tscn")
+const SPRINT_SPEED_MODEL = preload("res://stats-and-combat/Collectible/Meshes/sprint_speed_model.tscn")
+const DAMAGE_BOOST_MODEL = preload("res://stats-and-combat/Collectible/Meshes/damage_boost_model.tscn")
+const DAMAGE_COOLDOWN_MODEL = preload("res://stats-and-combat/Collectible/Meshes/damage_cooldown_model.tscn")
+
 
 
 @export var type : TYPE = TYPE.HP_REGEN
@@ -56,6 +63,18 @@ func set_data():
 			%Model.add_child(STAMINA_BOOST_MODEL.instantiate())
 		TYPE.STAMINA_REGEN:
 			%Model.add_child(STAMINA_REGEN_MODEL.instantiate())
+		TYPE.BONUS_FLAT_ARMOR:
+			%Model.add_child(ARMOR_FLAT_MODEL.instantiate())
+		TYPE.BONUS_RATIO_ARMOR:
+			%Model.add_child(ARMOR_RATIO_MODEL.instantiate())
+		TYPE.SPRINT_USE_RATIO:
+			%Model.add_child(SPRINT_RATIO_MODEL.instantiate())
+		TYPE.SPRINT_SPEED_BOOST:
+			%Model.add_child(SPRINT_SPEED_MODEL.instantiate())
+		TYPE.DAMAGE_BOOST:
+			%Model.add_child(DAMAGE_BOOST_MODEL.instantiate())
+		TYPE.DAMAGE_COOLDOWN:
+			%Model.add_child(DAMAGE_COOLDOWN_MODEL.instantiate())
 		_:
 			%MeshInstance3D.visible = true
 
