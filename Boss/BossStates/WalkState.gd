@@ -22,4 +22,4 @@ func _physics_process(delta: float):
 	if AIController and run:
 		AIController.velocity.x = AIController.direction.x * AIController.speed
 		AIController.velocity.z = AIController.direction.z * AIController.speed
-		AIController.look_at(AIController.global_transform.origin + AIController.direction, Vector3(0,1,0))
+		AIController.look_at(AIController.global_transform.origin + AIController.direction, Vector3.UP, true)

@@ -19,7 +19,7 @@ func _physics_process(delta):
 		velocity += get_gravity() * delta
 	if player:
 		direction = (player.global_transform.origin - self.global_transform.origin.normalized())
-
+	move_and_slide()
 
 func _on_detect_player_body_entered(body):
 	if body.name == "Player" and !dead:
