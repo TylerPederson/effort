@@ -1,5 +1,5 @@
 extends CharacterBody3D
-var speed = 1
+var speed = 5
 @onready var state_controller = get_node("StateMachine")
 @export var player: CharacterBody3D
 var direction: Vector3

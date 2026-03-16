@@ -20,6 +20,15 @@ func _ready():
 	
 func _physics_process(delta: float):
 	if AIController and run:
-		AIController.velocity.x = AIController.direction.x * AIController.speed
-		AIController.velocity.z = AIController.direction.z * AIController.speed
-		AIController.look_at(AIController.global_transform.origin + AIController.direction, Vector3.UP, true)
+		var dir = AIController.player.global_position - AIController.global_position
+		dir.y = 0.0
+
+		if dir.length() > 0.1:
+			dir = dir.normalized()
+			AIController.direction = dir
+
+			AIController.velocity.x = dir.x * AIController.speed
+			AIController.velocity.z = dir.z * AIController.speed
+
+			var target = AIController.global_position + dir
+			AIController.look_at(target, Vector3.UP)

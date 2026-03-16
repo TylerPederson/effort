@@ -8,7 +8,7 @@ func _ready():
 		await AIController.get_node("AnimationTree").animation_finished
 	AIController.attack = true
 	AIController.get_node("AnimationTree").get("parameters/playback").travel("Slash")
-	AIController.look_at(AIController.global_transform.origin + AIController.direction, Vector3.UP, true)
+	AIController.look_at(AIController.global_transform.origin + AIController.direction, Vector3.UP)
 func _physics_process(delta: float):
 	if AIController:
 		AIController.velocity.x = 0
