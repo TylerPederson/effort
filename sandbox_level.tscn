@@ -1,8 +1,9 @@
-[gd_scene load_steps=39 format=3 uid="uid://blgnpk61vbef4"]
+[gd_scene load_steps=43 format=3 uid="uid://blgnpk61vbef4"]
 
 [ext_resource type="PackedScene" uid="uid://703h7fkmxdhp" path="res://player.tscn" id="1_s6xw7"]
 [ext_resource type="Texture2D" uid="uid://dmglxcbhgptnf" path="res://Textures/cobblestone.png" id="1_xftbl"]
 [ext_resource type="Texture2D" uid="uid://c20h5nlqtax35" path="res://Textures/wall.png" id="2_ram5n"]
+[ext_resource type="PackedScene" uid="uid://djc4bao8ntfk2" path="res://MovingPlatform.tscn" id="4_ram5n"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s6xw7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -112,6 +113,30 @@ albedo_texture = ExtResource("2_ram5n")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6iva"]
 albedo_texture = ExtResource("2_ram5n")
 
+[sub_resource type="Curve3D" id="Curve3D_mx8re"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.03464508, 0.07579243, -4.196167e-05, 0, 0, 0, 0, 0, 0, 0.08207321, 7.7668676, -4.196167e-05),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_ram5n"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.00819397, 0.18786335, 1.9073486e-05, 0, 0, 0, 0, 0, 0, -0.018989563, 7.2036276, 0.82231903),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_twn38"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.017332077, -0.039956093, 1.9073486e-05, 0, 0, 0, 0, 0, 0, -0.20518303, 27.53615, 1.9073486e-05),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
 [node name="SandboxLevel" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -206,7 +231,7 @@ use_collision = true
 size = Vector3(30.125795, 1, 52.711254)
 
 [node name="wall (climbing)3" type="CSGBox3D" parent="."]
-transform = Transform3D(1.9106853e-15, 4.3711385e-08, 1, 0.99999994, -4.3711385e-08, 0, 4.3711385e-08, 0.99999994, -4.371139e-08, 41.87899, 14.223569, 9.256277)
+transform = Transform3D(1.9106853e-15, 4.3711385e-08, 1, 0.99999994, -4.3711385e-08, 0, 4.3711385e-08, 0.99999994, -4.371139e-08, 42.443928, 14.223569, 9.256277)
 material_override = SubResource("StandardMaterial3D_tj8me")
 use_collision = true
 size = Vector3(30.331362, 1, 52.711254)
@@ -296,7 +321,7 @@ use_collision = true
 size = Vector3(81.05771, 1, 55.01015)
 
 [node name="wall (bow room) 2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -56.887413, 26.400543, 6.0115967)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -56.483356, 26.400543, 6.0115967)
 material_override = SubResource("StandardMaterial3D_y8hge")
 use_collision = true
 size = Vector3(81.05771, 1, 55.01015)
@@ -381,3 +406,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.27138, 29.485634, -6.3817
 material_override = SubResource("StandardMaterial3D_v6iva")
 use_collision = true
 size = Vector3(0.43710363, 48.519882, 2.8090148)
+
+[node name="MovingPlatform" parent="." instance=ExtResource("4_ram5n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.850044, -0.051130295, -21.389973)
+curve = SubResource("Curve3D_mx8re")
+
+[node name="MovingPlatform2" parent="." instance=ExtResource("4_ram5n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.558254, 7.484063, -28.082539)
+curve = SubResource("Curve3D_ram5n")
+
+[node name="MovingPlatform3" parent="." instance=ExtResource("4_ram5n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.915695, -0.03692317, -6.9576607)
+curve = SubResource("Curve3D_twn38")
