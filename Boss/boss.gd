@@ -49,3 +49,10 @@ func _on_animation_tree_animation_finished(anim_name):
 		
 func  _death():
 	self.queue_free()
+
+
+func _on_player_hit_detection_body_entered(body):
+	if body.name == "Player" and attack and !dead:
+		print_debug("Hit")
+		#code for damaging player
+		
