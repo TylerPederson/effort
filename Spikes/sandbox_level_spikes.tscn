@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://lufehvu5wiic"]
+[gd_scene load_steps=13 format=3 uid="uid://lufehvu5wiic"]
 
 [ext_resource type="PackedScene" uid="uid://da7uc6l3gvjq1" path="res://action_player.tscn" id="1_wtjuy"]
 [ext_resource type="PackedScene" uid="uid://cm6ekv7xheido" path="res://Spikes/spikes.tscn" id="4_clqtg"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bad74nx0no6g8" path="res://TargetDummy/target_dummy.tscn" id="5_67b5x"]
 [ext_resource type="PackedScene" uid="uid://dh2sywynsva26" path="res://stats-and-combat/Collectible/choice_tray.tscn" id="5_oyuc4"]
 [ext_resource type="PackedScene" uid="uid://brocav0rddv6" path="res://stats-and-combat/Collectible/choice_tray_spawn.tscn" id="6_oyuc4"]
+[ext_resource type="PackedScene" uid="uid://qecl2v8bvlbt" path="res://Enemy/enemy.tscn" id="7_ylna3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s6xw7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -71,10 +72,10 @@ size = Vector3(33.739746, 6.4058228, 2.679657)
 
 [node name="Obstacles" type="Node3D" parent="."]
 
-[node name="Spikes" parent="Obstacles" instance=ExtResource("4_clqtg")]
+[node name="Spikes" parent="Obstacles" groups=["Enemy"] instance=ExtResource("4_clqtg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0)
 
-[node name="Spikes2" parent="Obstacles" instance=ExtResource("4_clqtg")]
+[node name="Spikes2" parent="Obstacles" groups=["Player"] instance=ExtResource("4_clqtg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 6)
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -149,6 +150,29 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12,
 [node name="Timer" type="Timer" parent="Choice_Tray_Spawn"]
 wait_time = 2.0
 autostart = true
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Enemy1" parent="Enemies" instance=ExtResource("7_ylna3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8275204, -1.9073486e-06, -31.54181)
+type = 1
+move_speed = 0.0
+damage = 1
+attack_range = 5.0
+attack_cooldown = 0.4
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("7_ylna3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.585296, -1.9073486e-06, -23.321579)
+move_speed = 200.0
+damage = 10
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("7_ylna3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.525126, -1.9073486e-06, -19.654383)
+type = 1
+move_speed = 200.0
+damage = 30
+attack_range = 3.0
+attack_cooldown = 2.0
 
 [connection signal="timeout" from="CollectTimer" to="Collectibles/Choice_Tray" method="activate"]
 [connection signal="timeout" from="Choice_Tray_Spawn/Timer" to="Choice_Tray_Spawn" method="spawn_collectible_tray"]

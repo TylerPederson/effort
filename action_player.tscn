@@ -49,11 +49,12 @@ transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0)
 
 [node name="WeaponHolder" type="Node3D" parent="HorizontalPivot/VerticalPivot"]
 
-[node name="Weapon_Component" parent="HorizontalPivot/VerticalPivot/WeaponHolder" instance=ExtResource("2_b2k0g")]
+[node name="Weapon_Component" parent="HorizontalPivot/VerticalPivot/WeaponHolder" node_paths=PackedStringArray("weilder") instance=ExtResource("2_b2k0g")]
 projectile_scene = ExtResource("3_xaelo")
 damage = 5
 cooldown = 0.75
 attack_range = 2.0
+weilder = NodePath("../../../..")
 
 [node name="Health_Component" parent="." instance=ExtResource("4_kv11m")]
 max_hp = 100

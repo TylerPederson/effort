@@ -16,14 +16,19 @@ var attackStyle : WeaponAttackStyle = WeaponAttackStyle.SHOOT
 @export var damage : int = 1
 @export var cooldown : float = 0.5
 @export var attack_range : float = 1.5
+@export var weilder : Node3D
 var ready_to_use : bool = true
 var attacking : bool = false
 
-@onready var timer: Timer = $Timer
+@onready var timer: Timer = %Timer
 @onready var attack_cast: RayCast3D = %AttackCast
 @onready var swing_path_follow: PathFollow3D = %SwingPathFollow
 
 var extra_damage := 0
+
+func _ready():
+	for group in weilder.get_groups():
+		%AttackCast.set_group(group)
 
 func set_attack_style(style: String):
 	match style.to_lower():
@@ -93,3 +98,5 @@ func _shoot():
 	projectile.global_position += global_transform.basis * Vector3.FORWARD * 1.5
 	projectile.set_damage(damage + extra_damage)
 	projectile.set_speed(attack_range)
+	for group in weilder.get_groups():
+		projectile.add_to_group(group)
