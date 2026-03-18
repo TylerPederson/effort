@@ -4,7 +4,7 @@ var AIController
 var run: bool
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready():	# Makes sure that attack or getup is not playing before waling
 	AIController = get_parent().get_parent()
 	if AIController.attack:
 		await AIController.get_node("AnimationTree").animation_finished
@@ -19,11 +19,11 @@ func _ready():
 	AIController.get_node("AnimationTree").get("parameters/playback").travel("Walking")
 	
 func _physics_process(delta: float):
-	if AIController and run:
+	if AIController and run:		# Extra code to make sure boss targetting doesn't glitch out
 		var dir = AIController.player.global_position - AIController.global_position
 		dir.y = 0.0
 
-		if dir.length() > 0.1:
+		if dir.length() > 0.1:	 
 			dir = dir.normalized()
 			AIController.direction = dir
 
