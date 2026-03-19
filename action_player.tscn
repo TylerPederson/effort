@@ -15,7 +15,7 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ram5n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vg0gq"]
-albedo_color = Color(0.047058824, 0.9019608, 0, 1)
+albedo_color = Color(0.0470588, 0.901961, 0, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mx8re"]
 
@@ -36,12 +36,12 @@ material = SubResource("StandardMaterial3D_vg0gq")
 shape = SubResource("CapsuleShape3D_mx8re")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
 shape = SubResource("SeparationRayShape3D_4flbx")
 spring_length = 5.5
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="HorizontalPivot" type="Node3D" parent="."]
 
