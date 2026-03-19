@@ -52,8 +52,9 @@ func  _death():	#deletss boss
 
 func _on_player_hit_detection_body_entered(body):	# Damage player function
 	if body.name == "Player" and attack and !dead:
-		print_debug("Hit")
-		#code for damaging player
+		body.get_node("Health_Component").take_damage(boss_damage)
+		#print_debug("Hit")
+		
 
 func _hit(damage: int):	# Player damages boss function
 	health -= damage

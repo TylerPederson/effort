@@ -55,9 +55,9 @@ size = Vector3(0.65283203, 55.273956, 81.82135)
 transform = Transform3D(1, 0, 0, 0, 0.5709572, 0.82097983, 0, -0.82097983, 0.5709572, 0, 15.381807, 0)
 
 [node name="OutisidePath" type="CSGBox3D" parent="."]
-transform = Transform3D(-5.554281e-08, -0.99999994, 0, 1.2706714, -4.3711385e-08, 0, 0, 0, 0.99999994, 46.15594, 1.4357145, 0.00013196468)
+transform = Transform3D(-5.554281e-08, -0.99999994, 0, 1.2706714, -4.3711385e-08, 0, 0, 0, 0.99999994, 83.339165, 1.4357162, 0.00013196468)
 use_collision = true
-size = Vector3(1, 18, 10)
+size = Vector3(1, 92.366455, 10)
 
 [node name="DoorPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.22316, 1.6857758, 0)
