@@ -82,3 +82,4 @@ func frame_camera_rotation() -> void:
 	
 	# By this point, "used" all the difference accumulated in _look since last frame, reset for next accumulation
 	_look = Vector2.ZERO
+	

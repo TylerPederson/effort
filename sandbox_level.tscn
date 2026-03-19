@@ -1,8 +1,36 @@
-[gd_scene load_steps=39 format=3 uid="uid://blgnpk61vbef4"]
+[gd_scene load_steps=50 format=3 uid="uid://blgnpk61vbef4"]
 
 [ext_resource type="PackedScene" uid="uid://703h7fkmxdhp" path="res://player.tscn" id="1_s6xw7"]
 [ext_resource type="Texture2D" uid="uid://dmglxcbhgptnf" path="res://Textures/cobblestone.png" id="1_xftbl"]
+[ext_resource type="PackedScene" uid="uid://bi7lqj8b1xefg" path="res://auto_door.tscn" id="2_k3mmv"]
 [ext_resource type="Texture2D" uid="uid://c20h5nlqtax35" path="res://Textures/wall.png" id="2_ram5n"]
+[ext_resource type="PackedScene" uid="uid://djc4bao8ntfk2" path="res://MovingPlatform.tscn" id="4_ram5n"]
+[ext_resource type="PackedScene" uid="uid://ja3vnixww6jc" path="res://lever.tscn" id="6_twn38"]
+[ext_resource type="Script" uid="uid://dog5tek13ypnw" path="res://game_manager.gd" id="7_k3mmv"]
+
+[sub_resource type="Curve3D" id="Curve3D_k3mmv"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.09288025, 5.722046e-05, 0.04038143, 0, 0, 0, 0, 0, 0, -0.007171631, 5.722046e-05, -19.97257),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_v5sjs"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.051071167, 1.5258789e-05, 0.07060051, 0, 0, 0, 0, 0, 0, -0.093925476, 1.5258789e-05, 20.040699),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_tj8me"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.01864624, 5.340576e-05, 0.06090069, 0, 0, 0, 0, 0, 0, -0.06706238, 5.340576e-05, -20.252031),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s6xw7"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -112,7 +140,60 @@ albedo_texture = ExtResource("2_ram5n")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6iva"]
 albedo_texture = ExtResource("2_ram5n")
 
+[sub_resource type="Curve3D" id="Curve3D_mx8re"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.03464508, 0.07579243, -4.196167e-05, 0, 0, 0, 0, 0, 0, 0.08207321, 7.7668676, -4.196167e-05),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_ram5n"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.00819397, 0.18786335, 1.9073486e-05, 0, 0, 0, 0, 0, 0, -0.018989563, 7.2036276, 0.82231903),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_twn38"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.017332077, -0.039956093, 1.9073486e-05, 0, 0, 0, 0, 0, 0, -0.20518303, 27.53615, 1.9073486e-05),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_lermm"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.0687561, 2.4795532e-05, -0.0647316, 0, 0, 0, 0, 0, 0, -0.23122406, 2.4795532e-05, 19.991074),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
 [node name="SandboxLevel" type="Node3D"]
+
+[node name="autoDoor3" parent="." instance=ExtResource("2_k3mmv")]
+transform = Transform3D(0.006178463, 0, 0.9999809, 0, 1, 0, -0.9999809, 0, 0.006178463, -16.260014, 2.5841098, -6.2641344)
+
+[node name="autoDoor" parent="." instance=ExtResource("2_k3mmv")]
+transform = Transform3D(-0.031742174, 0, -0.9994961, 0, 1, 0, 0.9994961, 0, -0.031742174, 15.576629, 2.4628341, -15.75961)
+
+[node name="autoDoor2" parent="." instance=ExtResource("2_k3mmv")]
+transform = Transform3D(-0.99999857, 0, 0.001727989, 0, 1, 0, -0.001727989, 0, -0.99999857, -0.09827316, 2.4938042, 19.931967)
+
+[node name="MovingPlatform7" parent="." instance=ExtResource("4_ram5n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.38147, 27.330265, 3.4090881)
+curve = SubResource("Curve3D_k3mmv")
+
+[node name="MovingPlatform6" parent="." instance=ExtResource("4_ram5n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.00929, 27.329453, -16.762646)
+curve = SubResource("Curve3D_v5sjs")
+
+[node name="MovingPlatform5" parent="." instance=ExtResource("4_ram5n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.66502, 27.332954, 3.3885689)
+curve = SubResource("Curve3D_tj8me")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xftbl")
