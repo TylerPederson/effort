@@ -24,6 +24,11 @@ func _on_area_entered(body):
 	if not ready_to_damage:
 		return
 	
+	
+	for group in body.get_parent().get_groups():
+		if group in get_parent().get_groups():
+			return
+	
 	var hitbox : HitboxComponent = body
 	hitbox.receive_damage(damage_value)
 	successful_hit.emit()
