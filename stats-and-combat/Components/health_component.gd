@@ -44,7 +44,7 @@ func take_damage(damage: int) -> void:
 	
 	current_hp -= damage
 	print("Took damage: ", damage)
-	if get_parent().get_node("Marker3D"):
+	if get_parent().get_node_or_null("Marker3D"):
 		var display_damage = damage_numbers.instantiate()
 		get_parent().add_child(display_damage)
 		display_damage.global_position = get_parent().get_node("Marker3D").global_position

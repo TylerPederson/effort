@@ -41,7 +41,6 @@ shape = SubResource("SeparationRayShape3D_4flbx")
 spring_length = 5.5
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="HorizontalPivot" type="Node3D" parent="."]
 
@@ -77,6 +76,9 @@ weapon_holder = NodePath("../HorizontalPivot/VerticalPivot/WeaponHolder")
 [node name="ArmorComponent" type="Node3D" parent="."]
 script = ExtResource("10_rhe7v")
 metadata/_custom_type_script = "uid://cntmhak4bdieh"
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9088831, 0.6025256)
 
 [connection signal="perform_attack" from="." to="Attack_Component" method="_on_attack_action"]
 [connection signal="health_change" from="Health_Component" to="Basic_HUD" method="_on_health_component_health_change"]
