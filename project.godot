@@ -18,3 +18,7 @@ config/name="Effort"
 run/main_scene="res://sandbox_level.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*res://game_manager.gd"
