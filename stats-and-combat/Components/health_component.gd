@@ -6,7 +6,7 @@ signal health_change(current_hp, total_hp)
 
 @export var max_hp : int = 50
 @export var regen : int = 0
-
+var damage_numbers  := preload("res://stats-and-combat/Basic_HUD/damage_number_component.tscn")
 var current_hp : int = 50:
 	set(new_health):
 		current_hp = max(0, new_health)
@@ -41,8 +41,15 @@ func take_damage(damage: int) -> void:
 	if not armor_component == null:
 		damage = armor_component.modify_damage(damage)
 	
+	
 	current_hp -= damage
 	print("Took damage: ", damage)
+	if get_parent().get_node("Marker3D"):
+		var display_damage = damage_numbers.instantiate()
+		get_parent().add_child(display_damage)
+		display_damage.global_position = get_parent().get_node("Marker3D").global_position
+		display_damage.damage_display(damage)
+	
 	
 	if current_hp <= 0:
 		death.emit()
