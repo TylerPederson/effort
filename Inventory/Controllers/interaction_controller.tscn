@@ -4,8 +4,3 @@
 
 [node name="InteractionController" type="Node"]
 script = ExtResource("1_v60n4")
-
-[node name="TestingLable" type="Label" parent="."]
-offset_right = 281.0
-offset_bottom = 76.0
-text = "Value: 0"

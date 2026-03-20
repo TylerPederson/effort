@@ -1,8 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://blgnpk61vbef4"]
+[gd_scene load_steps=14 format=3 uid="uid://blgnpk61vbef4"]
 
 [ext_resource type="PackedScene" uid="uid://703h7fkmxdhp" path="res://player.tscn" id="1_s6xw7"]
-[ext_resource type="PackedScene" uid="uid://wwkycn4pfa1g" path="res://Inventory/Items/test_item.tscn" id="2_vg0gq"]
-[ext_resource type="PackedScene" uid="uid://dlij2yi3ucpra" path="res://Inventory/Items/test_unique_item.tscn" id="3_xftbl"]
+[ext_resource type="PackedScene" uid="uid://d4c0ja7e01arr" path="res://Inventory/Items/health_potion.tscn" id="2_vg0gq"]
+[ext_resource type="PackedScene" uid="uid://dlv5otj1bfse8" path="res://Inventory/Items/wooden_bow.tscn" id="3_xftbl"]
+[ext_resource type="PackedScene" uid="uid://ca4rbv2mvnwri" path="res://Inventory/Items/iron_sword.tscn" id="4_ram5n"]
+[ext_resource type="PackedScene" uid="uid://b56eyuxlbyrbt" path="res://Inventory/Items/stam_potion.tscn" id="5_mx8re"]
+[ext_resource type="PackedScene" uid="uid://dg2rjb8lw5wwa" path="res://Inventory/Items/viking_helmet.tscn" id="6_k3mmv"]
+[ext_resource type="PackedScene" uid="uid://tn4n755wer20" path="res://Inventory/Items/boots.tscn" id="7_v5sjs"]
+[ext_resource type="PackedScene" uid="uid://oe22rdvq4kqd" path="res://Inventory/Items/iron_armor.tscn" id="8_v5sjs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s6xw7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -43,9 +48,6 @@ material_override = SubResource("StandardMaterial3D_xftbl")
 use_collision = true
 size = Vector3(5.0776367, 0.0859375, 7.758789)
 
-[node name="Player" parent="." instance=ExtResource("1_s6xw7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0036719, 0)
-
 [node name="wall1" type="CSGBox3D" parent="."]
 transform = Transform3D(0.99984723, 0.014876128, -0.009177065, -0.01480125, 0.99985707, 0.008174945, 0.009297351, -0.00803788, 0.9999245, 15.446389, 2.5910103, -8.927974)
 use_collision = true
@@ -66,28 +68,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2159472, 2.6614265, 19.429
 use_collision = true
 size = Vector3(33.739746, 6.4058228, 2.679657)
 
-[node name="TestItems" type="Node" parent="."]
+[node name="Player" parent="." instance=ExtResource("1_s6xw7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.104962, 0)
 
-[node name="TestItem" parent="TestItems" instance=ExtResource("2_vg0gq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2431464, 0.37867117, -0.5315008)
+[node name="Health Potion" parent="." instance=ExtResource("2_vg0gq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.227582, 0.3653695, -5.786892)
 
-[node name="TestItem2" parent="TestItems" instance=ExtResource("2_vg0gq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.531244, 0.37867165, -5.069293)
+[node name="wooden_bow" parent="." instance=ExtResource("3_xftbl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -4)
 
-[node name="TestItem3" parent="TestItems" instance=ExtResource("2_vg0gq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5395446, 0.37867165, -3.8986444)
+[node name="iron_sword" parent="." instance=ExtResource("4_ram5n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -6)
 
-[node name="TestItem4" parent="TestItems" instance=ExtResource("2_vg0gq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0937443, 0.37867117, 1.6671524)
+[node name="stam_potion" parent="." instance=ExtResource("5_mx8re")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.358006, 0.6935756, -3.933874)
 
-[node name="TestItem5" parent="TestItems" instance=ExtResource("2_vg0gq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.793573, 0.37867117, -1.657114)
+[node name="viking_helmet" parent="." instance=ExtResource("6_k3mmv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.41443, 0.4257089, -5.337497)
 
-[node name="TestItem6" parent="TestItems" instance=ExtResource("2_vg0gq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.309187, 0.37867117, 3.162033)
+[node name="Boots" parent="." instance=ExtResource("7_v5sjs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7493463, 0.32543138, -3.1676426)
 
-[node name="TestUnique" parent="TestItems" instance=ExtResource("3_xftbl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6846282, 0.37867117, 5.378134)
-
-[node name="TesUnique2" parent="TestItems" instance=ExtResource("3_xftbl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1604886, 0.37867212, 7.805649)
+[node name="iron_armor" parent="." instance=ExtResource("8_v5sjs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1813586, 0.5151953, -3.168922)

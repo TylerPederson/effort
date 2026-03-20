@@ -55,7 +55,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_7spk5")
 
 [node name="tooltip_panel" parent="CanvasLayer/Inventory UI/Panel" instance=ExtResource("2_2727y")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 0
 offset_left = 388.0
 offset_top = 6.0
@@ -82,7 +81,12 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 5
 
-[node name="Alpha Sort" type="Button" parent="CanvasLayer/Inventory UI/Panel"]
+[node name="Sort Buttons" type="Control" parent="CanvasLayer/Inventory UI/Panel"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Alpha Sort" type="Button" parent="CanvasLayer/Inventory UI/Panel/Sort Buttons"]
 layout_mode = 0
 offset_left = 142.0
 offset_top = 64.0
@@ -90,7 +94,7 @@ offset_right = 196.0
 offset_bottom = 95.0
 text = "A-Z"
 
-[node name="Equipment Sort" type="Button" parent="CanvasLayer/Inventory UI/Panel"]
+[node name="Equipment Sort" type="Button" parent="CanvasLayer/Inventory UI/Panel/Sort Buttons"]
 layout_mode = 0
 offset_left = 198.0
 offset_top = 64.0
@@ -99,7 +103,7 @@ offset_bottom = 95.0
 theme_override_font_sizes/font_size = 15
 text = "Equip."
 
-[node name="Comsumable Sort" type="Button" parent="CanvasLayer/Inventory UI/Panel"]
+[node name="Comsumable Sort" type="Button" parent="CanvasLayer/Inventory UI/Panel/Sort Buttons"]
 layout_mode = 0
 offset_left = 255.0
 offset_top = 64.0
@@ -108,7 +112,7 @@ offset_bottom = 95.0
 theme_override_font_sizes/font_size = 15
 text = "Coms."
 
-[node name="Inspect Sort" type="Button" parent="CanvasLayer/Inventory UI/Panel"]
+[node name="Inspect Sort" type="Button" parent="CanvasLayer/Inventory UI/Panel/Sort Buttons"]
 layout_mode = 0
 offset_left = 310.0
 offset_top = 64.0
@@ -117,7 +121,7 @@ offset_bottom = 95.0
 theme_override_font_sizes/font_size = 15
 text = "Insp."
 
-[node name="All Sort" type="Button" parent="CanvasLayer/Inventory UI/Panel"]
+[node name="All Sort" type="Button" parent="CanvasLayer/Inventory UI/Panel/Sort Buttons"]
 layout_mode = 0
 offset_left = 19.0
 offset_top = 64.0
@@ -125,8 +129,8 @@ offset_right = 73.0
 offset_bottom = 95.0
 text = "All"
 
-[connection signal="pressed" from="CanvasLayer/Inventory UI/Panel/Alpha Sort" to="CanvasLayer/Inventory UI" method="_on_alpha_sort_pressed"]
-[connection signal="pressed" from="CanvasLayer/Inventory UI/Panel/Equipment Sort" to="CanvasLayer/Inventory UI" method="_on_equipment_sort_pressed"]
-[connection signal="pressed" from="CanvasLayer/Inventory UI/Panel/Comsumable Sort" to="CanvasLayer/Inventory UI" method="_on_comsumable_sort_pressed"]
-[connection signal="pressed" from="CanvasLayer/Inventory UI/Panel/Inspect Sort" to="CanvasLayer/Inventory UI" method="_on_inspect_sort_pressed"]
-[connection signal="pressed" from="CanvasLayer/Inventory UI/Panel/All Sort" to="CanvasLayer/Inventory UI" method="_on_all_sort_pressed"]
+[connection signal="pressed" from="CanvasLayer/Inventory UI/Panel/Sort Buttons/Alpha Sort" to="CanvasLayer/Inventory UI" method="_on_alpha_sort_pressed"]
+[connection signal="pressed" from="CanvasLayer/Inventory UI/Panel/Sort Buttons/Equipment Sort" to="CanvasLayer/Inventory UI" method="_on_equipment_sort_pressed"]
+[connection signal="pressed" from="CanvasLayer/Inventory UI/Panel/Sort Buttons/Comsumable Sort" to="CanvasLayer/Inventory UI" method="_on_comsumable_sort_pressed"]
+[connection signal="pressed" from="CanvasLayer/Inventory UI/Panel/Sort Buttons/Inspect Sort" to="CanvasLayer/Inventory UI" method="_on_inspect_sort_pressed"]
+[connection signal="pressed" from="CanvasLayer/Inventory UI/Panel/Sort Buttons/All Sort" to="CanvasLayer/Inventory UI" method="_on_all_sort_pressed"]

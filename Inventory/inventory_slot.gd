@@ -7,11 +7,15 @@ class_name InventorySlot
 var inventory_slot_id: int = -1
 var slot_filled: bool = false
 var slot_data: ItemData
+var default_icon: Texture2D
 
 signal on_item_swapped(from_slot_id: int, to_slot_id:int)
 signal on_item_double_clicked(slot_id: int)
 signal on_item_right_clicked(slot_id: int)
 signal on_item_left_clicked(slot_id: int)
+
+func update_base_slot() -> void:
+	self.icon = default_icon
 
 # Called when item is to be put into an item slot
 func fill_slot(item_data: ItemData) -> void:
@@ -22,19 +26,16 @@ func fill_slot(item_data: ItemData) -> void:
 		update_lable()
 	else:
 		slot_filled = false
-		icon_slot.texture = null
+		icon_slot.texture = default_icon
 		update_lable()
 
 func update_lable():
 	if slot_data:
 		label.text = str(slot_data.items_stacked)
-		print("label is curr: " + label.text)
 		if slot_data.items_stacked > 1:
 			label.visible = true
 		else:
 			label.visible = false
-		print("label is visable?: " + str(label.visible))
-		print("label updated")
 	else: 
 		label.visible = false
 

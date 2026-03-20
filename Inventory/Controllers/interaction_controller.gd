@@ -1,16 +1,17 @@
 extends Node
 
 @onready var raycast: RayCast3D = $"../RayCast3D"
-@onready var inventory_controller: Node = %"Inventory Controller/CanvasLayer/Inventory UI"
-@onready var testing_lable: Label = $TestingLable
+@onready var inventory_controller: Node = $"../Inventory Controller/CanvasLayer/Inventory UI"
 
 var inv_open : bool = false
-var test_value : int = 0
 
 signal invent_on_item_collected(item)
 
 func _ready() -> void:
 	invent_on_item_collected.connect(inventory_controller.pickup_item)
+	
+	inventory_controller.raycast = raycast
+	inventory_controller.interaction_controller = self
 
 func _physics_process(_delta: float) -> void:
 	try_taking_item()
@@ -30,6 +31,13 @@ func _input(_event: InputEvent) -> void:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			# Here we would re-enable whatever was disabled above
 			inv_open = false
+	
+	if Input.is_action_just_pressed("Hot1"):
+		inventory_controller.use_collectable(90)
+	if Input.is_action_just_pressed("Hot2"):
+		inventory_controller.use_collectable(91)
+	if Input.is_action_just_pressed("Hot3"):
+		inventory_controller.use_collectable(92)
 
 # Handles interaction using RayCast3D
 # Object must have "ItemInteract" to be an item that is interactable
@@ -38,29 +46,21 @@ func try_taking_item() -> void:
 	if !Input.is_action_just_pressed("interact"):
 		return
 	if !raycast.is_colliding():
-		print("not colliding!")
 		return
-	print("Raycast Collided!")
 	
 	var obj = find_interaction_component(raycast.get_collider())
 	
 	if obj == null:
-		print("This is not an item!")
 		return
-	print("object is an item!")
 	
 	if !obj.has_method("interact"):
-		print("Item cannot be picked up!")
 		return
-	print(obj.name)
+		
 	obj.item_collected.connect(_on_item_collected)
-	print("signal connected")
 	obj.interact()
 
 # Signal emmited when item is picked up
-func _on_item_collected(item: Node):
-	print("Collected Item: ", item)
-	
+func _on_item_collected(item: Node):	
 	var ic = find_interaction_component(item)
 	if not ic:
 		return
@@ -78,8 +78,6 @@ func add_item_to_inventory(Item_data: ItemData) -> void:
 		invent_on_item_collected.emit(Item_data)
 		return
 	 
-	print("No item data found") 
-
 # Handles playing the pickup sound affect of a given item
 func play_sound_effect(sound_effect: AudioStream) -> void:
 	if not sound_effect:
@@ -96,7 +94,9 @@ func play_sound_effect(sound_effect: AudioStream) -> void:
 func find_interaction_component(object: Node) -> Node:
 	return object.get_node("ItemInteract")
 
-# Temp(?) Action Functions
-func update_test_value(amount: int) -> void:
-	test_value += amount
-	testing_lable.text = "Value: " + str(test_value)
+# Put all action code here!
+func modify_health(modifier_value: int) -> void:
+	pass # Insert Code to modify health here
+
+func modify_stamina(modifier_value: int) -> void:
+	pass
