@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://dg2rjb8lw5wwa"]
+
+[ext_resource type="PackedScene" uid="uid://bihmrypy4wvco" path="res://Inventory/Items/Models/Viking Helmet.glb" id="1_sg6pf"]
+[ext_resource type="PackedScene" uid="uid://vei5oj44pyjd" path="res://Inventory/Controllers/item_interact.tscn" id="2_r5n7x"]
+[ext_resource type="Texture2D" uid="uid://uncnd7y4r8qr" path="res://Inventory/Items/Icons/spike_helm_icon.png" id="3_4orrl"]
+[ext_resource type="Script" uid="uid://cnlb1oem8hjot" path="res://Inventory/Actions/equipment_action.gd" id="4_1aslp"]
+[ext_resource type="Script" uid="uid://du5u3pregm218" path="res://Inventory/item_data.gd" id="5_poxyb"]
+[ext_resource type="AudioStream" uid="uid://bhyme3fskao44" path="res://Inventory/Sounds/debug_pickup_sound.mp3" id="6_6f52t"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vmk25"]
+height = 1.1203613
+
+[sub_resource type="Resource" id="Resource_5dxt0"]
+resource_local_to_scene = true
+script = ExtResource("4_1aslp")
+armor_value = 10
+metadata/_custom_type_script = "uid://cnlb1oem8hjot"
+
+[sub_resource type="Resource" id="Resource_ltoth"]
+script = ExtResource("5_poxyb")
+item_name = "Viking Helmet"
+Item_icon = ExtResource("3_4orrl")
+action_data = SubResource("Resource_5dxt0")
+stack_limit = 1
+item_desc = "[p align=center]A helmet with spike fit for a viking of old. To the Netherlands![/p][p] [/p][p align=center][font_size=10][color=dark_gray][i]How did something of this era even get here?[/i][/color][/font_size][/p]"
+metadata/_custom_type_script = "uid://du5u3pregm218"
+
+[node name="viking_helmet" instance=ExtResource("1_sg6pf")]
+
+[node name="nose3 vikingHelmet" parent="." index="0"]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
+
+[node name="nose2 vikingHelmet" parent="." index="1"]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
+
+[node name="nose3 vikingHelmet_1" parent="." index="2"]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
+
+[node name="nose2 vikingHelmet_1" parent="." index="3"]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
+
+[node name="nose3 vikingHelmet_2" parent="." index="4"]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
+
+[node name="nose2 vikingHelmet_2" parent="." index="5"]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.052612305, 0)
+shape = SubResource("CapsuleShape3D_vmk25")
+
+[node name="ItemInteract" parent="." index="7" instance=ExtResource("2_r5n7x")]
+item_data = SubResource("Resource_ltoth")
+collect_sound_effect = ExtResource("6_6f52t")

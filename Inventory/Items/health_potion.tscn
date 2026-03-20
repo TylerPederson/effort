@@ -1,0 +1,49 @@
+[gd_scene load_steps=10 format=3 uid="uid://d4c0ja7e01arr"]
+
+[ext_resource type="PackedScene" uid="uid://ox8snu78j12n" path="res://Inventory/Items/Models/low_poly_potion/scene.gltf" id="1_bn0hy"]
+[ext_resource type="PackedScene" uid="uid://vei5oj44pyjd" path="res://Inventory/Controllers/item_interact.tscn" id="2_c1q3g"]
+[ext_resource type="Texture2D" uid="uid://c412g2fr25kfj" path="res://Inventory/Items/Icons/healh_pot_icon.png" id="3_fq6f0"]
+[ext_resource type="Script" uid="uid://do0rwc71a384u" path="res://Inventory/Actions/consumable_action.gd" id="4_gnv4j"]
+[ext_resource type="Script" uid="uid://du5u3pregm218" path="res://Inventory/item_data.gd" id="5_lrpxv"]
+[ext_resource type="AudioStream" uid="uid://bhyme3fskao44" path="res://Inventory/Sounds/debug_pickup_sound.mp3" id="6_i3b1m"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dwhdj"]
+height = 1.4935303
+
+[sub_resource type="Resource" id="Resource_x0mj5"]
+script = ExtResource("4_gnv4j")
+modifier_name = "modify_health"
+modifier_value = 30
+metadata/_custom_type_script = "uid://do0rwc71a384u"
+
+[sub_resource type="Resource" id="Resource_c1q3g"]
+resource_local_to_scene = true
+script = ExtResource("5_lrpxv")
+item_name = "Health Potion"
+Item_icon = ExtResource("3_fq6f0")
+action_data = SubResource("Resource_x0mj5")
+stack_limit = 20
+item_desc = "[center]Modifies your [color=red]health[/color] by 30 [p] [/p] [p][color=dark_gray][i][font_size=10]Tastes like your Aunt's chicken noodle soup![/font_size][/i][/color][/p][/center]"
+metadata/_custom_type_script = "uid://du5u3pregm218"
+
+[node name="Health Potion" instance=ExtResource("1_bn0hy")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(0.87, 0, 0, 0, 0.87, 0, 0, 0, 0.87, 0, 0.46299183, 0)
+shape = SubResource("CapsuleShape3D_dwhdj")
+
+[node name="ItemInteract" parent="." index="1" instance=ExtResource("2_c1q3g")]
+item_data = SubResource("Resource_c1q3g")
+collect_sound_effect = ExtResource("6_i3b1m")
+
+[node name="Cube_003_VIDRIO_0" parent="Sketchfab_model/a552c6294aa84646b4aa480fae9b04cb_fbx/RootNode/Cube_003" index="0"]
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0, 0, 0)
+
+[node name="Cube_002_Material_0" parent="Sketchfab_model/a552c6294aa84646b4aa480fae9b04cb_fbx/RootNode/Cube_002" index="0"]
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0, 0, 0)
+
+[node name="Cube_001_Material_0" parent="Sketchfab_model/a552c6294aa84646b4aa480fae9b04cb_fbx/RootNode/Cube_001" index="0"]
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0, 0, 0)
+
+[node name="Cube_Material_0" parent="Sketchfab_model/a552c6294aa84646b4aa480fae9b04cb_fbx/RootNode/Cube" index="0"]
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 0, 0, 0)

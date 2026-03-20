@@ -1,0 +1,40 @@
+[gd_scene load_steps=10 format=3 uid="uid://ca4rbv2mvnwri"]
+
+[ext_resource type="PackedScene" uid="uid://dul6eyb6xt0km" path="res://Inventory/Items/Models/Sword.glb" id="1_bgprq"]
+[ext_resource type="PackedScene" uid="uid://vei5oj44pyjd" path="res://Inventory/Controllers/item_interact.tscn" id="2_l1xro"]
+[ext_resource type="Texture2D" uid="uid://casm28yt8lawl" path="res://Inventory/Items/Icons/sword_icon.png" id="3_m0uuq"]
+[ext_resource type="Script" uid="uid://cnlb1oem8hjot" path="res://Inventory/Actions/equipment_action.gd" id="4_xrhqv"]
+[ext_resource type="Script" uid="uid://du5u3pregm218" path="res://Inventory/item_data.gd" id="5_hpdx1"]
+[ext_resource type="AudioStream" uid="uid://bhyme3fskao44" path="res://Inventory/Sounds/debug_pickup_sound.mp3" id="6_vpei0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4lrh0"]
+radius = 0.22216797
+height = 2.4456787
+
+[sub_resource type="Resource" id="Resource_vms5s"]
+resource_local_to_scene = true
+script = ExtResource("4_xrhqv")
+equipement_type = 3
+weapon_damage = 30
+weapon_cooldown = 1.0
+weapon_range = 5.0
+metadata/_custom_type_script = "uid://cnlb1oem8hjot"
+
+[sub_resource type="Resource" id="Resource_50rwd"]
+script = ExtResource("5_hpdx1")
+item_name = "Iron Sword"
+Item_icon = ExtResource("3_m0uuq")
+action_data = SubResource("Resource_vms5s")
+stack_limit = 1
+item_desc = "[p align=center]le sword of iron, standard issue[/p][p] [/p][p align=center][font_size=10][color=dark_gray][i]A bit rusty around the ege but get the job done[/i][/color][/font_size][/p]"
+metadata/_custom_type_script = "uid://du5u3pregm218"
+
+[node name="iron_sword" instance=ExtResource("1_bgprq")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77716064, 0)
+shape = SubResource("CapsuleShape3D_4lrh0")
+
+[node name="ItemInteract" parent="." index="2" instance=ExtResource("2_l1xro")]
+item_data = SubResource("Resource_50rwd")
+collect_sound_effect = ExtResource("6_vpei0")

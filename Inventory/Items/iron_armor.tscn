@@ -1,0 +1,37 @@
+[gd_scene load_steps=10 format=3 uid="uid://oe22rdvq4kqd"]
+
+[ext_resource type="PackedScene" uid="uid://6c6h2ry4qkqv" path="res://Inventory/Items/Models/Armor Metal.glb" id="1_txbb0"]
+[ext_resource type="PackedScene" uid="uid://vei5oj44pyjd" path="res://Inventory/Controllers/item_interact.tscn" id="2_6iiks"]
+[ext_resource type="Texture2D" uid="uid://dwje7m3gsuoc6" path="res://Inventory/Items/Icons/body_armor_icon.png" id="3_w31l1"]
+[ext_resource type="Script" uid="uid://cnlb1oem8hjot" path="res://Inventory/Actions/equipment_action.gd" id="4_g3t0q"]
+[ext_resource type="Script" uid="uid://du5u3pregm218" path="res://Inventory/item_data.gd" id="5_85rlt"]
+[ext_resource type="AudioStream" uid="uid://bhyme3fskao44" path="res://Inventory/Sounds/debug_pickup_sound.mp3" id="6_wgfxa"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_txbb0"]
+radius = 0.4169922
+height = 1.3043213
+
+[sub_resource type="Resource" id="Resource_7nrgp"]
+script = ExtResource("4_g3t0q")
+equipement_type = 1
+armor_value = 25
+metadata/_custom_type_script = "uid://cnlb1oem8hjot"
+
+[sub_resource type="Resource" id="Resource_n4x3h"]
+script = ExtResource("5_85rlt")
+item_name = "Iron Armor"
+Item_icon = ExtResource("3_w31l1")
+action_data = SubResource("Resource_7nrgp")
+stack_limit = 1
+item_desc = "[p align=center]Standard Issue plate armor to tank heavey blows[/p][p] [/p][p align=center][font_size=10][color=dark_gray][i]Honestly not the most comfortable model, but comes with a cupholder![/i][/color][/font_size][/p]"
+metadata/_custom_type_script = "uid://du5u3pregm218"
+
+[node name="iron_armor" instance=ExtResource("1_txbb0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04840088, 0)
+shape = SubResource("CapsuleShape3D_txbb0")
+
+[node name="ItemInteract" parent="." index="2" instance=ExtResource("2_6iiks")]
+item_data = SubResource("Resource_n4x3h")
+collect_sound_effect = ExtResource("6_wgfxa")

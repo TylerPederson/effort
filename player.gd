@@ -14,6 +14,7 @@ var _look := Vector2.ZERO
 
 @onready var horizontal_pivot: Node3D = $HorizontalPivot
 @onready var vertical_pivot: Node3D = $HorizontalPivot/VerticalPivot
+@onready var raycast: RayCast3D = $RayCast3D
 
 # To properly move, the player camera needs the mouse to be captured
 func _ready() -> void:
@@ -41,8 +42,6 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-
-
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
@@ -63,12 +62,12 @@ func get_movement_direction() -> Vector3:
 	var direction := horizontal_pivot.global_transform.basis * input_vector
 	return direction
 
-
 # rotates pivot nodes to store how much the player has rotated based on how much
 # the mouse moves  each from
 func frame_camera_rotation() -> void:
 	horizontal_pivot.rotate_y(_look.x)
 	vertical_pivot.rotate_x(_look.y)
+	raycast.rotate_y(_look.x)
 	
 	# Prevent vertical look direction from looking up or down too much
 	vertical_pivot.rotation.x = clampf(
@@ -76,7 +75,7 @@ func frame_camera_rotation() -> void:
 		 deg_to_rad(min_look_boundary),
 		 deg_to_rad(max_look_boundary)
 		)
-	
+
 	# Spring arm only needs to copy what the vertical pivot has already stored.
 	$SpringArm3D.global_transform = vertical_pivot.global_transform
 	

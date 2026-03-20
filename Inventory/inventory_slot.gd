@@ -1,0 +1,68 @@
+extends Control
+class_name InventorySlot
+
+@onready var icon_slot: TextureRect = $TextureRect
+@onready var label: Label = $Label
+
+var inventory_slot_id: int = -1
+var slot_filled: bool = false
+var slot_data: ItemData
+var default_icon: Texture2D
+
+signal on_item_swapped(from_slot_id: int, to_slot_id:int)
+signal on_item_double_clicked(slot_id: int)
+signal on_item_right_clicked(slot_id: int)
+signal on_item_left_clicked(slot_id: int)
+
+func update_base_slot() -> void:
+	self.icon = default_icon
+
+# Called when item is to be put into an item slot
+func fill_slot(item_data: ItemData) -> void:
+	slot_data = item_data
+	if slot_data:
+		slot_filled = true
+		icon_slot.texture = item_data.Item_icon
+		update_lable()
+	else:
+		slot_filled = false
+		icon_slot.texture = default_icon
+		update_lable()
+
+func update_lable():
+	if slot_data:
+		label.text = str(slot_data.items_stacked)
+		if slot_data.items_stacked > 1:
+			label.visible = true
+		else:
+			label.visible = false
+	else: 
+		label.visible = false
+
+func _get_drag_data(_at_position: Vector2) -> Variant:
+	if slot_filled:
+		var preview: TextureRect = TextureRect.new()
+		preview.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		preview.size = icon_slot.size
+		preview.pivot_offset = icon_slot.size / 2.0
+		preview.texture = icon_slot.texture
+		set_drag_preview(preview)
+		return inventory_slot_id
+	return null
+
+func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
+	return typeof(data) == TYPE_INT
+
+func _drop_data(_at_position: Vector2, data: Variant) -> void:
+	on_item_swapped.emit(data, inventory_slot_id)
+
+func _gui_input(event: InputEvent) -> void:
+	if not slot_filled:
+		return
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.double_click:
+			on_item_double_clicked.emit(inventory_slot_id)
+		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			on_item_right_clicked.emit(inventory_slot_id)
+		elif event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			on_item_left_clicked.emit(inventory_slot_id)
