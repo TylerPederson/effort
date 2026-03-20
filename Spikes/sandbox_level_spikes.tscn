@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://lufehvu5wiic"]
+[gd_scene load_steps=16 format=3 uid="uid://lufehvu5wiic"]
 
 [ext_resource type="PackedScene" uid="uid://da7uc6l3gvjq1" path="res://action_player.tscn" id="1_wtjuy"]
 [ext_resource type="PackedScene" uid="uid://cm6ekv7xheido" path="res://Spikes/spikes.tscn" id="4_clqtg"]
@@ -6,7 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://bad74nx0no6g8" path="res://TargetDummy/target_dummy.tscn" id="5_67b5x"]
 [ext_resource type="PackedScene" uid="uid://brocav0rddv6" path="res://stats-and-combat/Collectible/choice_tray_spawn.tscn" id="6_oyuc4"]
 [ext_resource type="PackedScene" uid="uid://qecl2v8bvlbt" path="res://Enemy/enemy.tscn" id="7_ylna3"]
+[ext_resource type="PackedScene" uid="uid://tn4n755wer20" path="res://Inventory/Items/boots.tscn" id="8_jqmsg"]
 [ext_resource type="PackedScene" uid="uid://dwmetnp1bbxu" path="res://Enemy/enemy_manager.tscn" id="8_sjeky"]
+[ext_resource type="PackedScene" uid="uid://d4c0ja7e01arr" path="res://Inventory/Items/health_potion.tscn" id="9_xehvc"]
+[ext_resource type="PackedScene" uid="uid://ca4rbv2mvnwri" path="res://Inventory/Items/iron_sword.tscn" id="10_iin2v"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s6xw7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -183,6 +186,18 @@ attack_cooldown = 2.0
 [node name="EnemyManager" parent="Enemies" instance=ExtResource("8_sjeky")]
 
 [node name="EnemyManager2" parent="Enemies" instance=ExtResource("8_sjeky")]
+
+[node name="Boots" parent="." instance=ExtResource("8_jqmsg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.543807, 0.32543305, 15.706749)
+
+[node name="Health Potion" parent="." instance=ExtResource("9_xehvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.90948, 0.09704657, 13.827759)
+
+[node name="Health Potion2" parent="." instance=ExtResource("9_xehvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.099923, 0.09704848, 11.517403)
+
+[node name="iron_sword" parent="." instance=ExtResource("10_iin2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.232196, 0.38665032, 8.950638)
 
 [connection signal="timeout" from="Collectibles/Choice_Tray_Spawn/Timer" to="Collectibles/Choice_Tray_Spawn" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="Enemies/EnemyManager" to="Collectibles/Choice_Tray_Spawn2" method="spawn_collectible_tray"]

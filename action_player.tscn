@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://da7uc6l3gvjq1"]
+[gd_scene load_steps=19 format=3 uid="uid://da7uc6l3gvjq1"]
 
 [ext_resource type="Script" uid="uid://bgv7o8b1m5rfj" path="res://action_player.gd" id="1_okpe7"]
 [ext_resource type="PackedScene" uid="uid://ctpmannwcqc02" path="res://stats-and-combat/Components/weapon_component.tscn" id="2_b2k0g"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://crap3huqfqyb4" path="res://stats-and-combat/Components/attack_alternative_component.tscn" id="9_kv11m"]
 [ext_resource type="Script" uid="uid://cntmhak4bdieh" path="res://stats-and-combat/Components/armor_component.gd" id="10_rhe7v"]
 [ext_resource type="PackedScene" uid="uid://cs3phbnr8ujn0" path="res://stats-and-combat/Basic_HUD/basic_hud.tscn" id="11_0mgxw"]
+[ext_resource type="PackedScene" uid="uid://cuonab4cx0tiy" path="res://Inventory/Controllers/inventory_controller.tscn" id="12_7lffo"]
+[ext_resource type="PackedScene" uid="uid://5ajj6hvux3jy" path="res://Inventory/Controllers/interaction_controller.tscn" id="13_3u1kb"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ram5n"]
 
@@ -55,6 +57,9 @@ cooldown = 0.75
 attack_range = 2.0
 weilder = NodePath("../../../..")
 
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="HorizontalPivot/VerticalPivot"]
+remote_path = NodePath("../../../RayCast3D")
+
 [node name="Health_Component" parent="." instance=ExtResource("4_kv11m")]
 max_hp = 100
 
@@ -79,6 +84,13 @@ metadata/_custom_type_script = "uid://cntmhak4bdieh"
 
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9088831, 0.6025256)
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -1.5)
+
+[node name="Inventory Controller" parent="." instance=ExtResource("12_7lffo")]
+
+[node name="InteractionController" parent="." instance=ExtResource("13_3u1kb")]
 
 [connection signal="perform_attack" from="." to="Attack_Component" method="_on_attack_action"]
 [connection signal="health_change" from="Health_Component" to="Basic_HUD" method="_on_health_component_health_change"]
