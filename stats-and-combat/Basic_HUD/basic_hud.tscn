@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://cs3phbnr8ujn0"]
+
+[ext_resource type="Script" uid="uid://80untv763qtf" path="res://stats-and-combat/Basic_HUD/basic_hud.gd" id="1_km2ot"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_km2ot"]
+bg_color = Color(0.27515873, 3.1585805e-07, 7.219613e-08, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2m07e"]
+bg_color = Color(1, 0.20000005, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y8rrw"]
+bg_color = Color(1.6244128e-07, 0.30030403, 0.11097621, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sx6o5"]
+bg_color = Color(0, 0.89, 0.26699996, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6eeui"]
+bg_color = Color(0.22341174, 0.27090055, 1.92523e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vs2jc"]
+bg_color = Color(0.764275, 0.95, 0.2945, 1)
+
+[node name="Basic_HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_km2ot")
+
+[node name="HP_Bar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 9.0
+offset_right = 286.0
+offset_bottom = 36.0
+theme_override_styles/background = SubResource("StyleBoxFlat_km2ot")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2m07e")
+show_percentage = false
+
+[node name="Stamina_Bar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 41.0
+offset_right = 286.0
+offset_bottom = 52.0
+theme_override_styles/background = SubResource("StyleBoxFlat_y8rrw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sx6o5")
+show_percentage = false
+
+[node name="Charge_Bar" type="ProgressBar" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 9.0
+offset_top = 55.0
+offset_right = 286.0
+offset_bottom = 66.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6eeui")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vs2jc")
+show_percentage = false

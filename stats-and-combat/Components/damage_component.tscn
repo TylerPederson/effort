@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://1omebjldyn42"]
+
+[ext_resource type="Script" uid="uid://qf20gvx3iejd" path="res://stats-and-combat/Components/damage_component.gd" id="1_yfaoa"]
+
+[node name="Damage_Component" type="Area3D"]
+script = ExtResource("1_yfaoa")
+
+[node name="CooldownTimer" type="Timer" parent="."]

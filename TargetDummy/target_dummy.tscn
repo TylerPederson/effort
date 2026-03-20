@@ -1,0 +1,124 @@
+[gd_scene load_steps=13 format=3 uid="uid://bad74nx0no6g8"]
+
+[ext_resource type="Script" uid="uid://dcrt5ty4uyjlt" path="res://TargetDummy/target_dummy.gd" id="1_cyg6r"]
+[ext_resource type="PackedScene" uid="uid://cnyqybv3bcgfh" path="res://stats-and-combat/Components/health_component.tscn" id="1_dp8ih"]
+[ext_resource type="PackedScene" uid="uid://dkb233trnmk0q" path="res://stats-and-combat/Components/hitbox_component.tscn" id="2_cyg6r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u0npd"]
+albedo_color = Color(0.255, 0.31875, 0.34, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xodyu"]
+size = Vector3(0.52, 0.355, 0.925)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xodyu"]
+albedo_color = Color(0.541044, 0.359046, 3.85046e-07, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u0npd"]
+size = Vector3(0.2, 3, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dp8ih"]
+albedo_color = Color(0.88, 0.776893, 0.5544, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dp8ih"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_cyg6r"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xe6ap"]
+size = Vector3(3, 0.1, 0.1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xe6ap"]
+radius = 0.714844
+height = 3.83398
+
+[node name="TargetDummy" type="Node3D"]
+script = ExtResource("1_cyg6r")
+
+[node name="TargetDummyMesh" type="Node3D" parent="."]
+
+[node name="Rocks_1" type="MeshInstance3D" parent="TargetDummyMesh"]
+transform = Transform3D(0.882275, 0, 0.470735, 0, 1, 0, -0.470735, 0, 0.882275, -0.341497, 0, 0.219739)
+material_override = SubResource("StandardMaterial3D_u0npd")
+mesh = SubResource("BoxMesh_xodyu")
+
+[node name="Rocks_3" type="MeshInstance3D" parent="TargetDummyMesh"]
+transform = Transform3D(0.0477515, 0, 0.998859, -0.400372, 0.916153, 0.0191402, -0.915108, -0.400829, 0.0437477, 0.0706451, 0, -0.446664)
+material_override = SubResource("StandardMaterial3D_u0npd")
+mesh = SubResource("BoxMesh_xodyu")
+
+[node name="Rocks_2" type="MeshInstance3D" parent="TargetDummyMesh"]
+transform = Transform3D(0.633257, 0.185606, -0.712318, -7.45058e-09, 0.957998, 0.32946, 0.53765, -0.218611, 0.838986, 0.369111, 0.125415, 0.19112)
+material_override = SubResource("StandardMaterial3D_u0npd")
+mesh = SubResource("BoxMesh_xodyu")
+
+[node name="Stake" type="MeshInstance3D" parent="TargetDummyMesh"]
+transform = Transform3D(0.997477, 0.0709926, 0, -0.0709926, 0.997477, 0, 0, 0, 1, 0.0788188, 1.36026, 0)
+material_override = SubResource("StandardMaterial3D_xodyu")
+mesh = SubResource("BoxMesh_u0npd")
+
+[node name="Body" type="MeshInstance3D" parent="TargetDummyMesh/Stake"]
+transform = Transform3D(0.999744, 0.0226175, 0, -0.0226175, 0.999744, 0, 0, 0, 0.5981, -0.022548, 0.660902, 0)
+material_override = SubResource("StandardMaterial3D_dp8ih")
+mesh = SubResource("CapsuleMesh_dp8ih")
+skeleton = NodePath("../..")
+
+[node name="Head" type="MeshInstance3D" parent="TargetDummyMesh/Stake"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.744718, -1.49012e-08, 2.04524, 0)
+material_override = SubResource("StandardMaterial3D_dp8ih")
+mesh = SubResource("SphereMesh_cyg6r")
+
+[node name="Arms" type="MeshInstance3D" parent="TargetDummyMesh/Stake"]
+transform = Transform3D(0.990753, 0.135681, 0, -0.135681, 0.990753, 0, 0, 0, 1, 0, 1.35493, 0)
+material_override = SubResource("StandardMaterial3D_xodyu")
+mesh = SubResource("BoxMesh_xe6ap")
+
+[node name="DestroyedMesh" type="Node3D" parent="."]
+visible = false
+
+[node name="Rocks_1" type="MeshInstance3D" parent="DestroyedMesh"]
+transform = Transform3D(0.882275, 0, 0.470735, 0, 1, 0, -0.470735, 0, 0.882275, -0.341497, 0, 0.219739)
+material_override = SubResource("StandardMaterial3D_u0npd")
+mesh = SubResource("BoxMesh_xodyu")
+
+[node name="Rocks_3" type="MeshInstance3D" parent="DestroyedMesh"]
+transform = Transform3D(0.0477515, 0, 0.998859, -0.400372, 0.916153, 0.0191402, -0.915108, -0.400829, 0.0437477, 0.0706451, 0, -0.446664)
+material_override = SubResource("StandardMaterial3D_u0npd")
+mesh = SubResource("BoxMesh_xodyu")
+
+[node name="Rocks_2" type="MeshInstance3D" parent="DestroyedMesh"]
+transform = Transform3D(0.633257, 0.185606, -0.712318, -7.45058e-09, 0.957998, 0.32946, 0.53765, -0.218611, 0.838986, 0.369111, 0.125415, 0.19112)
+material_override = SubResource("StandardMaterial3D_u0npd")
+mesh = SubResource("BoxMesh_xodyu")
+
+[node name="Stake" type="MeshInstance3D" parent="DestroyedMesh"]
+transform = Transform3D(0.997477, 0.0709926, 0, -0.0709926, 0.997477, 0, 0, 0, 1, 0.0788188, 1.36026, 0)
+material_override = SubResource("StandardMaterial3D_xodyu")
+mesh = SubResource("BoxMesh_u0npd")
+
+[node name="Body" type="MeshInstance3D" parent="DestroyedMesh/Stake"]
+transform = Transform3D(0.783156, 0.588453, -0.120202, 0.120218, 0.17382, 0.58459, 0.610094, -0.789626, 0.039107, 0.714215, -1.01986, 0.898957)
+material_override = SubResource("StandardMaterial3D_dp8ih")
+mesh = SubResource("CapsuleMesh_dp8ih")
+skeleton = NodePath("../..")
+
+[node name="Head" type="MeshInstance3D" parent="DestroyedMesh/Stake"]
+transform = Transform3D(0.98542, 4.65661e-10, 0.126707, -0.169978, 0.0437764, 0.733157, -0.00744814, -0.999041, 0.0321258, -1.65857, -1.13369, 0)
+material_override = SubResource("StandardMaterial3D_dp8ih")
+mesh = SubResource("SphereMesh_cyg6r")
+
+[node name="Arms" type="MeshInstance3D" parent="DestroyedMesh/Stake"]
+transform = Transform3D(0.72311, 0.0794311, 0.68615, -0.15473, 0.986749, 0.0488348, -0.673179, -0.141481, 0.725819, 0.530516, -1.20908, -1.00078)
+material_override = SubResource("StandardMaterial3D_xodyu")
+mesh = SubResource("BoxMesh_xe6ap")
+
+[node name="Health_Component" parent="." instance=ExtResource("1_dp8ih")]
+max_hp = 40
+
+[node name="Hitbox_Component" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_cyg6r")]
+health_component = NodePath("../Health_Component")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox_Component"]
+transform = Transform3D(0.994232, 0.107253, 0, -0.107253, 0.994232, 0, 0, 0, 1, 0.0653641, 2.04004, 0)
+shape = SubResource("CapsuleShape3D_xe6ap")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.341185, 0)
