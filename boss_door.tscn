@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cok33xlk3v2p8"]
+
+[ext_resource type="Script" uid="uid://ur38770bbco0" path="res://boss_door.gd" id="1_7cihc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_48p18"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_48p18"]
+
+[node name="BossDoor" type="Node3D"]
+script = ExtResource("1_7cihc")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(10.005, 0, 0, 0, 20, 0, 0, 0, 0.505, 5, 0, 0)
+material = SubResource("StandardMaterial3D_48p18")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 20, 0, 0, 0, 0.5, -5, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(10.845, 0, 0, 0, 10.845, 0, 0, 0, 10.845, -0.01, -4.555, 0)
+shape = SubResource("BoxShape3D_48p18")
