@@ -95,5 +95,6 @@ target_position = Vector3(0, 0, -2)
 [connection signal="stamina_change" from="Stamina_Component" to="Basic_HUD" method="_on_stamina_component_stamina_change"]
 [connection signal="perform_active" from="Attack_Alternative_Component" to="Basic_HUD" method="_on_attack_alternative_component_perform_active"]
 [connection signal="perform_charge_change" from="Attack_Alternative_Component" to="Basic_HUD" method="_on_attack_alternative_component_perform_charge_change"]
+[connection signal="equip_change" from="Inventory Controller/CanvasLayer/Inventory UI" to="." method="_on_equip_change"]
 
 [editable path="Inventory Controller"]
