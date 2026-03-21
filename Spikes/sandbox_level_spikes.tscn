@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://lufehvu5wiic"]
+[gd_scene load_steps=21 format=3 uid="uid://lufehvu5wiic"]
 
 [ext_resource type="PackedScene" uid="uid://da7uc6l3gvjq1" path="res://action_player.tscn" id="1_wtjuy"]
 [ext_resource type="PackedScene" uid="uid://cm6ekv7xheido" path="res://Spikes/spikes.tscn" id="4_clqtg"]
@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://ca4rbv2mvnwri" path="res://Inventory/Items/iron_sword.tscn" id="10_iin2v"]
 [ext_resource type="PackedScene" uid="uid://dlv5otj1bfse8" path="res://Inventory/Items/wooden_bow.tscn" id="11_xehvc"]
 [ext_resource type="PackedScene" uid="uid://b56eyuxlbyrbt" path="res://Inventory/Items/stam_potion.tscn" id="12_iin2v"]
+[ext_resource type="PackedScene" uid="uid://oe22rdvq4kqd" path="res://Inventory/Items/iron_armor.tscn" id="13_hxxx7"]
+[ext_resource type="PackedScene" uid="uid://dg2rjb8lw5wwa" path="res://Inventory/Items/viking_helmet.tscn" id="14_tqnsw"]
+[ext_resource type="PackedScene" uid="uid://qw4msau711m" path="res://Inventory/Items/steel_axe.tscn" id="15_tqnsw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s6xw7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -219,6 +222,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8272448, 0.9905235, 16.286
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.168044, 0, 6.0949078)
 
 [node name="stam_potion2" parent="Items" instance=ExtResource("12_iin2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.205476, 0, 4.960044)
+
+[node name="iron_armor" parent="Items" instance=ExtResource("13_hxxx7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.503401, 1.1666744, 14.60545)
+
+[node name="viking_helmet" parent="Items" instance=ExtResource("14_tqnsw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.610251, 0.89698076, 17.041458)
+
+[node name="steel_axe" parent="Items" instance=ExtResource("15_tqnsw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.1609745, 1.0036716, 9.00738)
 
 [connection signal="timeout" from="Collectibles/Choice_Tray_Spawn/Timer" to="Collectibles/Choice_Tray_Spawn" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="Enemies/EnemyManager" to="Collectibles/Choice_Tray_Spawn2" method="spawn_collectible_tray"]

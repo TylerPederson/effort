@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://ce0ujwcilhva4" path="res://stats-and-combat/Components/sprint_component.tscn" id="7_b2k0g"]
 [ext_resource type="PackedScene" uid="uid://d372ir1oklhyk" path="res://stats-and-combat/Components/stamina_component.tscn" id="8_xaelo"]
 [ext_resource type="PackedScene" uid="uid://crap3huqfqyb4" path="res://stats-and-combat/Components/attack_alternative_component.tscn" id="9_kv11m"]
-[ext_resource type="Script" uid="uid://cntmhak4bdieh" path="res://stats-and-combat/Components/armor_component.gd" id="10_rhe7v"]
 [ext_resource type="PackedScene" uid="uid://cs3phbnr8ujn0" path="res://stats-and-combat/Basic_HUD/basic_hud.tscn" id="11_0mgxw"]
+[ext_resource type="PackedScene" uid="uid://dsfrjolqbneem" path="res://stats-and-combat/Components/armor_component.tscn" id="11_7lffo"]
 [ext_resource type="PackedScene" uid="uid://cuonab4cx0tiy" path="res://Inventory/Controllers/inventory_controller.tscn" id="12_7lffo"]
 [ext_resource type="PackedScene" uid="uid://5ajj6hvux3jy" path="res://Inventory/Controllers/interaction_controller.tscn" id="13_3u1kb"]
 
@@ -78,9 +78,7 @@ weapon_holder = NodePath("../HorizontalPivot/VerticalPivot/WeaponHolder")
 
 [node name="Attack_Alternative_Component" parent="." instance=ExtResource("9_kv11m")]
 
-[node name="ArmorComponent" type="Node3D" parent="."]
-script = ExtResource("10_rhe7v")
-metadata/_custom_type_script = "uid://cntmhak4bdieh"
+[node name="Armor_Component" parent="." instance=ExtResource("11_7lffo")]
 
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9088831, 0.6025256)
@@ -97,3 +95,5 @@ target_position = Vector3(0, 0, -2)
 [connection signal="stamina_change" from="Stamina_Component" to="Basic_HUD" method="_on_stamina_component_stamina_change"]
 [connection signal="perform_active" from="Attack_Alternative_Component" to="Basic_HUD" method="_on_attack_alternative_component_perform_active"]
 [connection signal="perform_charge_change" from="Attack_Alternative_Component" to="Basic_HUD" method="_on_attack_alternative_component_perform_charge_change"]
+
+[editable path="Inventory Controller"]

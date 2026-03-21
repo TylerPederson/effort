@@ -12,13 +12,14 @@ radius = 0.24658203
 
 [sub_resource type="Resource" id="Resource_mxmf8"]
 script = ExtResource("4_igq7x")
-equipement_type = 4
+equipement_type = 3
 weapon_damage = 15
 weapon_cooldown = 1.0
 weapon_range = 10.0
+attack_type = 2
 metadata/_custom_type_script = "uid://cnlb1oem8hjot"
 
-[sub_resource type="Resource" id="Resource_sbps2"]
+[sub_resource type="Resource" id="Resource_46ep5"]
 resource_local_to_scene = true
 script = ExtResource("5_gmna3")
 item_name = "Wooden Bow"
@@ -35,5 +36,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14482763, 0, 0)
 shape = SubResource("CapsuleShape3D_n7658")
 
 [node name="ItemInteract" parent="." index="2" instance=ExtResource("2_1aqhx")]
-item_data = SubResource("Resource_sbps2")
+item_data = SubResource("Resource_46ep5")
 collect_sound_effect = ExtResource("6_46ep5")
