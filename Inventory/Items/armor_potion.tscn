@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://du5u3pregm218" path="res://Inventory/item_data.gd" id="2_835hm"]
 [ext_resource type="PackedScene" uid="uid://4unqqh1mpfjy" path="res://Inventory/Items/Models/Armor_Potion.glb" id="3_0hyrg"]
 [ext_resource type="Script" uid="uid://do0rwc71a384u" path="res://Inventory/Actions/consumable_action.gd" id="3_ljde1"]
-[ext_resource type="AudioStream" uid="uid://bhyme3fskao44" path="res://Inventory/Sounds/debug_pickup_sound.mp3" id="5_ljde1"]
+[ext_resource type="AudioStream" uid="uid://cafjg8w6oscmm" path="res://Inventory/Sounds/Potion_Pickup_SFX2.mp3" id="5_ljde1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ljde1"]
 radius = 0.43554688
