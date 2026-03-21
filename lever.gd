@@ -12,7 +12,6 @@ func interact():
 	print("Lever activated!")
 
 	GameManager.lever_activated()
-	
 	pull_lever()
 	
 func pull_lever():

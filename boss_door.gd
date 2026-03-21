@@ -10,16 +10,21 @@ var door_right_closed: Vector3
 var door_left_open: Vector3 
 var door_left_closed: Vector3 
 
-@export var slide_right:= 5.0 
-@export var slide_left:= -5.0 
-@export var speed:= 2
+@export var slide_right:= 8.0 
+@export var slide_left:= -8.0 
+@export var speed:= 1
 
 var opening:= false
 var closing:= false 
 
+var unlocked = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	GameManager.all_levers_pulled.connect(unlock_door)
+	
 	door_right_closed = door_right.position 
 	door_left_closed = door_left.position 
 	
@@ -51,7 +56,11 @@ func _process(_delta):
 			closing = false
 	pass
 
-func _on_body_entered(body): 
+func _on_body_entered(body): 	
+	if not unlocked:
+		print("Door is Locked")
+		return
+			
 	if body is CharacterBody3D:
 		opening = true
 		closing = false 
@@ -60,3 +69,8 @@ func _on_body_exited(body):
 	if body is CharacterBody3D:
 		closing = true
 		opening = false
+
+func unlock_door():
+	unlocked = true
+	print("Door Is Unlocked")
+	
