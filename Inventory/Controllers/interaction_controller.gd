@@ -110,3 +110,10 @@ func modify_stamina(modifier_value: int) -> void:
 		if c is StaminaComponent:
 			c.current_stamina += modifier_value
 			return
+
+func modify_armor(modifier_value: int) -> void:
+	for c in player.get_children():
+		if c is ArmorComponent:
+			var armor_bonus = RatioArmorStrategy.new(0.5, modifier_value)
+			c.add_armor_source(armor_bonus)
+			return

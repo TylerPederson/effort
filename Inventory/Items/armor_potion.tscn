@@ -1,0 +1,41 @@
+[gd_scene load_steps=10 format=3 uid="uid://b36lvuxlj3wmg"]
+
+[ext_resource type="PackedScene" uid="uid://vei5oj44pyjd" path="res://Inventory/Controllers/item_interact.tscn" id="1_sffpt"]
+[ext_resource type="Texture2D" uid="uid://dqibbqv753xgx" path="res://Inventory/Items/Icons/armor_potion.png" id="2_0hyrg"]
+[ext_resource type="Script" uid="uid://du5u3pregm218" path="res://Inventory/item_data.gd" id="2_835hm"]
+[ext_resource type="PackedScene" uid="uid://4unqqh1mpfjy" path="res://Inventory/Items/Models/Armor_Potion.glb" id="3_0hyrg"]
+[ext_resource type="Script" uid="uid://do0rwc71a384u" path="res://Inventory/Actions/consumable_action.gd" id="3_ljde1"]
+[ext_resource type="AudioStream" uid="uid://bhyme3fskao44" path="res://Inventory/Sounds/debug_pickup_sound.mp3" id="5_ljde1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ljde1"]
+radius = 0.43554688
+height = 1.1535339
+
+[sub_resource type="Resource" id="Resource_vn0wr"]
+script = ExtResource("3_ljde1")
+modifier_name = "modify_armor"
+modifier_value = 15
+metadata/_custom_type_script = "uid://do0rwc71a384u"
+
+[sub_resource type="Resource" id="Resource_47drh"]
+resource_local_to_scene = true
+script = ExtResource("2_835hm")
+item_name = "Armor Potion"
+Item_icon = ExtResource("2_0hyrg")
+action_data = SubResource("Resource_vn0wr")
+stack_limit = 5
+item_desc = "[center]Provides 50% [color=gray]damage reduction[/color] for 15 seconds[p]"
+metadata/_custom_type_script = "uid://du5u3pregm218"
+
+[node name="Armor Potion" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5905609, 0)
+shape = SubResource("CapsuleShape3D_ljde1")
+
+[node name="ItemInteract" parent="." instance=ExtResource("1_sffpt")]
+item_data = SubResource("Resource_47drh")
+collect_sound_effect = ExtResource("5_ljde1")
+
+[node name="Armor_Potion" parent="." instance=ExtResource("3_0hyrg")]
+transform = Transform3D(4.09, 0, 0, 0, 4.09, 0, 0, 0, 4.09, 0, 0.3951707, 0)

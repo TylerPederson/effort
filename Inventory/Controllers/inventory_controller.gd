@@ -728,6 +728,8 @@ func use_collectable(slot_id: int) -> void:
 				interaction_controller.modify_health(action_data.modifier_value)
 			"modify_stamina":
 				interaction_controller.modify_stamina(action_data.modifier_value)
+			"modify_armor":
+				interaction_controller.modify_armor(action_data.modifier_value)
 	
 	slot.slot_data.items_stacked -= 1
 	slot.update_lable()
