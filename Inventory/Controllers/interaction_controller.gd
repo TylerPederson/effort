@@ -96,7 +96,7 @@ func play_sound_effect(sound_effect: AudioStream) -> void:
 
 # Handles finding the "ItemInteract" nodes of objects
 func find_interaction_component(object: Node) -> Node:
-	return object.get_node("ItemInteract")
+	return object.get_node_or_null("ItemInteract")
 
 # Put all action code here!
 func modify_health(modifier_value: int) -> void:
