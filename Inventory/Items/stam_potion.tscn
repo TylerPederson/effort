@@ -19,6 +19,7 @@ modifier_value = 50
 metadata/_custom_type_script = "uid://do0rwc71a384u"
 
 [sub_resource type="Resource" id="Resource_qwx5t"]
+resource_local_to_scene = true
 script = ExtResource("5_wlndo")
 item_name = "Stamina Potion"
 Item_icon = ExtResource("3_vrpr6")

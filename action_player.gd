@@ -11,6 +11,7 @@ const SPEED = 400.0
 const JUMP_VELOCITY = 4.5
 
 @onready var sprint_component: SprintComponent = $Sprint_Component
+@onready var inventory_controller: InventoryController = $"Inventory Controller/CanvasLayer/Inventory UI"
 
 
 # Stores the x-y direction to rotate the player look direction
@@ -59,9 +60,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			_look += -event.relative * mouse_sensitivity
 		
 		if event.is_action_pressed("combat_attack"):
-			perform_attack.emit()
+			if not inventory_controller.equipped_items["weapon_melee"] == null:
+				perform_attack.emit()
 		if event.is_action_pressed("combat_alternative"):
-			perform_attack_alternative.emit()
+			if not inventory_controller.equipped_items["weapon_melee"] == null:
+				perform_attack_alternative.emit()
 		if event.is_action_released("combat_alternative"):
 			stop_attack_alternative.emit()
 		if event.is_action_pressed("move_sprint"):

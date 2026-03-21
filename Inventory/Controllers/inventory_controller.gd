@@ -247,7 +247,7 @@ func can_stack(curr_slot: InventorySlot, inc_item: ItemData):
 func stack_item(stored_item: ItemData, incoming_item: ItemData, overflow_slot: bool) -> void:
 	var stored := stored_item
 	var incoming := incoming_item
-	
+	print(stored)
 	var remaining_stack: int = stored.stack_limit - stored.items_stacked
 	var to_add: int = min(remaining_stack, incoming.items_stacked)
 	
@@ -717,7 +717,7 @@ func use_collectable(slot_id: int) -> void:
 	match action_data.modifier_name:
 			"modify_health":
 				interaction_controller.modify_health(action_data.modifier_value)
-			"modify_stamin":
+			"modify_stamina":
 				interaction_controller.modify_stamina(action_data.modifier_value)
 	
 	slot.slot_data.items_stacked -= 1

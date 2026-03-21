@@ -3,6 +3,8 @@ extends Node
 @onready var raycast: RayCast3D = $"../RayCast3D"
 @onready var inventory_controller: Node = $"../Inventory Controller/CanvasLayer/Inventory UI"
 
+var player : Node3D
+
 var inv_open : bool = false
 
 signal invent_on_item_collected(item)
@@ -12,6 +14,8 @@ func _ready() -> void:
 	
 	inventory_controller.raycast = raycast
 	inventory_controller.interaction_controller = self
+	
+	player = get_parent()
 
 func _physics_process(_delta: float) -> void:
 	try_taking_item()
@@ -96,7 +100,13 @@ func find_interaction_component(object: Node) -> Node:
 
 # Put all action code here!
 func modify_health(modifier_value: int) -> void:
-	pass # Insert Code to modify health here
+	for c in player.get_children():
+		if c is HealthComponent:
+			c.current_hp += modifier_value
+			return
 
 func modify_stamina(modifier_value: int) -> void:
-	pass
+	for c in player.get_children():
+		if c is StaminaComponent:
+			c.current_stamina += modifier_value
+			return

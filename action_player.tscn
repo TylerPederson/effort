@@ -86,7 +86,7 @@ metadata/_custom_type_script = "uid://cntmhak4bdieh"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9088831, 0.6025256)
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-target_position = Vector3(0, 0, -1.5)
+target_position = Vector3(0, 0, -2)
 
 [node name="Inventory Controller" parent="." instance=ExtResource("12_7lffo")]
 

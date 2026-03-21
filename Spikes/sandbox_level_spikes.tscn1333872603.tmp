@@ -206,19 +206,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.999567, 0, 9.745027)
 [node name="iron_sword" parent="Items" instance=ExtResource("10_iin2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.232196, 0.38665032, 8.950638)
 
-[node name="iron_sword2" parent="Items" instance=ExtResource("10_iin2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.232196, 0.38665032, 8.333468)
-
-[node name="iron_sword3" parent="Items" instance=ExtResource("10_iin2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.232196, 0.38665032, 7.8228216)
-
 [node name="wooden_bow" parent="Items" instance=ExtResource("11_xehvc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8272448, 0.9905235, 16.28682)
 
 [node name="stam_potion" parent="Items" instance=ExtResource("12_iin2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.168044, 0, 6.0949078)
 
-[node name="stam_potion2" parent="Items" instance=ExtResource("12_iin2v")]
+[node name="stam_potion3" parent="Items" instance=ExtResource("12_iin2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.168044, 0, 3.3404112)
 
 [connection signal="timeout" from="Collectibles/Choice_Tray_Spawn/Timer" to="Collectibles/Choice_Tray_Spawn" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="Enemies/EnemyManager" to="Collectibles/Choice_Tray_Spawn2" method="spawn_collectible_tray"]
