@@ -121,4 +121,7 @@ func update_weapon(equip_dict):
 				_:
 					attackStyle = WeaponAttackStyle.STAB
 		if data.equipement_type == EquipmentAction.EquipmentType.RANGED:
-			print("ggggg")
+			var offhand_weapon = equip_dict["weapon_ranged"]
+			if offhand_weapon == null:
+				return
+			var offhand_data : ActionData = offhand_weapon.action_data

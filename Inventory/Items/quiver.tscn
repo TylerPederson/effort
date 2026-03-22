@@ -1,0 +1,41 @@
+[gd_scene load_steps=11 format=3 uid="uid://df4jfksjg3dw7"]
+
+[ext_resource type="PackedScene" uid="uid://c64jhm75wnnth" path="res://Inventory/Items/Models/Quiver1.glb" id="1_ibq5i"]
+[ext_resource type="PackedScene" uid="uid://vei5oj44pyjd" path="res://Inventory/Controllers/item_interact.tscn" id="2_xp28h"]
+[ext_resource type="Texture2D" uid="uid://due84801lvupi" path="res://Inventory/Items/Icons/Quiver.png" id="3_a5c5b"]
+[ext_resource type="PackedScene" uid="uid://bg16ugxonu0ke" path="res://stats-and-combat/Weapons/projectile.tscn" id="4_ob86x"]
+[ext_resource type="Script" uid="uid://cnlb1oem8hjot" path="res://Inventory/Actions/equipment_action.gd" id="5_j0p50"]
+[ext_resource type="Script" uid="uid://du5u3pregm218" path="res://Inventory/item_data.gd" id="6_ucwgo"]
+[ext_resource type="AudioStream" uid="uid://bhyme3fskao44" path="res://Inventory/Sounds/debug_pickup_sound.mp3" id="7_jhe0v"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gaul6"]
+radius = 0.36669922
+height = 1.7915955
+
+[sub_resource type="Resource" id="Resource_4hydw"]
+script = ExtResource("5_j0p50")
+equipement_type = 4
+ammo_packed_scene = ExtResource("4_ob86x")
+metadata/_custom_type_script = "uid://cnlb1oem8hjot"
+
+[sub_resource type="Resource" id="Resource_lir5j"]
+script = ExtResource("6_ucwgo")
+item_name = "Quiver"
+Item_icon = ExtResource("3_a5c5b")
+action_data = SubResource("Resource_4hydw")
+stack_limit = 1
+item_desc = "[p align=center]This quiver holds more arrows than you need[/p] [p] [/p] [p align=center][color=dark_gray][i][font_size=10]What, were you going to hold the arrows in your pocket?[/font_size][/i][/color][/p]"
+metadata/_custom_type_script = "uid://du5u3pregm218"
+
+[node name="Quiver" type="RigidBody3D"]
+
+[node name="Quiver1" parent="." instance=ExtResource("1_ibq5i")]
+transform = Transform3D(2.408305, 0.67087054, 0, -0.67087054, 2.408305, 0, 0, 0, 2.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0041656494, 0)
+shape = SubResource("CapsuleShape3D_gaul6")
+
+[node name="ItemInteract" parent="." instance=ExtResource("2_xp28h")]
+item_data = SubResource("Resource_lir5j")
+collect_sound_effect = ExtResource("7_jhe0v")

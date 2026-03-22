@@ -2,16 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dxqu1hxpc0ntm" path="res://stats-and-combat/Weapons/projectile.gd" id="1_wbu8m"]
 [ext_resource type="PackedScene" uid="uid://1omebjldyn42" path="res://stats-and-combat/Components/damage_component.tscn" id="2_vbgnd"]
+[ext_resource type="PackedScene" uid="uid://bx1ds123b01o3" path="res://Inventory/Items/Models/Arrow.glb" id="3_vbgnd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iawqr"]
 radius = 0.1
-height = 0.5
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_pvewp"]
-radius = 0.1
-height = 0.5
-radial_segments = 8
-rings = 4
+height = 0.8613281
 
 [node name="Projectile" type="Node3D"]
 script = ExtResource("1_wbu8m")
@@ -19,14 +14,13 @@ script = ExtResource("1_wbu8m")
 [node name="Damage_Component" parent="." instance=ExtResource("2_vbgnd")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Damage_Component"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5.9761684e-10, 0.013671875)
 shape = SubResource("CapsuleShape3D_iawqr")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_pvewp")
 
 [node name="LifeTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Arrow" parent="." instance=ExtResource("3_vbgnd")]
+transform = Transform3D(0.285, 0, 0, 0, -0.285, 2.4915492e-08, 0, -2.4915492e-08, -0.285, 0, 0, 0)
 
 [connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]
