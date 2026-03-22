@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0hqoi27cru2r"]
+
+[ext_resource type="Script" uid="uid://bn06p2rbwuffn" path="res://stats-and-combat/Weapons/explosion.gd" id="1_gix76"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gix76"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_fol77"]
+radius = 0.2
+height = 0.4
+radial_segments = 8
+rings = 8
+
+[sub_resource type="Curve" id="Curve_k0lae"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15547702, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5370641), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_l5juh"]
+offsets = PackedFloat32Array(0, 0.13618676, 0.6225681, 1)
+colors = PackedColorArray(0.98333335, 1, 0, 1, 1, 0, 0, 1, 0.19076231, 0.19076234, 0.19076231, 1, 0.8132577, 0.81325775, 0.8132574, 1)
+
+[node name="Explosion" type="Node3D"]
+script = ExtResource("1_gix76")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+unique_name_in_owner = true
+material_override = SubResource("StandardMaterial3D_gix76")
+emitting = false
+amount = 64
+one_shot = true
+speed_scale = 0.8
+explosiveness = 0.85
+lifetime_randomness = 0.5
+mesh = SubResource("SphereMesh_fol77")
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 30.0
+scale_amount_curve = SubResource("Curve_k0lae")
+color_ramp = SubResource("Gradient_l5juh")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+unique_name_in_owner = true
+visible = false
+light_color = Color(1, 0.6333333, 0, 1)
+light_energy = 5.0

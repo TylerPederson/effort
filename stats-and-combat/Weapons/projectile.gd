@@ -24,7 +24,7 @@ func set_damage(_damage: int):
 	damage_component.set_damage(_damage)
 
 func _on_hit():
-	print("projectile hit something")
+	queue_free()
 
 
 func _on_life_timer_timeout() -> void:

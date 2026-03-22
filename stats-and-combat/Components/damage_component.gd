@@ -11,7 +11,7 @@ var cooldown_timer: Timer
 
 func _ready():
 	connect("area_entered", _on_area_entered)
-	cooldown_timer = $CooldownTimer
+	cooldown_timer = %CooldownTimer
 	cooldown_timer.wait_time = cooldown
 	cooldown_timer.one_shot = true
 	cooldown_timer.autostart = false
