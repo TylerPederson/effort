@@ -87,6 +87,9 @@ target_position = Vector3(0, 0, -2)
 
 [node name="Inventory Controller" parent="." instance=ExtResource("12_7lffo")]
 
+[node name="Inventory UI" parent="Inventory Controller/CanvasLayer" index="0"]
+visible = false
+
 [node name="InteractionController" parent="." instance=ExtResource("13_3u1kb")]
 
 [connection signal="perform_attack" from="." to="Attack_Component" method="_on_attack_action"]
