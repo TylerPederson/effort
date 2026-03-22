@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dxqu1hxpc0ntm" path="res://stats-and-combat/Weapons/projectile.gd" id="1_ukuck"]
 [ext_resource type="PackedScene" uid="uid://1omebjldyn42" path="res://stats-and-combat/Components/damage_component.tscn" id="2_6xd0t"]
-[ext_resource type="PackedScene" uid="uid://bx1ds123b01o3" path="res://Inventory/Items/Models/Arrow.glb" id="3_k80on"]
 [ext_resource type="Script" uid="uid://cl1qcavvdmcgc" path="res://stats-and-combat/Weapons/explosion_creator.gd" id="4_6xd0t"]
+[ext_resource type="PackedScene" uid="uid://dmyc6tqj8ciis" path="res://Inventory/Items/Models/TNT.glb" id="4_k80on"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iawqr"]
 radius = 0.1
@@ -24,9 +24,6 @@ shape = SubResource("CapsuleShape3D_iawqr")
 [node name="LifeTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Arrow" parent="." instance=ExtResource("3_k80on")]
-transform = Transform3D(0.285, 0, 0, 0, -0.285, 2.4915492e-08, 0, -2.4915492e-08, -0.285, 0, 0, 0)
-
 [node name="ExplosionCreator" type="Node3D" parent="."]
 script = ExtResource("4_6xd0t")
 
@@ -34,6 +31,14 @@ script = ExtResource("4_6xd0t")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionArea"]
 shape = SubResource("SphereShape3D_6xd0t")
+
+[node name="TNT" parent="." instance=ExtResource("4_k80on")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.594264)
+light_color = Color(0.9, 0.8163, 0.621, 1)
+omni_range = 2.0
 
 [connection signal="successful_hit" from="Damage_Component" to="ExplosionCreator" method="create_explosion"]
 [connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]

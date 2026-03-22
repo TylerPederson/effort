@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://lufehvu5wiic"]
+[gd_scene load_steps=27 format=3 uid="uid://lufehvu5wiic"]
 
 [ext_resource type="PackedScene" uid="uid://da7uc6l3gvjq1" path="res://action_player.tscn" id="1_wtjuy"]
 [ext_resource type="PackedScene" uid="uid://cm6ekv7xheido" path="res://Spikes/spikes.tscn" id="4_clqtg"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cb8kdmf7xyq8m" path="res://Inventory/Items/leather_tunic.tscn" id="18_ol8s5"]
 [ext_resource type="PackedScene" uid="uid://dc0c3b21pouhy" path="res://Inventory/Items/crossbow.tscn" id="19_r5cfg"]
 [ext_resource type="PackedScene" uid="uid://df4jfksjg3dw7" path="res://Inventory/Items/quiver.tscn" id="20_rx2kt"]
+[ext_resource type="PackedScene" uid="uid://byyd64cxpx5fv" path="res://Inventory/Items/tnt_bag.tscn" id="21_5ocdp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s6xw7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -285,6 +286,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5894585, 0.66187483, 11.256
 
 [node name="Quiver" parent="Items" instance=ExtResource("20_rx2kt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.327438, 0.8953036, 12.432359)
+
+[node name="TNT_Bag" parent="Items" instance=ExtResource("21_5ocdp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9944534, 0.56006837, 8.025802)
+
+[node name="TNT_Bag2" parent="Items" instance=ExtResource("21_5ocdp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9944534, 0.56006837, 9.443686)
 
 [connection signal="timeout" from="Collectibles/Choice_Tray_Spawn/Timer" to="Collectibles/Choice_Tray_Spawn" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="Enemies/EnemyManager" to="Collectibles/Choice_Tray_Spawn2" method="spawn_collectible_tray"]
