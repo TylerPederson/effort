@@ -108,6 +108,9 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6.38
 [node name="TargetDummy4" parent="Dummies" instance=ExtResource("5_67b5x")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 10.234814, 0, 15.1486435)
 
+[node name="TargetDummy5" parent="Dummies" instance=ExtResource("5_67b5x")]
+transform = Transform3D(-0.8161578, 0, -0.57782906, 0, 1, 0, 0.57782906, 0, -0.8161578, 13.423394, 0, 13.91775)
+
 [node name="Collectibles" type="Node3D" parent="."]
 
 [node name="Collectible" parent="Collectibles" instance=ExtResource("4_s0li7")]

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c64jhm75wnnth" path="res://Inventory/Items/Models/Quiver1.glb" id="1_ibq5i"]
 [ext_resource type="PackedScene" uid="uid://vei5oj44pyjd" path="res://Inventory/Controllers/item_interact.tscn" id="2_xp28h"]
 [ext_resource type="Texture2D" uid="uid://due84801lvupi" path="res://Inventory/Items/Icons/Quiver.png" id="3_a5c5b"]
-[ext_resource type="PackedScene" uid="uid://bg16ugxonu0ke" path="res://stats-and-combat/Weapons/projectile.tscn" id="4_ob86x"]
+[ext_resource type="PackedScene" uid="uid://bg16ugxonu0ke" path="res://stats-and-combat/Weapons/projectile.tscn" id="4_ibq5i"]
 [ext_resource type="Script" uid="uid://cnlb1oem8hjot" path="res://Inventory/Actions/equipment_action.gd" id="5_j0p50"]
 [ext_resource type="Script" uid="uid://du5u3pregm218" path="res://Inventory/item_data.gd" id="6_ucwgo"]
 [ext_resource type="AudioStream" uid="uid://bhyme3fskao44" path="res://Inventory/Sounds/debug_pickup_sound.mp3" id="7_jhe0v"]
@@ -15,7 +15,7 @@ height = 1.7915955
 [sub_resource type="Resource" id="Resource_4hydw"]
 script = ExtResource("5_j0p50")
 equipement_type = 4
-ammo_packed_scene = ExtResource("4_ob86x")
+ammo_packed_scene = ExtResource("4_ibq5i")
 metadata/_custom_type_script = "uid://cnlb1oem8hjot"
 
 [sub_resource type="Resource" id="Resource_lir5j"]
