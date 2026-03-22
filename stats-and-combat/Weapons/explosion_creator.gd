@@ -7,21 +7,16 @@ var explosion : PackedScene = preload("res://stats-and-combat/Weapons/explosion.
 
 
 func track_object(object):
-	print("tracking object")
 	nearby_objects.append(object)
 
 func untrack_object(object):
 	if object in nearby_objects:
-		print("done tracking")
 		nearby_objects.erase(object)
 
 func create_explosion():
-	print(nearby_objects.size())
 	for c in nearby_objects:
-		print(c)
 		if c is HitboxComponent:
 			c.receive_damage(damage_component.damage_value / 3)
-			print("YEAH")
 	
 	var instance = explosion.instantiate()
 	get_tree().root.add_child(instance)
