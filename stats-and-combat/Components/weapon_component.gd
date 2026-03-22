@@ -100,3 +100,25 @@ func _shoot():
 	projectile.set_speed(attack_range)
 	for group in weilder.get_groups():
 		projectile.add_to_group(group)
+
+func update_weapon(equip_dict):
+	var main_weapon = equip_dict["weapon_melee"]
+	
+	if main_weapon:
+		var data : ActionData = main_weapon.action_data
+		damage = data.weapon_damage
+		cooldown = data.weapon_cooldown
+		attack_range = data.weapon_range
+		
+		if data.equipement_type == EquipmentAction.EquipmentType.MELEE:
+			match data.attack_type:
+				EquipmentAction.AttackMethod.STAB:
+					attackStyle = WeaponAttackStyle.STAB
+				EquipmentAction.AttackMethod.SWING:
+					attackStyle = WeaponAttackStyle.SWING
+				EquipmentAction.AttackMethod.SHOOT:
+					attackStyle = WeaponAttackStyle.SHOOT
+				_:
+					attackStyle = WeaponAttackStyle.STAB
+		if data.equipement_type == EquipmentAction.EquipmentType.RANGED:
+			print("ggggg")

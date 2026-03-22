@@ -11,6 +11,11 @@ const SPEED = 400.0
 const JUMP_VELOCITY = 4.5
 
 @onready var sprint_component: SprintComponent = $Sprint_Component
+@onready var inventory_controller: InventoryController = $"Inventory Controller/CanvasLayer/Inventory UI"
+@onready var armor_component: ArmorComponent = $Armor_Component
+@onready var attack_component: AttackComponent = $Attack_Component
+@onready var weapon_component: WeaponComponent = $HorizontalPivot/VerticalPivot/WeaponHolder/Weapon_Component
+
 
 
 # Stores the x-y direction to rotate the player look direction
@@ -59,9 +64,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			_look += -event.relative * mouse_sensitivity
 		
 		if event.is_action_pressed("combat_attack"):
-			perform_attack.emit()
+			if not inventory_controller.equipped_items["weapon_melee"] == null:
+				perform_attack.emit()
 		if event.is_action_pressed("combat_alternative"):
-			perform_attack_alternative.emit()
+			if not inventory_controller.equipped_items["weapon_melee"] == null:
+				perform_attack_alternative.emit()
 		if event.is_action_released("combat_alternative"):
 			stop_attack_alternative.emit()
 		if event.is_action_pressed("move_sprint"):
@@ -104,3 +111,12 @@ func frame_camera_rotation() -> void:
 	
 	# By this point, "used" all the difference accumulated in _look since last frame, reset for next accumulation
 	_look = Vector2.ZERO
+
+
+func _on_equip_change(slot: String, equip_data) -> void:
+	match slot:
+		"armor_helm", "armor_body", "armor_feet":
+			armor_component.update_equipment(inventory_controller.equipped_items)
+		"weapon_melee", "weapon_ranged":
+			weapon_component.update_weapon(inventory_controller.equipped_items)
+			attack_component._refresh_weapon()

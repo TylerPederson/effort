@@ -1,6 +1,8 @@
 extends Control
 class_name InventoryController
 
+signal equip_change(slot: String, equip_data)
+
 # Inventory Variables
 @onready var inventory_grid: GridContainer = %GridContainer
 @onready var tooltip_panel: Control = %tooltip_panel
@@ -247,7 +249,7 @@ func can_stack(curr_slot: InventorySlot, inc_item: ItemData):
 func stack_item(stored_item: ItemData, incoming_item: ItemData, overflow_slot: bool) -> void:
 	var stored := stored_item
 	var incoming := incoming_item
-	
+	print(stored)
 	var remaining_stack: int = stored.stack_limit - stored.items_stacked
 	var to_add: int = min(remaining_stack, incoming.items_stacked)
 	
@@ -508,27 +510,34 @@ func update_equip_dict(slot_id: int):
 				equipped_items["armor_feet"] = item_data
 			else:
 				equipped_items["armor_feet"] = null
+			equip_change.emit("armor_feet", equipped_items)
+			print("moley")
 		94:
 			if item_present:
 				equipped_items["armor_body"] = item_data
 			else:
 				equipped_items["armor_body"] = null
+			equip_change.emit("armor_body", equipped_items)
 		95:
 			if item_present:
 				equipped_items["armor_helm"] = item_data
 			else:
 				equipped_items["armor_helm"] = null
+			equip_change.emit("armor_helm", equipped_items)
 		96:
 			if item_present:
 				equipped_items["weapon_melee"] = item_data
 			else:
 				equipped_items["weapon_melee"] = null
+			equip_change.emit("weapon_melee", equipped_items)
 		97:
 			if item_present:
 				equipped_items["weapon_ranged"] = item_data
 			else:
 				equipped_items["weapon_ranged"] = null
+			equip_change.emit("weapon_ranged", equipped_items)
 	
+
 
 # Calls align slot for every slot in the inventory
 func align_inventory() -> void:
@@ -717,8 +726,10 @@ func use_collectable(slot_id: int) -> void:
 	match action_data.modifier_name:
 			"modify_health":
 				interaction_controller.modify_health(action_data.modifier_value)
-			"modify_stamin":
+			"modify_stamina":
 				interaction_controller.modify_stamina(action_data.modifier_value)
+			"modify_armor":
+				interaction_controller.modify_armor(action_data.modifier_value)
 	
 	slot.slot_data.items_stacked -= 1
 	slot.update_lable()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://lufehvu5wiic"]
+[gd_scene load_steps=18 format=3 uid="uid://lufehvu5wiic"]
 
 [ext_resource type="PackedScene" uid="uid://da7uc6l3gvjq1" path="res://action_player.tscn" id="1_wtjuy"]
 [ext_resource type="PackedScene" uid="uid://cm6ekv7xheido" path="res://Spikes/spikes.tscn" id="4_clqtg"]
@@ -12,13 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://ca4rbv2mvnwri" path="res://Inventory/Items/iron_sword.tscn" id="10_iin2v"]
 [ext_resource type="PackedScene" uid="uid://dlv5otj1bfse8" path="res://Inventory/Items/wooden_bow.tscn" id="11_xehvc"]
 [ext_resource type="PackedScene" uid="uid://b56eyuxlbyrbt" path="res://Inventory/Items/stam_potion.tscn" id="12_iin2v"]
-[ext_resource type="PackedScene" uid="uid://oe22rdvq4kqd" path="res://Inventory/Items/iron_armor.tscn" id="13_hxxx7"]
-[ext_resource type="PackedScene" uid="uid://dg2rjb8lw5wwa" path="res://Inventory/Items/viking_helmet.tscn" id="14_tqnsw"]
-[ext_resource type="PackedScene" uid="uid://qw4msau711m" path="res://Inventory/Items/steel_axe.tscn" id="15_tqnsw"]
-[ext_resource type="PackedScene" uid="uid://b36lvuxlj3wmg" path="res://Inventory/Items/armor_potion.tscn" id="16_svfcn"]
-[ext_resource type="PackedScene" uid="uid://dha1f6hkx3vxo" path="res://Inventory/Items/katana.tscn" id="17_6lovs"]
-[ext_resource type="PackedScene" uid="uid://cb8kdmf7xyq8m" path="res://Inventory/Items/leather_tunic.tscn" id="18_ol8s5"]
-[ext_resource type="PackedScene" uid="uid://dc0c3b21pouhy" path="res://Inventory/Items/crossbow.tscn" id="19_r5cfg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s6xw7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -213,71 +206,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.999567, 0, 9.745027)
 [node name="iron_sword" parent="Items" instance=ExtResource("10_iin2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.232196, 0.38665032, 8.950638)
 
-[node name="iron_sword2" parent="Items" instance=ExtResource("10_iin2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.232196, 0.38665032, 8.333468)
-
-[node name="iron_sword3" parent="Items" instance=ExtResource("10_iin2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.232196, 0.38665032, 7.8228216)
-
 [node name="wooden_bow" parent="Items" instance=ExtResource("11_xehvc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8272448, 0.9905235, 16.28682)
 
 [node name="stam_potion" parent="Items" instance=ExtResource("12_iin2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.168044, 0, 6.0949078)
 
-[node name="stam_potion2" parent="Items" instance=ExtResource("12_iin2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.205476, 0, 4.960044)
-
-[node name="iron_armor" parent="Items" instance=ExtResource("13_hxxx7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.503401, 1.1666744, 14.60545)
-
-[node name="viking_helmet" parent="Items" instance=ExtResource("14_tqnsw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.610251, 0.89698076, 17.041458)
-
-[node name="steel_axe" parent="Items" instance=ExtResource("15_tqnsw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.1609745, 1.0036716, 9.00738)
-
-[node name="steel_axe2" parent="Items" instance=ExtResource("15_tqnsw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.1609745, 1.0036716, 9.611237)
-
-[node name="Armor Potion" parent="Items" instance=ExtResource("16_svfcn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.8687, 0, 3.089548)
-
-[node name="Armor Potion2" parent="Items" instance=ExtResource("16_svfcn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.8687, 0, 1.969738)
-
-[node name="Armor Potion3" parent="Items" instance=ExtResource("16_svfcn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.8687, 0, 0.7490151)
-
-[node name="Armor Potion4" parent="Items" instance=ExtResource("16_svfcn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.949417, 0, 0.7490151)
-
-[node name="Armor Potion5" parent="Items" instance=ExtResource("16_svfcn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.949417, 0, 1.987582)
-
-[node name="Armor Potion6" parent="Items" instance=ExtResource("16_svfcn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.949417, 0, 3.0935843)
-
-[node name="Katana" parent="Items" instance=ExtResource("17_6lovs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.251668, 0.800791, 15.506954)
-
-[node name="Katana2" parent="Items" instance=ExtResource("17_6lovs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.251668, 0.800791, 15.042379)
-
-[node name="Katana3" parent="Items" instance=ExtResource("17_6lovs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.251668, 0.800791, 16.178791)
-
-[node name="Leather_Tunic" parent="Items" instance=ExtResource("18_ol8s5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.244981, 1.1090205, 13.552364)
-
-[node name="Leather_Tunic2" parent="Items" instance=ExtResource("18_ol8s5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0186205, 1.109021, 12.803905)
-
-[node name="Crossbow" parent="Items" instance=ExtResource("19_r5cfg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5705967, 0.66187483, 11.256425)
-
-[node name="Crossbow2" parent="Items" instance=ExtResource("19_r5cfg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5894585, 0.66187483, 11.256425)
+[node name="stam_potion3" parent="Items" instance=ExtResource("12_iin2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.168044, 0, 3.3404112)
 
 [connection signal="timeout" from="Collectibles/Choice_Tray_Spawn/Timer" to="Collectibles/Choice_Tray_Spawn" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="Enemies/EnemyManager" to="Collectibles/Choice_Tray_Spawn2" method="spawn_collectible_tray"]

@@ -1,0 +1,44 @@
+[gd_scene load_steps=10 format=3 uid="uid://dc0c3b21pouhy"]
+
+[ext_resource type="PackedScene" uid="uid://cy7dmedlthsis" path="res://Inventory/Items/Models/Crossbow.glb" id="1_vj1ly"]
+[ext_resource type="PackedScene" uid="uid://vei5oj44pyjd" path="res://Inventory/Controllers/item_interact.tscn" id="2_a1ugq"]
+[ext_resource type="Texture2D" uid="uid://cy6k64pb6ie8" path="res://Inventory/Items/Icons/crossbow.png" id="3_ar0l5"]
+[ext_resource type="Script" uid="uid://cnlb1oem8hjot" path="res://Inventory/Actions/equipment_action.gd" id="4_uyj5y"]
+[ext_resource type="Script" uid="uid://du5u3pregm218" path="res://Inventory/item_data.gd" id="5_yuxwm"]
+[ext_resource type="AudioStream" uid="uid://bhyme3fskao44" path="res://Inventory/Sounds/debug_pickup_sound.mp3" id="6_ar0l5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vj1ly"]
+radius = 0.6582031
+height = 2.5424805
+
+[sub_resource type="Resource" id="Resource_15jaf"]
+resource_local_to_scene = true
+script = ExtResource("4_uyj5y")
+equipement_type = 3
+weapon_damage = 10
+weapon_cooldown = 2.0
+weapon_range = 20.0
+attack_type = 2
+metadata/_custom_type_script = "uid://cnlb1oem8hjot"
+
+[sub_resource type="Resource" id="Resource_i84u0"]
+script = ExtResource("5_yuxwm")
+item_name = "Crossbow"
+Item_icon = ExtResource("3_ar0l5")
+action_data = SubResource("Resource_15jaf")
+stack_limit = 1
+item_desc = "[p align=center]A fine crossbow. The tension causes the bolt to shoot fast.[/p] [p] [/p] [p align=center][color=dark_gray][i][font_size=10]Careful not to shoot your eye out![/font_size][/i][/color][/p]"
+metadata/_custom_type_script = "uid://du5u3pregm218"
+
+[node name="Crossbow" type="RigidBody3D"]
+
+[node name="Crossbow" parent="." instance=ExtResource("1_vj1ly")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 8.526709e-09, -0.19506836)
+shape = SubResource("CapsuleShape3D_vj1ly")
+
+[node name="ItemInteract" parent="." instance=ExtResource("2_a1ugq")]
+item_data = SubResource("Resource_i84u0")
+collect_sound_effect = ExtResource("6_ar0l5")

@@ -12,6 +12,9 @@ class_name ArmorComponent
 		_update_sources()
 var flat_reduction := 0
 var ratio_multiplier := 1.0
+
+var equip_flat = 0
+
 const MIN_DAMAGE = 1
 
 var upgrades : Array[BaseArmorStrategy] = []
@@ -35,7 +38,7 @@ func add_armor_source(strategy: BaseArmorStrategy):
 	_update_sources()
 
 func _update_sources():
-	var new_flat := base_flat_reduction
+	var new_flat : int = base_flat_reduction + equip_flat
 	var new_ratio := base_ratio_multiplier
 	for upgrade in upgrades:
 		new_flat = upgrade.apply_flat_reduction(new_flat)
@@ -47,3 +50,18 @@ func modify_damage(damage: int) -> int:
 	var flat_mitigated = damage - flat_reduction
 	var ratio_mitigated = floor(flat_mitigated * ratio_multiplier)
 	return max(ratio_mitigated, MIN_DAMAGE)
+
+func update_equipment(equip_dict):
+	var helm = equip_dict["armor_helm"]
+	var body = equip_dict["armor_body"]
+	var feet = equip_dict["armor_feet"]
+	
+	var armor_sum = 0
+	if helm:
+		armor_sum += helm.action_data.armor_value
+	if body:
+		armor_sum += body.action_data.armor_value
+	if feet:
+		armor_sum += feet.action_data.armor_value
+	equip_flat = armor_sum
+	_update_sources()
