@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://qecl2v8bvlbt"]
+[gd_scene load_steps=14 format=3 uid="uid://qecl2v8bvlbt"]
 
 [ext_resource type="Script" uid="uid://crbevwsewvj61" path="res://Enemy/enemy.gd" id="1_2pb1h"]
 [ext_resource type="PackedScene" uid="uid://dkb233trnmk0q" path="res://stats-and-combat/Components/hitbox_component.tscn" id="2_am0pq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://xrvjfslc8yso" path="res://stats-and-combat/Components/attack_component.gd" id="4_m6jha"]
 [ext_resource type="PackedScene" uid="uid://ctpmannwcqc02" path="res://stats-and-combat/Components/weapon_component.tscn" id="5_ncf7h"]
 [ext_resource type="PackedScene" uid="uid://bg16ugxonu0ke" path="res://stats-and-combat/Weapons/projectile.tscn" id="6_0rspp"]
+[ext_resource type="PackedScene" uid="uid://bmq3gi8w4r6am" path="res://Enemy/Statue1.glb" id="7_glvfu"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ncf7h"]
 
@@ -31,6 +32,7 @@ script = ExtResource("1_2pb1h")
 
 [node name="EnemyModel" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
 mesh = SubResource("BoxMesh_ncf7h")
 
 [node name="EnemyHead" type="MeshInstance3D" parent="EnemyModel"]
@@ -81,6 +83,9 @@ shape = SubResource("CapsuleShape3D_m6jha")
 
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4197489, 2.1441524, -0.6601864)
+
+[node name="Statue1" parent="." instance=ExtResource("7_glvfu")]
+transform = Transform3D(-8.415, 0, -7.3566264e-07, 0, 8.415, 0, 7.3566264e-07, 0, -8.415, 0, 0.51361006, 0)
 
 [connection signal="death" from="HealthComponent" to="." method="_on_health_component_death"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
