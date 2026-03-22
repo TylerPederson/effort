@@ -66,7 +66,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.is_action_pressed("combat_attack"):
 			if not inventory_controller.equipped_items["weapon_melee"] == null:
 				perform_attack.emit()
-				print("AAAAA")
 		if event.is_action_pressed("combat_alternative"):
 			if not inventory_controller.equipped_items["weapon_melee"] == null:
 				perform_attack_alternative.emit()

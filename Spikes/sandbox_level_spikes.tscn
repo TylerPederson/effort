@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://lufehvu5wiic"]
+[gd_scene load_steps=23 format=3 uid="uid://lufehvu5wiic"]
 
 [ext_resource type="PackedScene" uid="uid://da7uc6l3gvjq1" path="res://action_player.tscn" id="1_wtjuy"]
 [ext_resource type="PackedScene" uid="uid://cm6ekv7xheido" path="res://Spikes/spikes.tscn" id="4_clqtg"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dg2rjb8lw5wwa" path="res://Inventory/Items/viking_helmet.tscn" id="14_tqnsw"]
 [ext_resource type="PackedScene" uid="uid://qw4msau711m" path="res://Inventory/Items/steel_axe.tscn" id="15_tqnsw"]
 [ext_resource type="PackedScene" uid="uid://b36lvuxlj3wmg" path="res://Inventory/Items/armor_potion.tscn" id="16_svfcn"]
+[ext_resource type="PackedScene" uid="uid://dha1f6hkx3vxo" path="res://Inventory/Items/katana.tscn" id="17_6lovs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s6xw7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -234,6 +235,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.610251, 0.89698076, 17.04
 [node name="steel_axe" parent="Items" instance=ExtResource("15_tqnsw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.1609745, 1.0036716, 9.00738)
 
+[node name="steel_axe2" parent="Items" instance=ExtResource("15_tqnsw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.1609745, 1.0036716, 9.611237)
+
 [node name="Armor Potion" parent="Items" instance=ExtResource("16_svfcn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.8687, 0, 3.089548)
 
@@ -251,6 +255,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.949417, 0, 1.987582)
 
 [node name="Armor Potion6" parent="Items" instance=ExtResource("16_svfcn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.949417, 0, 3.0935843)
+
+[node name="Katana" parent="Items" instance=ExtResource("17_6lovs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.251668, 0.800791, 15.506954)
+
+[node name="Katana2" parent="Items" instance=ExtResource("17_6lovs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.251668, 0.800791, 15.042379)
+
+[node name="Katana3" parent="Items" instance=ExtResource("17_6lovs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.251668, 0.800791, 16.178791)
 
 [connection signal="timeout" from="Collectibles/Choice_Tray_Spawn/Timer" to="Collectibles/Choice_Tray_Spawn" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="Enemies/EnemyManager" to="Collectibles/Choice_Tray_Spawn2" method="spawn_collectible_tray"]
