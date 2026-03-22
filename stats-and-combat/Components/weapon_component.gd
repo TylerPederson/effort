@@ -12,7 +12,7 @@ enum WeaponAttackStyle {
 
 var attackStyle : WeaponAttackStyle = WeaponAttackStyle.SHOOT
 
-@export var projectile_scene : PackedScene
+@export var projectile_scene : PackedScene = null
 @export var damage : int = 1
 @export var cooldown : float = 0.5
 @export var attack_range : float = 1.5
@@ -89,6 +89,9 @@ func _swing():
 	attack_cast.target_position = Vector3.FORWARD * attack_range
 
 func _shoot():
+	if projectile_scene == null:
+		print("No ammo equipped")
+		return
 	attacking = true
 	attack_cast.enabled = false
 	var projectile = projectile_scene.instantiate()
@@ -120,8 +123,11 @@ func update_weapon(equip_dict):
 					attackStyle = WeaponAttackStyle.SHOOT
 				_:
 					attackStyle = WeaponAttackStyle.STAB
-		if data.equipement_type == EquipmentAction.EquipmentType.RANGED:
-			var offhand_weapon = equip_dict["weapon_ranged"]
-			if offhand_weapon == null:
-				return
-			var offhand_data : ActionData = offhand_weapon.action_data
+					
+	var offhand_weapon = equip_dict["weapon_ranged"]
+	if offhand_weapon == null:
+		projectile_scene = null
+		return
+		
+	var offhand_data : ActionData = offhand_weapon.action_data
+	projectile_scene = offhand_data.ammo_packed_scene
