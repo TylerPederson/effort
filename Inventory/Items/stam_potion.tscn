@@ -1,0 +1,48 @@
+[gd_scene load_steps=10 format=3 uid="uid://b56eyuxlbyrbt"]
+
+[ext_resource type="PackedScene" uid="uid://yxjgltkwtmi" path="res://Inventory/Items/Models/stam_potion.glb" id="1_1kvtt"]
+[ext_resource type="PackedScene" uid="uid://vei5oj44pyjd" path="res://Inventory/Controllers/item_interact.tscn" id="2_mggbd"]
+[ext_resource type="Texture2D" uid="uid://cnnyn3q0icsb1" path="res://Inventory/Items/Icons/stam_pot_icon.png" id="3_vrpr6"]
+[ext_resource type="Script" uid="uid://do0rwc71a384u" path="res://Inventory/Actions/consumable_action.gd" id="4_yly1g"]
+[ext_resource type="Script" uid="uid://du5u3pregm218" path="res://Inventory/item_data.gd" id="5_wlndo"]
+[ext_resource type="AudioStream" uid="uid://cafjg8w6oscmm" path="res://Inventory/Sounds/Potion_Pickup_SFX2.mp3" id="6_mggbd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sayd1"]
+radius = 0.39160156
+height = 1.3076172
+
+[sub_resource type="Resource" id="Resource_mggbd"]
+resource_local_to_scene = true
+script = ExtResource("4_yly1g")
+modifier_name = "modify_stamina"
+modifier_value = 20
+metadata/_custom_type_script = "uid://do0rwc71a384u"
+
+[sub_resource type="Resource" id="Resource_vrpr6"]
+resource_local_to_scene = true
+script = ExtResource("5_wlndo")
+item_name = "Stamina Potion"
+Item_icon = ExtResource("3_vrpr6")
+action_data = SubResource("Resource_mggbd")
+stack_limit = 20
+item_desc = "[p align=center]A common potion made to modify your [color=green]stamina[/color] by 20[/p][p] [/p][p align=center][font_size=10][color=dark_gray][i]Tastes like green apple soda! Despite being purple that is[/i][/color][/font_size][/p]"
+metadata/_custom_type_script = "uid://du5u3pregm218"
+
+[node name="stam_potion" instance=ExtResource("1_1kvtt")]
+
+[node name="pCube1_Vidro_0" parent="Sketchfab_model/3e03cfa7ed67468692d90b8a6f3a4d8d_fbx/RootNode/pCube1" index="0"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+
+[node name="pCube2_liquido_0" parent="Sketchfab_model/3e03cfa7ed67468692d90b8a6f3a4d8d_fbx/RootNode/pCube2" index="0"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+
+[node name="pCube3_rolha_0" parent="Sketchfab_model/3e03cfa7ed67468692d90b8a6f3a4d8d_fbx/RootNode/pCube3" index="0"]
+transform = Transform3D(6, 0, 0, 0, 6.0000005, 0, 0, 0, 6, 0, 12.703692, -6.609628e-15)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11171448, 0)
+shape = SubResource("CapsuleShape3D_sayd1")
+
+[node name="ItemInteract" parent="." index="2" instance=ExtResource("2_mggbd")]
+item_data = SubResource("Resource_vrpr6")
+collect_sound_effect = ExtResource("6_mggbd")

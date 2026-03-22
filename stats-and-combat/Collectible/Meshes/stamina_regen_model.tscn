@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://dnpq8u4dqom73"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tj7ui"]
+albedo_color = Color(0.12640002, 0.79, 0.13746002, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_q4cw7"]
+material = SubResource("StandardMaterial3D_tj7ui")
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.2
+
+[sub_resource type="PrismMesh" id="PrismMesh_iwixs"]
+material = SubResource("StandardMaterial3D_tj7ui")
+size = Vector3(0.6, 0.405, 0.2)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bk1aa"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.1
+
+[sub_resource type="BoxMesh" id="BoxMesh_r85v8"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n8cao"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_boryb"]
+material = SubResource("StandardMaterial3D_n8cao")
+size = Vector3(0.02, 0.1, 0.12)
+
+[node name="Stamina_Boost_Model" type="Node3D"]
+
+[node name="HeartLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.15, 0.3, 0)
+mesh = SubResource("CylinderMesh_q4cw7")
+
+[node name="HeartRight" type="MeshInstance3D" parent="HeartLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, 0)
+mesh = SubResource("CylinderMesh_q4cw7")
+skeleton = NodePath("../..")
+
+[node name="HeartBottom" type="MeshInstance3D" parent="HeartLeft"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.15, -5.8468697e-10, 0.3366239)
+mesh = SubResource("PrismMesh_iwixs")
+
+[node name="ClockCircle" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.7784399, 0, 0, 0, -4.371139e-08, -0.74572015, 0, 1, -3.2596464e-08, 0.47360218, 0.5083261, 0)
+mesh = SubResource("CylinderMesh_bk1aa")
+
+[node name="ClockTop" type="MeshInstance3D" parent="ClockCircle"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.0031692088, -9.458924e-09, -0.21639496)
+mesh = SubResource("BoxMesh_r85v8")
+skeleton = NodePath("../..")
+
+[node name="ClockArrow" type="MeshInstance3D" parent="ClockCircle"]
+transform = Transform3D(0.9051315, 0.4251317, 0, 1.8583098e-08, -3.9564554e-08, 1, 0.4251317, -0.9051315, -4.371139e-08, 0.04376173, -3.714936e-09, -0.08498782)
+mesh = SubResource("PrismMesh_boryb")
+skeleton = NodePath("../..")

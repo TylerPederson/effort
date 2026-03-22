@@ -6,3 +6,4 @@
 script = ExtResource("1_yfaoa")
 
 [node name="CooldownTimer" type="Timer" parent="."]
+unique_name_in_owner = true

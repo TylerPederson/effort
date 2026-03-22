@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ja3vnixww6jc"]
+
+[ext_resource type="Script" uid="uid://dvgqwtfx7b0ix" path="res://lever.gd" id="1_0ohsc"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1btnt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7uavd"]
+albedo_color = Color(0.015686275, 1, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ohsc"]
+size = Vector3(0.3902893, 0.64746094, 0.8000488)
+
+[node name="Lever" type="Node3D"]
+script = ExtResource("1_0ohsc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.125, 0, 0, 0, 0.35355338, -0.16263457, 0, 0.35355338, 0.16263457, -0.05200863, 0.9457675, 0.5911942)
+mesh = SubResource("CapsuleMesh_1btnt")
+surface_material_override/0 = SubResource("StandardMaterial3D_7uavd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58618164, 0)
+size = Vector3(1, 2, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(3.8800004, 0, 3.7252903e-09, -3.7252903e-09, 3.88, -2.3841858e-07, 7.450581e-09, 0, 3.88, 0.08742124, 0.68392587, 0.5110498)
+shape = SubResource("BoxShape3D_0ohsc")

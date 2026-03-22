@@ -11,7 +11,7 @@ var cooldown_timer: Timer
 
 func _ready():
 	connect("area_entered", _on_area_entered)
-	cooldown_timer = $CooldownTimer
+	cooldown_timer = %CooldownTimer
 	cooldown_timer.wait_time = cooldown
 	cooldown_timer.one_shot = true
 	cooldown_timer.autostart = false
@@ -23,6 +23,11 @@ func _on_area_entered(body):
 		return
 	if not ready_to_damage:
 		return
+	
+	
+	for group in body.get_parent().get_groups():
+		if group in get_parent().get_groups():
+			return
 	
 	var hitbox : HitboxComponent = body
 	hitbox.receive_damage(damage_value)
