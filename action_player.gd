@@ -14,7 +14,7 @@ const JUMP_VELOCITY = 4.5
 @onready var inventory_controller: InventoryController = $"Inventory Controller/CanvasLayer/Inventory UI"
 @onready var armor_component: ArmorComponent = $Armor_Component
 @onready var attack_component: AttackComponent = $Attack_Component
-@onready var weapon_component: WeaponComponent = $HorizontalPivot/VerticalPivot/WeaponHolder/Weapon_Component
+@onready var weapon_component: WeaponComponent = %WeaponHolder/Weapon_Component
 
 
 
