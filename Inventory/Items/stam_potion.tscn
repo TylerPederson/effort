@@ -11,21 +11,21 @@
 radius = 0.39160156
 height = 1.3076172
 
-[sub_resource type="Resource" id="Resource_vrpr6"]
+[sub_resource type="Resource" id="Resource_mggbd"]
 resource_local_to_scene = true
 script = ExtResource("4_yly1g")
 modifier_name = "modify_stamina"
-modifier_value = 50
+modifier_value = 20
 metadata/_custom_type_script = "uid://do0rwc71a384u"
 
-[sub_resource type="Resource" id="Resource_yly1g"]
+[sub_resource type="Resource" id="Resource_vrpr6"]
 resource_local_to_scene = true
 script = ExtResource("5_wlndo")
 item_name = "Stamina Potion"
 Item_icon = ExtResource("3_vrpr6")
-action_data = SubResource("Resource_vrpr6")
+action_data = SubResource("Resource_mggbd")
 stack_limit = 20
-item_desc = "[p align=center]A common potion made to modify your [color=green]stamina[/color] by 50... somehow...[/p][p] [/p][p align=center][font_size=10][color=dark_gray][i]Tastes like green apple soda! Despite being purple that is[/i][/color][/font_size][/p]"
+item_desc = "[p align=center]A common potion made to modify your [color=green]stamina[/color] by 20[/p][p] [/p][p align=center][font_size=10][color=dark_gray][i]Tastes like green apple soda! Despite being purple that is[/i][/color][/font_size][/p]"
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="stam_potion" instance=ExtResource("1_1kvtt")]
@@ -44,5 +44,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11171448, 0)
 shape = SubResource("CapsuleShape3D_sayd1")
 
 [node name="ItemInteract" parent="." index="2" instance=ExtResource("2_mggbd")]
-item_data = SubResource("Resource_yly1g")
+item_data = SubResource("Resource_vrpr6")
 collect_sound_effect = ExtResource("6_mggbd")

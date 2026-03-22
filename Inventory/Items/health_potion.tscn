@@ -13,7 +13,7 @@ height = 1.4935303
 [sub_resource type="Resource" id="Resource_x0mj5"]
 script = ExtResource("4_gnv4j")
 modifier_name = "modify_health"
-modifier_value = 30
+modifier_value = 60
 metadata/_custom_type_script = "uid://do0rwc71a384u"
 
 [sub_resource type="Resource" id="Resource_c1q3g"]
@@ -23,7 +23,7 @@ item_name = "Health Potion"
 Item_icon = ExtResource("3_fq6f0")
 action_data = SubResource("Resource_x0mj5")
 stack_limit = 20
-item_desc = "[center]Modifies your [color=red]health[/color] by 30 [p] [/p] [p][color=dark_gray][i][font_size=10]Tastes like your Aunt's chicken noodle soup![/font_size][/i][/color][/p][/center]"
+item_desc = "[center]Modifies your [color=red]health[/color] by 60 [p] [/p] [p][color=dark_gray][i][font_size=10]Tastes like your Aunt's chicken noodle soup![/font_size][/i][/color][/p][/center]"
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="Health Potion" instance=ExtResource("1_bn0hy")]

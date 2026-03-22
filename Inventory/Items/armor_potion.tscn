@@ -17,14 +17,14 @@ modifier_name = "modify_armor"
 modifier_value = 15
 metadata/_custom_type_script = "uid://do0rwc71a384u"
 
-[sub_resource type="Resource" id="Resource_47drh"]
+[sub_resource type="Resource" id="Resource_ljde1"]
 resource_local_to_scene = true
 script = ExtResource("2_835hm")
 item_name = "Armor Potion"
 Item_icon = ExtResource("2_0hyrg")
 action_data = SubResource("Resource_vn0wr")
 stack_limit = 5
-item_desc = "[center]Provides 50% [color=gray]damage reduction[/color] for 15 seconds[p]"
+item_desc = "[center]Provides 50% [color=gray]damage reduction[/color] for 15 seconds[p][/p][p] [/p][p align=center][font_size=10][color=dark_gray][i]The mixture smells like rust, but thankfully tastes like guava[/i][/color][/font_size][/p]"
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="Armor Potion" type="RigidBody3D"]
@@ -34,7 +34,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5905609, 0)
 shape = SubResource("CapsuleShape3D_ljde1")
 
 [node name="ItemInteract" parent="." instance=ExtResource("1_sffpt")]
-item_data = SubResource("Resource_47drh")
+item_data = SubResource("Resource_ljde1")
 collect_sound_effect = ExtResource("5_ljde1")
 
 [node name="Armor_Potion" parent="." instance=ExtResource("3_0hyrg")]
