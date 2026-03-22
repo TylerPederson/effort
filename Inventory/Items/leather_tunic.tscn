@@ -1,0 +1,40 @@
+[gd_scene load_steps=10 format=3 uid="uid://cb8kdmf7xyq8m"]
+
+[ext_resource type="PackedScene" uid="uid://odo8uwrjmo7x" path="res://Inventory/Items/Models/Leather_Tunic.glb" id="1_tl5hu"]
+[ext_resource type="PackedScene" uid="uid://vei5oj44pyjd" path="res://Inventory/Controllers/item_interact.tscn" id="2_42iv8"]
+[ext_resource type="Texture2D" uid="uid://bbphvvmbo0yi4" path="res://Inventory/Items/Icons/Leather_Tunic.png" id="3_iabb4"]
+[ext_resource type="Script" uid="uid://cnlb1oem8hjot" path="res://Inventory/Actions/equipment_action.gd" id="4_ecesi"]
+[ext_resource type="Script" uid="uid://du5u3pregm218" path="res://Inventory/item_data.gd" id="5_3afjd"]
+[ext_resource type="AudioStream" uid="uid://bhyme3fskao44" path="res://Inventory/Sounds/debug_pickup_sound.mp3" id="6_ecesi"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4r8g5"]
+radius = 0.48779297
+height = 1.2396545
+
+[sub_resource type="Resource" id="Resource_ti64b"]
+script = ExtResource("4_ecesi")
+equipement_type = 1
+armor_value = 5
+metadata/_custom_type_script = "uid://cnlb1oem8hjot"
+
+[sub_resource type="Resource" id="Resource_yw8p3"]
+script = ExtResource("5_3afjd")
+item_name = "Leather Tunic"
+Item_icon = ExtResource("3_iabb4")
+action_data = SubResource("Resource_ti64b")
+stack_limit = 1
+item_desc = "[p align=center]Hand-crafted light leather, it's better than nothing[/p][p] [/p][p align=center][font_size=10][color=dark_gray][i]You don't know if the leather is genuine or not, but at least it fits you.[/i][/color][/font_size][/p]"
+metadata/_custom_type_script = "uid://du5u3pregm218"
+
+[node name="Leather_Tunic" type="RigidBody3D"]
+
+[node name="Leather_Tunic" parent="." instance=ExtResource("1_tl5hu")]
+transform = Transform3D(1.24, 0, 0, 0, 1.24, 0, 0, 0, 1.24, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11683655, 0)
+shape = SubResource("CapsuleShape3D_4r8g5")
+
+[node name="ItemInteract" parent="." instance=ExtResource("2_42iv8")]
+item_data = SubResource("Resource_yw8p3")
+collect_sound_effect = ExtResource("6_ecesi")
