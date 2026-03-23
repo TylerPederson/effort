@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://clerkr85kk6ww"]
+[gd_scene load_steps=11 format=3 uid="uid://clerkr85kk6ww"]
 
 [ext_resource type="Script" uid="uid://23jmmfc02jmu" path="res://Boss/door_pivot.gd" id="1_0yjcu"]
-[ext_resource type="PackedScene" uid="uid://703h7fkmxdhp" path="res://player.tscn" id="2_r2qyn"]
+[ext_resource type="PackedScene" uid="uid://da7uc6l3gvjq1" path="res://action_player.tscn" id="3_mth68"]
 [ext_resource type="PackedScene" uid="uid://di4k0x1b5852r" path="res://Boss/boss.tscn" id="3_r2qyn"]
+[ext_resource type="PackedScene" uid="uid://dc0c3b21pouhy" path="res://Inventory/Items/crossbow.tscn" id="3_rg28a"]
+[ext_resource type="PackedScene" uid="uid://byyd64cxpx5fv" path="res://Inventory/Items/tnt_bag.tscn" id="5_51qfk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ve44f"]
 albedo_color = Color(0.08627451, 1, 1, 1)
@@ -69,9 +71,6 @@ use_collision = true
 size = Vector3(1, 18, 10)
 material = SubResource("StandardMaterial3D_any6y")
 
-[node name="Player" parent="." instance=ExtResource("2_r2qyn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.16895, 3.0710502, -1.1252131)
-
 [node name="DoorTriggerOpen" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.126076, 2.9044192, 0)
 
@@ -126,6 +125,15 @@ debug_color = Color(0.97580177, 0, 0.42022118, 0.41960785)
 transform = Transform3D(0.44369695, 0, -0.8961769, 0, 1, 0, 0.8961769, 0, 0.44369695, 5.8749094, 0, 19.186356)
 shape = SubResource("BoxShape3D_r2qyn")
 debug_color = Color(0.97580177, 0, 0.42022118, 0.41960785)
+
+[node name="Crossbow" parent="." instance=ExtResource("3_rg28a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.448223, 4.711226, 0)
+
+[node name="Player" parent="." instance=ExtResource("3_mth68")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.33653, 3.0710497, 0)
+
+[node name="TNT_Bag" parent="." instance=ExtResource("5_51qfk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.043922, 2.9565783, -2.3019605)
 
 [connection signal="body_entered" from="DoorTriggerOpen" to="DoorPivot" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="DoorTriggerClose" to="DoorPivot" method="_on_area_3d_2_body_exited"]

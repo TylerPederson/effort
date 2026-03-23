@@ -3,6 +3,7 @@ class_name HealthComponent
 
 signal death
 signal health_change(current_hp, total_hp)
+signal hit_damage(amount)
 
 @export var max_hp : int = 50
 @export var regen : int = 0
@@ -41,7 +42,7 @@ func take_damage(damage: int) -> void:
 	if not armor_component == null:
 		damage = armor_component.modify_damage(damage)
 	
-	
+	hit_damage.emit(damage)
 	current_hp -= damage
 	if get_parent().get_node_or_null("Marker3D"):
 		var display_damage = damage_numbers.instantiate()
