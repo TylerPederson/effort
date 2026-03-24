@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://blgnpk61vbef4"]
+[gd_scene load_steps=51 format=3 uid="uid://blgnpk61vbef4"]
 
 [ext_resource type="PackedScene" uid="uid://703h7fkmxdhp" path="res://player.tscn" id="1_s6xw7"]
 [ext_resource type="Texture2D" uid="uid://dmglxcbhgptnf" path="res://Textures/cobblestone.png" id="1_xftbl"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://djc4bao8ntfk2" path="res://MovingPlatform.tscn" id="4_ram5n"]
 [ext_resource type="PackedScene" uid="uid://ja3vnixww6jc" path="res://lever.tscn" id="6_twn38"]
 [ext_resource type="Script" uid="uid://dog5tek13ypnw" path="res://game_manager.gd" id="7_k3mmv"]
+[ext_resource type="PackedScene" uid="uid://cok33xlk3v2p8" path="res://boss_door.tscn" id="8_v5sjs"]
 
 [sub_resource type="Curve3D" id="Curve3D_k3mmv"]
 resource_local_to_scene = true
@@ -461,4 +462,36 @@ size = Vector3(0.437104, 54.6404, 30.6274)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.2714, 29.4856, -6.38175)
 material_override = SubResource("StandardMaterial3D_v6iva")
 use_collision = true
-size = Vector3(0.437104, 48.5199, 2.80901)
+
+size = Vector3(0.43710363, 48.519882, 4.433646)
+
+[node name="MovingPlatform" parent="." instance=ExtResource("4_ram5n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.850044, -0.051130295, -21.389973)
+curve = SubResource("Curve3D_mx8re")
+
+[node name="MovingPlatform2" parent="." instance=ExtResource("4_ram5n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.558254, 7.484063, -28.082539)
+curve = SubResource("Curve3D_ram5n")
+
+[node name="MovingPlatform3" parent="." instance=ExtResource("4_ram5n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.915695, -0.03692317, -6.9576607)
+curve = SubResource("Curve3D_twn38")
+
+[node name="MovingPlatform4" parent="." instance=ExtResource("4_ram5n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.12972, 27.285498, -16.755875)
+curve = SubResource("Curve3D_lermm")
+
+[node name="Lever(RM1)" parent="." instance=ExtResource("6_twn38")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 41.906567, 19.23514, -5.449171)
+
+[node name="Lever(RM2)" parent="." instance=ExtResource("6_twn38")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.901048, 0.55653906, 48.70838)
+
+[node name="Lever(RM3)" parent="." instance=ExtResource("6_twn38")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -95.06958, 27.921413, -6.550361)
+
+[node name="GameManager" type="Node3D" parent="."]
+script = ExtResource("7_k3mmv")
+
+[node name="BossDoor" parent="." instance=ExtResource("8_v5sjs")]
+transform = Transform3D(-0.99999106, 0, 0.004223697, 0, 1, 0, -0.004223697, 0, -0.99999106, -0.61229897, 6.676387, -38.334557)

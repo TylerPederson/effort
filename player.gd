@@ -16,13 +16,22 @@ var _look := Vector2.ZERO
 @onready var vertical_pivot: Node3D = $HorizontalPivot/VerticalPivot
 @onready var raycast: RayCast3D = $RayCast3D
 
+#**********************julian######################
+@onready var raycast = $RayCast3D 
+###################################################
+	
+
+
+
 # To properly move, the player camera needs the mouse to be captured
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta: float) -> void:
 	frame_camera_rotation()
-	
+	#############julain#####################
+	#handle_interaction()
+	########################################
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -41,6 +50,17 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED * delta)
 
 	move_and_slide()
+	
+	
+#############################julian###########################################
+#This is the function to interact with the lever
+#func handle_interaction():
+	if Input.is_action_just_pressed("interact"):
+		if raycast.is_colliding():
+			var obj = raycast.get_collider()
+			if obj and obj.has_method("interact"):
+				obj.interact()
+##############################################################################
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:

@@ -11,3 +11,4 @@ func lever_activated():
 
 	if levers_pulled >= total_levers:
 		emit_signal("all_levers_pulled") 
+		print("THE FINAL DOOR IS OPEN. GO FORTH WITH EFFORT")
