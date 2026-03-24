@@ -3,7 +3,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,3 +23,13 @@ func _on_setting_pressed() -> void:
 func _on_quit_pressed() -> void:
 	print("quit button pressed")
 	get_tree().quit()
+
+
+func _on_button_sandbox_pressed() -> void:
+	print("Sandbox button pressed")
+	get_tree().change_scene_to_file("res://Spikes/sandbox_level_spikes.tscn")
+
+
+func _on_button_boss_pressed() -> void:
+	print("Boss button pressed")
+	get_tree().change_scene_to_file("res://Boss/boss_room.tscn")

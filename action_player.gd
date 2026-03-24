@@ -85,6 +85,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	if event.is_action_pressed("ui_text_caret_line_start"):
+		get_tree().change_scene_to_file("res://MainMenu_GUI/MainMenu.tscn")
 
 # Calculates the desired movement direction based on input direction and which way the player is facing
 func get_movement_direction() -> Vector3:

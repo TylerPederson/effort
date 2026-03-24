@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://blgnpk61vbef4"]
+[gd_scene load_steps=69 format=3 uid="uid://blgnpk61vbef4"]
 
 [ext_resource type="Texture2D" uid="uid://dmglxcbhgptnf" path="res://Textures/cobblestone.png" id="1_xftbl"]
 [ext_resource type="PackedScene" uid="uid://bi7lqj8b1xefg" path="res://auto_door.tscn" id="2_k3mmv"]
@@ -25,6 +25,8 @@
 [ext_resource type="PackedScene" uid="uid://dlv5otj1bfse8" path="res://Inventory/Items/wooden_bow.tscn" id="24_d4y1b"]
 [ext_resource type="PackedScene" uid="uid://dc0c3b21pouhy" path="res://Inventory/Items/crossbow.tscn" id="25_d4y1b"]
 [ext_resource type="PackedScene" uid="uid://ca4rbv2mvnwri" path="res://Inventory/Items/iron_sword.tscn" id="25_gswlp"]
+[ext_resource type="PackedScene" uid="uid://dgx5gf2x7853m" path="res://transport_level_area.tscn" id="26_mws0n"]
+[ext_resource type="PackedScene" uid="uid://clerkr85kk6ww" path="res://Boss/boss_room.tscn" id="27_hacfn"]
 
 [sub_resource type="Curve3D" id="Curve3D_k3mmv"]
 resource_local_to_scene = true
@@ -643,6 +645,40 @@ transform = Transform3D(0.23783842, 0, 0.9713047, 0, 1, 0, -0.9713047, 0, 0.2378
 
 [node name="Crossbow2" parent="." instance=ExtResource("25_d4y1b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.86957, 18.988705, -11.9506)
+
+[node name="TransportLevelArea" parent="." instance=ExtResource("26_mws0n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2699203, -0.46950555, -44.08544)
+scene_to_load = ExtResource("27_hacfn")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2699203, -0.4198122, -44.08544)
+use_collision = true
+size = Vector3(14.263367, 1, 9.684326)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0125961, 7.982522, -44.08544)
+use_collision = true
+size = Vector3(13.748718, 1, 9.684326)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0943832, 3.3101683, -48.49871)
+use_collision = true
+size = Vector3(13.9122925, 8.459961, 0.8577881)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.848671, 3.346301, -44.10595)
+use_collision = true
+size = Vector3(2.026184, 8.532227, 9.725342)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5833454, 3.346301, -41.80401)
+use_collision = true
+size = Vector3(2.026184, 8.532227, 5.12146)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.963518, 3.346301, -43.869774)
+use_collision = true
+size = Vector3(6.7865295, 8.532227, 0.9899292)
 
 [connection signal="all_enemies_defeated" from="EnemyManager" to="Choice_Tray_Spawn" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="EnemyManager2" to="Choice_Tray_Spawn2" method="spawn_collectible_tray"]
