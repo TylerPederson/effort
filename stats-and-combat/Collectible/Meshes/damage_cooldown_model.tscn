@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://ckqlv6pjuw4aa"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0wxip"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.1
+
+[sub_resource type="BoxMesh" id="BoxMesh_tv45n"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n8cao"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_jhwx6"]
+material = SubResource("StandardMaterial3D_n8cao")
+size = Vector3(0.02, 0.1, 0.12)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r8f4l"]
+albedo_color = Color(0.5332664, 0.24933302, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_syipg"]
+material = SubResource("StandardMaterial3D_r8f4l")
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_icv2v"]
+albedo_color = Color(0.9, 0.74700004, 0.13499998, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_i4xml"]
+material = SubResource("StandardMaterial3D_icv2v")
+top_radius = 0.15
+bottom_radius = 0.15
+height = 0.21
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0pcj0"]
+albedo_color = Color(0.581033, 0.58103293, 0.5810329, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_uvyao"]
+material = SubResource("StandardMaterial3D_0pcj0")
+size = Vector3(0.315, 1.7, 0.15)
+
+[sub_resource type="BoxMesh" id="BoxMesh_efgwr"]
+material = SubResource("StandardMaterial3D_icv2v")
+size = Vector3(0.08, 0.855, 0.255)
+
+[node name="Damage_Cooldown_Model" type="Node3D"]
+
+[node name="ClockCircle" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.47360218, 0.5083261, 0)
+mesh = SubResource("CylinderMesh_0wxip")
+
+[node name="ClockTop" type="MeshInstance3D" parent="ClockCircle"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.0031692088, -9.458924e-09, -0.21639496)
+mesh = SubResource("BoxMesh_tv45n")
+skeleton = NodePath("../..")
+
+[node name="ClockArrow" type="MeshInstance3D" parent="ClockCircle"]
+transform = Transform3D(0.9051315, 0.4251317, 0, 1.8583098e-08, -3.9564554e-08, 1, 0.4251317, -0.9051315, -4.371139e-08, 0.04376173, -3.714936e-09, -0.08498782)
+mesh = SubResource("PrismMesh_jhwx6")
+skeleton = NodePath("../..")
+
+[node name="Sword" type="Node3D" parent="."]
+
+[node name="Handle" type="MeshInstance3D" parent="Sword"]
+transform = Transform3D(0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0, 0, 1, 0.078526445, -0.29306468, 0)
+mesh = SubResource("CylinderMesh_syipg")
+skeleton = NodePath("../..")
+
+[node name="Pommel" type="MeshInstance3D" parent="Sword"]
+transform = Transform3D(0.96592593, 0, 0.25881907, 0.25881907, -2.9802322e-08, -0.9659259, -2.9802322e-08, 1, -4.371139e-08, 0.15844032, -0.5913073, 0.0010361541)
+mesh = SubResource("CylinderMesh_i4xml")
+skeleton = NodePath("../..")
+
+[node name="Blade" type="MeshInstance3D" parent="Sword"]
+transform = Transform3D(0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0, 0, 1, -0.2172058, 0.81062293, 0)
+mesh = SubResource("PrismMesh_uvyao")
+skeleton = NodePath("../..")
+
+[node name="Crossgaurd" type="MeshInstance3D" parent="Sword"]
+transform = Transform3D(0.258819, 0.9659258, 0, -0.9659258, 0.258819, 0, 0, 0, 1, 0, 0, -0.0042219013)
+mesh = SubResource("BoxMesh_efgwr")
+skeleton = NodePath("../..")

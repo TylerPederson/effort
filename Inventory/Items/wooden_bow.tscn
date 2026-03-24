@@ -1,0 +1,40 @@
+[gd_scene load_steps=10 format=3 uid="uid://dlv5otj1bfse8"]
+
+[ext_resource type="PackedScene" uid="uid://ba6dg3mai1tep" path="res://Inventory/Items/Models/Wooden Bow.glb" id="1_mtpdl"]
+[ext_resource type="PackedScene" uid="uid://vei5oj44pyjd" path="res://Inventory/Controllers/item_interact.tscn" id="2_1aqhx"]
+[ext_resource type="Texture2D" uid="uid://d1l1617yqh6s2" path="res://Inventory/Items/Icons/bow_icon.png" id="3_46ep5"]
+[ext_resource type="Script" uid="uid://cnlb1oem8hjot" path="res://Inventory/Actions/equipment_action.gd" id="4_igq7x"]
+[ext_resource type="Script" uid="uid://du5u3pregm218" path="res://Inventory/item_data.gd" id="5_gmna3"]
+[ext_resource type="AudioStream" uid="uid://bhyme3fskao44" path="res://Inventory/Sounds/debug_pickup_sound.mp3" id="6_46ep5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n7658"]
+radius = 0.24658203
+
+[sub_resource type="Resource" id="Resource_mxmf8"]
+script = ExtResource("4_igq7x")
+equipement_type = 3
+weapon_damage = 15
+weapon_cooldown = 1.0
+weapon_range = 10.0
+attack_type = 2
+metadata/_custom_type_script = "uid://cnlb1oem8hjot"
+
+[sub_resource type="Resource" id="Resource_46ep5"]
+resource_local_to_scene = true
+script = ExtResource("5_gmna3")
+item_name = "Wooden Bow"
+Item_icon = ExtResource("3_46ep5")
+action_data = SubResource("Resource_mxmf8")
+stack_limit = 1
+item_desc = "[p align=center]A basic bow, nothing special to this one[/p] [p] [/p] [p align=center][color=dark_gray][i][font_size=10]Basically just a couple of sticks and string if we are honest[/font_size][/i][/color][/p]"
+metadata/_custom_type_script = "uid://du5u3pregm218"
+
+[node name="wooden_bow" instance=ExtResource("1_mtpdl")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14482763, 0, 0)
+shape = SubResource("CapsuleShape3D_n7658")
+
+[node name="ItemInteract" parent="." index="2" instance=ExtResource("2_1aqhx")]
+item_data = SubResource("Resource_46ep5")
+collect_sound_effect = ExtResource("6_46ep5")

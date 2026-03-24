@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d372ir1oklhyk"]
+
+[ext_resource type="Script" uid="uid://dd8iybh1k06p2" path="res://stats-and-combat/Components/stamina_component.gd" id="1_pqfxx"]
+
+[node name="Stamina_Component" type="Node3D"]
+script = ExtResource("1_pqfxx")
+
+[node name="RegenTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]

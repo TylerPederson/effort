@@ -1,0 +1,149 @@
+extends Area3D
+class_name Collectible
+
+signal collected(type: TYPE)
+
+enum TYPE {
+	HP_REGEN,
+	HP_BOOST,
+	STAMINA_REGEN,
+	STAMINA_BOOST,
+	BONUS_FLAT_ARMOR,
+	BONUS_RATIO_ARMOR,
+	SPRINT_USE_RATIO,
+	SPRINT_SPEED_BOOST,
+	DAMAGE_BOOST,
+	DAMAGE_COOLDOWN
+}
+
+const upgrade_dict = {
+	TYPE.HP_REGEN : 1,
+	TYPE.HP_BOOST : 50,
+	TYPE.STAMINA_REGEN : 1.0,
+	TYPE.STAMINA_BOOST : 10,
+	TYPE.BONUS_FLAT_ARMOR : 3,
+	TYPE.BONUS_RATIO_ARMOR : 0.8,
+	TYPE.SPRINT_USE_RATIO : 0.7,
+	TYPE.SPRINT_SPEED_BOOST : 1.35,
+	TYPE.DAMAGE_BOOST : 5,
+	TYPE.DAMAGE_COOLDOWN : 0.75
+}
+
+const HEALTH_REGEN_MODEL = preload("res://stats-and-combat/Collectible/Meshes/health_regen_model.tscn")
+const HEALTH_BOOST_MODEL = preload("res://stats-and-combat/Collectible/Meshes/health_boost_model.tscn")
+const STAMINA_BOOST_MODEL = preload("res://stats-and-combat/Collectible/Meshes/stamina_boost_model.tscn")
+const STAMINA_REGEN_MODEL = preload("res://stats-and-combat/Collectible/Meshes/stamina_regen_model.tscn")
+const ARMOR_FLAT_MODEL = preload("res://stats-and-combat/Collectible/Meshes/armor_flat_model.tscn")
+const ARMOR_RATIO_MODEL = preload("res://stats-and-combat/Collectible/Meshes/armor_ratio_model.tscn")
+const SPRINT_RATIO_MODEL = preload("res://stats-and-combat/Collectible/Meshes/sprint_ratio_model.tscn")
+const SPRINT_SPEED_MODEL = preload("res://stats-and-combat/Collectible/Meshes/sprint_speed_model.tscn")
+const DAMAGE_BOOST_MODEL = preload("res://stats-and-combat/Collectible/Meshes/damage_boost_model.tscn")
+const DAMAGE_COOLDOWN_MODEL = preload("res://stats-and-combat/Collectible/Meshes/damage_cooldown_model.tscn")
+
+
+
+@export var type : TYPE = TYPE.HP_REGEN
+
+func _ready() -> void:
+	set_data()
+	connect_signal()
+
+func set_data():
+	%MeshInstance3D.visible = false
+	
+	for c in %Model.get_children():
+		c.queue_free()
+	
+	match type:
+		TYPE.HP_REGEN:
+			%Model.add_child(HEALTH_REGEN_MODEL.instantiate())
+		TYPE.HP_BOOST:
+			%Model.add_child(HEALTH_BOOST_MODEL.instantiate())
+		TYPE.STAMINA_BOOST:
+			%Model.add_child(STAMINA_BOOST_MODEL.instantiate())
+		TYPE.STAMINA_REGEN:
+			%Model.add_child(STAMINA_REGEN_MODEL.instantiate())
+		TYPE.BONUS_FLAT_ARMOR:
+			%Model.add_child(ARMOR_FLAT_MODEL.instantiate())
+		TYPE.BONUS_RATIO_ARMOR:
+			%Model.add_child(ARMOR_RATIO_MODEL.instantiate())
+		TYPE.SPRINT_USE_RATIO:
+			%Model.add_child(SPRINT_RATIO_MODEL.instantiate())
+		TYPE.SPRINT_SPEED_BOOST:
+			%Model.add_child(SPRINT_SPEED_MODEL.instantiate())
+		TYPE.DAMAGE_BOOST:
+			%Model.add_child(DAMAGE_BOOST_MODEL.instantiate())
+		TYPE.DAMAGE_COOLDOWN:
+			%Model.add_child(DAMAGE_COOLDOWN_MODEL.instantiate())
+		_:
+			%MeshInstance3D.visible = true
+
+func set_type(_type: TYPE):
+	type = _type
+	set_data()
+
+func connect_signal() -> void:
+	connect("body_entered", collect)
+
+func collect(body : Node3D) -> void:
+	if not body.is_in_group("Player"):
+		return
+	
+	var player = body
+	var child_components = player.get_children()
+	
+	match type:
+		TYPE.HP_REGEN:
+			for child in child_components:
+				if child is HealthComponent:
+					child.regen = upgrade_dict[type]
+					print("HP_REGEN")
+		TYPE.HP_BOOST:
+			for child in child_components:
+				if child is HealthComponent:
+					child.bonus_hp = upgrade_dict[type]
+					print("HP_BOOST")
+		TYPE.STAMINA_REGEN:
+			for child in child_components:
+				if child is StaminaComponent:
+					child.stamina_regen_rate_bonus = upgrade_dict[type]
+					print("STAMINA_REGEN")
+		TYPE.STAMINA_BOOST:
+			for child in child_components:
+				if child is StaminaComponent:
+					child.bonus_stamina = upgrade_dict[type]
+					print("STAMINA_BOOST")
+		TYPE.BONUS_FLAT_ARMOR:
+			for child in child_components:
+				if child is ArmorComponent:
+					child.base_flat_reduction = upgrade_dict[type]
+					print("BONUS_FLAT_ARMOR")
+		TYPE.BONUS_RATIO_ARMOR:
+			for child in child_components:
+				if child is ArmorComponent:
+					child.base_ratio_multiplier = upgrade_dict[type]
+					print("BONUS_RATIO_ARMOR")
+		TYPE.SPRINT_USE_RATIO:
+			for child in child_components:
+				if child is SprintComponent:
+					child.stamina_use_ratio = upgrade_dict[type]
+					print("SPRINT_USE_RATIO")
+		TYPE.SPRINT_SPEED_BOOST:
+			for child in child_components:
+				if child is SprintComponent:
+					child.sprint_bonus_multiplier = upgrade_dict[type]
+					print("SPRINT_SPEED_BOOST")
+		TYPE.DAMAGE_BOOST:
+			for child in child_components:
+				if child is AttackComponent:
+					child.bonus_damage = upgrade_dict[type]
+					print("DAMAGE_BOOST")
+		TYPE.DAMAGE_COOLDOWN:
+			for child in child_components:
+				if child is AttackComponent:
+					child.cooldown_reduction = upgrade_dict[type]
+					print("DAMAGE_COOLDOWN")
+		_:
+			print("collect error")
+	collected.emit(type)
+	queue_free()

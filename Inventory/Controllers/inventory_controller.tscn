@@ -1,0 +1,136 @@
+[gd_scene load_steps=5 format=3 uid="uid://cuonab4cx0tiy"]
+
+[ext_resource type="Script" uid="uid://beno7a8uf42k0" path="res://Inventory/Controllers/inventory_controller.gd" id="1_2clvf"]
+[ext_resource type="PackedScene" uid="uid://18ljlha64rui" path="res://Inventory/Controllers/tooltip_panel.tscn" id="2_2727y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7spk5"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.09803922, 0.105882354, 0.078431375, 0.44313726)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0.74509805)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2clvf"]
+bg_color = Color(0.6, 0.6, 0.6, 0.25490198)
+
+[node name="Inventory Controller" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Inventory UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2clvf")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Inventory UI"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -499.0
+offset_top = -250.0
+offset_right = 499.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7spk5")
+
+[node name="tooltip_panel" parent="CanvasLayer/Inventory UI/Panel" instance=ExtResource("2_2727y")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 388.0
+offset_top = 6.0
+offset_right = 428.0
+offset_bottom = 46.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Inventory UI/Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -152.0
+offset_right = 364.0
+offset_bottom = 227.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2clvf")
+vertical_scroll_mode = 3
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Inventory UI/Panel/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 5
+
+[node name="Sort Buttons" type="Control" parent="CanvasLayer/Inventory UI/Panel"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Alpha Sort" type="Button" parent="CanvasLayer/Inventory UI/Panel/Sort Buttons"]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 64.0
+offset_right = 196.0
+offset_bottom = 95.0
+text = "A-Z"
+
+[node name="Equipment Sort" type="Button" parent="CanvasLayer/Inventory UI/Panel/Sort Buttons"]
+layout_mode = 0
+offset_left = 198.0
+offset_top = 64.0
+offset_right = 252.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 15
+text = "Equip."
+
+[node name="Comsumable Sort" type="Button" parent="CanvasLayer/Inventory UI/Panel/Sort Buttons"]
+layout_mode = 0
+offset_left = 255.0
+offset_top = 64.0
+offset_right = 309.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 15
+text = "Coms."
+
+[node name="Inspect Sort" type="Button" parent="CanvasLayer/Inventory UI/Panel/Sort Buttons"]
+layout_mode = 0
+offset_left = 310.0
+offset_top = 64.0
+offset_right = 364.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 15
+text = "Insp."
+
+[node name="All Sort" type="Button" parent="CanvasLayer/Inventory UI/Panel/Sort Buttons"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 64.0
+offset_right = 73.0
+offset_bottom = 95.0
+text = "All"
+
+[connection signal="pressed" from="CanvasLayer/Inventory UI/Panel/Sort Buttons/Alpha Sort" to="CanvasLayer/Inventory UI" method="_on_alpha_sort_pressed"]
+[connection signal="pressed" from="CanvasLayer/Inventory UI/Panel/Sort Buttons/Equipment Sort" to="CanvasLayer/Inventory UI" method="_on_equipment_sort_pressed"]
+[connection signal="pressed" from="CanvasLayer/Inventory UI/Panel/Sort Buttons/Comsumable Sort" to="CanvasLayer/Inventory UI" method="_on_comsumable_sort_pressed"]
+[connection signal="pressed" from="CanvasLayer/Inventory UI/Panel/Sort Buttons/Inspect Sort" to="CanvasLayer/Inventory UI" method="_on_inspect_sort_pressed"]
+[connection signal="pressed" from="CanvasLayer/Inventory UI/Panel/Sort Buttons/All Sort" to="CanvasLayer/Inventory UI" method="_on_all_sort_pressed"]

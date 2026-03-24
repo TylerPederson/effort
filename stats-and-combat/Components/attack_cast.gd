@@ -1,5 +1,8 @@
 extends RayCast3D
 
+func set_group(group : String):
+	add_to_group(group)
+
 func deal_damage(damage) -> void:
 	if not is_colliding():
 		return
@@ -9,8 +12,11 @@ func deal_damage(damage) -> void:
 	
 	add_exception(collider)
 	
+	for group in get_groups():
+		if group in collider.get_parent().get_groups():
+			return
+	
 	var hb_component : HitboxComponent = collider
 	print(hb_component)
 	hb_component.receive_damage(damage)
-	
 	

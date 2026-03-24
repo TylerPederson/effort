@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://crap3huqfqyb4"]
+
+[ext_resource type="Script" uid="uid://ce0xqmupvkr0u" path="res://stats-and-combat/Components/attack_alternative_component.gd" id="1_6cdvu"]
+
+[node name="Attack_Alternative_Component" type="Node3D"]
+script = ExtResource("1_6cdvu")

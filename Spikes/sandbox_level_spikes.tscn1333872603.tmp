@@ -1,0 +1,220 @@
+[gd_scene load_steps=18 format=3 uid="uid://lufehvu5wiic"]
+
+[ext_resource type="PackedScene" uid="uid://da7uc6l3gvjq1" path="res://action_player.tscn" id="1_wtjuy"]
+[ext_resource type="PackedScene" uid="uid://cm6ekv7xheido" path="res://Spikes/spikes.tscn" id="4_clqtg"]
+[ext_resource type="PackedScene" uid="uid://dvm5c3go8fcxb" path="res://stats-and-combat/Collectible/collectible.tscn" id="4_s0li7"]
+[ext_resource type="PackedScene" uid="uid://bad74nx0no6g8" path="res://TargetDummy/target_dummy.tscn" id="5_67b5x"]
+[ext_resource type="PackedScene" uid="uid://brocav0rddv6" path="res://stats-and-combat/Collectible/choice_tray_spawn.tscn" id="6_oyuc4"]
+[ext_resource type="PackedScene" uid="uid://qecl2v8bvlbt" path="res://Enemy/enemy.tscn" id="7_ylna3"]
+[ext_resource type="PackedScene" uid="uid://tn4n755wer20" path="res://Inventory/Items/boots.tscn" id="8_jqmsg"]
+[ext_resource type="PackedScene" uid="uid://dwmetnp1bbxu" path="res://Enemy/enemy_manager.tscn" id="8_sjeky"]
+[ext_resource type="PackedScene" uid="uid://d4c0ja7e01arr" path="res://Inventory/Items/health_potion.tscn" id="9_xehvc"]
+[ext_resource type="PackedScene" uid="uid://ca4rbv2mvnwri" path="res://Inventory/Items/iron_sword.tscn" id="10_iin2v"]
+[ext_resource type="PackedScene" uid="uid://dlv5otj1bfse8" path="res://Inventory/Items/wooden_bow.tscn" id="11_xehvc"]
+[ext_resource type="PackedScene" uid="uid://b56eyuxlbyrbt" path="res://Inventory/Items/stam_potion.tscn" id="12_iin2v"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s6xw7"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_vg0gq"]
+sky_material = SubResource("ProceduralSkyMaterial_s6xw7")
+
+[sub_resource type="Environment" id="Environment_xftbl"]
+background_mode = 2
+sky = SubResource("Sky_vg0gq")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6xw7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xftbl"]
+albedo_color = Color(1, 0.26666668, 0.20392157, 1)
+
+[node name="SandboxLevel" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xftbl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2778988, -0.49632835, -8.972507)
+material_override = SubResource("StandardMaterial3D_s6xw7")
+use_collision = true
+size = Vector3(32.52643, 1, 59.947845)
+
+[node name="Obstacle" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.115777, 0.22902489, -5.9290514)
+material_override = SubResource("StandardMaterial3D_xftbl")
+use_collision = true
+size = Vector3(5.0776367, 0.0859375, 7.758789)
+
+[node name="Player" parent="." instance=ExtResource("1_wtjuy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0036719, 0)
+
+[node name="wall1" type="CSGBox3D" parent="."]
+transform = Transform3D(0.99984723, 0.014876128, -0.009177065, -0.01480125, 0.99985707, 0.008174945, 0.009297351, -0.00803788, 0.9999245, 15.446389, 2.5910103, -8.927974)
+use_collision = true
+size = Vector3(0.6795654, 5.949768, 59.908012)
+
+[node name="wall2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4292717, 2.3866854, -37.604168)
+use_collision = true
+size = Vector3(32.062134, 5.6206055, 2.5688534)
+
+[node name="wall3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.810717, 2.9563818, -8.817545)
+use_collision = true
+size = Vector3(1.8071318, 6.1466064, 59.068542)
+
+[node name="wall4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2159472, 2.6614265, 19.42992)
+use_collision = true
+size = Vector3(33.739746, 6.4058228, 2.679657)
+
+[node name="Obstacles" type="Node3D" parent="."]
+
+[node name="Spikes" parent="Obstacles" groups=["Enemy"] instance=ExtResource("4_clqtg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0)
+
+[node name="Spikes2" parent="Obstacles" groups=["Player"] instance=ExtResource("4_clqtg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 6)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.21010599, -0.50409055, 0.8377042, -0.12263342, 0.86365086, 0.4889461, -0.969957, -2.1680231e-08, -0.24327655, 10.17388, 3.9328036, 8.195225)
+
+[node name="Dummies" type="Node3D" parent="."]
+
+[node name="TargetDummy" parent="Dummies" instance=ExtResource("5_67b5x")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.4105654, 0, 15.1486435)
+
+[node name="TargetDummy2" parent="Dummies" instance=ExtResource("5_67b5x")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 2.3822904, 0, 15.1486435)
+
+[node name="TargetDummy3" parent="Dummies" instance=ExtResource("5_67b5x")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6.38242, 0, 15.1486435)
+
+[node name="TargetDummy4" parent="Dummies" instance=ExtResource("5_67b5x")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 10.234814, 0, 15.1486435)
+
+[node name="Collectibles" type="Node3D" parent="."]
+
+[node name="Collectible" parent="Collectibles" instance=ExtResource("4_s0li7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.0036714, 0)
+
+[node name="Collectible2" parent="Collectibles" instance=ExtResource("4_s0li7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.0036714, -2.5901241)
+type = 1
+
+[node name="Collectible3" parent="Collectibles" instance=ExtResource("4_s0li7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.0036714, -4.989396)
+type = 2
+
+[node name="Collectible4" parent="Collectibles" instance=ExtResource("4_s0li7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.0036714, -7.465068)
+type = 3
+
+[node name="Collectible5" parent="Collectibles" instance=ExtResource("4_s0li7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.0036714, -10.005646)
+type = 4
+
+[node name="Collectible6" parent="Collectibles" instance=ExtResource("4_s0li7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.0036714, -12.727266)
+type = 5
+
+[node name="Collectible7" parent="Collectibles" instance=ExtResource("4_s0li7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.0036714, -15.550373)
+type = 6
+
+[node name="Collectible8" parent="Collectibles" instance=ExtResource("4_s0li7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.0036714, -18.268036)
+type = 7
+
+[node name="Collectible9" parent="Collectibles" instance=ExtResource("4_s0li7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.0036714, -21.11869)
+type = 8
+
+[node name="Collectible10" parent="Collectibles" instance=ExtResource("4_s0li7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1.0036714, -23.921019)
+type = 9
+
+[node name="Choice_Tray_Spawn" parent="Collectibles" instance=ExtResource("6_oyuc4")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0, -9)
+
+[node name="Timer" type="Timer" parent="Collectibles/Choice_Tray_Spawn"]
+wait_time = 2.0
+autostart = true
+
+[node name="Choice_Tray_Spawn2" parent="Collectibles" instance=ExtResource("6_oyuc4")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13, 0, 0)
+
+[node name="Choice_Tray_Spawn3" parent="Collectibles" instance=ExtResource("6_oyuc4")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.540537, 0, -20.446217)
+
+[node name="CollectTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Enemy1" parent="Enemies" node_paths=PackedStringArray("manager") instance=ExtResource("7_ylna3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8275204, -1.9073486e-06, -31.54181)
+manager = NodePath("../EnemyManager")
+type = 1
+move_speed = 0.0
+damage = 1
+attack_range = 5.0
+attack_cooldown = 0.4
+
+[node name="Enemy2" parent="Enemies" node_paths=PackedStringArray("manager") instance=ExtResource("7_ylna3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.585296, 5.868435, -23.321579)
+manager = NodePath("../EnemyManager2")
+move_speed = 200.0
+damage = 10
+
+[node name="Enemy3" parent="Enemies" node_paths=PackedStringArray("manager") instance=ExtResource("7_ylna3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.525126, -1.9073486e-06, -19.654383)
+manager = NodePath("../EnemyManager2")
+type = 1
+move_speed = 200.0
+damage = 30
+attack_range = 3.0
+attack_cooldown = 2.0
+
+[node name="EnemyManager" parent="Enemies" instance=ExtResource("8_sjeky")]
+
+[node name="EnemyManager2" parent="Enemies" instance=ExtResource("8_sjeky")]
+
+[node name="Items" type="Node3D" parent="."]
+
+[node name="Boots" parent="Items" instance=ExtResource("8_jqmsg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.543807, 0.32543305, 15.706749)
+
+[node name="Health Potion" parent="Items" instance=ExtResource("9_xehvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.90948, 0.09704657, 13.827759)
+
+[node name="Health Potion2" parent="Items" instance=ExtResource("9_xehvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.099923, 0.09704848, 11.517403)
+
+[node name="Health Potion3" parent="Items" instance=ExtResource("9_xehvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.999567, 0, 9.745027)
+
+[node name="iron_sword" parent="Items" instance=ExtResource("10_iin2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.232196, 0.38665032, 8.950638)
+
+[node name="wooden_bow" parent="Items" instance=ExtResource("11_xehvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8272448, 0.9905235, 16.28682)
+
+[node name="stam_potion" parent="Items" instance=ExtResource("12_iin2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.168044, 0, 6.0949078)
+
+[node name="stam_potion3" parent="Items" instance=ExtResource("12_iin2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.168044, 0, 3.3404112)
+
+[connection signal="timeout" from="Collectibles/Choice_Tray_Spawn/Timer" to="Collectibles/Choice_Tray_Spawn" method="spawn_collectible_tray"]
+[connection signal="all_enemies_defeated" from="Enemies/EnemyManager" to="Collectibles/Choice_Tray_Spawn2" method="spawn_collectible_tray"]
+[connection signal="all_enemies_defeated" from="Enemies/EnemyManager2" to="Collectibles/Choice_Tray_Spawn3" method="spawn_collectible_tray"]
