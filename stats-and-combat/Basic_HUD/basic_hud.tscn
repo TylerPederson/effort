@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cs3phbnr8ujn0"]
+[gd_scene load_steps=9 format=3 uid="uid://cs3phbnr8ujn0"]
 
 [ext_resource type="Script" uid="uid://80untv763qtf" path="res://stats-and-combat/Basic_HUD/basic_hud.gd" id="1_km2ot"]
 
@@ -19,6 +19,14 @@ bg_color = Color(0.22341174, 0.27090055, 1.92523e-07, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vs2jc"]
 bg_color = Color(0.764275, 0.95, 0.2945, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_km2ot"]
+font_size = 20
+font_color = Color(1, 0.7490196, 0, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 0.3254902)
 
 [node name="Basic_HUD" type="Control"]
 layout_mode = 3
@@ -60,3 +68,12 @@ offset_bottom = 66.0
 theme_override_styles/background = SubResource("StyleBoxFlat_6eeui")
 theme_override_styles/fill = SubResource("StyleBoxFlat_vs2jc")
 show_percentage = false
+
+[node name="InfoLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 509.0
+offset_top = 4.0
+offset_right = 1141.0
+offset_bottom = 27.0
+text = "INFO"
+label_settings = SubResource("LabelSettings_km2ot")

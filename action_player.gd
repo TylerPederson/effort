@@ -15,6 +15,8 @@ const JUMP_VELOCITY = 4.5
 @onready var armor_component: ArmorComponent = $Armor_Component
 @onready var attack_component: AttackComponent = $Attack_Component
 @onready var weapon_component: WeaponComponent = %WeaponHolder/Weapon_Component
+@onready var basic_hud: Basic_HUD = $Basic_HUD
+
 
 #**********************julian######################
 @onready var raycast = $RayCast3D 
@@ -35,6 +37,7 @@ var _look := Vector2.ZERO
 # To properly move, the player camera needs the mouse to be captured
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	basic_hud.display_info("Go forth with Effort!")
 
 func _physics_process(delta: float) -> void:
 	frame_camera_rotation()

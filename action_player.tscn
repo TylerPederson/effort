@@ -28,6 +28,8 @@ height = 2.4331055
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_okpe7")
+min_look_boundary = -50.0
+max_look_boundary = 20.0
 
 [node name="Basic_HUD" parent="." instance=ExtResource("11_0mgxw")]
 
@@ -50,7 +52,7 @@ spring_length = 5.5
 
 [node name="VerticalPivot" type="Node3D" parent="HorizontalPivot"]
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="HorizontalPivot/VerticalPivot"]
+[node name="RemoteTransform3D2" type="RemoteTransform3D" parent="HorizontalPivot/VerticalPivot"]
 remote_path = NodePath("../../../RayCast3D")
 
 [node name="WeaponHolder" type="Node3D" parent="HorizontalPivot"]

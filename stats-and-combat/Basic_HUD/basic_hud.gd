@@ -1,8 +1,10 @@
 extends Control
+class_name Basic_HUD
 
 @onready var hp_bar: ProgressBar = $HP_Bar
 @onready var stamina_bar: ProgressBar = $Stamina_Bar
 @onready var charge_bar: ProgressBar = $Charge_Bar
+@onready var info_label: Label = $InfoLabel
 
 
 func _ready() -> void:
@@ -10,7 +12,13 @@ func _ready() -> void:
 	hp_bar.value = 100
 	stamina_bar.max_value = 100
 	stamina_bar.value = 100
+	info_label.text = ""
 
+
+func display_info(text: String, duration : float = 1.5):
+	info_label.text = text
+	await get_tree().create_timer(duration).timeout
+	info_label.text = ""
 
 func _on_health_component_health_change(current_hp: Variant, total_hp: Variant) -> void:
 	hp_bar.max_value = total_hp

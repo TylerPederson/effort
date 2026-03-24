@@ -182,11 +182,21 @@ damage = 1
 attack_range = 5.0
 attack_cooldown = 0.4
 
+[node name="Enemy4" parent="Enemies" node_paths=PackedStringArray("manager") instance=ExtResource("7_ylna3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.040916, -1.9073486e-06, -31.54181)
+manager = NodePath("../EnemyManager")
+type = 1
+move_speed = 0.0
+damage = 1
+attack_range = 5.0
+attack_cooldown = 0.4
+
 [node name="Enemy2" parent="Enemies" node_paths=PackedStringArray("manager") instance=ExtResource("7_ylna3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.585296, 5.868435, -23.321579)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.585296, 0.0036716461, -23.321579)
 manager = NodePath("../EnemyManager2")
 move_speed = 200.0
 damage = 10
+attack_range = 5.0
 
 [node name="Enemy3" parent="Enemies" node_paths=PackedStringArray("manager") instance=ExtResource("7_ylna3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.525126, -1.9073486e-06, -19.654383)
@@ -194,7 +204,7 @@ manager = NodePath("../EnemyManager2")
 type = 1
 move_speed = 200.0
 damage = 30
-attack_range = 3.0
+attack_range = 5.0
 attack_cooldown = 2.0
 
 [node name="EnemyManager" parent="Enemies" instance=ExtResource("8_sjeky")]
