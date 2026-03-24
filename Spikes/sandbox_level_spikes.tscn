@@ -153,13 +153,6 @@ type = 8
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.088978, 1.0036714, -23.921019)
 type = 9
 
-[node name="Choice_Tray_Spawn" parent="Collectibles" instance=ExtResource("6_oyuc4")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0, -9)
-
-[node name="Timer" type="Timer" parent="Collectibles/Choice_Tray_Spawn"]
-wait_time = 2.0
-autostart = true
-
 [node name="Choice_Tray_Spawn2" parent="Collectibles" instance=ExtResource("6_oyuc4")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13, 0, 0)
 
@@ -303,6 +296,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9944534, 0.56006837, 8.025
 [node name="TNT_Bag2" parent="Items" instance=ExtResource("21_5ocdp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9944534, 0.56006837, 9.443686)
 
-[connection signal="timeout" from="Collectibles/Choice_Tray_Spawn/Timer" to="Collectibles/Choice_Tray_Spawn" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="Enemies/EnemyManager" to="Collectibles/Choice_Tray_Spawn2" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="Enemies/EnemyManager2" to="Collectibles/Choice_Tray_Spawn3" method="spawn_collectible_tray"]

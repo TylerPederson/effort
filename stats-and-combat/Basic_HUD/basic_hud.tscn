@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cs3phbnr8ujn0"]
+[gd_scene load_steps=10 format=3 uid="uid://cs3phbnr8ujn0"]
 
 [ext_resource type="Script" uid="uid://80untv763qtf" path="res://stats-and-combat/Basic_HUD/basic_hud.gd" id="1_km2ot"]
 
@@ -27,6 +27,14 @@ outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 10
 shadow_color = Color(0, 0, 0, 0.3254902)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2m07e"]
+font_size = 24
+font_color = Color(0.043137256, 1, 0.56078434, 1)
+outline_size = 3
+outline_color = Color(0, 0.21176471, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="Basic_HUD" type="Control"]
 layout_mode = 3
@@ -71,9 +79,18 @@ show_percentage = false
 
 [node name="InfoLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 509.0
-offset_top = 4.0
-offset_right = 1141.0
-offset_bottom = 27.0
+offset_left = 677.0
+offset_top = 1.0
+offset_right = 1151.0
+offset_bottom = 29.0
 text = "INFO"
 label_settings = SubResource("LabelSettings_km2ot")
+
+[node name="BuffLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 87.0
+offset_right = 336.0
+offset_bottom = 115.0
+text = "Buffs"
+label_settings = SubResource("LabelSettings_2m07e")

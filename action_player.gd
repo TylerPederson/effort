@@ -37,7 +37,7 @@ var _look := Vector2.ZERO
 # To properly move, the player camera needs the mouse to be captured
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	basic_hud.display_info("Go forth with Effort!")
+	basic_hud.display_info("Go forth with Effort!", 2.0)
 
 func _physics_process(delta: float) -> void:
 	frame_camera_rotation()

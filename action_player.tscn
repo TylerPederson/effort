@@ -20,11 +20,12 @@
 albedo_color = Color(0.0470588, 0.901961, 0, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mx8re"]
+height = 3.1273193
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_4flbx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qmomh"]
-height = 2.4331055
+height = 3.1085205
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_okpe7")
@@ -39,6 +40,7 @@ mesh = SubResource("CapsuleMesh_ram5n")
 material = SubResource("StandardMaterial3D_vg0gq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56365967, 0)
 shape = SubResource("CapsuleShape3D_mx8re")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
@@ -74,7 +76,7 @@ max_hp = 100
 health_component = NodePath("../Health_Component")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox_Component"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21655273, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55426025, 0)
 shape = SubResource("CapsuleShape3D_qmomh")
 
 [node name="Attack_Component" parent="." node_paths=PackedStringArray("weapon_holder") instance=ExtResource("6_0mgxw")]
