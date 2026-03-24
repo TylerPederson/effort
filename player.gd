@@ -17,7 +17,7 @@ var _look := Vector2.ZERO
 @onready var raycast: RayCast3D = $RayCast3D
 
 #**********************julian######################
-@onready var raycast = $RayCast3D 
+#@onready var raycast = $RayCast3D 
 ###################################################
 	
 

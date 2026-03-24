@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://blgnpk61vbef4"]
+[gd_scene load_steps=59 format=3 uid="uid://blgnpk61vbef4"]
 
 [ext_resource type="Texture2D" uid="uid://dmglxcbhgptnf" path="res://Textures/cobblestone.png" id="1_xftbl"]
 [ext_resource type="PackedScene" uid="uid://bi7lqj8b1xefg" path="res://auto_door.tscn" id="2_k3mmv"]
@@ -17,14 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://qecl2v8bvlbt" path="res://Enemy/enemy.tscn" id="15_08q0y"]
 [ext_resource type="PackedScene" uid="uid://dwmetnp1bbxu" path="res://Enemy/enemy_manager.tscn" id="16_d4y1b"]
 [ext_resource type="PackedScene" uid="uid://brocav0rddv6" path="res://stats-and-combat/Collectible/choice_tray_spawn.tscn" id="17_gswlp"]
-[ext_resource type="PackedScene" uid="uid://df4jfksjg3dw7" path="res://Inventory/Items/quiver.tscn" id="19_gswlp"]
-[ext_resource type="PackedScene" uid="uid://cb8kdmf7xyq8m" path="res://Inventory/Items/leather_tunic.tscn" id="20_mws0n"]
-[ext_resource type="PackedScene" uid="uid://b36lvuxlj3wmg" path="res://Inventory/Items/armor_potion.tscn" id="21_hacfn"]
-[ext_resource type="PackedScene" uid="uid://dg2rjb8lw5wwa" path="res://Inventory/Items/viking_helmet.tscn" id="22_yvl2o"]
-[ext_resource type="PackedScene" uid="uid://byyd64cxpx5fv" path="res://Inventory/Items/tnt_bag.tscn" id="23_scpje"]
-[ext_resource type="PackedScene" uid="uid://dlv5otj1bfse8" path="res://Inventory/Items/wooden_bow.tscn" id="24_d4y1b"]
-[ext_resource type="PackedScene" uid="uid://dc0c3b21pouhy" path="res://Inventory/Items/crossbow.tscn" id="25_d4y1b"]
-[ext_resource type="PackedScene" uid="uid://ca4rbv2mvnwri" path="res://Inventory/Items/iron_sword.tscn" id="25_gswlp"]
 
 [sub_resource type="Curve3D" id="Curve3D_k3mmv"]
 resource_local_to_scene = true
@@ -434,7 +426,7 @@ use_collision = true
 size = Vector3(19.7984, 1, 25.7121)
 
 [node name="Player" parent="." instance=ExtResource("5_aut6f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4288101, 1.003673, -11.865143)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00367, 0)
 
 [node name="wall2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.0815, 14.9505, -38.3486)
@@ -501,7 +493,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -95.
 script = ExtResource("7_k3mmv")
 
 [node name="BossDoor" parent="." instance=ExtResource("8_v5sjs")]
-transform = Transform3D(-0.99999106, 0, 0.004223697, 0, 1, 0, -0.004223697, 0, -0.99999106, -0.33317184, 6.676387, -38.334557)
+transform = Transform3D(-0.99999106, 0, 0.004223697, 0, 1, 0, -0.004223697, 0, -0.99999106, -0.61229897, 6.676387, -38.334557)
 
 [node name="Boots" parent="." instance=ExtResource("9_dfcf1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.889364, 0.3254315, -6.197724)
@@ -528,23 +520,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3069596, 0.27923822, -32.04
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.763877, 0.27923918, -26.342947)
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("manager") instance=ExtResource("15_08q0y")]
-transform = Transform3D(-0.24794602, 0, 0.96877384, 0, 1, 0, -0.96877384, 0, -0.24794602, 57.488586, 0.00449723, -19.183952)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.488586, 0.00449723, -8.36252)
 manager = NodePath("../EnemyManager")
-move_speed = 150.0
-
-[node name="Enemy4" parent="." node_paths=PackedStringArray("manager") instance=ExtResource("15_08q0y")]
-transform = Transform3D(-0.030904874, 0, 0.9995223, 0, 1, 0, -0.9995223, 0, -0.030904874, 47.85578, 8.767481, -26.32984)
-manager = NodePath("../EnemyManager")
-type = 1
-move_speed = 0.0
-attack_range = 12.0
 
 [node name="Enemy2" parent="." node_paths=PackedStringArray("manager") instance=ExtResource("15_08q0y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.816124, 0.00449723, 2.9117527)
 manager = NodePath("../EnemyManager")
-type = 1
-move_speed = 30.0
-attack_range = 12.0
 
 [node name="Enemy3" parent="." node_paths=PackedStringArray("manager") instance=ExtResource("15_08q0y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.663914, 0.0044991374, 2.7859087)
@@ -556,94 +537,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.490646, 0.0036720037, -4.6
 [node name="Choice_Tray_Spawn" parent="." instance=ExtResource("17_gswlp")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 21.988691, 0.0036720037, -9.08746)
 
-[node name="Enemy5" parent="." node_paths=PackedStringArray("manager") instance=ExtResource("15_08q0y")]
-transform = Transform3D(0.6765933, 0, -0.7363569, 0, 1, 0, 0.7363569, 0, 0.6765933, -29.723213, 0.00449723, -0.6265011)
-manager = NodePath("../EnemyManager2")
-type = 1
-move_speed = 0.0
-attack_range = 12.0
-
-[node name="Enemy7" parent="." node_paths=PackedStringArray("manager") instance=ExtResource("15_08q0y")]
-transform = Transform3D(0.6765933, 0, -0.7363569, 0, 1, 0, 0.7363569, 0, 0.6765933, -51.721714, 27.4184, -0.009478569)
-manager = NodePath("../EnemyManager2")
-
-[node name="Enemy8" parent="." node_paths=PackedStringArray("manager") instance=ExtResource("15_08q0y")]
-transform = Transform3D(0.6765933, 0, -0.7363569, 0, 1, 0, 0.7363569, 0, 0.6765933, -75.17096, 27.4184, 3.087041)
-manager = NodePath("../EnemyManager2")
-type = 1
-move_speed = 0.0
-attack_range = 12.0
-attack_cooldown = 1.0
-
-[node name="Enemy6" parent="." node_paths=PackedStringArray("manager") instance=ExtResource("15_08q0y")]
-transform = Transform3D(-0.37530228, 0, -0.9269025, 0, 1, 0, 0.9269025, 0, -0.37530228, -30.217426, 0.0044962764, -14.145105)
-manager = NodePath("../EnemyManager2")
-type = 1
-move_speed = 0.0
-attack_range = 12.0
-
-[node name="EnemyManager2" parent="." instance=ExtResource("16_d4y1b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.742676, 0.0036720037, 2.280415)
-
-[node name="Choice_Tray_Spawn2" parent="." instance=ExtResource("17_gswlp")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -19.68254, 0.00367105, -7.3419895)
-
-[node name="Choice_Tray_Spawn3" parent="." instance=ExtResource("17_gswlp")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.9813962, 0.0036729574, 22.690687)
-
-[node name="Enemy9" parent="." node_paths=PackedStringArray("manager") instance=ExtResource("15_08q0y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4771342, 0.0044981837, 35.331783)
-manager = NodePath("../EnemyManager3")
-
-[node name="Enemy10" parent="." node_paths=PackedStringArray("manager") instance=ExtResource("15_08q0y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.065382, 0.0044981837, 35.331783)
-manager = NodePath("../EnemyManager3")
-
-[node name="Enemy11" parent="." node_paths=PackedStringArray("manager") instance=ExtResource("15_08q0y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.065382, 0.0044981837, 48.0681)
-manager = NodePath("../EnemyManager3")
-type = 1
-attack_range = 12.0
-
-[node name="EnemyManager3" parent="." instance=ExtResource("16_d4y1b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.436344, 0.00367105, 23.442898)
-
-[node name="Quiver" parent="." instance=ExtResource("19_gswlp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.11054, 0.9764857, 26.045555)
-
-[node name="Leather_Tunic" parent="." instance=ExtResource("20_mws0n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6156974, 0.649113, 48.14484)
-
-[node name="stam_potion2" parent="." instance=ExtResource("12_01u4i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.688465, 0.42525372, -16.371655)
-
-[node name="Health Potion2" parent="." instance=ExtResource("10_dlw0b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.27251, 0.09704788, -16.309177)
-
-[node name="Armor Potion" parent="." instance=ExtResource("21_hacfn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.188797, 0.012420237, -16.074617)
-
-[node name="viking_helmet" parent="." instance=ExtResource("22_yvl2o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.928, 27.93049, -16.538893)
-
-[node name="TNT_Bag" parent="." instance=ExtResource("23_scpje")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.683434, 0.88919955, -27.154713)
-
-[node name="Health Potion3" parent="." instance=ExtResource("10_dlw0b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.56157, 0.09704979, -28.176828)
-
-[node name="stam_potion3" parent="." instance=ExtResource("12_01u4i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.055363, 19.134281, 3.8329363)
-
-[node name="wooden_bow" parent="." instance=ExtResource("24_d4y1b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.957462, 0.99052435, 26.029543)
-
-[node name="iron_sword" parent="." instance=ExtResource("25_gswlp")]
-transform = Transform3D(0.23783842, 0, 0.9713047, 0, 1, 0, -0.9713047, 0, 0.23783842, 41.86578, 19.095678, -1.2995739)
-
-[node name="Crossbow2" parent="." instance=ExtResource("25_d4y1b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.86957, 18.988705, -11.9506)
-
 [connection signal="all_enemies_defeated" from="EnemyManager" to="Choice_Tray_Spawn" method="spawn_collectible_tray"]
-[connection signal="all_enemies_defeated" from="EnemyManager2" to="Choice_Tray_Spawn2" method="spawn_collectible_tray"]
-[connection signal="all_enemies_defeated" from="EnemyManager3" to="Choice_Tray_Spawn3" method="spawn_collectible_tray"]
