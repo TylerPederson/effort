@@ -18,3 +18,8 @@ config/name="Effort"
 run/main_scene="uid://blgnpk61vbef4"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/subwindows/embed_subwindows=false
+window/stretch/mode="canvas_items"
