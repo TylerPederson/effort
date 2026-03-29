@@ -4,4 +4,3 @@
 
 [node name="Sprint_Component" type="Node3D"]
 script = ExtResource("1_lqhdv")
-sprint_amplifier = null

@@ -1,7 +1,9 @@
-[gd_scene load_steps=34 format=4 uid="uid://di4k0x1b5852r"]
+[gd_scene load_steps=37 format=4 uid="uid://di4k0x1b5852r"]
 
 [ext_resource type="Script" uid="uid://b8y7rivbw35ad" path="res://Boss/boss.gd" id="1_t20dt"]
 [ext_resource type="Script" uid="uid://dd4wpxl6enyas" path="res://Boss/BossStates/StateMachine.gd" id="2_4cnrr"]
+[ext_resource type="PackedScene" uid="uid://dkb233trnmk0q" path="res://stats-and-combat/Components/hitbox_component.tscn" id="3_mrrbl"]
+[ext_resource type="PackedScene" uid="uid://cnyqybv3bcgfh" path="res://stats-and-combat/Components/health_component.tscn" id="4_0sshd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t20dt"]
 height = 1.5830078
@@ -1234,6 +1236,10 @@ radius = 39.4059
 [sub_resource type="SphereShape3D" id="SphereShape3D_4cnrr"]
 radius = 4.7754583
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7ba5a"]
+height = 4.5
+radius = 0.7363281
+
 [node name="Boss" type="CharacterBody3D"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_t20dt")
@@ -1680,6 +1686,16 @@ shape = SubResource("SphereShape3D_t20dt")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackPlayer"]
 shape = SubResource("SphereShape3D_4cnrr")
 
+[node name="Hitbox_Component" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_mrrbl")]
+health_component = NodePath("../Health_Component")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox_Component"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
+shape = SubResource("CylinderShape3D_7ba5a")
+
+[node name="Health_Component" parent="." instance=ExtResource("4_0sshd")]
+max_hp = 300
+
 [connection signal="body_entered" from="BossTest/Armature/Skeleton3D/BoneAttachment3D/PlayerHitDetection" to="." method="_on_player_hit_detection_body_entered"]
 [connection signal="body_entered" from="BossTest/Armature/Skeleton3D/BoneAttachment3D2/PlayerHitDetection" to="." method="_on_player_hit_detection_body_entered"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
@@ -1687,3 +1703,4 @@ shape = SubResource("SphereShape3D_4cnrr")
 [connection signal="body_exited" from="DetectPlayer" to="." method="_on_detect_player_body_exited"]
 [connection signal="body_entered" from="AttackPlayer" to="." method="_on_attack_player_body_entered"]
 [connection signal="body_exited" from="AttackPlayer" to="." method="_on_attack_player_body_exited"]
+[connection signal="hit_damage" from="Health_Component" to="." method="_hit"]

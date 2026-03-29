@@ -8,7 +8,7 @@ func _ready():	# Just plays dying animation
 	if AIController.Awakening:
 		await AIController.get_node("AnimationTree").animation_finished
 	AIController.get_node("AnimationTree").get("parameters/playback").travel("Dying")
-	AIController.dying = true
+	AIController.dead = true
 	
 	
 func _physics_process(delta: float):		# Makes sure boss doesn't slide around while dying

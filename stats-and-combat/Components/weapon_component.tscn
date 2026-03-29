@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctpmannwcqc02"]
+[gd_scene load_steps=5 format=3 uid="uid://ctpmannwcqc02"]
 
 [ext_resource type="Script" uid="uid://ceqis4ngjspbn" path="res://stats-and-combat/Components/weapon_component.gd" id="1_tnkkm"]
 [ext_resource type="Script" uid="uid://dejjvloqulsca" path="res://stats-and-combat/Components/attack_cast.gd" id="2_6v18b"]
@@ -9,6 +9,10 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6v18b"]
+radius = 0.1
+height = 1.5
 
 [node name="Weapon_Component" type="Node3D"]
 script = ExtResource("1_tnkkm")
@@ -27,7 +31,30 @@ debug_custom_color = Color(0, 0.56698596, 0.4811179, 1)
 
 [node name="SwingPathFollow" type="PathFollow3D" parent="SwingPath"]
 unique_name_in_owner = true
-transform = Transform3D(0.97012407, 0, 0.242531, 0, 0.99999976, 0, -0.242531, 0, 0.97012407, 1.5, 0, 0)
+transform = Transform3D(0.9701144, 0, 0.24252859, 0, 0.99999976, 0, -0.24252859, 0, 0.9701144, 1.5, 0, 0)
 loop = false
+
+[node name="VisibleDemoHandleSwing" type="Node3D" parent="SwingPath/SwingPathFollow"]
+unique_name_in_owner = true
+transform = Transform3D(-0.062389955, 0, -0.99805206, 0, 1, 0, 0.99805206, 0, -0.062389955, 0, 0, 0)
+
+[node name="VisibleDemoSwing" type="MeshInstance3D" parent="SwingPath/SwingPathFollow/VisibleDemoHandleSwing"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.7683618)
+mesh = SubResource("CapsuleMesh_6v18b")
+skeleton = NodePath("../..")
+
+[node name="StabStartPosition" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5209105, 0, 0)
+
+[node name="VisibleDemoHandleStab" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="VisibleDemoStab" type="MeshInstance3D" parent="VisibleDemoHandleStab"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.7683618)
+mesh = SubResource("CapsuleMesh_6v18b")
+skeleton = NodePath("../..")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
