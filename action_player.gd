@@ -26,6 +26,8 @@ const JUMP_VELOCITY = 4.5
 # Stores the x-y direction to rotate the player look direction
 var _look := Vector2.ZERO
 
+var able_to_move = true
+
 # mouse sensistivity should be low because it is in radians
 @export var mouse_sensitivity := 0.0008
 @export var min_look_boundary  = -60.0
@@ -38,6 +40,7 @@ var _look := Vector2.ZERO
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	basic_hud.display_info("Go forth with Effort!", 2.0)
+	able_to_move = true
 
 func _physics_process(delta: float) -> void:
 	frame_camera_rotation()
@@ -53,13 +56,14 @@ func _physics_process(delta: float) -> void:
 	# Moves based on input keys and facing direction. Smoothly stops if no key is pressed
 	var direction := get_movement_direction()
 	var move_speed = sprint_component.apply_sprint(SPEED, delta)
-	if direction:
+	if direction and able_to_move:
 		velocity.x = direction.x * move_speed * delta
 		velocity.z = direction.z * move_speed * delta
 	else:
 		velocity.x = move_toward(velocity.x, 0, move_speed * delta)
 		velocity.z = move_toward(velocity.z, 0, move_speed * delta)
-
+	
+	
 	move_and_slide()
 
 
@@ -139,3 +143,11 @@ func _on_equip_change(slot: String, equip_data) -> void:
 		"weapon_melee", "weapon_ranged":
 			weapon_component.update_weapon(inventory_controller.equipped_items)
 			attack_component._refresh_weapon()
+
+
+func _on_health_component_death() -> void:
+	able_to_move = false
+	basic_hud.display_info("You have died...", 3.0)
+	await get_tree().create_timer(3.0).timeout
+	
+	get_tree().change_scene_to_file("res://MainMenu_GUI/MainMenu.tscn")
