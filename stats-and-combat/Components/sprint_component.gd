@@ -3,8 +3,8 @@ class_name SprintComponent
 
 var controller : Node3D
 var stamina_component : StaminaComponent = null
-var stamina_cost_initial := 5.0
-var stamina_drain := 2.0
+var stamina_cost_initial := 3.0
+var stamina_drain := 1.5
 var stamina_use_ratio := 1.0
 var sprint_bonus_multiplier := 1.0
 

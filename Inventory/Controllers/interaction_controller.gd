@@ -74,7 +74,8 @@ func _on_item_collected(item: Node):
 	# play item pickup sound effect
 	play_sound_effect(ic.collect_sound_effect)
 	# delete item from 3D world
-	item.queue_free()
+	if ic.remove_from_world_on_collect:
+		item.queue_free()
 
 # Handles adding Item to Inventory
 func add_item_to_inventory(Item_data: ItemData) -> void:

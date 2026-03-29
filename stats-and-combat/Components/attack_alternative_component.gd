@@ -89,6 +89,7 @@ func _on_perform_begin():
 	if stamina_component == null or not stamina_component.has_stamina(stamina_cost_initial):
 		return
 	
+	controller.basic_hud.display_info("Charging ability...")
 	stamina_component.use_stamina(stamina_cost_initial)
 	
 	perform_charge = 0.0
@@ -108,11 +109,14 @@ func _on_perform_end():
 			WeaponComponent.WeaponAttackStyle.STAB:
 				var armor_bonus = FlatArmorStrategy.new(ceil(perform_charge), flat_armor_time)
 				armor_component.add_armor_source(armor_bonus)
+				controller.basic_hud.display_buff("Temporary " + str(ceil(perform_charge)) + " Armor!", flat_armor_time)
 			WeaponComponent.WeaponAttackStyle.SWING:
 				var armor_bonus = RatioArmorStrategy.new(ratio_armor_amount, perform_charge)
 				armor_component.add_armor_source(armor_bonus)
+				controller.basic_hud.display_buff("Temporary Proptection for " + str(snappedf(perform_charge, 0.1)), ratio_armor_time_rate)
 			WeaponComponent.WeaponAttackStyle.SHOOT:
 				controller.velocity.y += perform_charge
+				controller.basic_hud.display_buff("Super Jump Strength: " +  str(snappedf(perform_charge, 0.1)))
 			_:
 				pass
 

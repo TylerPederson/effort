@@ -15,11 +15,18 @@ const JUMP_VELOCITY = 4.5
 @onready var armor_component: ArmorComponent = $Armor_Component
 @onready var attack_component: AttackComponent = $Attack_Component
 @onready var weapon_component: WeaponComponent = %WeaponHolder/Weapon_Component
+@onready var basic_hud: Basic_HUD = $Basic_HUD
 
 
+#**********************julian######################
+@onready var raycast = $RayCast3D 
+###################################################
+	
 
 # Stores the x-y direction to rotate the player look direction
 var _look := Vector2.ZERO
+
+var able_to_move = true
 
 # mouse sensistivity should be low because it is in radians
 @export var mouse_sensitivity := 0.0008
@@ -32,6 +39,8 @@ var _look := Vector2.ZERO
 # To properly move, the player camera needs the mouse to be captured
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	basic_hud.display_info("Go forth with Effort!", 2.0)
+	able_to_move = true
 
 func _physics_process(delta: float) -> void:
 	frame_camera_rotation()
@@ -47,13 +56,14 @@ func _physics_process(delta: float) -> void:
 	# Moves based on input keys and facing direction. Smoothly stops if no key is pressed
 	var direction := get_movement_direction()
 	var move_speed = sprint_component.apply_sprint(SPEED, delta)
-	if direction:
+	if direction and able_to_move:
 		velocity.x = direction.x * move_speed * delta
 		velocity.z = direction.z * move_speed * delta
 	else:
 		velocity.x = move_toward(velocity.x, 0, move_speed * delta)
 		velocity.z = move_toward(velocity.z, 0, move_speed * delta)
-
+	
+	
 	move_and_slide()
 
 
@@ -82,6 +92,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	if event.is_action_pressed("ui_text_caret_line_start"):
+		get_tree().change_scene_to_file("res://MainMenu_GUI/MainMenu.tscn")
 
 # Calculates the desired movement direction based on input direction and which way the player is facing
 func get_movement_direction() -> Vector3:
@@ -111,6 +124,16 @@ func frame_camera_rotation() -> void:
 	
 	# By this point, "used" all the difference accumulated in _look since last frame, reset for next accumulation
 	_look = Vector2.ZERO
+	
+#############################julian###########################################
+#This is the function to interact with the lever
+func handle_interaction():
+	if Input.is_action_just_pressed("interact"):
+		if raycast.is_colliding():
+			var obj = raycast.get_collider()
+			if obj and obj.has_method("interact"):
+				obj.interact()
+##############################################################################
 
 
 func _on_equip_change(slot: String, equip_data) -> void:
@@ -120,3 +143,11 @@ func _on_equip_change(slot: String, equip_data) -> void:
 		"weapon_melee", "weapon_ranged":
 			weapon_component.update_weapon(inventory_controller.equipped_items)
 			attack_component._refresh_weapon()
+
+
+func _on_health_component_death() -> void:
+	able_to_move = false
+	basic_hud.display_info("You have died...", 3.0)
+	await get_tree().create_timer(3.0).timeout
+	
+	get_tree().change_scene_to_file("res://MainMenu_GUI/MainMenu.tscn")

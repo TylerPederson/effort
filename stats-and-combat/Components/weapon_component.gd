@@ -19,16 +19,27 @@ var attackStyle : WeaponAttackStyle = WeaponAttackStyle.SHOOT
 @export var weilder : Node3D
 var ready_to_use : bool = true
 var attacking : bool = false
+var player = null
 
 @onready var timer: Timer = %Timer
 @onready var attack_cast: RayCast3D = %AttackCast
 @onready var swing_path_follow: PathFollow3D = %SwingPathFollow
+@onready var stab_start_position: Node3D = %StabStartPosition
+@onready var visible_demo_handle_stab: Node3D = %VisibleDemoHandleStab
+@onready var visible_demo_stab: MeshInstance3D = %VisibleDemoStab
+@onready var visible_demo_handle_swing: Node3D = %VisibleDemoHandleSwing
+@onready var visible_demo_swing: MeshInstance3D = %VisibleDemoSwing
 
 var extra_damage := 0
 
 func _ready():
+	visible_demo_stab.visible = false
+	visible_demo_swing.visible = false
+	
 	for group in weilder.get_groups():
 		%AttackCast.set_group(group)
+	
+	player = get_tree().get_first_node_in_group("Player")
 
 func set_attack_style(style: String):
 	match style.to_lower():
@@ -72,6 +83,8 @@ func _on_timer_timeout() -> void:
 	ready_to_use = true
 	attacking = false
 	attack_cast.enabled = false
+	visible_demo_swing.visible = false
+	visible_demo_stab.visible = false
 	attack_finished.emit()
 
 
@@ -80,6 +93,11 @@ func _stab():
 	attack_cast.enabled = true
 	attack_cast.position = transform.origin
 	attack_cast.target_position = Vector3.FORWARD * attack_range
+	
+	visible_demo_stab.visible = true
+	visible_demo_handle_stab.global_position = stab_start_position.global_position
+	var tween = create_tween()
+	tween.tween_property(visible_demo_handle_stab, "position", Vector3.FORWARD, cooldown/5.0)
 
 func _swing():
 	attacking = true
@@ -87,10 +105,14 @@ func _swing():
 	swing_path_follow.progress_ratio = 0.0
 	attack_cast.position = swing_path_follow.position
 	attack_cast.target_position = Vector3.FORWARD * attack_range
+	
+	visible_demo_swing.visible = true
 
 func _shoot():
 	if projectile_scene == null:
 		print("No ammo equipped")
+		if player:
+			player.basic_hud.display_info("No ammo equipped")
 		return
 	attacking = true
 	attack_cast.enabled = false
