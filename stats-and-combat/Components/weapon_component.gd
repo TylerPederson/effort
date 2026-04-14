@@ -1,7 +1,11 @@
 extends Node3D
 class_name WeaponComponent
 
+var cooldown_bar := preload("res://stats-and-combat/Basic_HUD/cooldown_bar.tscn")
+var hud := preload("res://stats-and-combat/Basic_HUD/basic_hud.tscn")
 signal attack_finished
+
+
 
 enum WeaponAttackStyle {
 	STAB,

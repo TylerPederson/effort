@@ -21,7 +21,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*res://game_manager.gd"
+WeaponStats="*res://stats-and-combat/Components/weapon_component.tscn"
 
 [input]
 

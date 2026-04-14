@@ -1,7 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://8g7bvgl2eihi"]
+[gd_scene load_steps=5 format=3 uid="uid://8g7bvgl2eihi"]
 
 [ext_resource type="Texture2D" uid="uid://dtt4tflc4xgc6" path="res://stats-and-combat/Basic_HUD/Resources/Sprite-0002.png" id="1_fi42j"]
+[ext_resource type="Script" uid="uid://bvwlblo2q8lc1" path="res://stats-and-combat/Basic_HUD/cooldown_bar.gd" id="2_5p3nk"]
+
+[sub_resource type="Gradient" id="Gradient_fnv86"]
+offsets = PackedFloat32Array(0, 0.02173913, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.10869565, 0.10869565, 0.10869565, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lcmcm"]
+gradient = SubResource("Gradient_fnv86")
 
 [node name="CooldownBar" type="TextureProgressBar"]
 texture_filter = 2
-texture_progress = ExtResource("1_fi42j")
+anchors_preset = -1
+anchor_right = 0.003
+anchor_bottom = 0.002
+offset_right = 96.544
+offset_bottom = 98.704
+texture_over = ExtResource("1_fi42j")
+texture_progress = SubResource("GradientTexture1D_lcmcm")
+script = ExtResource("2_5p3nk")
+
+[node name="Timer" type="Timer" parent="."]
