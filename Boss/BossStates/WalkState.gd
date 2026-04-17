@@ -11,7 +11,7 @@ func _ready():	# Makes sure that attack or getup is not playing before waling
 		AIController.attack = false
 	else:
 		run = false
-		AIController.get_node("AnimationTree").get("parameters/playback").travel("get up")
+		AIController.get_node("AnimationTree").get("parameters/playback").travel("Crouch")
 		AIController.Awakening = true
 		await AIController.get_node("AnimationTree").animation_finished
 	run = true

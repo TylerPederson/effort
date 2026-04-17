@@ -7,7 +7,7 @@ func _ready():	# Waits for current animations to finish then starts attacjs
 	if AIController.Awakening:
 		await AIController.get_node("AnimationTree").animation_finished
 	AIController.attack = true
-	AIController.get_node("AnimationTree").get("parameters/playback").travel("Slash")
+	AIController.get_node("AnimationTree").get("parameters/playback").travel("Attack")
 	AIController.look_at(AIController.global_transform.origin + AIController.direction, Vector3.UP)
 func _physics_process(delta: float):
 	if AIController:		# Makes sure boss doesn't slide while attacking

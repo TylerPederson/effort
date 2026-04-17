@@ -10,7 +10,7 @@ var boss_damage: int = 5
 var dead: bool = false
 
 func _ready():
-	state_controller._change_state("Idle")
+	state_controller._change_state("Crouch loop")
 
 func _physics_process(delta):
 	# Add the gravity.
