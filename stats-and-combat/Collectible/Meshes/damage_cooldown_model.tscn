@@ -1,4 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://ckqlv6pjuw4aa"]
+[gd_scene load_steps=13 format=3 uid="uid://ckqlv6pjuw4aa"]
+
+[ext_resource type="PackedScene" uid="uid://divcpj70qc0wx" path="res://Utility/nearby_text_display.tscn" id="1_syipg"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_0wxip"]
 top_radius = 0.2
@@ -81,3 +83,9 @@ skeleton = NodePath("../..")
 transform = Transform3D(0.258819, 0.9659258, 0, -0.9659258, 0.258819, 0, 0, 0, 1, 0, 0, -0.0042219013)
 mesh = SubResource("BoxMesh_efgwr")
 skeleton = NodePath("../..")
+
+[node name="NearbyTextDisplay" parent="." instance=ExtResource("1_syipg")]
+info = "Attack Cooldown"
+sub_info = "Time between your attacks\\nis reduced."
+position_offset = Vector3(0, 1.3, 0)
+color = Color(0.9882353, 0.5686275, 0, 1)

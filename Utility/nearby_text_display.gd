@@ -9,14 +9,19 @@ extends Node3D
 @export var sub_info := ""
 @export var position_offset := Vector3(0,0,0)
 
+@export var color := Color(1.0, 1.0, 1.0, 1.0)
+@export var sub_color := Color(0.8, 0.8, 0.65, 1.0)
+
 var nearby := false
 var player : CharacterBody3D = null
 
 func _ready():
-	info_label.text = info
+	info_label.text = info.c_unescape()
 	info_label.global_position += position_offset
-	sub_info_label.text = sub_info
+	info_label.modulate = color
+	sub_info_label.text = sub_info.c_unescape()
 	sub_info_label.global_position += position_offset
+	sub_info_label.modulate = sub_color
 	player = get_tree().get_first_node_in_group("Player")
 
 func _process(_delta):
@@ -33,7 +38,6 @@ func _process(_delta):
 	var player_forward = -player.get_facing_direction().z
 	var dir_to_self = (global_position - player.global_position).normalized()
 	var dot_product = player_forward.dot(dir_to_self)
-	print(dot_product)
 	
 	# Show labels if the player is looking nearby
 	if dot_product > 0.9:
@@ -47,8 +51,6 @@ func _process(_delta):
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player"):
 		nearby = true
-		print("YO")
-		
 		# Link to the player if they hadn't before
 		if !player:
 			player = get_tree().get_first_node_in_group("Player")

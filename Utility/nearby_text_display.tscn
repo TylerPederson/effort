@@ -18,6 +18,7 @@ shape = SubResource("CylinderShape3D_g7ahp")
 [node name="InfoLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6768217, 0)
 billboard = 1
+no_depth_test = true
 text = "Info"
 font_size = 70
 outline_size = 24
@@ -25,9 +26,11 @@ outline_size = 24
 [node name="SubInfoLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3261392, 0)
 billboard = 1
-modulate = Color(0.747766, 0.7338797, 0.5760096, 1)
+no_depth_test = true
+modulate = Color(0.8647454, 0.85441756, 0.74272615, 1)
 font_size = 62
 outline_size = 24
+vertical_alignment = 0
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

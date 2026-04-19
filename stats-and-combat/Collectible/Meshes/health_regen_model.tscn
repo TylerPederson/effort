@@ -1,4 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://blpvs4aoh3het"]
+[gd_scene load_steps=8 format=3 uid="uid://blpvs4aoh3het"]
+
+[ext_resource type="PackedScene" uid="uid://divcpj70qc0wx" path="res://Utility/nearby_text_display.tscn" id="1_efgwr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wxip"]
 albedo_color = Color(0.83, 0.1577, 0.1577, 1)
@@ -45,3 +47,9 @@ skeleton = NodePath("../..")
 transform = Transform3D(0.9051315, 0.4251317, 0, 1.8583098e-08, -3.9564554e-08, 1, 0.4251317, -0.9051315, -4.371139e-08, 0.04376173, -3.714936e-09, -0.08498782)
 mesh = SubResource("PrismMesh_jhwx6")
 skeleton = NodePath("../..")
+
+[node name="NearbyTextDisplay" parent="." instance=ExtResource("1_efgwr")]
+info = "Health Regen"
+sub_info = "Slowly regenerate health"
+position_offset = Vector3(0, 1.3, 0)
+color = Color(1, 0.5403793, 0.41950795, 1)

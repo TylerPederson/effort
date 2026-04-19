@@ -61,5 +61,6 @@ skeleton = NodePath("../..")
 
 [node name="NearbyTextDisplay" parent="." instance=ExtResource("1_0ee33")]
 info = "Flat Armor"
-sub_info = "Provides a permanent flat amount of damage reduction"
-position_offset = Vector3(0, 0.45, 0.3)
+sub_info = "Provides a permanent flat\\n amount of damage reduction"
+position_offset = Vector3(0, 1.3, 0)
+color = Color(0.73758626, 0.60162497, 1, 1)

@@ -1,4 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://blfdmnj8n0cmo"]
+[gd_scene load_steps=11 format=3 uid="uid://blfdmnj8n0cmo"]
+
+[ext_resource type="PackedScene" uid="uid://divcpj70qc0wx" path="res://Utility/nearby_text_display.tscn" id="1_nn3wp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dx7b4"]
 albedo_color = Color(0.70600003, 0.51, 1, 1)
@@ -92,3 +94,9 @@ skeleton = NodePath("../../..")
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04209596, -0.13095924, 0)
 mesh = SubResource("BoxMesh_1pygg")
 skeleton = NodePath("../../..")
+
+[node name="NearbyTextDisplay" parent="." instance=ExtResource("1_nn3wp")]
+info = "Sprint Efficiency"
+sub_info = "Reduce how much stamina starting\\n and continuing to sprint uses"
+position_offset = Vector3(0, 1.3, 0)
+color = Color(0, 0.7686839, 0.89911133, 1)

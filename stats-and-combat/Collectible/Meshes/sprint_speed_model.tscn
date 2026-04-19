@@ -1,4 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cs7ste6an4qcv"]
+[gd_scene load_steps=11 format=3 uid="uid://cs7ste6an4qcv"]
+
+[ext_resource type="PackedScene" uid="uid://divcpj70qc0wx" path="res://Utility/nearby_text_display.tscn" id="1_37xbx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6h1cd"]
 albedo_color = Color(0.81, 0.47736, 0.18630001, 1)
@@ -85,3 +87,9 @@ mesh = SubResource("PrismMesh_aniui")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1479575, 0)
 mesh = SubResource("BoxMesh_4wp3e")
 skeleton = NodePath("../..")
+
+[node name="NearbyTextDisplay" parent="." instance=ExtResource("1_37xbx")]
+info = "Sprint Speed"
+sub_info = "Increase how fast you sprint"
+position_offset = Vector3(0, 1.3, 0)
+color = Color(0, 0.7686839, 0.89911133, 1)
