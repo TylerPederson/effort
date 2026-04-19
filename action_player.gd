@@ -36,6 +36,10 @@ var able_to_move = true
 @onready var horizontal_pivot: Node3D = $HorizontalPivot
 @onready var vertical_pivot: Node3D = $HorizontalPivot/VerticalPivot
 
+func get_facing_direction() -> Basis:
+	return horizontal_pivot.global_transform.basis
+
+
 # To properly move, the player camera needs the mouse to be captured
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

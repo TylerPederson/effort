@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxg8wpf4s854c"]
+[gd_scene load_steps=9 format=3 uid="uid://cxg8wpf4s854c"]
+
+[ext_resource type="PackedScene" uid="uid://divcpj70qc0wx" path="res://Utility/nearby_text_display.tscn" id="1_0ee33"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jiq5i"]
 albedo_color = Color(0, 0.55250007, 0.65, 1)
@@ -56,3 +58,8 @@ mesh = SubResource("PrismMesh_8gvpd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1479575, 0)
 mesh = SubResource("BoxMesh_nksht")
 skeleton = NodePath("../..")
+
+[node name="NearbyTextDisplay" parent="." instance=ExtResource("1_0ee33")]
+info = "Flat Armor"
+sub_info = "Provides a permanent flat amount of damage reduction"
+position_offset = Vector3(0, 0.45, 0.3)

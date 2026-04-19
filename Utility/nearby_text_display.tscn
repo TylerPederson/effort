@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://divcpj70qc0wx"]
+
+[ext_resource type="Script" uid="uid://dopbcvdvjfgea" path="res://Utility/nearby_text_display.gd" id="1_gpsha"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_g7ahp"]
+height = 1.0
+radius = 4.0
+
+[node name="NearbyTextDisplay" type="Node3D"]
+script = ExtResource("1_gpsha")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_g7ahp")
+
+[node name="InfoLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6768217, 0)
+billboard = 1
+text = "Info"
+font_size = 70
+outline_size = 24
+
+[node name="SubInfoLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3261392, 0)
+billboard = 1
+modulate = Color(0.747766, 0.7338797, 0.5760096, 1)
+font_size = 62
+outline_size = 24
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
