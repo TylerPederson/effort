@@ -70,7 +70,7 @@ func attack(bonus_damage:int = 0, cooldown_reduction:float = 1.0):
 	extra_damage = bonus_damage
 	ready_to_use = false
 	timer.start(cooldown * cooldown_reduction)
-	emit_signal("attack_started", cooldown*cooldown_reduction)
+	attack_started.emit(cooldown * cooldown_reduction)
 	
 	attack_cast.clear_exceptions()
 	

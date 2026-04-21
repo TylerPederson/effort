@@ -94,7 +94,14 @@ offset_bottom = 115.0
 text = "Buffs"
 label_settings = SubResource("LabelSettings_2m07e")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="Cooldown_Bar" type="ProgressBar" parent="."]
 layout_mode = 0
-offset_right = 4.0
-offset_bottom = 27.0
+offset_left = 400.0
+offset_top = 291.0
+offset_right = 688.0
+offset_bottom = 318.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="Cooldown_Bar"]
+
+[connection signal="timeout" from="Cooldown_Bar/Timer" to="." method="_on_timer_timeout"]
