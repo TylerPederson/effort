@@ -1,10 +1,8 @@
 extends Node3D
 class_name WeaponComponent
 
-var cooldown_bar := preload("res://stats-and-combat/Basic_HUD/cooldown_bar.tscn")
-var hud := preload("res://stats-and-combat/Basic_HUD/basic_hud.tscn")
 signal attack_finished
-
+signal attack_started(time)
 
 
 enum WeaponAttackStyle {
@@ -72,6 +70,8 @@ func attack(bonus_damage:int = 0, cooldown_reduction:float = 1.0):
 	extra_damage = bonus_damage
 	ready_to_use = false
 	timer.start(cooldown * cooldown_reduction)
+	emit_signal("attack_started", cooldown*cooldown_reduction)
+	
 	attack_cast.clear_exceptions()
 	
 	match attackStyle:

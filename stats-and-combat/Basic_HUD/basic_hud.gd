@@ -9,12 +9,14 @@ class_name Basic_HUD
 
 
 func _ready() -> void:
+	var weapon_info = get_node("/root/w")
 	hp_bar.max_value = 100
 	hp_bar.value = 100
 	stamina_bar.max_value = 100
 	stamina_bar.value = 100
 	info_label.text = ""
 	buff_label.text = ""
+	
 
 
 func display_buff(text: String, duration : float = 1.5):
