@@ -60,3 +60,14 @@ func _hit(damage: int):	# Player damages boss function
 	health -= damage
 	if health < 0:
 		state_controller._change_state("Death")
+
+
+func _on_player_hit_L(body):	# Damage player function
+	if body.name == "Player" and attack and !dead:
+		body.get_node("Health_Component").take_damage(boss_damage)
+		#print_debug("Hit")
+
+func _on_player_hit_R(body):	# Damage player function
+	if body.name == "Player" and attack and !dead:
+		body.get_node("Health_Component").take_damage(boss_damage)
+		#print_debug("Hit")

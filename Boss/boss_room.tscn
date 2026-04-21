@@ -24,7 +24,7 @@ size = Vector3(1, 5, 24.733025)
 [node name="BossRoom" type="Node3D"]
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
-transform = Transform3D(52.034306, 0, 0, 0, 0.9999996, 0, 0, 0, 56.829365, 0, -10, 0)
+transform = Transform3D(52.034283, -0.00017155311, -0.049354263, 0.008881279, 0.999999, -0.056142062, 0.045198873, 0.0009877544, 56.829308, 0, -10, 0)
 use_collision = true
 radius = 0.4
 height = 23.688477
@@ -86,7 +86,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.83325195, 4.166465, 1.5302
 shape = SubResource("BoxShape3D_n8ie0")
 
 [node name="Boss" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_r2qyn")]
-transform = Transform3D(-2.6226834e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.6226834e-08, -6.83292, 1.8442335, 0.21916246)
+transform = Transform3D(7.1549286e-09, 0, -0.6, 0, 0.6, 0, 0.6, 0, 7.1549286e-09, -6.83292, 1.8442335, 0.21916246)
 collision_layer = 3
 collision_mask = 3
 player = NodePath("../Player")
