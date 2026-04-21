@@ -1,4 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1s4rmn3tjevo"]
+[gd_scene load_steps=10 format=3 uid="uid://c1s4rmn3tjevo"]
+
+[ext_resource type="PackedScene" uid="uid://divcpj70qc0wx" path="res://Utility/nearby_text_display.tscn" id="1_i8dqm"]
+[ext_resource type="Script" uid="uid://bpp63ta546i4o" path="res://stats-and-combat/Collectible/Meshes/model.gd" id="2_xx32t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jiq5i"]
 albedo_color = Color(0, 0.55250007, 0.65, 1)
@@ -30,36 +33,46 @@ height = 0.1
 
 [node name="Armor_Ratio_Model" type="Node3D"]
 
-[node name="ArmorBottom" type="MeshInstance3D" parent="."]
+[node name="NearbyTextDisplay" parent="." instance=ExtResource("1_i8dqm")]
+info = "Ratio Armor"
+sub_info = "Provides a permanent percentage\\n amount of damage reduction"
+position_offset = Vector3(0, 1.3, 0)
+color = Color(0.7372549, 0.6, 1, 1)
+
+[node name="Model" type="Node3D" parent="."]
+script = ExtResource("2_xx32t")
+
+[node name="ArmorBottom" type="MeshInstance3D" parent="Model"]
 transform = Transform3D(0.9, 0, 0, 0, -0.9, 1.3589622e-07, 0, -1.3589622e-07, -0.9, 0, -0.036623895, -1.5298985e-08)
 mesh = SubResource("PrismMesh_iwixs")
 skeleton = NodePath("")
 
-[node name="ArmorCenter" type="MeshInstance3D" parent="ArmorBottom"]
+[node name="ArmorCenter" type="MeshInstance3D" parent="Model/ArmorBottom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.38343787, 3.3521204e-08)
 mesh = SubResource("BoxMesh_0ee33")
 skeleton = NodePath("")
 
-[node name="ArmorLeft" type="MeshInstance3D" parent="ArmorBottom"]
+[node name="ArmorLeft" type="MeshInstance3D" parent="Model/ArmorBottom"]
 transform = Transform3D(0.9659258, -0.25881904, 2.262668e-08, 0.25881904, 0.9659258, 2.978858e-09, -2.262668e-08, 2.978858e-09, 1, -0.24823606, -0.39557457, 3.458223e-08)
 mesh = SubResource("PrismMesh_oxiyr")
 skeleton = NodePath("")
 
-[node name="ArmorRight" type="MeshInstance3D" parent="ArmorBottom"]
+[node name="ArmorRight" type="MeshInstance3D" parent="Model/ArmorBottom"]
 transform = Transform3D(0.9659258, 0.25881904, -2.262668e-08, -0.25881904, 0.9659258, 2.978858e-09, 2.262668e-08, 2.978858e-09, 1, 0.24597737, -0.39557457, 3.458223e-08)
 mesh = SubResource("PrismMesh_oxiyr")
 skeleton = NodePath("")
 
-[node name="PercentLine" type="MeshInstance3D" parent="."]
+[node name="PercentLine" type="MeshInstance3D" parent="Model"]
 transform = Transform3D(0.63639605, 0.63639605, 0, -0.63639605, 0.63639605, 0, 0, 0, 0.9, 0.4266101, 0.42791924, 0)
 mesh = SubResource("BoxMesh_nksht")
+skeleton = NodePath("../..")
 
-[node name="PercentDot1" type="MeshInstance3D" parent="PercentLine"]
+[node name="PercentDot1" type="MeshInstance3D" parent="Model/PercentLine"]
 transform = Transform3D(0.70710677, 3.090862e-08, 0.70710677, 0.70710677, -3.090862e-08, -0.70710677, 0, 1, -4.3711392e-08, -0.08562863, 0.010695219, 0)
 mesh = SubResource("CylinderMesh_c2r0b")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="PercentDot2" type="MeshInstance3D" parent="PercentLine"]
+[node name="PercentDot2" type="MeshInstance3D" parent="Model/PercentLine"]
 transform = Transform3D(0.7071067, 3.0908616e-08, 0.7071067, 0.7071067, -3.0908616e-08, -0.7071067, 0, 1, -4.3711392e-08, 0.08403385, 0.006611705, 0)
 mesh = SubResource("CylinderMesh_c2r0b")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
