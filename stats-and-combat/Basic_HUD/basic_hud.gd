@@ -34,6 +34,7 @@ func display_info(text: String, duration : float = 1.5):
 func _on_weapon_component_attack_started(time: Variant) -> void:
 	cooldown_bar.visible = true
 	cooldown_timer.start(time)
+	cooldown_bar.max_value = time
 
 
 func _on_health_component_health_change(current_hp: Variant, total_hp: Variant) -> void:

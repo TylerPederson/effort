@@ -109,6 +109,7 @@ visible = false
 transform = Transform3D(-0.48, 0, 7.247798e-08, 0, 0.48, 0, -7.247798e-08, 0, -0.48, 0, 0, 0)
 
 [connection signal="perform_attack" from="." to="Attack_Component" method="_on_attack_action"]
+[connection signal="attack_started" from="HorizontalPivot/WeaponHolder/Weapon_Component" to="Basic_HUD" method="_on_weapon_component_attack_started"]
 [connection signal="death" from="Health_Component" to="." method="_on_health_component_death"]
 [connection signal="health_change" from="Health_Component" to="Basic_HUD" method="_on_health_component_health_change"]
 [connection signal="stamina_change" from="Stamina_Component" to="Basic_HUD" method="_on_stamina_component_stamina_change"]

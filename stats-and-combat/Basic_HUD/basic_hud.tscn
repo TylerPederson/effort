@@ -95,11 +95,18 @@ text = "Buffs"
 label_settings = SubResource("LabelSettings_2m07e")
 
 [node name="Cooldown_Bar" type="ProgressBar" parent="."]
-layout_mode = 0
-offset_left = 400.0
-offset_top = 291.0
-offset_right = 688.0
-offset_bottom = 318.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.5
+offset_top = -148.0
+offset_right = 60.5
+offset_bottom = -122.0
+grow_horizontal = 2
+grow_vertical = 0
 show_percentage = false
 
 [node name="Timer" type="Timer" parent="Cooldown_Bar"]
