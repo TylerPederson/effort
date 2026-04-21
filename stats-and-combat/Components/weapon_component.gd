@@ -1,6 +1,7 @@
 extends Node3D
 class_name WeaponComponent
 
+signal attack_start(cooldown: float)
 signal attack_finished
 
 enum WeaponAttackStyle {
@@ -68,6 +69,7 @@ func attack(bonus_damage:int = 0, cooldown_reduction:float = 1.0):
 	extra_damage = bonus_damage
 	ready_to_use = false
 	timer.start(cooldown * cooldown_reduction)
+	attack_start.emit(cooldown * cooldown_reduction)
 	attack_cast.clear_exceptions()
 	
 	match attackStyle:
