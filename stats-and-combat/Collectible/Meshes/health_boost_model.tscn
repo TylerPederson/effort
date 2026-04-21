@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxh45rvfy1lo5"]
+[gd_scene load_steps=8 format=3 uid="uid://bxh45rvfy1lo5"]
 
 [ext_resource type="PackedScene" uid="uid://divcpj70qc0wx" path="res://Utility/nearby_text_display.tscn" id="1_8gvpd"]
+[ext_resource type="Script" uid="uid://bpp63ta546i4o" path="res://stats-and-combat/Collectible/Meshes/model.gd" id="2_nksht"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wxip"]
 albedo_color = Color(0.83, 0.1577, 0.1577, 1)
@@ -22,25 +23,30 @@ size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Health_Regen_Model" type="Node3D"]
 
-[node name="PlusVert" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_efgwr")
-
-[node name="PlusHorz" type="MeshInstance3D" parent="PlusVert"]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("BoxMesh_efgwr")
-skeleton = NodePath("../..")
-
-[node name="ArrowHead" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4266101, 0.561081, 0)
-mesh = SubResource("PrismMesh_8gvpd")
-
-[node name="ArrowBody" type="MeshInstance3D" parent="ArrowHead"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1479575, 0)
-mesh = SubResource("BoxMesh_nksht")
-skeleton = NodePath("../..")
-
 [node name="NearbyTextDisplay" parent="." instance=ExtResource("1_8gvpd")]
 info = "Health Increase"
 sub_info = "Increase maximum health"
 position_offset = Vector3(0, 1.3, 0)
 color = Color(1, 0.5403793, 0.41950795, 1)
+
+[node name="Model" type="Node3D" parent="."]
+script = ExtResource("2_nksht")
+
+[node name="PlusVert" type="MeshInstance3D" parent="Model"]
+mesh = SubResource("BoxMesh_efgwr")
+skeleton = NodePath("../..")
+
+[node name="PlusHorz" type="MeshInstance3D" parent="Model/PlusVert"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_efgwr")
+skeleton = NodePath("../../..")
+
+[node name="ArrowHead" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4266101, 0.561081, 0)
+mesh = SubResource("PrismMesh_8gvpd")
+skeleton = NodePath("../..")
+
+[node name="ArrowBody" type="MeshInstance3D" parent="Model/ArrowHead"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1479575, 0)
+mesh = SubResource("BoxMesh_nksht")
+skeleton = NodePath("../../..")

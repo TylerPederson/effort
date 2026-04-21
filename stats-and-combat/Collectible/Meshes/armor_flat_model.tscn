@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxg8wpf4s854c"]
+[gd_scene load_steps=10 format=3 uid="uid://cxg8wpf4s854c"]
 
 [ext_resource type="PackedScene" uid="uid://divcpj70qc0wx" path="res://Utility/nearby_text_display.tscn" id="1_0ee33"]
+[ext_resource type="Script" uid="uid://bpp63ta546i4o" path="res://stats-and-combat/Collectible/Meshes/model.gd" id="2_oxiyr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jiq5i"]
 albedo_color = Color(0, 0.55250007, 0.65, 1)
@@ -30,37 +31,41 @@ size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Armor_Flat_Model" type="Node3D"]
 
-[node name="ArmorBottom" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.9, 0, 0, 0, -0.9, 1.3589622e-07, 0, -1.3589622e-07, -0.9, 0, -0.036623895, -1.5298985e-08)
-mesh = SubResource("PrismMesh_iwixs")
-skeleton = NodePath("")
-
-[node name="ArmorCenter" type="MeshInstance3D" parent="ArmorBottom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.38343787, 3.3521204e-08)
-mesh = SubResource("BoxMesh_0ee33")
-skeleton = NodePath("")
-
-[node name="ArmorLeft" type="MeshInstance3D" parent="ArmorBottom"]
-transform = Transform3D(0.9659258, -0.25881904, 2.262668e-08, 0.25881904, 0.9659258, 2.978858e-09, -2.262668e-08, 2.978858e-09, 1, -0.24823606, -0.39557457, 3.458223e-08)
-mesh = SubResource("PrismMesh_oxiyr")
-skeleton = NodePath("")
-
-[node name="ArmorRight" type="MeshInstance3D" parent="ArmorBottom"]
-transform = Transform3D(0.9659258, 0.25881904, -2.262668e-08, -0.25881904, 0.9659258, 2.978858e-09, 2.262668e-08, 2.978858e-09, 1, 0.24597737, -0.39557457, 3.458223e-08)
-mesh = SubResource("PrismMesh_oxiyr")
-skeleton = NodePath("")
-
-[node name="ArrowHead" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.4266101, 0.561081, 0)
-mesh = SubResource("PrismMesh_8gvpd")
-
-[node name="ArrowBody" type="MeshInstance3D" parent="ArrowHead"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1479575, 0)
-mesh = SubResource("BoxMesh_nksht")
-skeleton = NodePath("../..")
-
 [node name="NearbyTextDisplay" parent="." instance=ExtResource("1_0ee33")]
 info = "Flat Armor"
 sub_info = "Provides a permanent flat\\n amount of damage reduction"
 position_offset = Vector3(0, 1.3, 0)
 color = Color(0.73758626, 0.60162497, 1, 1)
+
+[node name="Model" type="Node3D" parent="."]
+script = ExtResource("2_oxiyr")
+
+[node name="ArmorBottom" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(0.9, 0, 0, 0, -0.9, 1.3589622e-07, 0, -1.3589622e-07, -0.9, 0, -0.036623895, -1.5298985e-08)
+mesh = SubResource("PrismMesh_iwixs")
+skeleton = NodePath("")
+
+[node name="ArmorCenter" type="MeshInstance3D" parent="Model/ArmorBottom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.38343787, 3.3521204e-08)
+mesh = SubResource("BoxMesh_0ee33")
+skeleton = NodePath("")
+
+[node name="ArmorLeft" type="MeshInstance3D" parent="Model/ArmorBottom"]
+transform = Transform3D(0.9659258, -0.25881904, 2.262668e-08, 0.25881904, 0.9659258, 2.978858e-09, -2.262668e-08, 2.978858e-09, 1, -0.24823606, -0.39557457, 3.458223e-08)
+mesh = SubResource("PrismMesh_oxiyr")
+skeleton = NodePath("")
+
+[node name="ArmorRight" type="MeshInstance3D" parent="Model/ArmorBottom"]
+transform = Transform3D(0.9659258, 0.25881904, -2.262668e-08, -0.25881904, 0.9659258, 2.978858e-09, 2.262668e-08, 2.978858e-09, 1, 0.24597737, -0.39557457, 3.458223e-08)
+mesh = SubResource("PrismMesh_oxiyr")
+skeleton = NodePath("")
+
+[node name="ArrowHead" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.4266101, 0.561081, 0)
+mesh = SubResource("PrismMesh_8gvpd")
+skeleton = NodePath("../..")
+
+[node name="ArrowBody" type="MeshInstance3D" parent="Model/ArrowHead"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1479575, 0)
+mesh = SubResource("BoxMesh_nksht")
+skeleton = NodePath("../../..")

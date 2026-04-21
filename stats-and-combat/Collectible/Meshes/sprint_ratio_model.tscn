@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://blfdmnj8n0cmo"]
+[gd_scene load_steps=12 format=3 uid="uid://blfdmnj8n0cmo"]
 
 [ext_resource type="PackedScene" uid="uid://divcpj70qc0wx" path="res://Utility/nearby_text_display.tscn" id="1_nn3wp"]
+[ext_resource type="Script" uid="uid://bpp63ta546i4o" path="res://stats-and-combat/Collectible/Meshes/model.gd" id="2_swgwp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dx7b4"]
 albedo_color = Color(0.70600003, 0.51, 1, 1)
@@ -41,62 +42,66 @@ size = Vector3(0.595, 0.05, 0.201)
 
 [node name="Sprint_Ratio_Model" type="Node3D"]
 
-[node name="PercentLine" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.63639605, 0.63639605, 0, -0.63639605, 0.63639605, 0, 0, 0, 0.9, 0.4266101, 0.42791924, 0)
-mesh = SubResource("BoxMesh_nksht")
-
-[node name="PercentDot1" type="MeshInstance3D" parent="PercentLine"]
-transform = Transform3D(0.70710677, 3.090862e-08, 0.70710677, 0.70710677, -3.090862e-08, -0.70710677, 0, 1, -4.3711392e-08, -0.08562863, 0.010695219, 0)
-mesh = SubResource("CylinderMesh_c2r0b")
-skeleton = NodePath("../..")
-
-[node name="PercentDot2" type="MeshInstance3D" parent="PercentLine"]
-transform = Transform3D(0.7071067, 3.0908616e-08, 0.7071067, 0.7071067, -3.0908616e-08, -0.7071067, 0, 1, -4.3711392e-08, 0.08403385, 0.006611705, 0)
-mesh = SubResource("CylinderMesh_c2r0b")
-skeleton = NodePath("../..")
-
-[node name="Boots" type="Node3D" parent="."]
-
-[node name="LeftBootSole" type="MeshInstance3D" parent="Boots"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3159032, 0.0023247898, 0)
-mesh = SubResource("BoxMesh_nn3wp")
-skeleton = NodePath("../..")
-
-[node name="LeftBootToe" type="MeshInstance3D" parent="Boots/LeftBootSole"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.24693638, 0, 0)
-mesh = SubResource("CylinderMesh_swgwp")
-
-[node name="LeftBootHeel" type="MeshInstance3D" parent="Boots/LeftBootSole"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13829751, 0.25220117, 0)
-mesh = SubResource("BoxMesh_qra8r")
-skeleton = NodePath("../../..")
-
-[node name="LeftBootBottom" type="MeshInstance3D" parent="Boots/LeftBootSole"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038614094, -0.13095924, 0)
-mesh = SubResource("BoxMesh_1pygg")
-skeleton = NodePath("../../..")
-
-[node name="RightBootSole" type="MeshInstance3D" parent="Boots"]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27108407, 0.0023247898, 0)
-mesh = SubResource("BoxMesh_nn3wp")
-skeleton = NodePath("../..")
-
-[node name="RightBootToe" type="MeshInstance3D" parent="Boots/RightBootSole"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.24693638, 0, 0)
-mesh = SubResource("CylinderMesh_swgwp")
-
-[node name="RightBootHeel" type="MeshInstance3D" parent="Boots/RightBootSole"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13829751, 0.25220117, 0)
-mesh = SubResource("BoxMesh_qra8r")
-skeleton = NodePath("../../..")
-
-[node name="RightBootBottom" type="MeshInstance3D" parent="Boots/RightBootSole"]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04209596, -0.13095924, 0)
-mesh = SubResource("BoxMesh_1pygg")
-skeleton = NodePath("../../..")
-
 [node name="NearbyTextDisplay" parent="." instance=ExtResource("1_nn3wp")]
 info = "Sprint Efficiency"
 sub_info = "Reduce how much stamina starting\\n and continuing to sprint uses"
 position_offset = Vector3(0, 1.3, 0)
 color = Color(0, 0.7686839, 0.89911133, 1)
+
+[node name="Model" type="Node3D" parent="."]
+script = ExtResource("2_swgwp")
+
+[node name="PercentLine" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(0.63639605, 0.63639605, 0, -0.63639605, 0.63639605, 0, 0, 0, 0.9, 0.4266101, 0.42791924, 0)
+mesh = SubResource("BoxMesh_nksht")
+skeleton = NodePath("../..")
+
+[node name="PercentDot1" type="MeshInstance3D" parent="Model/PercentLine"]
+transform = Transform3D(0.70710677, 3.090862e-08, 0.70710677, 0.70710677, -3.090862e-08, -0.70710677, 0, 1, -4.3711392e-08, -0.08562863, 0.010695219, 0)
+mesh = SubResource("CylinderMesh_c2r0b")
+skeleton = NodePath("../../..")
+
+[node name="PercentDot2" type="MeshInstance3D" parent="Model/PercentLine"]
+transform = Transform3D(0.7071067, 3.0908616e-08, 0.7071067, 0.7071067, -3.0908616e-08, -0.7071067, 0, 1, -4.3711392e-08, 0.08403385, 0.006611705, 0)
+mesh = SubResource("CylinderMesh_c2r0b")
+skeleton = NodePath("../../..")
+
+[node name="Boots" type="Node3D" parent="Model"]
+
+[node name="LeftBootSole" type="MeshInstance3D" parent="Model/Boots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3159032, 0.0023247898, 0)
+mesh = SubResource("BoxMesh_nn3wp")
+skeleton = NodePath("../../..")
+
+[node name="LeftBootToe" type="MeshInstance3D" parent="Model/Boots/LeftBootSole"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.24693638, 0, 0)
+mesh = SubResource("CylinderMesh_swgwp")
+
+[node name="LeftBootHeel" type="MeshInstance3D" parent="Model/Boots/LeftBootSole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13829751, 0.25220117, 0)
+mesh = SubResource("BoxMesh_qra8r")
+skeleton = NodePath("../../../..")
+
+[node name="LeftBootBottom" type="MeshInstance3D" parent="Model/Boots/LeftBootSole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038614094, -0.13095924, 0)
+mesh = SubResource("BoxMesh_1pygg")
+skeleton = NodePath("../../../..")
+
+[node name="RightBootSole" type="MeshInstance3D" parent="Model/Boots"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27108407, 0.0023247898, 0)
+mesh = SubResource("BoxMesh_nn3wp")
+skeleton = NodePath("../../..")
+
+[node name="RightBootToe" type="MeshInstance3D" parent="Model/Boots/RightBootSole"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.24693638, 0, 0)
+mesh = SubResource("CylinderMesh_swgwp")
+
+[node name="RightBootHeel" type="MeshInstance3D" parent="Model/Boots/RightBootSole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13829751, 0.25220117, 0)
+mesh = SubResource("BoxMesh_qra8r")
+skeleton = NodePath("../../../..")
+
+[node name="RightBootBottom" type="MeshInstance3D" parent="Model/Boots/RightBootSole"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04209596, -0.13095924, 0)
+mesh = SubResource("BoxMesh_1pygg")
+skeleton = NodePath("../../../..")
