@@ -38,9 +38,9 @@ func _on_attack_player_body_exited(body):
 		state_controller._change_state("Walk")
 
 func _on_animation_tree_animation_finished(anim_name):
-	if "get up" in anim_name:
+	if "Crouch" in anim_name:
 		Awakening = false	#set to false so other states can start
-	elif  "Slash" in anim_name:	#Loops attack animation in near
+	elif  attack:#"Attack" in anim_name or "Attack 2" in anim_name or "Attack 3" in anim_name or "Attack 4" in anim_name or "Attack 5" in anim_name or "Attack 6" in anim_name:	#Loops attack animation in near
 		if (player in get_node("AttackPlayer").get_overlapping_bodies()) and !dead:
 			state_controller._change_state("Attack")
 	elif  "Dying" in anim_name:
