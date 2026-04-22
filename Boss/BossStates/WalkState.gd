@@ -33,5 +33,6 @@ func _physics_process(delta: float):
 			AIController.velocity.x = dir.x * AIController.speed
 			AIController.velocity.z = dir.z * AIController.speed
 
-			var target = AIController.global_position + dir
-			AIController.look_at(target, Vector3.UP)
+			#var target = AIController.global_position + dir
+			var target_angle = atan2(dir.x, dir.z) + PI
+			AIController.rotation.y = lerp_angle(AIController.rotation.y, target_angle, AIController.rotate_speed * delta)

@@ -23,19 +23,18 @@ func _ready():	# Waits for current animations to finish then starts attacjs
 		6:
 			AIController.get_node("AnimationTree").get("parameters/playback").travel("Attack 6")
 			
-	var dir = AIController.player.global_position - AIController.global_position
-	dir.y = 0.0
-	if dir.length() > 0.1:	 
-		dir = dir.normalized()
-		AIController.direction = dir
-
-		AIController.velocity.x = dir.x * AIController.speed
-		AIController.velocity.z = dir.z * AIController.speed
-
-		var target = AIController.global_position + dir
-		AIController.look_at(target, Vector3.UP)
 
 func _physics_process(delta: float):
-	if AIController:		# Makes sure boss doesn't slide while attacking
+	if AIController and AIController.player: # Extra code to make sure boss targetting doesn't glitch out
 		AIController.velocity.x = 0
 		AIController.velocity.z = 0
+
+		var dir = AIController.player.global_position - AIController.global_position
+		dir.y = 0.0
+
+		if dir.length() > 0.1:
+			dir = dir.normalized()
+			AIController.direction = dir
+
+			var target_angle = atan2(dir.x, dir.z) + PI
+			AIController.rotation.y = lerp_angle(AIController.rotation.y,target_angle,AIController.rotate_speed * delta)
