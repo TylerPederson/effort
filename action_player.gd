@@ -17,12 +17,6 @@ const JUMP_VELOCITY = 4.5
 @onready var weapon_component: WeaponComponent = %WeaponHolder/Weapon_Component
 @onready var basic_hud: Basic_HUD = $Basic_HUD
 
-
-#**********************julian######################
-@onready var raycast = $RayCast3D 
-###################################################
-	
-
 # Stores the x-y direction to rotate the player look direction
 var _look := Vector2.ZERO
 
@@ -125,16 +119,6 @@ func frame_camera_rotation() -> void:
 	# By this point, "used" all the difference accumulated in _look since last frame, reset for next accumulation
 	_look = Vector2.ZERO
 	
-#############################julian###########################################
-#This is the function to interact with the lever
-func handle_interaction():
-	if Input.is_action_just_pressed("interact"):
-		if raycast.is_colliding():
-			var obj = raycast.get_collider()
-			if obj and obj.has_method("interact"):
-				obj.interact()
-##############################################################################
-
 
 func _on_equip_change(slot: String, equip_data) -> void:
 	match slot:

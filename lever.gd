@@ -3,10 +3,10 @@ extends Node3D
 var used = false
 
 @onready var mesh = $MeshInstance3D
-@onready var item_interact: Node = $ItemInteract
+@onready var envio_interact: EnvioInteract = $EnvioInteract
 
 func _ready() -> void:
-	item_interact.remove_from_world_on_collect = false
+	envio_interact.parent = self
 
 func interact():
 	print("TRIED")
@@ -15,7 +15,6 @@ func interact():
 
 	used = true
 	print("Lever activated!")
-	item_interact.queue_free()
 
 	GameManager.lever_activated()
 	pull_lever()

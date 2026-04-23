@@ -45,22 +45,26 @@ func _input(_event: InputEvent) -> void:
 
 # Handles interaction using RayCast3D
 # Object must have "ItemInteract" to be an item that is interactable
-# "ItemInteract" holds item/action data
+# "ItemInteract" holds item/action data, "EnvioInteract" calls the interact function of an enviorment object
 func try_taking_item() -> void:
 	if !Input.is_action_just_pressed("interact"):
 		return
 	if !raycast.is_colliding():
 		return
-	
+	print("collided")
 	var obj = find_interaction_component(raycast.get_collider())
-	
+	print(str(raycast.get_collider()))
 	if obj == null:
 		return
 	
 	if !obj.has_method("interact"):
 		return
 		
-	obj.item_collected.connect(_on_item_collected)
+	if obj is ItemInteract:
+		obj.item_collected.connect(_on_item_collected)
+	if obj is EnvioInteract:
+		play_sound_effect(obj.interaction_sound_effect)
+	
 	obj.interact()
 
 # Signal emmited when item is picked up
@@ -97,7 +101,14 @@ func play_sound_effect(sound_effect: AudioStream) -> void:
 
 # Handles finding the "ItemInteract" nodes of objects
 func find_interaction_component(object: Node) -> Node:
-	return object.get_node_or_null("ItemInteract")
+	var item = object.get_node_or_null("ItemInteract")
+	var inter = object.get_node_or_null("EnvioInteract")
+	
+	if !item:
+		return inter
+	
+	return item
+	 
 
 # Put all action code here!
 func modify_health(modifier_value: int) -> void:

@@ -56,7 +56,7 @@ equipement_type = 2
 armor_value = 10
 metadata/_custom_type_script = "uid://cnlb1oem8hjot"
 
-[sub_resource type="Resource" id="Resource_304u1"]
+[sub_resource type="Resource" id="Resource_534hv"]
 resource_local_to_scene = true
 script = ExtResource("6_ed3sy")
 item_name = "Leather Boots"
@@ -82,5 +82,5 @@ visible = false
 shape = SubResource("BoxShape3D_wmyh8")
 
 [node name="ItemInteract" parent="." index="3" instance=ExtResource("3_534hv")]
-item_data = SubResource("Resource_304u1")
+item_data = SubResource("Resource_534hv")
 collect_sound_effect = ExtResource("7_7v7n3")

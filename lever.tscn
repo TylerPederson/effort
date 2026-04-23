@@ -1,10 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://ja3vnixww6jc"]
+[gd_scene load_steps=7 format=3 uid="uid://ja3vnixww6jc"]
 
 [ext_resource type="Script" uid="uid://dvgqwtfx7b0ix" path="res://lever.gd" id="1_0ohsc"]
-[ext_resource type="PackedScene" uid="uid://vei5oj44pyjd" path="res://Inventory/Controllers/item_interact.tscn" id="2_1btnt"]
-[ext_resource type="Texture2D" uid="uid://0x4qmx5akmn6" path="res://Inventory/Items/Icons/lever handle.png" id="3_1kj1s"]
-[ext_resource type="Script" uid="uid://c4t0ml4w6l2e3" path="res://Inventory/Actions/inspect_action.gd" id="4_gk4f0"]
-[ext_resource type="Script" uid="uid://du5u3pregm218" path="res://Inventory/item_data.gd" id="5_h01c4"]
+[ext_resource type="PackedScene" uid="uid://dalbymmd4kony" path="res://Inventory/Controllers/envio_interact.tscn" id="2_7uavd"]
+[ext_resource type="AudioStream" uid="uid://c8m463owqwis6" path="res://Inventory/Sounds/lever_pull_effect.mp3" id="3_soi7j"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1btnt"]
 
@@ -13,19 +11,6 @@ albedo_color = Color(0.015686275, 1, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0ohsc"]
 size = Vector3(0.3902893, 0.64746094, 0.8000488)
-
-[sub_resource type="Resource" id="Resource_awwea"]
-script = ExtResource("4_gk4f0")
-metadata/_custom_type_script = "uid://c4t0ml4w6l2e3"
-
-[sub_resource type="Resource" id="Resource_76uva"]
-script = ExtResource("5_h01c4")
-item_name = "Lever Handle"
-Item_icon = ExtResource("3_1kj1s")
-action_data = SubResource("Resource_awwea")
-stack_limit = 1
-item_desc = "The handle of a lever"
-metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="Lever" type="StaticBody3D"]
 script = ExtResource("1_0ohsc")
@@ -43,7 +28,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_7uavd")
 transform = Transform3D(3.8800004, 0, 3.7252903e-09, -3.7252903e-09, 3.88, -2.3841858e-07, 7.450581e-09, 0, 3.88, 0.08742124, 0.68392587, 0.5110498)
 shape = SubResource("BoxShape3D_0ohsc")
 
-[node name="ItemInteract" parent="." instance=ExtResource("2_1btnt")]
-item_data = SubResource("Resource_76uva")
-
-[connection signal="triggered" from="ItemInteract" to="." method="interact"]
+[node name="EnvioInteract" parent="." instance=ExtResource("2_7uavd")]
+interaction_sound_effect = ExtResource("3_soi7j")
