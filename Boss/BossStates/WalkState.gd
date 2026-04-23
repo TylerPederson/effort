@@ -11,11 +11,14 @@ func _ready():	# Makes sure that attack or getup is not playing before waling
 		AIController.attack = false
 	else:
 		run = false
-		AIController.get_node("AnimationTree").set("parameters/TimeScale/scale", -1.0)
+		var anim_player = AIController.get_node("BossV2/AnimationPlayer")
+		var crouch_length = anim_player.get_animation("Crouch").length
 		AIController.get_node("AnimationTree").get("parameters/playback").travel("Crouch")
+		await get_tree().process_frame
+		AIController.get_node("AnimationTree").set("parameters/Crouch/TimeSeek/seek_request", crouch_length)
+
 		AIController.Awakening = true
 		await AIController.get_node("AnimationTree").animation_finished
-		AIController.get_node("AnimationTree").set("parameters/TimeScale/scale", 1.0)
 
 	run = true
 	AIController.Awakening = false
