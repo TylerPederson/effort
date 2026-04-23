@@ -7,7 +7,7 @@ var direction: Vector3
 var Awakening: bool = false
 var attack: bool = false
 var health: int = 100
-var boss_damage: int = 5
+var boss_damage: int = 7
 var dead: bool = false
 
 func _ready():
