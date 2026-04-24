@@ -51,8 +51,6 @@ func _on_attack_alternative_component_perform_active(flag: bool, amount: float) 
 func _on_attack_alternative_component_perform_charge_change(amount: Variant) -> void:
 	charge_bar.value = amount
 
-
-func _on_choice_tray_collect(collectible: Collectible) -> void:
-	match collectible:
-		Collectible.TYPE.HP_REGEN:
-			pass
+func _on_power_up_collect(type: Collectible.TYPE):
+	print("signal")
+	print("collected thing " + str(type))

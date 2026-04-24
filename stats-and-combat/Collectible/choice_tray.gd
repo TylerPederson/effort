@@ -1,6 +1,6 @@
 extends Node3D
 
-signal collect (collectible : Collectible)
+signal collected(type: Collectible.TYPE)
 
 static var to_collect = [
 	Collectible.TYPE.HP_REGEN,
@@ -30,6 +30,10 @@ func activate():
 	%Collectible1.visible = true
 	%Collectible2.visible = true
 	%Collectible3.visible = true
+	var player = get_tree().get_first_node_in_group("Player")
+	var hud : Basic_HUD = player.get_node("Basic_HUD")
+	collected.connect(hud._on_power_up_collect)
+	
 
 
 func select_available() -> Collectible.TYPE:
@@ -41,18 +45,21 @@ func select_available() -> Collectible.TYPE:
 	return type
 
 func _on_collectible_1_collected(type: Collectible.TYPE) -> void:
+	collected.emit(type)
 	to_collect.append(%Collectible2.type)
 	to_collect.append(%Collectible3.type)
 	queue_free()
 
 
 func _on_collectible_2_collected(type: Collectible.TYPE) -> void:
+	collected.emit(type)
 	to_collect.append(%Collectible1.type)
 	to_collect.append(%Collectible3.type)
 	queue_free()
 
 
 func _on_collectible_3_collected(type: Collectible.TYPE) -> void:
+	collected.emit(type)
 	to_collect.append(%Collectible1.type)
 	to_collect.append(%Collectible2.type)
 	queue_free()
