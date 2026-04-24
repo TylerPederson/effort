@@ -1,6 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://lufehvu5wiic"]
+[gd_scene load_steps=28 format=3 uid="uid://lufehvu5wiic"]
 
 [ext_resource type="PackedScene" uid="uid://da7uc6l3gvjq1" path="res://action_player.tscn" id="1_wtjuy"]
+[ext_resource type="PackedScene" uid="uid://c3pthttcuaq4i" path="res://Utility/sign_post.tscn" id="3_1krsa"]
 [ext_resource type="PackedScene" uid="uid://cm6ekv7xheido" path="res://Spikes/spikes.tscn" id="4_clqtg"]
 [ext_resource type="PackedScene" uid="uid://dvm5c3go8fcxb" path="res://stats-and-combat/Collectible/collectible.tscn" id="4_s0li7"]
 [ext_resource type="PackedScene" uid="uid://bad74nx0no6g8" path="res://TargetDummy/target_dummy.tscn" id="5_67b5x"]
@@ -91,6 +92,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0)
 
 [node name="Spikes2" parent="Obstacles" groups=["Player"] instance=ExtResource("4_clqtg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 6)
+
+[node name="SignPost" parent="Obstacles" instance=ExtResource("3_1krsa")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 20, 0, 5)
+
+[node name="NearbyTextDisplay" parent="Obstacles/SignPost" index="1"]
+info = "Grab Powerups"
+sub_info = "These give you permanent advantages"
+position_offset = Vector3(-0.3, 1, 0)
+
+[node name="SignPost2" parent="Obstacles" instance=ExtResource("3_1krsa")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 15.937421, 0, 12.164398)
+
+[node name="NearbyTextDisplay" parent="Obstacles/SignPost2" index="1"]
+info = "Attack Dummies"
+sub_info = "These are to practice your attacks"
+position_offset = Vector3(0, 1, -0.3)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.21010599, -0.50409055, 0.8377042, -0.12263342, 0.86365086, 0.4889461, -0.969957, -2.1680231e-08, -0.24327655, 10.17388, 3.9328036, 8.195225)
@@ -298,3 +315,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9944534, 0.56006837, 9.443
 
 [connection signal="all_enemies_defeated" from="Enemies/EnemyManager" to="Collectibles/Choice_Tray_Spawn2" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="Enemies/EnemyManager2" to="Collectibles/Choice_Tray_Spawn3" method="spawn_collectible_tray"]
+
+[editable path="Obstacles/SignPost"]
+[editable path="Obstacles/SignPost2"]

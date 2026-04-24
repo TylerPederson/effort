@@ -1,6 +1,7 @@
 extends Node3D
 class_name WeaponComponent
 
+signal attack_start(cooldown: float)
 signal attack_finished
 signal attack_started(time)
 

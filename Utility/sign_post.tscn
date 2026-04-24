@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3pthttcuaq4i"]
+
+[ext_resource type="PackedScene" uid="uid://dls1nbxlcnr7l" path="res://Utility/Meshes/Wood_Sign_Post.glb" id="1_k2wvi"]
+[ext_resource type="PackedScene" uid="uid://divcpj70qc0wx" path="res://Utility/nearby_text_display.tscn" id="2_i4wye"]
+
+[node name="SignPost" type="Node3D"]
+
+[node name="Wood_Sign_Post" parent="." instance=ExtResource("1_k2wvi")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="NearbyTextDisplay" parent="." instance=ExtResource("2_i4wye")]
+position_offset = Vector3(0.3, 1, 0)
