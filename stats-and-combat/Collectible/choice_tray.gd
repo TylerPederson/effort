@@ -1,5 +1,7 @@
 extends Node3D
 
+signal collect (collectible : Collectible)
+
 static var to_collect = [
 	Collectible.TYPE.HP_REGEN,
 	Collectible.TYPE.HP_BOOST,

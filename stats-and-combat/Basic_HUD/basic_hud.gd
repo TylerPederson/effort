@@ -6,15 +6,22 @@ class_name Basic_HUD
 @onready var charge_bar: ProgressBar = $Charge_Bar
 @onready var info_label: Label = $InfoLabel
 @onready var buff_label: Label = $BuffLabel
-
+@onready var passive1: TextureRect = $Passive1
+@onready var passive2: TextureRect = $Passive2
+@onready var passive3: TextureRect = $Passive3
 
 func _ready() -> void:
+	var empty_passive = load("res://stats-and-combat/Basic_HUD/Sprites/empty_passive.png")
 	hp_bar.max_value = 100
 	hp_bar.value = 100
 	stamina_bar.max_value = 100
 	stamina_bar.value = 100
 	info_label.text = ""
 	buff_label.text = ""
+	
+	passive1.texture = empty_passive
+	passive2.texture = empty_passive
+	passive3.texture = empty_passive
 
 
 func display_buff(text: String, duration : float = 1.5):
@@ -43,3 +50,9 @@ func _on_attack_alternative_component_perform_active(flag: bool, amount: float) 
 
 func _on_attack_alternative_component_perform_charge_change(amount: Variant) -> void:
 	charge_bar.value = amount
+
+
+func _on_choice_tray_collect(collectible: Collectible) -> void:
+	match collectible:
+		Collectible.TYPE.HP_REGEN:
+			pass

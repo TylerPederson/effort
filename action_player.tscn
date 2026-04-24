@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://da7uc6l3gvjq1"]
+[gd_scene load_steps=20 format=3 uid="uid://da7uc6l3gvjq1"]
 
 [ext_resource type="Script" uid="uid://bgv7o8b1m5rfj" path="res://action_player.gd" id="1_okpe7"]
 [ext_resource type="PackedScene" uid="uid://ctpmannwcqc02" path="res://stats-and-combat/Components/weapon_component.tscn" id="2_b2k0g"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cuonab4cx0tiy" path="res://Inventory/Controllers/inventory_controller.tscn" id="12_7lffo"]
 [ext_resource type="PackedScene" uid="uid://5ajj6hvux3jy" path="res://Inventory/Controllers/interaction_controller.tscn" id="13_3u1kb"]
 [ext_resource type="PackedScene" uid="uid://jsae3qffbjvk" path="res://stats-and-combat/Collectible/Meshes/Hero_basic.glb" id="13_7lffo"]
+[ext_resource type="PackedScene" uid="uid://dh2sywynsva26" path="res://stats-and-combat/Collectible/choice_tray.tscn" id="14_3u1kb"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ram5n"]
 
@@ -107,6 +108,8 @@ visible = false
 
 [node name="Model_Hero_basic" parent="Model" instance=ExtResource("13_7lffo")]
 transform = Transform3D(-0.48, 0, 7.247798e-08, 0, 0.48, 0, -7.247798e-08, 0, -0.48, 0, 0, 0)
+
+[node name="Choice_Tray" parent="." instance=ExtResource("14_3u1kb")]
 
 [connection signal="perform_attack" from="." to="Attack_Component" method="_on_attack_action"]
 [connection signal="death" from="Health_Component" to="." method="_on_health_component_death"]
