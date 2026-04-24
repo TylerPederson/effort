@@ -3,6 +3,8 @@ class_name WeaponComponent
 
 signal attack_start(cooldown: float)
 signal attack_finished
+signal attack_started(time)
+
 
 enum WeaponAttackStyle {
 	STAB,
@@ -69,7 +71,8 @@ func attack(bonus_damage:int = 0, cooldown_reduction:float = 1.0):
 	extra_damage = bonus_damage
 	ready_to_use = false
 	timer.start(cooldown * cooldown_reduction)
-	attack_start.emit(cooldown * cooldown_reduction)
+	attack_started.emit(cooldown * cooldown_reduction)
+	
 	attack_cast.clear_exceptions()
 	
 	match attackStyle:

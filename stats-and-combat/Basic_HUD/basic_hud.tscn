@@ -67,7 +67,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_sx6o5")
 show_percentage = false
 
 [node name="Charge_Bar" type="ProgressBar" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 9.0
 offset_top = 55.0
@@ -94,3 +93,22 @@ offset_right = 336.0
 offset_bottom = 115.0
 text = "Buffs"
 label_settings = SubResource("LabelSettings_2m07e")
+
+[node name="Cooldown_Bar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.5
+offset_top = -148.0
+offset_right = 60.5
+offset_bottom = -122.0
+grow_horizontal = 2
+grow_vertical = 0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="Cooldown_Bar"]
+
+[connection signal="timeout" from="Cooldown_Bar/Timer" to="." method="_on_timer_timeout"]
