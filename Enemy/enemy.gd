@@ -7,6 +7,9 @@ enum EnemyType {
 
 signal died
 
+@onready var animation_tree: AnimationTree = $AnimationTree
+var state_machine : AnimationNodeStateMachinePlayback
+
 # Expected enemy manager to be set so that a level or other custom logic can
 # be completed when all enemies in a location die
 @export var manager : EnemyManager
@@ -45,12 +48,21 @@ func _ready() -> void:
 		%AttackComponent._equipped_weapon.attackStyle = WeaponComponent.WeaponAttackStyle.STAB
 	if type == EnemyType.Ranged:
 		%AttackComponent._equipped_weapon.attackStyle = WeaponComponent.WeaponAttackStyle.SHOOT
+	
+	player = get_tree().get_first_node_in_group("Player")
+	state_machine = animation_tree.get("parameters/playback") as AnimationNodeStateMachinePlayback
+
 
 
 # Handle any custom behavior logic each frame
 func _process(delta: float) -> void:
+	if %HealthComponent.current_hp < 1:
+		%AttackComponent.set_auto_attack(false)
+		return
+	
 	if following:
 		# Attempt to attack toward player
+		state_machine.travel("move")
 		%AttackComponent.set_auto_attack(true)
 		look_at(player.position)
 		rotation.x = 0
@@ -63,6 +75,7 @@ func _process(delta: float) -> void:
 			pass
 	else:
 		%AttackComponent.set_auto_attack(false)
+		state_machine.travel("idle")
 
 # Handle movement from gravity and chasing the player
 func _physics_process(delta: float) -> void:
@@ -105,8 +118,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_health_component_death() -> void:
+	following = false
 	died.emit()
-	queue_free()
+	state_machine.start("die")
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
@@ -119,3 +133,22 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("Player"):
 		following = false
+
+
+func _on_weapon_component_attack_started(time: Variant) -> void:
+	if %HealthComponent.current_hp > 1:
+		state_machine.travel("attack")	
+
+
+func _on_health_component_hit_damage(amount: Variant) -> void:
+	if %HealthComponent.current_hp > 0:
+		state_machine.start("hurt")
+		following = true
+
+
+func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "die":
+		var tween = create_tween()
+		tween.tween_property($Model/Armature/Skeleton3D/Cube, "transparency", 1.0, 1.5)
+		await tween.finished
+		queue_free()

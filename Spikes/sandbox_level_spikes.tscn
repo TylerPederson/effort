@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://lufehvu5wiic"]
+[gd_scene load_steps=29 format=3 uid="uid://lufehvu5wiic"]
 
 [ext_resource type="PackedScene" uid="uid://da7uc6l3gvjq1" path="res://action_player.tscn" id="1_wtjuy"]
 [ext_resource type="PackedScene" uid="uid://c3pthttcuaq4i" path="res://Utility/sign_post.tscn" id="3_1krsa"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://qecl2v8bvlbt" path="res://Enemy/enemy.tscn" id="7_ylna3"]
 [ext_resource type="PackedScene" uid="uid://tn4n755wer20" path="res://Inventory/Items/boots.tscn" id="8_jqmsg"]
 [ext_resource type="PackedScene" uid="uid://dwmetnp1bbxu" path="res://Enemy/enemy_manager.tscn" id="8_sjeky"]
+[ext_resource type="PackedScene" uid="uid://dxr4crto8qro3" path="res://Enemy/enemy_rat.tscn" id="9_nmbow"]
 [ext_resource type="PackedScene" uid="uid://d4c0ja7e01arr" path="res://Inventory/Items/health_potion.tscn" id="9_xehvc"]
 [ext_resource type="PackedScene" uid="uid://ca4rbv2mvnwri" path="res://Inventory/Items/iron_sword.tscn" id="10_iin2v"]
 [ext_resource type="PackedScene" uid="uid://dlv5otj1bfse8" path="res://Inventory/Items/wooden_bow.tscn" id="11_xehvc"]
@@ -176,6 +177,9 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13,
 [node name="Choice_Tray_Spawn3" parent="Collectibles" instance=ExtResource("6_oyuc4")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.540537, 0, -20.446217)
 
+[node name="Choice_Tray_Spawn4" parent="Collectibles" instance=ExtResource("6_oyuc4")]
+transform = Transform3D(0.7089432, 0, 0.70526564, 0, 1, 0, -0.70526564, 0, 0.7089432, 9.975107, 0, 1.5256863)
+
 [node name="CollectTimer" type="Timer" parent="."]
 wait_time = 4.0
 one_shot = true
@@ -220,6 +224,35 @@ attack_cooldown = 2.0
 [node name="EnemyManager" parent="Enemies" instance=ExtResource("8_sjeky")]
 
 [node name="EnemyManager2" parent="Enemies" instance=ExtResource("8_sjeky")]
+
+[node name="EnemyManager3" parent="Enemies" instance=ExtResource("8_sjeky")]
+
+[node name="RatContainer" type="Node3D" parent="Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.260486, 0, -24.618797)
+
+[node name="Enemy_Rat" parent="Enemies/RatContainer" node_paths=PackedStringArray("manager") instance=ExtResource("9_nmbow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.811943)
+manager = NodePath("../../EnemyManager3")
+
+[node name="Enemy_Rat2" parent="Enemies/RatContainer" node_paths=PackedStringArray("manager") instance=ExtResource("9_nmbow")]
+transform = Transform3D(0.68710023, 0, 0.72656286, 0, 1, 0, -0.72656286, 0, 0.68710023, 1.9052277, 0, 2.2257192)
+manager = NodePath("../../EnemyManager3")
+
+[node name="Enemy_Rat3" parent="Enemies/RatContainer" node_paths=PackedStringArray("manager") instance=ExtResource("9_nmbow")]
+transform = Transform3D(-0.25493962, 0, 0.96695715, 0, 1, 0, -0.96695715, 0, -0.25493962, 2.1592588, 0, -0.2168808)
+manager = NodePath("../../EnemyManager3")
+
+[node name="Enemy_Rat4" parent="Enemies/RatContainer" node_paths=PackedStringArray("manager") instance=ExtResource("9_nmbow")]
+transform = Transform3D(-0.9999789, 0, -0.006527528, 0, 1, 0, 0.006527528, 0, -0.9999789, -0.02930975, 0, -1.3795582)
+manager = NodePath("../../EnemyManager3")
+
+[node name="Enemy_Rat5" parent="Enemies/RatContainer" node_paths=PackedStringArray("manager") instance=ExtResource("9_nmbow")]
+transform = Transform3D(-0.6498993, 0, -0.7600206, 0, 1, 0, 0.7600206, 0, -0.6498993, -1.8856859, 0, -0.62723756)
+manager = NodePath("../../EnemyManager3")
+
+[node name="Enemy_Rat6" parent="Enemies/RatContainer" node_paths=PackedStringArray("manager") instance=ExtResource("9_nmbow")]
+transform = Transform3D(0.36973065, 0, -0.92913926, 0, 1, 0, 0.92913926, 0, 0.36973065, -2.0127006, 0, 1.5515611)
+manager = NodePath("../../EnemyManager3")
 
 [node name="Items" type="Node3D" parent="."]
 
@@ -315,6 +348,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9944534, 0.56006837, 9.443
 
 [connection signal="all_enemies_defeated" from="Enemies/EnemyManager" to="Collectibles/Choice_Tray_Spawn2" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="Enemies/EnemyManager2" to="Collectibles/Choice_Tray_Spawn3" method="spawn_collectible_tray"]
+[connection signal="all_enemies_defeated" from="Enemies/EnemyManager3" to="Collectibles/Choice_Tray_Spawn4" method="spawn_collectible_tray"]
 
 [editable path="Obstacles/SignPost"]
 [editable path="Obstacles/SignPost2"]

@@ -1,0 +1,115 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=26 format=3 uid="uid://n2tolafmdf1b"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fqtd1"]
+animation = &"fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i7em6"]
+animation = &"falling"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g4ix8"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i38jn"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yl2uq"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p1fof"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_puhnw"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lbx31"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q00ng"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1mc1o"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7wdum"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yhl2m"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c65bb"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v5qd1"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jp6h4"]
+xfade_time = 1.0
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fqtd1"]
+states/Start/position = Vector2(215, 100)
+states/fall/node = SubResource("AnimationNodeAnimation_fqtd1")
+states/fall/position = Vector2(698, 100)
+states/falling/node = SubResource("AnimationNodeAnimation_i7em6")
+states/falling/position = Vector2(563, 3)
+states/idle/node = SubResource("AnimationNodeAnimation_g4ix8")
+states/idle/position = Vector2(359, 100)
+states/jump/node = SubResource("AnimationNodeAnimation_i38jn")
+states/jump/position = Vector2(563, 100)
+states/run/node = SubResource("AnimationNodeAnimation_yl2uq")
+states/run/position = Vector2(359, -59)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_p1fof"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_puhnw"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_lbx31"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_q00ng"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_1mc1o"), "fall", "falling", SubResource("AnimationNodeStateMachineTransition_7wdum"), "falling", "idle", SubResource("AnimationNodeStateMachineTransition_yhl2m"), "jump", "falling", SubResource("AnimationNodeStateMachineTransition_c65bb"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_v5qd1"), "run", "falling", SubResource("AnimationNodeStateMachineTransition_jp6h4")]
+graph_offset = Vector2(-8, -118)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k6a2c"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_04buj"]
+animation = &"cheer"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7wdum"]
+animation = &"grab"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yhl2m"]
+animation = &"hurt"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_04buj"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:lowerarm.l", "Armature/Skeleton3D:lowerarm.r", "Armature/Skeleton3D:upperarm.l", "Armature/Skeleton3D:upperarm.r"]
+fadeout_time = 0.2
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_c65bb"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_7wdum"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_yhl2m"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_v5qd1"]
+filters = ["Armature/Skeleton3D:body", "Armature/Skeleton3D:foot.l", "Armature/Skeleton3D:foot.r", "Armature/Skeleton3D:head", "Armature/Skeleton3D:lowerarm.l", "Armature/Skeleton3D:lowerleg.l", "Armature/Skeleton3D:lowerleg.r", "Armature/Skeleton3D:upperarm.l", "Armature/Skeleton3D:upperleg.l", "Armature/Skeleton3D:upperleg.r"]
+fadein_time = 0.2
+fadeout_time = 0.2
+
+[resource]
+graph_offset = Vector2(-348.96228, 261.23633)
+nodes/output/position = Vector2(1120, 520)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_fqtd1")
+nodes/StateMachine/position = Vector2(-320, 120)
+nodes/attack/node = SubResource("AnimationNodeOneShot_04buj")
+nodes/attack/position = Vector2(0, 200)
+nodes/anim_attack/node = SubResource("AnimationNodeAnimation_k6a2c")
+nodes/anim_attack/position = Vector2(-460, 400)
+nodes/attack_timescale/node = SubResource("AnimationNodeTimeScale_c65bb")
+nodes/attack_timescale/position = Vector2(-260, 360)
+nodes/cheer/node = SubResource("AnimationNodeOneShot_7wdum")
+nodes/cheer/position = Vector2(440, 420)
+nodes/anim_cheer/node = SubResource("AnimationNodeAnimation_04buj")
+nodes/anim_cheer/position = Vector2(100, 640)
+nodes/grab/node = SubResource("AnimationNodeOneShot_yhl2m")
+nodes/grab/position = Vector2(660, 480)
+nodes/anim_grab/node = SubResource("AnimationNodeAnimation_7wdum")
+nodes/anim_grab/position = Vector2(380, 740)
+nodes/hurt/node = SubResource("AnimationNodeOneShot_v5qd1")
+nodes/hurt/position = Vector2(920, 540)
+nodes/anim_hurt/node = SubResource("AnimationNodeAnimation_yhl2m")
+nodes/anim_hurt/position = Vector2(680, 800)
+node_connections = [&"output", 0, &"hurt", &"attack", 0, &"StateMachine", &"attack", 1, &"attack_timescale", &"attack_timescale", 0, &"anim_attack", &"cheer", 0, &"attack", &"cheer", 1, &"anim_cheer", &"grab", 0, &"cheer", &"grab", 1, &"anim_grab", &"hurt", 0, &"grab", &"hurt", 1, &"anim_hurt"]

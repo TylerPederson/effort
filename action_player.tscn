@@ -12,12 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://dsfrjolqbneem" path="res://stats-and-combat/Components/armor_component.tscn" id="11_7lffo"]
 [ext_resource type="PackedScene" uid="uid://cuonab4cx0tiy" path="res://Inventory/Controllers/inventory_controller.tscn" id="12_7lffo"]
 [ext_resource type="PackedScene" uid="uid://5ajj6hvux3jy" path="res://Inventory/Controllers/interaction_controller.tscn" id="13_3u1kb"]
-[ext_resource type="PackedScene" uid="uid://jsae3qffbjvk" path="res://stats-and-combat/Collectible/Meshes/Hero_basic.glb" id="13_7lffo"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ram5n"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vg0gq"]
-albedo_color = Color(0.0470588, 0.901961, 0, 1)
+[ext_resource type="PackedScene" uid="uid://1c41jkymws8h" path="res://Player/Hero_Rig.glb" id="13_7lffo"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://n2tolafmdf1b" path="res://Player/hero_animation.tres" id="14_3u1kb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mx8re"]
 height = 3.1273193
@@ -27,17 +23,18 @@ height = 3.1273193
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qmomh"]
 height = 3.1085205
 
+[sub_resource type="SphereMesh" id="SphereMesh_3u1kb"]
+radius = 0.1
+height = 0.05
+radial_segments = 16
+rings = 4
+
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_okpe7")
 min_look_boundary = -50.0
 max_look_boundary = 20.0
 
 [node name="Basic_HUD" parent="." instance=ExtResource("11_0mgxw")]
-
-[node name="PlayerBody" type="CSGMesh3D" parent="."]
-visible = false
-mesh = SubResource("CapsuleMesh_ram5n")
-material = SubResource("StandardMaterial3D_vg0gq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56365967, 0)
@@ -67,7 +64,7 @@ attack_range = 2.0
 weilder = NodePath("../../..")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="HorizontalPivot"]
-remote_path = NodePath("../../Model")
+remote_path = NodePath("../../Hero_Rig")
 
 [node name="Health_Component" parent="." instance=ExtResource("4_kv11m")]
 max_hp = 100
@@ -103,18 +100,75 @@ visible = false
 
 [node name="InteractionController" parent="." instance=ExtResource("13_3u1kb")]
 
-[node name="Model" type="Node3D" parent="."]
+[node name="Hero_Rig" parent="." instance=ExtResource("13_7lffo")]
 
-[node name="Model_Hero_basic" parent="Model" instance=ExtResource("13_7lffo")]
-transform = Transform3D(-0.48, 0, 7.247798e-08, 0, 0.48, 0, -7.247798e-08, 0, -0.48, 0, 0, 0)
+[node name="Skeleton3D" parent="Hero_Rig/Armature" index="0"]
+transform = Transform3D(-0.59999996, 0, -5.2453668e-08, 0, 0.59999996, 0, 5.2453668e-08, 0, -0.59999996, 0, -0.5555555, 0)
+bones/0/position = Vector3(-1.5395059e-10, 0.9579375, -0.0044977246)
+bones/0/rotation = Quaternion(0.022845024, 0.07611047, 0.01903775, 0.9966559)
+bones/1/rotation = Quaternion(-9.855126e-10, -2.1176874e-09, 0.059468303, 0.9982302)
+bones/2/rotation = Quaternion(-0.020307086, -0.29709914, 0.9524205, -0.064924344)
+bones/3/rotation = Quaternion(0.52310914, -0.023059372, -0.07846276, 0.84833294)
+bones/4/rotation = Quaternion(0.018403146, 0.46545464, 0.8846052, 0.022067638)
+bones/4/scale = Vector3(1.0000035, 1.0000048, 1.0000694)
+bones/5/rotation = Quaternion(-0.42313328, -0.0001388199, -0.05405698, 0.9044535)
+bones/5/scale = Vector3(0.9999971, 0.9999707, 1.0000236)
+bones/6/rotation = Quaternion(0.53076446, 0.07857442, 0.011235003, 0.84379435)
+bones/6/scale = Vector3(1.0000054, 0.99995846, 1.0000553)
+bones/7/rotation = Quaternion(-0.03196505, 0.32285696, 0.9412474, 0.093781516)
+bones/8/rotation = Quaternion(0.6712245, -0.14533633, -0.0045684404, 0.7268523)
+bones/9/rotation = Quaternion(-0.12272983, -0.18339641, 0.9751858, 0.017772859)
+bones/9/scale = Vector3(1.0000021, 0.9999863, 1.0000865)
+bones/10/rotation = Quaternion(-0.007683744, 0.00015424918, 0.0009819516, 0.99996996)
+bones/10/scale = Vector3(0.9999999, 0.99997145, 1.0000235)
+bones/11/rotation = Quaternion(0.6996623, -0.030072134, 0.03616819, 0.71292365)
+bones/11/scale = Vector3(1.0000081, 1.0000099, 1.000001)
+bones/12/rotation = Quaternion(-0.006855925, 0.7070735, 0.70707357, -0.006855925)
+bones/13/position = Vector3(0.15849304, 0.26823997, 0.31083328)
+bones/13/rotation = Quaternion(-4.2453025e-06, 0.7862493, -0.6179095, 5.401868e-06)
+bones/15/position = Vector3(-0.15849304, 0.13548954, -0.34368762)
+bones/15/rotation = Quaternion(4.074932e-06, 0.80512, -0.59311193, -5.5315177e-06)
+
+[node name="SprintParticles" type="CPUParticles3D" parent="Hero_Rig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.78353214, 0)
+emitting = false
+amount = 24
+lifetime = 0.9
+mesh = SubResource("SphereMesh_3u1kb")
+direction = Vector3(0, 0, 1)
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../Hero_Rig")
+tree_root = ExtResource("14_3u1kb")
+anim_player = NodePath("../Hero_Rig/AnimationPlayer")
+parameters/attack/active = false
+parameters/attack/internal_active = false
+parameters/attack/request = 0
+parameters/attack_timescale/scale = 1.0
+parameters/cheer/active = false
+parameters/cheer/internal_active = false
+parameters/cheer/request = 0
+parameters/grab/active = false
+parameters/grab/internal_active = false
+parameters/grab/request = 0
+parameters/hurt/active = false
+parameters/hurt/internal_active = false
+parameters/hurt/request = 0
 
 [connection signal="perform_attack" from="." to="Attack_Component" method="_on_attack_action"]
+[connection signal="attack_started" from="HorizontalPivot/WeaponHolder/Weapon_Component" to="." method="attack_animation"]
 [connection signal="attack_started" from="HorizontalPivot/WeaponHolder/Weapon_Component" to="Basic_HUD" method="_on_weapon_component_attack_started"]
 [connection signal="death" from="Health_Component" to="." method="_on_health_component_death"]
 [connection signal="health_change" from="Health_Component" to="Basic_HUD" method="_on_health_component_health_change"]
 [connection signal="stamina_change" from="Stamina_Component" to="Basic_HUD" method="_on_stamina_component_stamina_change"]
+[connection signal="perform_active" from="Attack_Alternative_Component" to="." method="alternative_attack_animation"]
 [connection signal="perform_active" from="Attack_Alternative_Component" to="Basic_HUD" method="_on_attack_alternative_component_perform_active"]
 [connection signal="perform_charge_change" from="Attack_Alternative_Component" to="Basic_HUD" method="_on_attack_alternative_component_perform_charge_change"]
 [connection signal="equip_change" from="Inventory Controller/CanvasLayer/Inventory UI" to="." method="_on_equip_change"]
 
 [editable path="Inventory Controller"]
+[editable path="Hero_Rig"]
