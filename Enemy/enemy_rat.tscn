@@ -1,23 +1,23 @@
-[gd_scene load_steps=24 format=3 uid="uid://qecl2v8bvlbt"]
+[gd_scene load_steps=24 format=3 uid="uid://dxr4crto8qro3"]
 
-[ext_resource type="Script" uid="uid://crbevwsewvj61" path="res://Enemy/enemy.gd" id="1_2pb1h"]
-[ext_resource type="PackedScene" uid="uid://dkb233trnmk0q" path="res://stats-and-combat/Components/hitbox_component.tscn" id="2_am0pq"]
-[ext_resource type="Script" uid="uid://o5mb37flgy44" path="res://stats-and-combat/Components/health_component.gd" id="3_eqilm"]
-[ext_resource type="Script" uid="uid://xrvjfslc8yso" path="res://stats-and-combat/Components/attack_component.gd" id="4_m6jha"]
-[ext_resource type="PackedScene" uid="uid://ctpmannwcqc02" path="res://stats-and-combat/Components/weapon_component.tscn" id="5_ncf7h"]
-[ext_resource type="PackedScene" uid="uid://bg16ugxonu0ke" path="res://stats-and-combat/Weapons/projectile.tscn" id="6_0rspp"]
-[ext_resource type="PackedScene" uid="uid://oeqy7chom4s3" path="res://Enemy/Statue2.glb" id="7_glvfu"]
+[ext_resource type="Script" uid="uid://crbevwsewvj61" path="res://Enemy/enemy.gd" id="1_kdy6o"]
+[ext_resource type="PackedScene" uid="uid://dkb233trnmk0q" path="res://stats-and-combat/Components/hitbox_component.tscn" id="2_bfcrc"]
+[ext_resource type="Script" uid="uid://o5mb37flgy44" path="res://stats-and-combat/Components/health_component.gd" id="3_1eywj"]
+[ext_resource type="Script" uid="uid://xrvjfslc8yso" path="res://stats-and-combat/Components/attack_component.gd" id="4_8c6t6"]
+[ext_resource type="PackedScene" uid="uid://ctpmannwcqc02" path="res://stats-and-combat/Components/weapon_component.tscn" id="5_vvtgh"]
+[ext_resource type="PackedScene" uid="uid://bg16ugxonu0ke" path="res://stats-and-combat/Weapons/projectile.tscn" id="6_5b3v4"]
+[ext_resource type="PackedScene" uid="uid://bgt2suk7imixk" path="res://Enemy/Rat2.glb" id="7_kdy6o"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0rspp"]
-radius = 0.6
-height = 3.0
+radius = 0.597229
+height = 1.3960571
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_am0pq"]
 height = 4.0
 radius = 12.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m6jha"]
-height = 3.0
+height = 1.1459961
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0rspp"]
 animation = &"attack"
@@ -67,21 +67,25 @@ states/idle/position = Vector2(342, 100)
 states/move/node = SubResource("AnimationNodeAnimation_jovdv")
 states/move/position = Vector2(488, 195)
 transitions = ["idle", "attack", SubResource("AnimationNodeStateMachineTransition_rdorl"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_1w3kn"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_mqp78"), "hurt", "die", SubResource("AnimationNodeStateMachineTransition_sbh3k"), "idle", "move", SubResource("AnimationNodeStateMachineTransition_2fgfm"), "move", "idle", SubResource("AnimationNodeStateMachineTransition_llu5w"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_glvfu")]
-graph_offset = Vector2(-16, -28)
+graph_offset = Vector2(-12, 30)
 
-[node name="Enemy" type="CharacterBody3D" groups=["Enemy"]]
-script = ExtResource("1_2pb1h")
+[node name="Enemy_Rat" type="CharacterBody3D" groups=["Enemy"]]
+script = ExtResource("1_kdy6o")
+move_speed = 200.0
+health = 20
+damage = 3
+attack_range = 5.0
 
-[node name="Hitbox_Component" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_am0pq")]
+[node name="Hitbox_Component" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_bfcrc")]
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox_Component"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.69802856, 0)
 shape = SubResource("CapsuleShape3D_0rspp")
 
 [node name="HealthComponent" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3_eqilm")
+script = ExtResource("3_1eywj")
 max_hp = 20
 metadata/_custom_type_script = "uid://o5mb37flgy44"
 
@@ -93,39 +97,30 @@ shape = SubResource("CylinderShape3D_am0pq")
 
 [node name="AttackComponent" type="Node3D" parent="." node_paths=PackedStringArray("weapon_holder")]
 unique_name_in_owner = true
-script = ExtResource("4_m6jha")
+script = ExtResource("4_8c6t6")
 weapon_holder = NodePath("../WeaponHolder")
 metadata/_custom_type_script = "uid://xrvjfslc8yso"
 
 [node name="WeaponHolder" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51132894, -0.23720807)
 
-[node name="Weapon_Component" parent="WeaponHolder" node_paths=PackedStringArray("weilder") instance=ExtResource("5_ncf7h")]
-projectile_scene = ExtResource("6_0rspp")
+[node name="Weapon_Component" parent="WeaponHolder" node_paths=PackedStringArray("weilder") instance=ExtResource("5_vvtgh")]
+projectile_scene = ExtResource("6_5b3v4")
 damage = 5
 attack_range = 5.0
 weilder = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57299805, 0)
 shape = SubResource("CapsuleShape3D_m6jha")
 
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4197489, 2.1441524, -0.6601864)
 
-[node name="Model" parent="." instance=ExtResource("7_glvfu")]
+[node name="Model" parent="." instance=ExtResource("7_kdy6o")]
 
 [node name="Armature" parent="Model" index="0"]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
-
-[node name="Skeleton3D" parent="Model/Armature" index="0"]
-bones/1/rotation = Quaternion(0.0050415164, 0.024638472, -0.0013422741, 0.9996829)
-bones/1/scale = Vector3(0.9660646, 0.9660646, 0.9660646)
-bones/2/rotation = Quaternion(0.0015209302, 0.107604414, 0.048752412, 0.9929966)
-bones/3/position = Vector3(0.74477696, 1.8768501, 1.2678105e-08)
-bones/4/rotation = Quaternion(-7.158878e-08, 4.6596554e-08, 0.42704386, 0.9042309)
-bones/5/position = Vector3(-0.7447769, 1.87685, -3.414627e-07)
-bones/6/rotation = Quaternion(-7.22794e-08, -4.535269e-08, -0.43231487, 0.9017228)
+transform = Transform3D(-1, 8.742278e-08, 3.821371e-15, 0, -4.371139e-08, 1, 8.742278e-08, 1, 4.371139e-08, 0, 0, 0)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Model")

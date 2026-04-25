@@ -147,10 +147,8 @@ func _on_health_component_hit_damage(amount: Variant) -> void:
 
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
-	print(anim_name)
 	if anim_name == "die":
 		var tween = create_tween()
-		tween.tween_property($Statue2/Armature/Skeleton3D/Cube, "transparency", 1.0, 1.5)
+		tween.tween_property($Model/Armature/Skeleton3D/Cube, "transparency", 1.0, 1.5)
 		await tween.finished
-		print("tweened")
 		queue_free()
