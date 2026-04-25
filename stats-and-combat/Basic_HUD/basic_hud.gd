@@ -22,6 +22,8 @@ class_name Basic_HUD
 @onready var sprint_speed = load("res://stats-and-combat/Basic_HUD/Sprites/sprint_speed.png")
 @onready var stamina_increase = load("res://stats-and-combat/Basic_HUD/Sprites/stamina_increase.png")
 @onready var stamina_regen = load("res://stats-and-combat/Basic_HUD/Sprites/stamina_regen.png")
+@onready var cooldown_bar : ProgressBar = $Cooldown_Bar
+@onready var cooldown_timer : Timer = $Cooldown_Bar/Timer
 
 
 func _ready() -> void:
@@ -38,6 +40,7 @@ func _ready() -> void:
 	stamina_bar.value = 100
 	info_label.text = ""
 	buff_label.text = ""
+	cooldown_bar.visible = false
 
 
 
@@ -50,6 +53,13 @@ func display_info(text: String, duration : float = 1.5):
 	info_label.text = text
 	await get_tree().create_timer(duration).timeout
 	info_label.text = ""
+	
+
+func _on_weapon_component_attack_started(time: Variant) -> void:
+	cooldown_bar.visible = true
+	cooldown_timer.start(time)
+	cooldown_bar.max_value = time
+
 
 func _on_health_component_health_change(current_hp: Variant, total_hp: Variant) -> void:
 	hp_bar.max_value = total_hp
@@ -117,3 +127,11 @@ func _on_power_up_collect(type: Collectible.TYPE):
 				num_of_passives = num_of_passives + 1
 		
 		
+
+func _process(_delta):
+	if cooldown_timer.time_left > 0:
+		cooldown_bar.value = cooldown_timer.wait_time - cooldown_timer.time_left
+
+
+func _on_timer_timeout() -> void:
+	cooldown_bar.visible = false
