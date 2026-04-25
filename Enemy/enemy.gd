@@ -56,6 +56,10 @@ func _ready() -> void:
 
 # Handle any custom behavior logic each frame
 func _process(delta: float) -> void:
+	if %HealthComponent.current_hp < 1:
+		%AttackComponent.set_auto_attack(false)
+		return
+	
 	if following:
 		# Attempt to attack toward player
 		state_machine.travel("move")
@@ -77,7 +81,6 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	
 	
 	if following:
 		var direction =  -global_transform.basis.z
@@ -133,14 +136,21 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 
 func _on_weapon_component_attack_started(time: Variant) -> void:
-	state_machine.travel("attack")
+	if %HealthComponent.current_hp > 1:
+		state_machine.travel("attack")	
 
 
 func _on_health_component_hit_damage(amount: Variant) -> void:
-	state_machine.start("hurt")
-	following = true
+	if %HealthComponent.current_hp > 0:
+		state_machine.start("hurt")
+		following = true
 
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
+	print(anim_name)
 	if anim_name == "die":
+		var tween = create_tween()
+		tween.tween_property($Statue2/Armature/Skeleton3D/Cube, "transparency", 1.0, 1.5)
+		await tween.finished
+		print("tweened")
 		queue_free()

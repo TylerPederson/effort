@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://qecl2v8bvlbt"]
+[gd_scene load_steps=24 format=3 uid="uid://qecl2v8bvlbt"]
 
 [ext_resource type="Script" uid="uid://crbevwsewvj61" path="res://Enemy/enemy.gd" id="1_2pb1h"]
 [ext_resource type="PackedScene" uid="uid://dkb233trnmk0q" path="res://stats-and-combat/Components/hitbox_component.tscn" id="2_am0pq"]
@@ -34,9 +34,6 @@ animation = &"idle"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jovdv"]
 animation = &"move"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ht3ht"]
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rdorl"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1w3kn"]
@@ -49,17 +46,16 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sbh3k"]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3cio7"]
-switch_mode = 2
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2fgfm"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_llu5w"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_glvfu"]
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wyh6i"]
 states/End/position = Vector2(858, 100)
-states/Start/position = Vector2(203, 100)
+states/Start/position = Vector2(189, 100)
 states/attack/node = SubResource("AnimationNodeAnimation_0rspp")
 states/attack/position = Vector2(488, 13)
 states/die/node = SubResource("AnimationNodeAnimation_efk13")
@@ -70,7 +66,7 @@ states/idle/node = SubResource("AnimationNodeAnimation_47ove")
 states/idle/position = Vector2(342, 100)
 states/move/node = SubResource("AnimationNodeAnimation_jovdv")
 states/move/position = Vector2(488, 195)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ht3ht"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_rdorl"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_1w3kn"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_mqp78"), "hurt", "die", SubResource("AnimationNodeStateMachineTransition_sbh3k"), "die", "End", SubResource("AnimationNodeStateMachineTransition_3cio7"), "idle", "move", SubResource("AnimationNodeStateMachineTransition_2fgfm"), "move", "idle", SubResource("AnimationNodeStateMachineTransition_llu5w")]
+transitions = ["idle", "attack", SubResource("AnimationNodeStateMachineTransition_rdorl"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_1w3kn"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_mqp78"), "hurt", "die", SubResource("AnimationNodeStateMachineTransition_sbh3k"), "idle", "move", SubResource("AnimationNodeStateMachineTransition_2fgfm"), "move", "idle", SubResource("AnimationNodeStateMachineTransition_llu5w"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_glvfu")]
 graph_offset = Vector2(-16, -28)
 
 [node name="Enemy" type="CharacterBody3D" groups=["Enemy"]]
@@ -121,6 +117,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4197489, 2.1441524, -0.660
 
 [node name="Armature" parent="Statue2" index="0"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Statue2/Armature" index="0"]
+bones/1/rotation = Quaternion(0, -0.025456933, 0, 0.9996759)
+bones/1/scale = Vector3(0.9718625, 0.9718625, 0.9718625)
+bones/2/rotation = Quaternion(0.010344116, -0.055937044, -0.024115717, 0.99808943)
+bones/3/position = Vector3(0.7447769, 1.8953724, 1.6025284e-08)
+bones/4/rotation = Quaternion(-6.799022e-08, 5.2393947e-08, 0.50360996, 0.8639311)
+bones/5/position = Vector3(-0.7447769, 1.8953724, -3.4149505e-07)
+bones/6/rotation = Quaternion(-6.858483e-08, -5.2411632e-08, -0.5059526, 0.86256135)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Statue2")
