@@ -7,6 +7,7 @@ var stamina_cost_initial := 3.0
 var stamina_drain := 1.5
 var stamina_use_ratio := 1.0
 var sprint_bonus_multiplier := 1.0
+var particles = null
 
 @export var sprint_amplifier := 1.5
 
@@ -17,6 +18,7 @@ func _ready() -> void:
 	controller.connect("perform_sprint", _on_sprint_begin)
 	controller.connect("stop_sprint", _on_sprint_end)
 	_attach_stamina()
+	particles = controller.get_node_or_null("Hero_Rig/SprintParticles")
 
 func _attach_stamina():
 		for c in get_parent().get_children():
@@ -35,12 +37,17 @@ func _on_sprint_begin():
 	stamina_component.use_stamina(stamina_cost_initial * stamina_use_ratio)
 	sprinting = true
 
+	if particles:
+		particles.emitting = true
+
 func _on_sprint_end():
 	if stamina_component == null:
 		sprinting = false
 		return
 	
 	sprinting = false
+	if particles:
+		particles.emitting = false
 
 func apply_sprint(movement_speed, delta):
 	if !sprinting:

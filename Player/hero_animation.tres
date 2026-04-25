@@ -85,9 +85,12 @@ fadeout_time = 0.2
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_yhl2m"]
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_v5qd1"]
+filters = ["Armature/Skeleton3D:body", "Armature/Skeleton3D:foot.l", "Armature/Skeleton3D:foot.r", "Armature/Skeleton3D:head", "Armature/Skeleton3D:lowerarm.l", "Armature/Skeleton3D:lowerleg.l", "Armature/Skeleton3D:lowerleg.r", "Armature/Skeleton3D:upperarm.l", "Armature/Skeleton3D:upperleg.l", "Armature/Skeleton3D:upperleg.r"]
+fadein_time = 0.2
+fadeout_time = 0.2
 
 [resource]
-graph_offset = Vector2(-558.9241, 101.1203)
+graph_offset = Vector2(-348.96228, 261.23633)
 nodes/output/position = Vector2(1120, 520)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_fqtd1")
 nodes/StateMachine/position = Vector2(-320, 120)

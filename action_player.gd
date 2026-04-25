@@ -201,3 +201,7 @@ func alternative_attack_animation(flag: bool, total: float) -> void:
 			return
 		abort_other_oneshots()
 		animation_tree["parameters/cheer/request"] =  AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+
+func hurt_animation():
+	abort_other_oneshots()
+	animation_tree["parameters/hurt/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
