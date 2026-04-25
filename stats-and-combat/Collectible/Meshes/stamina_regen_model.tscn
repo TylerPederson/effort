@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dnpq8u4dqom73"]
 
 [ext_resource type="PackedScene" uid="uid://divcpj70qc0wx" path="res://Utility/nearby_text_display.tscn" id="1_r85v8"]
-[ext_resource type="Script" uid="uid://bpp63ta546i4o" path="res://stats-and-combat/Collectible/Meshes/model.gd" id="2_boryb"]
+[ext_resource type="Script" path="res://stats-and-combat/Collectible/Meshes/model.gd" id="2_boryb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tj7ui"]
 albedo_color = Color(0.12640002, 0.79, 0.13746002, 1)
