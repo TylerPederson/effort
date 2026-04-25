@@ -2,23 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7s5l0ppmpy7"
-path="res://.godot/imported/sword_WP_A_0208_L_s.png-bbf5c404d7b12e60e5dab6df49a699d0.ctex"
+uid="uid://crgkkefe5lgp4"
+path.s3tc="res://.godot/imported/Wood_06-128x128.png-09608381df68c644e6599a1fd186bd51.s3tc.ctex"
 metadata={
-"vram_texture": false
-}
-generator_parameters={
-"md5": "ad0ddb02374aa887b09f80f3d94c78cd"
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://Boss/sword_WP_A_0208_L_s.png"
-dest_files=["res://.godot/imported/sword_WP_A_0208_L_s.png-bbf5c404d7b12e60e5dab6df49a699d0.ctex"]
+source_file="res://Boss/Textures_BossRoom/Wood_06-128x128.png"
+dest_files=["res://.godot/imported/Wood_06-128x128.png-09608381df68c644e6599a1fd186bd51.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -40,4 +38,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

@@ -573,6 +573,15 @@ transform = Transform3D(2.0214112, 0, 0, 0, 2.6597254, 0, 0, 0, 2.1401649, 24.02
 [node name="Spikes148" parent="." instance=ExtResource("1_q5bds")]
 transform = Transform3D(2.0214112, 0, 0, 0, 2.6597254, 0, 0, 0, 2.1401649, 27.39684, 0.405, -7.5754566)
 
+[node name="Spikes194" parent="." instance=ExtResource("1_q5bds")]
+transform = Transform3D(2.0214112, 0, 0, 0, 2.6597254, 0, 0, 0, 2.1401649, 30.977463, 0.405, -7.5754566)
+
+[node name="Spikes195" parent="." instance=ExtResource("1_q5bds")]
+transform = Transform3D(2.0214112, 0, 0, 0, 2.6597254, 0, 0, 0, 2.1401649, 30.977463, 0.405, -11.778765)
+
+[node name="Spikes196" parent="." instance=ExtResource("1_q5bds")]
+transform = Transform3D(2.0214112, 0, 0, 0, 2.6597254, 0, 0, 0, 2.1401649, 27.206768, 0.405, -15.300428)
+
 [node name="Spikes18" parent="." instance=ExtResource("1_q5bds")]
 transform = Transform3D(2.0214112, 0, 0, 0, 2.6597254, 0, 0, 0, 2.1401649, 22.118382, -0.12196991, 12.545139)
 

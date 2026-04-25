@@ -1,17 +1,42 @@
-[gd_scene load_steps=12 format=3 uid="uid://clerkr85kk6ww"]
+[gd_scene load_steps=22 format=3 uid="uid://clerkr85kk6ww"]
 
 [ext_resource type="Script" uid="uid://23jmmfc02jmu" path="res://Boss/door_pivot.gd" id="1_0yjcu"]
+[ext_resource type="Texture2D" uid="uid://bg3luom4u5mpd" path="res://Boss/Textures_BossRoom/Bricks_17-128x128.png" id="1_j8hxa"]
+[ext_resource type="Texture2D" uid="uid://dfykwbqic36bg" path="res://Boss/Textures_BossRoom/Bricks_16-128x128.png" id="2_2n5hb"]
 [ext_resource type="PackedScene" uid="uid://da7uc6l3gvjq1" path="res://action_player.tscn" id="3_mth68"]
 [ext_resource type="PackedScene" uid="uid://di4k0x1b5852r" path="res://Boss/boss.tscn" id="3_r2qyn"]
 [ext_resource type="PackedScene" uid="uid://dc0c3b21pouhy" path="res://Inventory/Items/crossbow.tscn" id="3_rg28a"]
+[ext_resource type="Texture2D" uid="uid://crgkkefe5lgp4" path="res://Boss/Textures_BossRoom/Wood_06-128x128.png" id="4_pq32u"]
 [ext_resource type="PackedScene" uid="uid://byyd64cxpx5fv" path="res://Inventory/Items/tnt_bag.tscn" id="5_51qfk"]
 [ext_resource type="PackedScene" uid="uid://bttbghaapi13t" path="res://Boss/SpikeFloor.tscn" id="6_51qfk"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ve44f"]
-albedo_color = Color(0.08627451, 1, 1, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bnrpt"]
+albedo_texture = ExtResource("1_j8hxa")
+uv1_scale = Vector3(20, 20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j8hxa"]
+albedo_texture = ExtResource("2_2n5hb")
+uv1_scale = Vector3(20, 20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8chxh"]
+albedo_texture = ExtResource("2_2n5hb")
+uv1_scale = Vector3(20, 20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ey67"]
+albedo_texture = ExtResource("2_2n5hb")
+uv1_scale = Vector3(20, 20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ubxwo"]
+albedo_texture = ExtResource("2_2n5hb")
+uv1_scale = Vector3(20, 20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6vae"]
+albedo_texture = ExtResource("1_j8hxa")
+uv1_scale = Vector3(20, 20, 20)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_any6y"]
-albedo_color = Color(0.07450981, 0.19215687, 1, 1)
+albedo_texture = ExtResource("4_pq32u")
+uv1_scale = Vector3(10, 10, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_any6y"]
 size = Vector3(1, 2.223755, 10.147156)
@@ -22,6 +47,13 @@ size = Vector3(2.666504, 4.5301514, 23.122925)
 [sub_resource type="BoxShape3D" id="BoxShape3D_r2qyn"]
 size = Vector3(1, 5, 24.733025)
 
+[sub_resource type="Environment" id="Environment_51qfk"]
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+
+[sub_resource type="FogMaterial" id="FogMaterial_bw7y0"]
+density = 0.5
+
 [node name="BossRoom" type="Node3D"]
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
@@ -30,16 +62,18 @@ use_collision = true
 radius = 0.4
 height = 23.688477
 sides = 64
-material = SubResource("StandardMaterial3D_ve44f")
+material = SubResource("StandardMaterial3D_bnrpt")
 
 [node name="Wall" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.7705536, 17.344639, -48.997257)
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -3.7705536, 17.344639, -48.997257)
 size = Vector3(1, 56.87329, 82)
+material = SubResource("StandardMaterial3D_j8hxa")
 
 [node name="Wall2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.692577, 17.474308, -1.6358681)
 use_collision = true
 size = Vector3(1, 56.890137, 93.50058)
+material = SubResource("StandardMaterial3D_8chxh")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Wall2"]
 transform = Transform3D(1.2706714, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.09700012, -7.2711315, 1.636)
@@ -49,18 +83,21 @@ size = Vector3(5, 18, 10)
 [node name="Wall3" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.502747, 17.57661, -2.3530836)
 size = Vector3(1, 56.48311, 93.40796)
+material = SubResource("StandardMaterial3D_2ey67")
 
 [node name="Wall4" type="CSGBox3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.522318, 17.628136, 44.748466)
 size = Vector3(0.65283203, 56.60231, 81.82135)
+material = SubResource("StandardMaterial3D_ubxwo")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5709572, 0.82097983, 0, -0.82097983, 0.5709572, 0, 15.381807, 0)
+transform = Transform3D(1, 0, 0, 0, 0.013700448, 0.9999061, 0, -0.9999061, 0.013700448, -0.02035141, 15.459325, 0.011795044)
 
 [node name="OutisidePath" type="CSGBox3D" parent="."]
 transform = Transform3D(-5.554281e-08, -0.99999994, 0, 1.2706714, -4.3711385e-08, 0, 0, 0, 0.99999994, 83.339165, 1.4357162, 0.00013196468)
 use_collision = true
 size = Vector3(1, 92.366455, 10)
+material = SubResource("StandardMaterial3D_s6vae")
 
 [node name="DoorPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.22316, 1.6857758, 0)
@@ -138,6 +175,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.043922, 2.9565783, -2.3019
 
 [node name="SpikeFloor" parent="." instance=ExtResource("6_51qfk")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.3538065, -10, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_51qfk")
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.7349162, 0, 0, 0, 1, 44.783432, -1.391, 0.12584591)
+size = Vector3(173.19052, 2, 83.93436)
+material = SubResource("FogMaterial_bw7y0")
 
 [connection signal="body_entered" from="DoorTriggerOpen" to="DoorPivot" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="DoorTriggerClose" to="DoorPivot" method="_on_area_3d_2_body_exited"]
