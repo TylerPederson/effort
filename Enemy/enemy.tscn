@@ -120,13 +120,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4197489, 2.1441524, -0.660
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Model/Armature" index="0"]
-bones/1/rotation = Quaternion(0, -0.04220343, 0, 0.9991091)
-bones/1/scale = Vector3(0.9359761, 0.9359761, 0.9359761)
-bones/2/rotation = Quaternion(0.023536608, -0.083156414, -0.035392925, 0.99562967)
-bones/3/position = Vector3(0.74477684, 1.8747643, 1.4774027e-08)
-bones/4/rotation = Quaternion(-7.0607804e-08, 4.863016e-08, 0.4182512, 0.9083314)
-bones/5/position = Vector3(-0.7447769, 1.8747643, -3.4319885e-07)
-bones/6/rotation = Quaternion(-7.417296e-08, -4.4235005e-08, -0.42386085, 0.90572727)
+bones/1/rotation = Quaternion(0, -0.040592883, 0, 0.9991758)
+bones/1/scale = Vector3(0.9405828, 0.9405828, 0.9405828)
+bones/2/rotation = Quaternion(0.021842843, -0.08039937, -0.034270715, 0.995934)
+bones/3/position = Vector3(0.7447769, 1.8774099, 1.1126907e-08)
+bones/4/rotation = Quaternion(-6.837929e-08, 5.0298226e-08, 0.42939994, 0.9031145)
+bones/5/position = Vector3(-0.7447769, 1.8774099, -3.387285e-07)
+bones/6/rotation = Quaternion(-7.453068e-08, -4.429044e-08, -0.43458033, 0.9006331)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Model")
