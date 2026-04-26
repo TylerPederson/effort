@@ -1,23 +1,23 @@
-[gd_scene load_steps=24 format=3 uid="uid://qecl2v8bvlbt"]
+[gd_scene load_steps=24 format=3 uid="uid://ccvd73ge8qwxu"]
 
-[ext_resource type="Script" uid="uid://crbevwsewvj61" path="res://Enemy/enemy.gd" id="1_2pb1h"]
-[ext_resource type="PackedScene" uid="uid://dkb233trnmk0q" path="res://stats-and-combat/Components/hitbox_component.tscn" id="2_am0pq"]
-[ext_resource type="Script" uid="uid://o5mb37flgy44" path="res://stats-and-combat/Components/health_component.gd" id="3_eqilm"]
-[ext_resource type="Script" uid="uid://xrvjfslc8yso" path="res://stats-and-combat/Components/attack_component.gd" id="4_m6jha"]
-[ext_resource type="PackedScene" uid="uid://ctpmannwcqc02" path="res://stats-and-combat/Components/weapon_component.tscn" id="5_ncf7h"]
-[ext_resource type="PackedScene" uid="uid://bg16ugxonu0ke" path="res://stats-and-combat/Weapons/projectile.tscn" id="6_0rspp"]
-[ext_resource type="PackedScene" uid="uid://oeqy7chom4s3" path="res://Enemy/Statue2.glb" id="7_glvfu"]
+[ext_resource type="Script" uid="uid://crbevwsewvj61" path="res://Enemy/enemy.gd" id="1_q601x"]
+[ext_resource type="PackedScene" uid="uid://dkb233trnmk0q" path="res://stats-and-combat/Components/hitbox_component.tscn" id="2_vyukt"]
+[ext_resource type="Script" uid="uid://o5mb37flgy44" path="res://stats-and-combat/Components/health_component.gd" id="3_pmsio"]
+[ext_resource type="Script" uid="uid://xrvjfslc8yso" path="res://stats-and-combat/Components/attack_component.gd" id="4_u2rrs"]
+[ext_resource type="PackedScene" uid="uid://ctpmannwcqc02" path="res://stats-and-combat/Components/weapon_component.tscn" id="5_limm7"]
+[ext_resource type="PackedScene" uid="uid://bg16ugxonu0ke" path="res://stats-and-combat/Weapons/projectile.tscn" id="6_7xufg"]
+[ext_resource type="PackedScene" uid="uid://b5s26qhjtttb1" path="res://Enemy/mimic_chest.glb" id="7_q601x"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0rspp"]
-radius = 0.6
-height = 3.0
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_q601x"]
+height = 2.387207
+radius = 0.81640625
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_am0pq"]
 height = 4.0
 radius = 12.0
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m6jha"]
-height = 3.0
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vyukt"]
+radius = 0.86865234
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0rspp"]
 animation = &"attack"
@@ -70,18 +70,18 @@ transitions = ["idle", "attack", SubResource("AnimationNodeStateMachineTransitio
 graph_offset = Vector2(-16, -28)
 
 [node name="Enemy" type="CharacterBody3D" groups=["Enemy"]]
-script = ExtResource("1_2pb1h")
+script = ExtResource("1_q601x")
 
-[node name="Hitbox_Component" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_am0pq")]
+[node name="Hitbox_Component" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_vyukt")]
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox_Component"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-shape = SubResource("CapsuleShape3D_0rspp")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1887207, 0)
+shape = SubResource("CylinderShape3D_q601x")
 
 [node name="HealthComponent" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3_eqilm")
+script = ExtResource("3_pmsio")
 max_hp = 20
 metadata/_custom_type_script = "uid://o5mb37flgy44"
 
@@ -93,40 +93,37 @@ shape = SubResource("CylinderShape3D_am0pq")
 
 [node name="AttackComponent" type="Node3D" parent="." node_paths=PackedStringArray("weapon_holder")]
 unique_name_in_owner = true
-script = ExtResource("4_m6jha")
+script = ExtResource("4_u2rrs")
 weapon_holder = NodePath("../WeaponHolder")
 metadata/_custom_type_script = "uid://xrvjfslc8yso"
 
 [node name="WeaponHolder" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51132894, -0.23720807)
 
-[node name="Weapon_Component" parent="WeaponHolder" node_paths=PackedStringArray("weilder") instance=ExtResource("5_ncf7h")]
+[node name="Weapon_Component" parent="WeaponHolder" node_paths=PackedStringArray("weilder") instance=ExtResource("5_limm7")]
 unique_name_in_owner = true
-projectile_scene = ExtResource("6_0rspp")
-damage = 5
+projectile_scene = ExtResource("6_7xufg")
+damage = 20
+cooldown = 2.0
 attack_range = 5.0
 weilder = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-shape = SubResource("CapsuleShape3D_m6jha")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06591797, 1.0090332, 0)
+shape = SubResource("CylinderShape3D_vyukt")
 
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4197489, 2.1441524, -0.6601864)
 
-[node name="Model" parent="." instance=ExtResource("7_glvfu")]
+[node name="Model" parent="." instance=ExtResource("7_q601x")]
 
 [node name="Armature" parent="Model" index="0"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Model/Armature" index="0"]
-bones/1/rotation = Quaternion(0, -0.04220343, 0, 0.9991091)
-bones/1/scale = Vector3(0.9359761, 0.9359761, 0.9359761)
-bones/2/rotation = Quaternion(0.023536608, -0.083156414, -0.035392925, 0.99562967)
-bones/3/position = Vector3(0.74477684, 1.8747643, 1.4774027e-08)
-bones/4/rotation = Quaternion(-7.0607804e-08, 4.863016e-08, 0.4182512, 0.9083314)
-bones/5/position = Vector3(-0.7447769, 1.8747643, -3.4319885e-07)
-bones/6/rotation = Quaternion(-7.417296e-08, -4.4235005e-08, -0.42386085, 0.90572727)
+bones/0/position = Vector3(0.07008433, 0.017707963, -0.2912435)
+bones/0/rotation = Quaternion(-1.7512505e-18, 2.9715694e-09, -0.018106373, 0.9998361)
+bones/1/rotation = Quaternion(0.7071009, -0.0013911393, -4.5579287e-05, 0.7071113)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Model")

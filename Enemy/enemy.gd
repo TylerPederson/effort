@@ -31,6 +31,8 @@ var backoff_speed_multiplier := 2.0
 
 var player: Node3D
 var following : bool = false
+# Used for testing if player is near enough to hit
+var attack_dist_sqaured
 
 # Set all stats from editor
 func _ready() -> void:
@@ -43,6 +45,7 @@ func _ready() -> void:
 	%AttackComponent._equipped_weapon.damage = damage
 	%AttackComponent._equipped_weapon.cooldown = attack_cooldown
 	%AttackComponent._equipped_weapon.attack_range = attack_range
+	attack_dist_sqaured =  %Weapon_Component.attack_range * %Weapon_Component.attack_range
 	
 	if type == EnemyType.Melee:
 		%AttackComponent._equipped_weapon.attackStyle = WeaponComponent.WeaponAttackStyle.STAB
@@ -63,7 +66,11 @@ func _process(delta: float) -> void:
 	if following:
 		# Attempt to attack toward player
 		state_machine.travel("move")
-		%AttackComponent.set_auto_attack(true)
+		if (player.position.distance_squared_to(position) < attack_dist_sqaured):
+			%AttackComponent.set_auto_attack(true)
+		else:
+			%AttackComponent.set_auto_attack(false)
+		
 		look_at(player.position)
 		rotation.x = 0
 		rotation.z = 0
