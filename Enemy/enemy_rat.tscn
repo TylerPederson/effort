@@ -105,6 +105,7 @@ metadata/_custom_type_script = "uid://xrvjfslc8yso"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51132894, -0.23720807)
 
 [node name="Weapon_Component" parent="WeaponHolder" node_paths=PackedStringArray("weilder") instance=ExtResource("5_vvtgh")]
+unique_name_in_owner = true
 projectile_scene = ExtResource("6_5b3v4")
 damage = 5
 attack_range = 5.0
@@ -121,6 +122,43 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4197489, 2.1441524, -0.660
 
 [node name="Armature" parent="Model" index="0"]
 transform = Transform3D(-1, 8.742278e-08, 3.821371e-15, 0, -4.371139e-08, 1, 8.742278e-08, 1, 4.371139e-08, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Model/Armature" index="0"]
+bones/0/position = Vector3(2.0195165e-16, -0.47470778, 0.67181754)
+bones/0/rotation = Quaternion(0.0034616648, 8.0627796e-17, 7.8907975e-17, 0.9999941)
+bones/1/rotation = Quaternion(-0.18444097, -8.247849e-17, -1.136388e-16, 0.98284364)
+bones/2/rotation = Quaternion(-0.12692311, 0.007643992, -0.0067323707, 0.99186033)
+bones/3/rotation = Quaternion(0.21972498, 0.014224293, 0.0017886204, 0.97545654)
+bones/4/rotation = Quaternion(0.14787047, 0.02841069, -0.050535936, 0.98730606)
+bones/5/rotation = Quaternion(0.14932194, 0.035703667, -0.10767355, 0.9822599)
+bones/6/position = Vector3(-1.4211387e-14, -0.13209462, 0.14513828)
+bones/6/rotation = Quaternion(-0.03707411, -0.266156, 0.96320444, -0.0048686336)
+bones/7/position = Vector3(0.14761403, 0.3022813, -0.22436264)
+bones/7/rotation = Quaternion(-0.6967056, 0.057499733, -0.44609243, 0.55883515)
+bones/7/scale = Vector3(0.9999998, 1, 1.0000001)
+bones/8/rotation = Quaternion(0.13703886, -0.0016126996, 0.38863492, 0.9111426)
+bones/8/scale = Vector3(1.0000004, 1, 0.99999994)
+bones/9/rotation = Quaternion(-0.7528696, -0.14064817, -0.18236788, 0.61656094)
+bones/10/position = Vector3(0.14761406, 0.87996614, -0.2159071)
+bones/10/rotation = Quaternion(-0.69095576, 0.0743986, -0.43283796, 0.5741919)
+bones/10/scale = Vector3(0.9999998, 1, 1.0000001)
+bones/11/rotation = Quaternion(0.115307875, -0.0016601607, 0.32700694, 0.9379594)
+bones/11/scale = Vector3(1.0000004, 1, 0.99999994)
+bones/12/rotation = Quaternion(-0.7359302, -0.17093043, -0.16182278, 0.63482517)
+bones/12/scale = Vector3(0.9999998, 1, 0.9999999)
+bones/13/position = Vector3(-0.14761403, 0.3022813, -0.22436264)
+bones/13/rotation = Quaternion(-0.6967056, -0.057499733, 0.44609243, 0.55883515)
+bones/13/scale = Vector3(0.9999998, 1, 1.0000001)
+bones/14/rotation = Quaternion(0.13703886, 0.0016126996, -0.38863492, 0.9111426)
+bones/14/scale = Vector3(1.0000004, 1, 0.99999994)
+bones/15/rotation = Quaternion(-0.7528696, 0.14064817, 0.18236788, 0.61656094)
+bones/16/position = Vector3(-0.14761406, 0.87996614, -0.2159071)
+bones/16/rotation = Quaternion(-0.69095576, -0.0743986, 0.43283796, 0.5741919)
+bones/16/scale = Vector3(0.9999998, 1, 1.0000001)
+bones/17/rotation = Quaternion(0.115307875, 0.0016601607, -0.32700694, 0.9379594)
+bones/17/scale = Vector3(1.0000004, 1, 0.99999994)
+bones/18/rotation = Quaternion(-0.7359302, 0.17093043, 0.16182278, 0.63482517)
+bones/18/scale = Vector3(0.9999998, 1, 0.9999999)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Model")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://lufehvu5wiic"]
+[gd_scene load_steps=30 format=3 uid="uid://lufehvu5wiic"]
 
 [ext_resource type="PackedScene" uid="uid://da7uc6l3gvjq1" path="res://action_player.tscn" id="1_wtjuy"]
 [ext_resource type="PackedScene" uid="uid://c3pthttcuaq4i" path="res://Utility/sign_post.tscn" id="3_1krsa"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://dc0c3b21pouhy" path="res://Inventory/Items/crossbow.tscn" id="19_r5cfg"]
 [ext_resource type="PackedScene" uid="uid://df4jfksjg3dw7" path="res://Inventory/Items/quiver.tscn" id="20_rx2kt"]
 [ext_resource type="PackedScene" uid="uid://byyd64cxpx5fv" path="res://Inventory/Items/tnt_bag.tscn" id="21_5ocdp"]
+[ext_resource type="PackedScene" uid="uid://ccvd73ge8qwxu" path="res://Enemy/enemy_mimic.tscn" id="24_idlq1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s6xw7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -253,6 +254,17 @@ manager = NodePath("../../EnemyManager3")
 [node name="Enemy_Rat6" parent="Enemies/RatContainer" node_paths=PackedStringArray("manager") instance=ExtResource("9_nmbow")]
 transform = Transform3D(0.36973065, 0, -0.92913926, 0, 1, 0, 0.92913926, 0, 0.36973065, -2.0127006, 0, 1.5515611)
 manager = NodePath("../../EnemyManager3")
+
+[node name="EnemyMimic" parent="Enemies" instance=ExtResource("24_idlq1")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 23.605234, 0, 2.2444031)
+move_speed = 120.0
+health = 50
+attack_cooldown = 2.0
+
+[node name="EnemyMimic2" parent="Enemies" instance=ExtResource("24_idlq1")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 23.845682, 0.0036716461, -4.1074157)
+move_speed = 110.0
+attack_cooldown = 2.5
 
 [node name="Items" type="Node3D" parent="."]
 
