@@ -228,32 +228,29 @@ attack_cooldown = 2.0
 
 [node name="EnemyManager3" parent="Enemies" instance=ExtResource("8_sjeky")]
 
-[node name="RatContainer" type="Node3D" parent="Enemies"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.260486, 0, -24.618797)
+[node name="Enemy_Rat" parent="Enemies" node_paths=PackedStringArray("manager") instance=ExtResource("9_nmbow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.260486, 0, -21.806854)
+manager = NodePath("../EnemyManager3")
 
-[node name="Enemy_Rat" parent="Enemies/RatContainer" node_paths=PackedStringArray("manager") instance=ExtResource("9_nmbow")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.811943)
-manager = NodePath("../../EnemyManager3")
+[node name="Enemy_Rat2" parent="Enemies" node_paths=PackedStringArray("manager") instance=ExtResource("9_nmbow")]
+transform = Transform3D(0.68710023, 0, 0.72656286, 0, 1, 0, -0.72656286, 0, 0.68710023, 15.165713, 0, -22.393078)
+manager = NodePath("../EnemyManager3")
 
-[node name="Enemy_Rat2" parent="Enemies/RatContainer" node_paths=PackedStringArray("manager") instance=ExtResource("9_nmbow")]
-transform = Transform3D(0.68710023, 0, 0.72656286, 0, 1, 0, -0.72656286, 0, 0.68710023, 1.9052277, 0, 2.2257192)
-manager = NodePath("../../EnemyManager3")
+[node name="Enemy_Rat3" parent="Enemies" node_paths=PackedStringArray("manager") instance=ExtResource("9_nmbow")]
+transform = Transform3D(-0.25493962, 0, 0.96695715, 0, 1, 0, -0.96695715, 0, -0.25493962, 15.4197445, 0, -24.835678)
+manager = NodePath("../EnemyManager3")
 
-[node name="Enemy_Rat3" parent="Enemies/RatContainer" node_paths=PackedStringArray("manager") instance=ExtResource("9_nmbow")]
-transform = Transform3D(-0.25493962, 0, 0.96695715, 0, 1, 0, -0.96695715, 0, -0.25493962, 2.1592588, 0, -0.2168808)
-manager = NodePath("../../EnemyManager3")
+[node name="Enemy_Rat4" parent="Enemies" node_paths=PackedStringArray("manager") instance=ExtResource("9_nmbow")]
+transform = Transform3D(-0.9999789, 0, -0.006527528, 0, 1, 0, 0.006527528, 0, -0.9999789, 13.231176, 0, -25.998356)
+manager = NodePath("../EnemyManager3")
 
-[node name="Enemy_Rat4" parent="Enemies/RatContainer" node_paths=PackedStringArray("manager") instance=ExtResource("9_nmbow")]
-transform = Transform3D(-0.9999789, 0, -0.006527528, 0, 1, 0, 0.006527528, 0, -0.9999789, -0.02930975, 0, -1.3795582)
-manager = NodePath("../../EnemyManager3")
+[node name="Enemy_Rat5" parent="Enemies" node_paths=PackedStringArray("manager") instance=ExtResource("9_nmbow")]
+transform = Transform3D(-0.6498993, 0, -0.7600206, 0, 1, 0, 0.7600206, 0, -0.6498993, 11.3748, 0, -25.246035)
+manager = NodePath("../EnemyManager3")
 
-[node name="Enemy_Rat5" parent="Enemies/RatContainer" node_paths=PackedStringArray("manager") instance=ExtResource("9_nmbow")]
-transform = Transform3D(-0.6498993, 0, -0.7600206, 0, 1, 0, 0.7600206, 0, -0.6498993, -1.8856859, 0, -0.62723756)
-manager = NodePath("../../EnemyManager3")
-
-[node name="Enemy_Rat6" parent="Enemies/RatContainer" node_paths=PackedStringArray("manager") instance=ExtResource("9_nmbow")]
-transform = Transform3D(0.36973065, 0, -0.92913926, 0, 1, 0, 0.92913926, 0, 0.36973065, -2.0127006, 0, 1.5515611)
-manager = NodePath("../../EnemyManager3")
+[node name="Enemy_Rat6" parent="Enemies" node_paths=PackedStringArray("manager") instance=ExtResource("9_nmbow")]
+transform = Transform3D(0.36973065, 0, -0.92913926, 0, 1, 0, 0.92913926, 0, 0.36973065, 11.247786, 0, -23.067236)
+manager = NodePath("../EnemyManager3")
 
 [node name="EnemyMimic" parent="Enemies" instance=ExtResource("24_idlq1")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 23.605234, 0, 2.2444031)
