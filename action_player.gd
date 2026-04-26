@@ -177,11 +177,14 @@ func _on_equip_change(slot: String, equip_data) -> void:
 		"weapon_melee", "weapon_ranged":
 			weapon_component.update_weapon(inventory_controller.equipped_items)
 			attack_component._refresh_weapon()
+			print(inventory_controller.equipped_items["weapon_melee"])
 
 
 func _on_health_component_death() -> void:
 	able_to_move = false
 	basic_hud.display_info("You have died...", 3.0)
+	abort_other_oneshots()
+	animation_tree["parameters/die/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	await get_tree().create_timer(3.0).timeout
 	
 	get_tree().change_scene_to_file("res://MainMenu_GUI/MainMenu.tscn")
