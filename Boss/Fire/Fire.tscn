@@ -135,4 +135,5 @@ process_material = SubResource("ParticleProcessMaterial_aetko")
 draw_pass_1 = SubResource("QuadMesh_1f5yy")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31675148, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31675148, 0.2200458)
+omni_range = 10.0
