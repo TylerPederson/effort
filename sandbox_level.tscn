@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://blgnpk61vbef4"]
+[gd_scene load_steps=41 format=3 uid="uid://blgnpk61vbef4"]
 
 [ext_resource type="PackedScene" uid="uid://bi7lqj8b1xefg" path="res://auto_door.tscn" id="2_k3mmv"]
 [ext_resource type="Material" uid="uid://um2rf3mttrd4" path="res://Textures/dungeon_floors.tres" id="3_mws0n"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://ca4rbv2mvnwri" path="res://Inventory/Items/iron_sword.tscn" id="25_gswlp"]
 [ext_resource type="PackedScene" uid="uid://dgx5gf2x7853m" path="res://transport_level_area.tscn" id="26_mws0n"]
 [ext_resource type="PackedScene" uid="uid://clerkr85kk6ww" path="res://Boss/boss_room.tscn" id="27_hacfn"]
+[ext_resource type="PackedScene" uid="uid://cy2rc2o0pkeh6" path="res://tourch.tscn" id="28_hacfn"]
 
 [sub_resource type="Curve3D" id="Curve3D_k3mmv"]
 resource_local_to_scene = true
@@ -116,7 +117,7 @@ transform = Transform3D(0.006178463, 0, 0.9999809, 0, 1, 0, -0.9999809, 0, 0.006
 transform = Transform3D(-0.031742174, 0, -0.9994961, 0, 1, 0, 0.9994961, 0, -0.031742174, 15.576629, 2.4628341, -15.75961)
 
 [node name="autoDoor2" parent="." instance=ExtResource("2_k3mmv")]
-transform = Transform3D(-0.99999857, 0, 0.001727989, 0, 1, 0, -0.001727989, 0, -0.99999857, -0.09827316, 2.4938042, 19.931967)
+transform = Transform3D(-0.99999857, 0, 0.001727989, 0, 1, 0, -0.001727989, 0, -0.99999857, -0.09827316, 2.8104067, 19.931967)
 
 [node name="MovingPlatform7" parent="." instance=ExtResource("4_ram5n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.38147, 27.330265, 3.4090881)
@@ -134,23 +135,26 @@ curve = SubResource("Curve3D_tj8me")
 environment = SubResource("Environment_xftbl")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, -0.32447, 0)
+transform = Transform3D(-0.8660253, -0.4330129, 0.2500001, 0, 0.49999994, 0.86602545, -0.50000024, 0.74999994, -0.43301257, 0, 7.5610385, 0)
 shadow_enabled = true
 
 [node name="Room Climbing Light" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 43.1759, 25.1829, -10.4258)
+visible = false
 light_color = Color(0.105882, 1, 1, 1)
 light_energy = 0.835
 sky_mode = 1
 
 [node name="Room Climbing Light2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, -1.43971, 26.0083, 48.5937)
+visible = false
 light_color = Color(3.43783, 0, 0, 1)
 light_energy = 0.01
 sky_mode = 1
 
 [node name="Room Climbing Light3" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, -66.8765, 52.6327, -5.89095)
+visible = false
 light_color = Color(5.0949e-05, 2.09887, 7.23536e-06, 1)
 light_energy = 0.01
 sky_mode = 1
@@ -615,6 +619,9 @@ size = Vector3(6.7865295, 8.532227, 0.9899292)
 
 [node name="iron_sword2" parent="." instance=ExtResource("25_gswlp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.62732, 0.38665068, -5.3887377)
+
+[node name="Tourch" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(0.18024452, 0, -0.98362184, 0, 1, 0, 0.98362184, 0, 0.18024452, 14.425562, 3.964369, 0)
 
 [connection signal="all_enemies_defeated" from="EnemyManager" to="Choice_Tray_Spawn" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="EnemyManager2" to="Choice_Tray_Spawn2" method="spawn_collectible_tray"]
