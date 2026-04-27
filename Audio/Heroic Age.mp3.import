@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bpio0gre5ukp8"
+path="res://.godot/imported/Heroic Age.mp3-7223b86cdfbf810b26a105cac1baa4ab.mp3str"
+
+[deps]
+
+source_file="res://Audio/Heroic Age.mp3"
+dest_files=["res://.godot/imported/Heroic Age.mp3-7223b86cdfbf810b26a105cac1baa4ab.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
