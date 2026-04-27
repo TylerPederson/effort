@@ -1,13 +1,13 @@
-[gd_scene load_steps=40 format=3 uid="uid://blgnpk61vbef4"]
+[gd_scene load_steps=46 format=3 uid="uid://blgnpk61vbef4"]
 
-[ext_resource type="PackedScene" uid="uid://bi7lqj8b1xefg" path="res://auto_door.tscn" id="2_k3mmv"]
+[ext_resource type="PackedScene" path="res://auto_door.tscn" id="2_k3mmv"]
 [ext_resource type="Material" uid="uid://um2rf3mttrd4" path="res://Textures/dungeon_floors.tres" id="3_mws0n"]
 [ext_resource type="Material" uid="uid://dnrikdttf3n5t" path="res://Textures/dungeon_walls.tres" id="4_hacfn"]
-[ext_resource type="PackedScene" uid="uid://djc4bao8ntfk2" path="res://MovingPlatform.tscn" id="4_ram5n"]
+[ext_resource type="PackedScene" path="res://MovingPlatform.tscn" id="4_ram5n"]
 [ext_resource type="PackedScene" uid="uid://da7uc6l3gvjq1" path="res://action_player.tscn" id="5_aut6f"]
-[ext_resource type="PackedScene" uid="uid://ja3vnixww6jc" path="res://lever.tscn" id="6_twn38"]
+[ext_resource type="PackedScene" path="res://lever.tscn" id="6_twn38"]
 [ext_resource type="Script" uid="uid://dog5tek13ypnw" path="res://game_manager.gd" id="7_k3mmv"]
-[ext_resource type="PackedScene" uid="uid://cok33xlk3v2p8" path="res://boss_door.tscn" id="8_v5sjs"]
+[ext_resource type="PackedScene" path="res://boss_door.tscn" id="8_v5sjs"]
 [ext_resource type="PackedScene" uid="uid://tn4n755wer20" path="res://Inventory/Items/boots.tscn" id="9_dfcf1"]
 [ext_resource type="PackedScene" uid="uid://d4c0ja7e01arr" path="res://Inventory/Items/health_potion.tscn" id="10_dlw0b"]
 [ext_resource type="PackedScene" uid="uid://dha1f6hkx3vxo" path="res://Inventory/Items/katana.tscn" id="11_s3irh"]
@@ -25,8 +25,14 @@
 [ext_resource type="PackedScene" uid="uid://dlv5otj1bfse8" path="res://Inventory/Items/wooden_bow.tscn" id="24_d4y1b"]
 [ext_resource type="PackedScene" uid="uid://dc0c3b21pouhy" path="res://Inventory/Items/crossbow.tscn" id="25_d4y1b"]
 [ext_resource type="PackedScene" uid="uid://ca4rbv2mvnwri" path="res://Inventory/Items/iron_sword.tscn" id="25_gswlp"]
-[ext_resource type="PackedScene" uid="uid://dgx5gf2x7853m" path="res://transport_level_area.tscn" id="26_mws0n"]
+[ext_resource type="PackedScene" path="res://transport_level_area.tscn" id="26_mws0n"]
 [ext_resource type="PackedScene" uid="uid://clerkr85kk6ww" path="res://Boss/boss_room.tscn" id="27_hacfn"]
+[ext_resource type="PackedScene" uid="uid://c5xohyl83ck3o" path="res://3D Models assets/PSX_Dungeon/Dungeon assets/Models/Pillar.fbx" id="28_yvl2o"]
+[ext_resource type="PackedScene" uid="uid://pouxcgl8t6rl" path="res://3D Models assets/PSX_Dungeon/Dungeon assets/Models/Pillar_Collapsed_01.fbx" id="29_scpje"]
+[ext_resource type="PackedScene" uid="uid://ccpjp3i3jo2ts" path="res://3D Models assets/PSX_Dungeon/Dungeon assets/Models/Pillar_Collapsed_02.fbx" id="30_mk4um"]
+[ext_resource type="PackedScene" uid="uid://coih6jslqil7" path="res://3D Models assets/PSX_Dungeon/Dungeon assets/Models/Chandelier.fbx" id="31_v6iva"]
+[ext_resource type="PackedScene" uid="uid://b66pgvbe7y048" path="res://3D Models assets/PSX_Dungeon/Dungeon assets/Models/Arch_Fence.fbx" id="32_k8qcx"]
+[ext_resource type="PackedScene" uid="uid://bv831116phvmc" path="res://3D Models assets/PSX_Dungeon/Dungeon assets/Models/Candle_03.fbx" id="33_jdubm"]
 
 [sub_resource type="Curve3D" id="Curve3D_k3mmv"]
 resource_local_to_scene = true
@@ -615,6 +621,136 @@ size = Vector3(6.7865295, 8.532227, 0.9899292)
 
 [node name="iron_sword2" parent="." instance=ExtResource("25_gswlp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.62732, 0.38665068, -5.3887377)
+
+[node name="Pillar" parent="." instance=ExtResource("28_yvl2o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.541437, 0.031106949, 73.21369)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pillar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.967802, 0.5428219, -50.036526)
+use_collision = true
+size = Vector3(5.653351, 1.0029297, 5.585449)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pillar"]
+transform = Transform3D(1, 0, 0, 0, 0.97881365, 0.20475224, 0, -0.20475224, 0.97881365, -10.005999, 2.5217025, -47.945766)
+use_collision = true
+size = Vector3(3.606903, 2.8967285, 0.07556152)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Pillar"]
+transform = Transform3D(-0.018689224, 0.20499203, -0.9785852, 0.015061624, 0.9787027, 0.20472904, 0.999712, -0.010912867, -0.02137871, -12.028334, 2.519396, -50.32804)
+use_collision = true
+size = Vector3(3.300644, 2.8967285, 0.07556152)
+
+[node name="Pillar_Collapsed_01" parent="." instance=ExtResource("29_scpje")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9023485, -0.02349186, 73.03455)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pillar_Collapsed_01"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.528255, 0.5428219, -49.81088)
+use_collision = true
+size = Vector3(5.653351, 1.0029297, 6.036743)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pillar_Collapsed_01"]
+transform = Transform3D(1, 0, 0, 0, 0.97881365, 0.20475224, 0, -0.20475224, 0.97881365, -30.803154, 2.5217025, -47.945766)
+use_collision = true
+size = Vector3(3.5944672, 2.8967285, 0.07556152)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Pillar_Collapsed_01"]
+transform = Transform3D(-0.078459054, -0.20412105, 0.9757963, 0, 0.97881365, 0.20475224, -0.9969173, 0.016064666, -0.07679679, -29.069515, 2.5217025, -49.6333)
+use_collision = true
+size = Vector3(3.606903, 2.8967285, 0.07556152)
+
+[node name="Pillar_Collapsed_02" parent="." instance=ExtResource("30_mk4um")]
+transform = Transform3D(0.91090703, 0, -0.41261163, 0, 1, 0, 0.41261163, 0, 0.91090703, 2.0460787, 0.116194725, 125.17718)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Pillar_Collapsed_02"]
+transform = Transform3D(-0.044113547, -0.9988605, -0.018218953, 0.14975707, -0.024642264, 0.9884158, -0.9877379, 0.04087457, 0.15067336, -50.432426, 1.870866, -49.79729)
+use_collision = true
+radius = 1.6132813
+height = 12.457642
+
+[node name="Chandelier" parent="." instance=ExtResource("31_v6iva")]
+transform = Transform3D(0.91090703, 0, 0.41261163, 0, 1, 0, -0.41261163, 0, 0.91090703, -65.4842, -21.136086, 72.11166)
+
+[node name="Arch_Fence" parent="." instance=ExtResource("32_k8qcx")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -14.982847, -2.0664272, 46.471127)
+
+[node name="Arch_Fence2" parent="." instance=ExtResource("32_k8qcx")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -7.1867447, -2.0664272, 46.471127)
+
+[node name="Arch_Fence3" parent="." instance=ExtResource("32_k8qcx")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.31453705, -2.0664272, 46.471127)
+
+[node name="Arch_Fence4" parent="." instance=ExtResource("32_k8qcx")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 7.905158, -2.0664272, 46.471127)
+
+[node name="Arch_Fence5" parent="." instance=ExtResource("32_k8qcx")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 15.740373, -2.0664272, 46.471127)
+
+[node name="Arch_Fence6" parent="." instance=ExtResource("32_k8qcx")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 23.681217, -2.0664272, 46.471127)
+
+[node name="Arch_Fence7" parent="." instance=ExtResource("32_k8qcx")]
+transform = Transform3D(0.011982463, -0.00035927177, 0.49985626, -0.005327111, 0.4999713, 0.00048705522, -0.49982798, -0.005337253, 0.011977941, -3.7797086, -2.0664272, 49.48996)
+
+[node name="Arch_Fence8" parent="." instance=ExtResource("32_k8qcx")]
+transform = Transform3D(0.011982463, -0.00035927177, 0.49985626, -0.005327111, 0.4999713, 0.00048705522, -0.49982798, -0.005337253, 0.011977941, -3.7797086, -2.0664272, 42.4426)
+
+[node name="Arch_Fence9" parent="." instance=ExtResource("32_k8qcx")]
+transform = Transform3D(0.011982463, -0.00035927177, 0.49985626, -0.005327111, 0.4999713, 0.00048705522, -0.49982798, -0.005337253, 0.011977941, -3.7797086, -2.0664272, 34.920887)
+
+[node name="Arch_Fence10" parent="." instance=ExtResource("32_k8qcx")]
+transform = Transform3D(0.011982463, -0.00035927177, 0.49985626, -0.005327111, 0.4999713, 0.00048705522, -0.49982798, -0.005337253, 0.011977941, -3.7797086, -2.0664272, 27.150867)
+
+[node name="Arch_Fence11" parent="." instance=ExtResource("32_k8qcx")]
+transform = Transform3D(0.011982463, -0.00035927177, 0.49985626, -0.005327111, 0.4999713, 0.00048705522, -0.49982798, -0.005337253, 0.011977941, -3.7797086, -2.2164898, 19.147043)
+
+[node name="Arch_Fence12" parent="." instance=ExtResource("32_k8qcx")]
+transform = Transform3D(0.011982463, -0.00035927177, 0.49985626, -0.005327111, 0.4999713, 0.00048705522, -0.49982798, -0.005337253, 0.011977941, -3.7797086, -2.1946745, 11.536517)
+
+[node name="Candle_03" parent="." instance=ExtResource("33_jdubm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.729609, 0.14153647, -9.045257)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Candle_03"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.058147, 0.92194796, -20.02385)
+use_collision = true
+radius = 0.6591797
+height = 2.2841797
+
+[node name="Pillar_Collapsed_03" parent="." instance=ExtResource("29_scpje")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.369274, -0.02349186, 54.995148)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pillar_Collapsed_03"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.528255, 0.5428219, -49.55389)
+use_collision = true
+size = Vector3(5.653351, 1.0029297, 5.522766)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pillar_Collapsed_03"]
+transform = Transform3D(1, 0, 0, 0, 0.97881365, 0.20475224, 0, -0.20475224, 0.97881365, -30.803154, 2.5217025, -47.945766)
+use_collision = true
+size = Vector3(3.5944672, 2.8967285, 0.07556152)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Pillar_Collapsed_03"]
+transform = Transform3D(-0.078459054, -0.20412105, 0.9757963, 0, 0.97881365, 0.20475224, -0.9969173, 0.016064666, -0.07679679, -29.069515, 2.5217025, -49.6333)
+use_collision = true
+size = Vector3(3.606903, 2.8967285, 0.07556152)
+
+[node name="Pillar_Collapsed_04" parent="." instance=ExtResource("30_mk4um")]
+transform = Transform3D(0.91090703, 0, -0.41261163, 0, 1, 0, 0.41261163, 0, 0.91090703, 2.0460787, 0.116194725, 125.17718)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Pillar_Collapsed_04"]
+transform = Transform3D(-0.044113547, -0.9988605, -0.018218953, 0.14975707, -0.024642264, 0.9884158, -0.9877379, 0.04087457, 0.15067336, -50.432426, 1.870866, -49.79729)
+use_collision = true
+radius = 1.6132813
+height = 12.457642
+
+[node name="Pillar_Collapsed_05" parent="." instance=ExtResource("30_mk4um")]
+transform = Transform3D(0.86841524, 0, -0.49583763, 0, 1, 0, 0.49583763, 0, 0.86841524, -77.99651, 27.243649, 73.027214)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Pillar_Collapsed_05"]
+transform = Transform3D(-0.044113547, -0.9988605, -0.018218923, 0.14975707, -0.024642264, 0.9884158, -0.9877379, 0.04087454, 0.15067333, -48.53511, 1.9227676, -50.790356)
+use_collision = true
+flip_faces = true
+radius = 1.9018555
+height = 12.457642
 
 [connection signal="all_enemies_defeated" from="EnemyManager" to="Choice_Tray_Spawn" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="EnemyManager2" to="Choice_Tray_Spawn2" method="spawn_collectible_tray"]
