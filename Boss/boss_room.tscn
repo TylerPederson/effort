@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://clerkr85kk6ww"]
+[gd_scene load_steps=25 format=3 uid="uid://clerkr85kk6ww"]
 
 [ext_resource type="Script" uid="uid://23jmmfc02jmu" path="res://Boss/door_pivot.gd" id="1_0yjcu"]
 [ext_resource type="Texture2D" uid="uid://bg3luom4u5mpd" path="res://Boss/Textures_BossRoom/Bricks_17-128x128.png" id="1_j8hxa"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://crgkkefe5lgp4" path="res://Boss/Textures_BossRoom/Wood_06-128x128.png" id="4_pq32u"]
 [ext_resource type="PackedScene" uid="uid://byyd64cxpx5fv" path="res://Inventory/Items/tnt_bag.tscn" id="5_51qfk"]
 [ext_resource type="PackedScene" uid="uid://bttbghaapi13t" path="res://Boss/SpikeFloor.tscn" id="6_51qfk"]
+[ext_resource type="PackedScene" uid="uid://bj4enqhuj8iah" path="res://Boss/Fire/Fire.tscn" id="10_2n5hb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bnrpt"]
 albedo_texture = ExtResource("1_j8hxa")
@@ -47,7 +48,20 @@ size = Vector3(2.666504, 4.5301514, 23.122925)
 [sub_resource type="BoxShape3D" id="BoxShape3D_r2qyn"]
 size = Vector3(1, 5, 24.733025)
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j8hxa"]
+sky_top_color = Color(0.0016159313, 0.037322164, 0.10223428, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
+sky_cover_modulate = Color(0, 0, 0, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.016997028, 0.017779395, 0.019408137, 1)
+
+[sub_resource type="Sky" id="Sky_2n5hb"]
+sky_material = SubResource("ProceduralSkyMaterial_j8hxa")
+
 [sub_resource type="Environment" id="Environment_51qfk"]
+background_mode = 2
+sky = SubResource("Sky_2n5hb")
+glow_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
 
@@ -183,6 +197,9 @@ environment = SubResource("Environment_51qfk")
 transform = Transform3D(1, 0, 0, 0, 1.7349162, 0, 0, 0, 1, 44.783432, -1.391, 0.12584591)
 size = Vector3(173.19052, 2, 83.93436)
 material = SubResource("FogMaterial_bw7y0")
+
+[node name="Fire" parent="." instance=ExtResource("10_2n5hb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.76268, 3.5052748, 3.5038743)
 
 [connection signal="body_entered" from="DoorTriggerOpen" to="DoorPivot" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="DoorTriggerClose" to="DoorPivot" method="_on_area_3d_2_body_exited"]
