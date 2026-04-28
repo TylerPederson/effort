@@ -1,9 +1,10 @@
-[gd_scene load_steps=41 format=3 uid="uid://blgnpk61vbef4"]
+[gd_scene load_steps=46 format=3 uid="uid://blgnpk61vbef4"]
 
 [ext_resource type="PackedScene" uid="uid://bi7lqj8b1xefg" path="res://auto_door.tscn" id="2_k3mmv"]
 [ext_resource type="Material" uid="uid://um2rf3mttrd4" path="res://Textures/dungeon_floors.tres" id="3_mws0n"]
 [ext_resource type="Material" uid="uid://dnrikdttf3n5t" path="res://Textures/dungeon_walls.tres" id="4_hacfn"]
 [ext_resource type="PackedScene" uid="uid://djc4bao8ntfk2" path="res://MovingPlatform.tscn" id="4_ram5n"]
+[ext_resource type="Texture2D" uid="uid://bx7p4if3qihre" path="res://wood_2_64_.png" id="4_yvl2o"]
 [ext_resource type="PackedScene" uid="uid://da7uc6l3gvjq1" path="res://action_player.tscn" id="5_aut6f"]
 [ext_resource type="PackedScene" uid="uid://ja3vnixww6jc" path="res://lever.tscn" id="6_twn38"]
 [ext_resource type="Script" uid="uid://dog5tek13ypnw" path="res://game_manager.gd" id="7_k3mmv"]
@@ -66,7 +67,20 @@ sky = SubResource("Sky_vg0gq")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6xw7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_scpje"]
+albedo_texture = ExtResource("4_yvl2o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ubyo5"]
+albedo_texture = ExtResource("4_yvl2o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wfody"]
+albedo_texture = ExtResource("4_yvl2o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mk4um"]
+albedo_texture = ExtResource("4_yvl2o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6iva"]
+albedo_texture = ExtResource("4_yvl2o")
 
 [sub_resource type="Curve3D" id="Curve3D_mx8re"]
 resource_local_to_scene = true
@@ -167,7 +181,7 @@ size = Vector3(32.5264, 1, 59.9478)
 
 [node name="Floor(HUB)2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225637, 30.6076, -9.30072)
-material_override = SubResource("StandardMaterial3D_s6xw7")
+material_override = ExtResource("4_hacfn")
 use_collision = true
 size = Vector3(32.4219, 1, 59.2914)
 
@@ -179,37 +193,37 @@ size = Vector3(53.1047, 1, 42.1461)
 
 [node name="Floor(climbing)2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5646, 7.24405, -26.9324)
-material_override = SubResource("StandardMaterial3D_s6xw7")
+material_override = SubResource("StandardMaterial3D_scpje")
 use_collision = true
 size = Vector3(21.4668, 1, 7.08195)
 
 [node name="Floor(climbing)3" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.3142, 14.224, -27.9479)
-material_override = SubResource("StandardMaterial3D_s6xw7")
+material_override = SubResource("StandardMaterial3D_ubyo5")
 use_collision = true
 size = Vector3(21.4668, 1, 7.08195)
 
 [node name="Floor(climbing)6" type="CSGBox3D" parent="."]
 transform = Transform3D(0.928687, 0.370865, 0, -0.370865, 0.928687, 0, 0, 0, 1, 58.2556, 16.4744, -9.05348)
-material_override = SubResource("StandardMaterial3D_s6xw7")
+material_override = SubResource("StandardMaterial3D_wfody")
 use_collision = true
 size = Vector3(11.1444, 0.355469, 4.95211)
 
 [node name="Floor(climbing)4" type="CSGBox3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 64.3851, 14.224, -14.8483)
-material_override = SubResource("StandardMaterial3D_s6xw7")
+material_override = SubResource("StandardMaterial3D_mk4um")
 use_collision = true
 size = Vector3(21.4668, 1, 7.08195)
 
 [node name="Floor(climbing)5" type="CSGBox3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 46.5572, 18.2127, -3.12212)
-material_override = SubResource("StandardMaterial3D_s6xw7")
+material_override = SubResource("StandardMaterial3D_v6iva")
 use_collision = true
 size = Vector3(24.2203, 1, 13.2646)
 
 [node name="ceiling(climbing)" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.3465, 27.4678, -10.2654)
-material_override = SubResource("StandardMaterial3D_s6xw7")
+material_override = ExtResource("4_hacfn")
 use_collision = true
 size = Vector3(53.1047, 1, 42.1461)
 
@@ -257,7 +271,7 @@ size = Vector3(55.4169, 1, 45.8258)
 
 [node name="Floor(spikes)2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.44181, 30.8786, 41.7056)
-material_override = SubResource("StandardMaterial3D_s6xw7")
+material_override = ExtResource("4_hacfn")
 use_collision = true
 size = Vector3(53.3085, 1, 43.7612)
 
@@ -305,7 +319,7 @@ size = Vector3(81.194, 1, 25.7121)
 
 [node name="Floor(bow room)2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.8444, 53.5989, -6.57841)
-material_override = SubResource("StandardMaterial3D_s6xw7")
+material_override = ExtResource("4_hacfn")
 use_collision = true
 size = Vector3(81.194, 1, 25.7121)
 
@@ -622,6 +636,123 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.62732, 0.38665068, -5.38873
 
 [node name="Tourch" parent="." instance=ExtResource("28_hacfn")]
 transform = Transform3D(0.18024452, 0, -0.98362184, 0, 1, 0, 0.98362184, 0, 0.18024452, 14.425562, 3.964369, 0)
+
+[node name="Tourch2" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(0.18024452, 0, -0.98362184, 0, 1, 0, 0.98362184, 0, 0.18024452, 14.425562, 3.964369, -23.93511)
+
+[node name="Tourch3" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(0.9974595, 0, 0.07123631, 0, 1, 0, -0.07123631, 0, 0.9974595, -5.80046, 3.964369, -37.374275)
+
+[node name="Tourch4" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(0.9974595, 0, 0.07123631, 0, 1, 0, -0.07123631, 0, 0.9974595, 5.3371162, 3.964369, -37.374275)
+
+[node name="Tourch5" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(-0.13533509, 0, 0.9907999, 0, 1, 0, -0.9907999, 0, -0.13533509, -15.546094, 3.964369, -19.709993)
+
+[node name="Tourch17" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(-0.13533509, 0, 0.9907999, 0, 1, 0, -0.9907999, 0, -0.13533509, -32.51976, 3.964369, -12.42304)
+
+[node name="Tourch18" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(-0.13533509, 0, 0.9907999, 0, 1, 0, -0.9907999, 0, -0.13533509, -32.51976, 3.964369, -1.6260405)
+
+[node name="Tourch19" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(-0.9952308, 0, 0.09754825, 0, 1, 0, -0.09754825, 0, -0.9952308, -47.374474, 30.857788, 4.861027)
+
+[node name="Tourch20" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(-0.9952308, 0, 0.09754825, 0, 1, 0, -0.09754825, 0, -0.9952308, -66.46743, 31.152035, 4.861027)
+
+[node name="Tourch21" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(-0.9952308, 0, 0.09754825, 0, 1, 0, -0.09754825, 0, -0.9952308, -86.361755, 31.152035, 4.861027)
+
+[node name="Tourch22" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(0.99997574, 0, -0.006963834, 0, 1, 0, 0.006963834, 0, 0.99997574, -86.458916, 31.152035, -18.057543)
+
+[node name="Tourch23" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(0.99997574, 0, -0.006963834, 0, 1, 0, 0.006963834, 0, 0.99997574, -67.0016, 31.152035, -18.057543)
+
+[node name="Tourch24" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(0.99864316, 0, -0.052074537, 0, 1, 0, 0.052074537, 0, 0.99864316, -42.35458, 31.152035, -18.057543)
+
+[node name="Tourch6" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(-0.13533509, 0, 0.9907999, 0, 1, 0, -0.9907999, 0, -0.13533509, -15.546094, 3.964369, 7.9580927)
+
+[node name="Tourch25" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(-0.9579227, 0, 0.28702623, 0, 1, 0, -0.28702623, 0, -0.9579227, -9.145715, 3.964369, 19.02025)
+
+[node name="Tourch26" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(-0.99530387, 0, 0.09680134, 0, 1, 0, -0.09680134, 0, -0.99530387, 8.056601, 3.964369, 18.98659)
+
+[node name="Tourch27" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(-0.99530387, 0, 0.09680134, 0, 1, 0, -0.09680134, 0, -0.99530387, 14.601173, 3.964369, 62.1124)
+
+[node name="Tourch28" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(-0.99530387, 0, 0.09680134, 0, 1, 0, -0.09680134, 0, -0.99530387, 3.1535454, 3.964369, 62.1124)
+
+[node name="Tourch29" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(-0.99530387, 0, 0.09680134, 0, 1, 0, -0.09680134, 0, -0.99530387, -10.4390545, 3.964369, 62.1124)
+
+[node name="Tourch30" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(-0.99530387, 0, 0.09680134, 0, 1, 0, -0.09680134, 0, -0.99530387, -21.43961, 3.964369, 62.1124)
+
+[node name="Tourch31" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(0.12955727, 0, 0.9915721, 0, 1, 0, -0.9915721, 0, 0.12955727, -28.802505, 3.964369, 52.818726)
+
+[node name="Tourch32" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(0.12955727, 0, 0.9915721, 0, 1, 0, -0.9915721, 0, 0.12955727, -28.802505, 3.964369, 39.88069)
+
+[node name="Tourch33" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(0.12955727, 0, 0.9915721, 0, 1, 0, -0.9915721, 0, 0.12955727, -28.802505, 3.964369, 28.307339)
+
+[node name="Tourch34" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(0.99851215, 0, 0.054531828, 0, 1, 0, -0.054531828, 0, 0.99851215, -19.847881, 3.964369, 21.074154)
+
+[node name="Tourch35" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(0.99851215, 0, 0.054531828, 0, 1, 0, -0.054531828, 0, 0.99851215, -8.669864, 3.964369, 21.074154)
+
+[node name="Tourch36" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(0.99851215, 0, 0.054531828, 0, 1, 0, -0.054531828, 0, 0.99851215, 6.387849, 3.964369, 21.074154)
+
+[node name="Tourch37" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(0.99851215, 0, 0.054531828, 0, 1, 0, -0.054531828, 0, 0.99851215, 16.692146, 3.964369, 21.074154)
+
+[node name="Tourch38" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(0.020924918, 0, -0.99978113, 0, 1, 0, 0.99978113, 0, 0.020924918, 22.046797, 3.964369, 29.530245)
+
+[node name="Tourch39" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(0.020924918, 0, -0.99978113, 0, 1, 0, 0.99978113, 0, 0.020924918, 22.046797, 3.964369, 42.866863)
+
+[node name="Tourch40" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(0.020924918, 0, -0.99978113, 0, 1, 0, 0.99978113, 0, 0.020924918, 22.046797, 3.964369, 53.73782)
+
+[node name="Tourch7" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(-0.13533509, 0, 0.9907999, 0, 1, 0, -0.9907999, 0, -0.13533509, 16.478983, 3.964369, -3.8098454)
+
+[node name="Tourch8" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(-0.13533509, 0, 0.9907999, 0, 1, 0, -0.9907999, 0, -0.13533509, 16.478983, 3.964369, -24.68295)
+
+[node name="Tourch9" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(0.99876827, 0, -0.049616836, 0, 1, 0, 0.049616836, 0, 0.99876827, 55.88309, 3.964369, -29.649652)
+
+[node name="Tourch10" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(0.99876827, 0, -0.049616836, 0, 1, 0, 0.049616836, 0, 0.99876827, 37.48516, 10.948862, -29.649652)
+
+[node name="Tourch11" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(0.99876827, 0, -0.049616836, 0, 1, 0, 0.049616836, 0, 0.99876827, 56.215454, 18.068474, -29.649652)
+
+[node name="Tourch12" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(-0.111451626, 0, -0.9937698, 0, 1, 0, 0.9937698, 0, -0.111451626, 67.15325, 18.068474, -16.532928)
+
+[node name="Tourch13" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(-0.111451626, 0, -0.9937698, 0, 1, 0, 0.9937698, 0, -0.111451626, 67.15325, 4.786434, -9.33588)
+
+[node name="Tourch14" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(-0.99908733, 0, 0.04271266, 0, 1, 0, -0.04271266, 0, -0.99908733, 48.425407, 4.0484295, 8.12033)
+
+[node name="Tourch15" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(-0.99908733, 0, 0.04271266, 0, 1, 0, -0.04271266, 0, -0.99908733, 27.403467, 4.0484295, 8.12033)
+
+[node name="Tourch16" parent="." instance=ExtResource("28_hacfn")]
+transform = Transform3D(-0.99908733, 0, 0.04271266, 0, 1, 0, -0.04271266, 0, -0.99908733, 46.50364, 23.02494, 8.12033)
 
 [connection signal="all_enemies_defeated" from="EnemyManager" to="Choice_Tray_Spawn" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="EnemyManager2" to="Choice_Tray_Spawn2" method="spawn_collectible_tray"]

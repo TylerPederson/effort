@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://djc4bao8ntfk2"]
+[gd_scene load_steps=10 format=3 uid="uid://djc4bao8ntfk2"]
 
 [ext_resource type="Script" uid="uid://cr4rfpkrhi2fk" path="res://moving_platform.gd" id="1_0ltmk"]
-[ext_resource type="Material" uid="uid://um2rf3mttrd4" path="res://Textures/dungeon_floors.tres" id="2_0ltmk"]
+[ext_resource type="Texture2D" uid="uid://dsgpxqnv5d3cv" path="res://wood_44_64_.png" id="2_0ltmk"]
 
 [sub_resource type="Curve3D" id="Curve3D_0ltmk"]
 resource_local_to_scene = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3v42y"]
+albedo_texture = ExtResource("2_0ltmk")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ff573"]
 
@@ -63,7 +66,7 @@ remote_path = NodePath("../../AnimatableBody3D")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="AnimatableBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0030059814, 0.058380127, -0.008758545)
-material_override = ExtResource("2_0ltmk")
+material_override = SubResource("StandardMaterial3D_3v42y")
 size = Vector3(3.980194, 0.11199951, 3.986145)
 material = SubResource("StandardMaterial3D_ff573")
 

@@ -21,4 +21,4 @@ func interact():
 	pull_lever()
 	
 func pull_lever():
-	mesh.rotate_y(deg_to_rad(45)) 
+	mesh.rotate_x(deg_to_rad(75)) 
