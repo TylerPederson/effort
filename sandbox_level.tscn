@@ -840,6 +840,32 @@ use_collision = true
 radius = 2.4086914
 height = 13.981201
 
+[node name="Collapsed Pillar5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.8059386, 0, -0.5919991, 0, 1, 0, 0.5919991, 0, 0.8059386, -93.04856, 27.559792, 3.4698257)
+material_override = SubResource("StandardMaterial3D_ubyo5")
+mesh = SubResource("ArrayMesh_wfody")
+skeleton = NodePath("")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Collapsed Pillar5"]
+transform = Transform3D(-0.06682232, -0.99698174, -0.039521307, 0.68625456, -0.017170733, -0.72715884, 0.7242856, -0.07571229, 0.68533045, -0.03226471, 1.4896789, -0.0024681091)
+visible = false
+use_collision = true
+radius = 2.4086914
+height = 13.981201
+
+[node name="Collapsed Pillar6" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.77914107, 0, -0.6268487, 0, 1, 0, 0.6268487, 0, -0.77914107, -93.30152, 27.559792, -16.869919)
+material_override = SubResource("StandardMaterial3D_ubyo5")
+mesh = SubResource("ArrayMesh_wfody")
+skeleton = NodePath("")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Collapsed Pillar6"]
+transform = Transform3D(-0.06682232, -0.99698174, -0.039521307, 0.68625456, -0.017170733, -0.72715884, 0.7242856, -0.07571229, 0.68533045, -0.03226471, 1.4896789, -0.0024681091)
+visible = false
+use_collision = true
+radius = 2.4086914
+height = 13.981201
+
 [connection signal="all_enemies_defeated" from="EnemyManager" to="Choice_Tray_Spawn" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="EnemyManager2" to="Choice_Tray_Spawn2" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="EnemyManager3" to="Choice_Tray_Spawn3" method="spawn_collectible_tray"]
