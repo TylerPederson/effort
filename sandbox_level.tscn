@@ -803,6 +803,18 @@ visible = false
 use_collision = true
 size = Vector3(5.9468994, 12.661255, 6.0893555)
 
+[node name="Collapsed Pillar2" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.9604645e-08, 0, 1, 0, 1, 0, -1, 0, 5.9604645e-08, 19.276936, 0, 4.36001)
+material_override = SubResource("StandardMaterial3D_mk4um")
+mesh = SubResource("ArrayMesh_v6iva")
+skeleton = NodePath("")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Collapsed Pillar2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.41409302, 5.0150757, -0.4522705)
+visible = false
+use_collision = true
+size = Vector3(5.762024, 11.030151, 5.604248)
+
 [connection signal="all_enemies_defeated" from="EnemyManager" to="Choice_Tray_Spawn" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="EnemyManager2" to="Choice_Tray_Spawn2" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="EnemyManager3" to="Choice_Tray_Spawn3" method="spawn_collectible_tray"]
