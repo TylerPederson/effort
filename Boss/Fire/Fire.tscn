@@ -136,4 +136,7 @@ draw_pass_1 = SubResource("QuadMesh_1f5yy")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31675148, 0.2200458)
+distance_fade_enabled = true
+distance_fade_begin = 50.0
+distance_fade_shadow = 60.0
 omni_range = 10.0

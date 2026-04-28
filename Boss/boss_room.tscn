@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://clerkr85kk6ww"]
+[gd_scene load_steps=26 format=3 uid="uid://clerkr85kk6ww"]
 
 [ext_resource type="Script" uid="uid://23jmmfc02jmu" path="res://Boss/door_pivot.gd" id="1_0yjcu"]
 [ext_resource type="Texture2D" uid="uid://bg3luom4u5mpd" path="res://Boss/Textures_BossRoom/Bricks_17-128x128.png" id="1_j8hxa"]
@@ -9,11 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://crgkkefe5lgp4" path="res://Boss/Textures_BossRoom/Wood_06-128x128.png" id="4_pq32u"]
 [ext_resource type="PackedScene" uid="uid://byyd64cxpx5fv" path="res://Inventory/Items/tnt_bag.tscn" id="5_51qfk"]
 [ext_resource type="PackedScene" uid="uid://bttbghaapi13t" path="res://Boss/SpikeFloor.tscn" id="6_51qfk"]
+[ext_resource type="PackedScene" uid="uid://1fhefww4sbje" path="res://Boss/torches_boss.tscn" id="6_pq32u"]
 [ext_resource type="PackedScene" uid="uid://dfb7tufanvxwp" path="res://Boss/DoorOutline.tscn" id="11_pq32u"]
+[ext_resource type="PackedScene" uid="uid://djlmxq8y63k05" path="res://Boss/boss_outside_path.tscn" id="12_bnrpt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bnrpt"]
 albedo_texture = ExtResource("1_j8hxa")
 uv1_scale = Vector3(20, 20, 20)
+uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j8hxa"]
 albedo_texture = ExtResource("2_2n5hb")
@@ -31,13 +34,10 @@ uv1_scale = Vector3(20, 20, 20)
 albedo_texture = ExtResource("2_2n5hb")
 uv1_scale = Vector3(20, 20, 20)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6vae"]
-albedo_texture = ExtResource("1_j8hxa")
-uv1_scale = Vector3(20, 20, 20)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_any6y"]
 albedo_texture = ExtResource("4_pq32u")
-uv1_scale = Vector3(10, 10, 10)
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_any6y"]
 size = Vector3(1, 2.223755, 10.147156)
@@ -61,6 +61,7 @@ sky_material = SubResource("ProceduralSkyMaterial_j8hxa")
 [sub_resource type="Environment" id="Environment_51qfk"]
 background_mode = 2
 sky = SubResource("Sky_2n5hb")
+ambient_light_source = 1
 glow_enabled = true
 glow_levels/4 = 3.0
 glow_intensity = 5.0
@@ -72,7 +73,7 @@ density = 0.5
 
 [node name="BossRoom" type="Node3D"]
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+[node name="Floor" type="CSGCylinder3D" parent="."]
 transform = Transform3D(52.034283, -0.00017155311, -0.049354263, 0.008881279, 0.999999, -0.056142062, 0.045198873, 0.0009877544, 56.829308, 0, -10, 0)
 use_collision = true
 radius = 0.4
@@ -109,12 +110,6 @@ material = SubResource("StandardMaterial3D_ubxwo")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.013700448, 0.9999061, 0, -0.9999061, 0.013700448, -0.02035141, 15.459325, 0.011795044)
 
-[node name="OutisidePath" type="CSGBox3D" parent="."]
-transform = Transform3D(-5.554281e-08, -0.99999994, 0, 1.2706714, -4.3711385e-08, 0, 0, 0, 0.99999994, 83.339165, 1.4357162, 0.00013196468)
-use_collision = true
-size = Vector3(1, 92.366455, 10)
-material = SubResource("StandardMaterial3D_s6vae")
-
 [node name="DoorPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.22316, 1.6857758, 0)
 script = ExtResource("1_0yjcu")
@@ -126,7 +121,7 @@ size = Vector3(1, 18, 10)
 material = SubResource("StandardMaterial3D_any6y")
 
 [node name="DoorTriggerOpen" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.126076, 2.9044192, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.491646, 2.9044192, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DoorTriggerOpen"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61187744, -0.15383911)
@@ -180,14 +175,29 @@ transform = Transform3D(0.44369695, 0, -0.8961769, 0, 1, 0, 0.8961769, 0, 0.4436
 shape = SubResource("BoxShape3D_r2qyn")
 debug_color = Color(0.97580177, 0, 0.42022118, 0.41960785)
 
+[node name="Torches_boss" parent="Invisable Walls" instance=ExtResource("6_pq32u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27059364, -7.1436086, 23.040092)
+
+[node name="Torches_boss2" parent="Invisable Walls" instance=ExtResource("6_pq32u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27059364, -7.1436086, -23.138662)
+
+[node name="Torches_boss3" parent="Invisable Walls" instance=ExtResource("6_pq32u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.460344, -7.1436086, -0.42842865)
+
+[node name="Torches_boss4" parent="Invisable Walls" instance=ExtResource("6_pq32u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.959642, -7.1436086, 7.7645617)
+
+[node name="Torches_boss5" parent="Invisable Walls" instance=ExtResource("6_pq32u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.959642, -7.1436086, -8.374177)
+
 [node name="Crossbow" parent="." instance=ExtResource("3_rg28a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.448223, 4.711226, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.813503, 4.711226, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_mth68")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.33653, 3.0710497, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 124.674736, 3.0710497, 0)
 
 [node name="TNT_Bag" parent="." instance=ExtResource("5_51qfk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.043922, 2.9565783, -2.3019605)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.922283, 2.9565783, -2.3019605)
 
 [node name="SpikeFloor" parent="." instance=ExtResource("6_51qfk")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.3538065, -10, 0)
@@ -202,6 +212,9 @@ material = SubResource("FogMaterial_bw7y0")
 
 [node name="Node3D" parent="." instance=ExtResource("11_pq32u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.21891, 11.0492935, 0.17266417)
+
+[node name="boss_outside_path" parent="." instance=ExtResource("12_bnrpt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.339, 1.436, 0.134)
 
 [connection signal="body_entered" from="DoorTriggerOpen" to="DoorPivot" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="DoorTriggerClose" to="DoorPivot" method="_on_area_3d_2_body_exited"]

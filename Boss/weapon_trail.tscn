@@ -42,15 +42,15 @@ material = SubResource("ShaderMaterial_m6fua")
 
 [node name="GPUTrail3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
-amount = 24
-lifetime = 24.0
+amount = 15
+lifetime = 15.0
 explosiveness = 1.0
 fixed_fps = 120
 process_material = SubResource("ShaderMaterial_nbb3s")
 draw_pass_1 = SubResource("QuadMesh_2lyy6")
 script = ExtResource("4_81h4l")
-length = 24
-length_seconds = 0.2
+length = 15
+length_seconds = 0.125
 texture = ExtResource("3_fwxfa")
 color_ramp = SubResource("GradientTexture1D_v1lkr")
 curve = SubResource("CurveTexture_k0wn7")
