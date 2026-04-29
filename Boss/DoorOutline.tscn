@@ -11,7 +11,7 @@ uv1_scale = Vector3(20, 20, 20)
 albedo_texture = ExtResource("1_p702u")
 uv1_scale = Vector3(20, 20, 20)
 
-[node name="Node3D" type="Node3D"]
+[node name="boss_door_outline" type="Node3D"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 size = Vector3(4, 20, 12)

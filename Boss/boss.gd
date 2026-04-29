@@ -65,10 +65,14 @@ func _hit(damage: int):	# Player damages boss function
 
 func _on_player_hit_L(body):	# Damage player function
 	if body.name == "Player" and attack and !dead:
+		var hit_effect = $"BossV2/Armature_004/Skeleton3D/Left Hand/SwordL/WeaponTrail/boss_hit_effect/AnimationPlayer"
+		hit_effect.play("hit_animation")
 		body.get_node("Health_Component").take_damage(boss_damage)
 		#print_debug("Hit")
 
 func _on_player_hit_R(body):	# Damage player function
 	if body.name == "Player" and attack and !dead:
+		var hit_effect = $"BossV2/Armature_004/Skeleton3D/Right Hand/SwordR/WeaponTrail/boss_hit_effect/AnimationPlayer"
+		hit_effect.play("hit_animation")
 		body.get_node("Health_Component").take_damage(boss_damage)
 		#print_debug("Hit")

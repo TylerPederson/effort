@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cefe5p4ex8tm2"
-path="res://.godot/imported/bounce.svg-1c60b713fc682b9c790d587bf0715690.ctex"
+uid="uid://dfu71dfhvvm5o"
+path="res://.godot/imported/T_groundmark_color.png-670e10b0407f44373ecae57c5eeadf68.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://GPUTrail-main/bounce.svg"
-dest_files=["res://.godot/imported/bounce.svg-1c60b713fc682b9c790d587bf0715690.ctex"]
+source_file="res://Boss/BossHitEffect/T_groundmark_color.png"
+dest_files=["res://.godot/imported/T_groundmark_color.png-670e10b0407f44373ecae57c5eeadf68.ctex"]
 
 [params]
 
@@ -38,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

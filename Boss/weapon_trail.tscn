@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://bkij8ev6kl4m2"]
 
-[ext_resource type="Shader" uid="uid://cf7hxfbur3oe0" path="res://GPUTrail-main/shaders/trail.gdshader" id="1_2djkn"]
-[ext_resource type="Shader" uid="uid://b1brta6eyfkv2" path="res://GPUTrail-main/shaders/trail_draw_pass.gdshader" id="2_ytcun"]
+[ext_resource type="Shader" uid="uid://cf7hxfbur3oe0" path="res://Boss/GPUTrail-main/shaders/trail.gdshader" id="1_2djkn"]
+[ext_resource type="Shader" uid="uid://b1brta6eyfkv2" path="res://Boss/GPUTrail-main/shaders/trail_draw_pass.gdshader" id="2_ytcun"]
 [ext_resource type="Texture2D" uid="uid://c0rdpkdjhbfwh" path="res://Boss/Fire/Voronoi01.png" id="3_fwxfa"]
-[ext_resource type="Script" uid="uid://rpop8kc7ge8i" path="res://GPUTrail-main/GPUTrail3D.gd" id="4_81h4l"]
+[ext_resource type="Script" uid="uid://rpop8kc7ge8i" path="res://Boss/GPUTrail-main/GPUTrail3D.gd" id="4_81h4l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nbb3s"]
 shader = ExtResource("1_2djkn")
