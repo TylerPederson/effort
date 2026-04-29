@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://blgnpk61vbef4"]
+[gd_scene load_steps=53 format=3 uid="uid://blgnpk61vbef4"]
 
 [ext_resource type="PackedScene" uid="uid://bi7lqj8b1xefg" path="res://auto_door.tscn" id="2_k3mmv"]
 [ext_resource type="Material" uid="uid://um2rf3mttrd4" path="res://Textures/dungeon_floors.tres" id="3_mws0n"]
@@ -30,6 +30,12 @@
 [ext_resource type="PackedScene" uid="uid://clerkr85kk6ww" path="res://Boss/boss_room.tscn" id="27_hacfn"]
 [ext_resource type="PackedScene" uid="uid://cy2rc2o0pkeh6" path="res://tourch.tscn" id="28_hacfn"]
 [ext_resource type="PackedScene" uid="uid://dt7010bk4v65s" path="res://banner.tscn" id="30_scpje"]
+[ext_resource type="PackedScene" uid="uid://cxkbp2ly7yu05" path="res://panting_one.tscn" id="31_ubyo5"]
+[ext_resource type="PackedScene" uid="uid://d040krigx3ga1" path="res://paintingtwo.tscn" id="32_wfody"]
+[ext_resource type="PackedScene" uid="uid://nyap2dujfd8l" path="res://paintingthree.tscn" id="33_mk4um"]
+[ext_resource type="PackedScene" uid="uid://dif55ksb3x6pj" path="res://painting_four.tscn" id="34_v6iva"]
+[ext_resource type="PackedScene" uid="uid://k7ytyuesl6e6" path="res://painting_five.tscn" id="35_k8qcx"]
+[ext_resource type="PackedScene" uid="uid://co4stx1e0kcn2" path="res://painting_six.tscn" id="36_jdubm"]
 
 [sub_resource type="Curve3D" id="Curve3D_k3mmv"]
 resource_local_to_scene = true
@@ -151,6 +157,7 @@ environment = SubResource("Environment_xftbl")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660253, -0.4330129, 0.2500001, 0, 0.49999994, 0.86602545, -0.50000024, 0.74999994, -0.43301257, 0, 7.5610385, 0)
+visible = false
 shadow_enabled = true
 
 [node name="Floor(HUB)" type="CSGBox3D" parent="."]
@@ -703,6 +710,24 @@ transform = Transform3D(-0.05436504, 0, -5.0647087, 0, 5.065, 0, 5.0647087, 0, -
 
 [node name="Banner2" parent="." instance=ExtResource("30_scpje")]
 transform = Transform3D(0.045260638, 0, 5.0647974, 0, 5.0649996, 0, -5.0647974, 0, 0.045260638, -16.022413, 12.362958, -8.54201)
+
+[node name="PantingOne" parent="." instance=ExtResource("31_ubyo5")]
+transform = Transform3D(0.014852244, 0, 0.99988973, 0.052365042, 0.9986277, -0.00077782414, -0.99851763, 0.052370816, 0.014831863, -16.029844, 8.131039, -26.5799)
+
+[node name="Paintingtwo" parent="." instance=ExtResource("32_wfody")]
+transform = Transform3D(-0.9999994, 0, -0.0011868812, 0, 1, 0, 0.0011868812, 0, -0.9999994, 51.69545, 10.10871, 8.688364)
+
+[node name="Paintingthree" parent="." instance=ExtResource("33_mk4um")]
+transform = Transform3D(-0.99990076, -0.014084339, 0.00020950443, -0.014084343, 0.99990076, 2.9510197e-06, -0.00020952523, 0, -1, -11.211094, 11.898935, 62.71572)
+
+[node name="paintingFour" parent="." instance=ExtResource("34_v6iva")]
+transform = Transform3D(0.007173214, 0, 0.99997437, 0.08188423, 0.99664164, -0.0005873882, -0.9966161, 0.08188633, 0.007149124, -96.191284, 35.307697, -6.111967)
+
+[node name="paintingFive" parent="." instance=ExtResource("35_k8qcx")]
+transform = Transform3D(6.983429e-05, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 6.983429e-05, 67.77058, 20.12833, -8.665304)
+
+[node name="paintingSix" parent="." instance=ExtResource("36_jdubm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.787548, 12.288312, -30.176542)
 
 [connection signal="all_enemies_defeated" from="EnemyManager" to="Choice_Tray_Spawn" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="EnemyManager2" to="Choice_Tray_Spawn2" method="spawn_collectible_tray"]
