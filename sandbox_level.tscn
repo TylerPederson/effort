@@ -152,27 +152,6 @@ environment = SubResource("Environment_xftbl")
 transform = Transform3D(-0.8660253, -0.4330129, 0.2500001, 0, 0.49999994, 0.86602545, -0.50000024, 0.74999994, -0.43301257, 0, 7.5610385, 0)
 shadow_enabled = true
 
-[node name="Room Climbing Light" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 43.1759, 25.1829, -10.4258)
-visible = false
-light_color = Color(0.105882, 1, 1, 1)
-light_energy = 0.835
-sky_mode = 1
-
-[node name="Room Climbing Light2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, -1.43971, 26.0083, 48.5937)
-visible = false
-light_color = Color(3.43783, 0, 0, 1)
-light_energy = 0.01
-sky_mode = 1
-
-[node name="Room Climbing Light3" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, -66.8765, 52.6327, -5.89095)
-visible = false
-light_color = Color(5.0949e-05, 2.09887, 7.23536e-06, 1)
-light_energy = 0.01
-sky_mode = 1
-
 [node name="Floor(HUB)" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.306146, -0.496328, -8.97349)
 material_override = ExtResource("3_mws0n")
@@ -294,7 +273,7 @@ use_collision = true
 size = Vector3(3.08577, 25.8228, 0.784054)
 
 [node name="wall(spikes) 2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.36774, 15.1896, 63.1247)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.373277, 15.1896, 63.126713)
 material_override = ExtResource("4_hacfn")
 use_collision = true
 size = Vector3(53.7113, 32.347, 0.784054)
@@ -682,53 +661,20 @@ transform = Transform3D(-0.9579227, 0, 0.28702623, 0, 1, 0, -0.28702623, 0, -0.9
 [node name="Tourch26" parent="." instance=ExtResource("28_hacfn")]
 transform = Transform3D(-0.99530387, 0, 0.09680134, 0, 1, 0, -0.09680134, 0, -0.99530387, 8.056601, 3.964369, 18.98659)
 
-[node name="Tourch27" parent="." instance=ExtResource("28_hacfn")]
-transform = Transform3D(-0.99530387, 0, 0.09680134, 0, 1, 0, -0.09680134, 0, -0.99530387, 14.601173, 3.964369, 62.1124)
-
 [node name="Tourch28" parent="." instance=ExtResource("28_hacfn")]
-transform = Transform3D(-0.99530387, 0, 0.09680134, 0, 1, 0, -0.09680134, 0, -0.99530387, 3.1535454, 3.964369, 62.1124)
-
-[node name="Tourch29" parent="." instance=ExtResource("28_hacfn")]
-transform = Transform3D(-0.99530387, 0, 0.09680134, 0, 1, 0, -0.09680134, 0, -0.99530387, -10.4390545, 3.964369, 62.1124)
-
-[node name="Tourch30" parent="." instance=ExtResource("28_hacfn")]
-transform = Transform3D(-0.99530387, 0, 0.09680134, 0, 1, 0, -0.09680134, 0, -0.99530387, -21.43961, 3.964369, 62.1124)
-
-[node name="Tourch31" parent="." instance=ExtResource("28_hacfn")]
-transform = Transform3D(0.12955727, 0, 0.9915721, 0, 1, 0, -0.9915721, 0, 0.12955727, -28.802505, 3.964369, 52.818726)
+transform = Transform3D(-0.99530387, 0, 0.09680134, 0, 1, 0, -0.09680134, 0, -0.99530387, -1.727273, 3.964369, 62.1124)
 
 [node name="Tourch32" parent="." instance=ExtResource("28_hacfn")]
 transform = Transform3D(0.12955727, 0, 0.9915721, 0, 1, 0, -0.9915721, 0, 0.12955727, -28.802505, 3.964369, 39.88069)
 
-[node name="Tourch33" parent="." instance=ExtResource("28_hacfn")]
-transform = Transform3D(0.12955727, 0, 0.9915721, 0, 1, 0, -0.9915721, 0, 0.12955727, -28.802505, 3.964369, 28.307339)
-
-[node name="Tourch34" parent="." instance=ExtResource("28_hacfn")]
-transform = Transform3D(0.99851215, 0, 0.054531828, 0, 1, 0, -0.054531828, 0, 0.99851215, -19.847881, 3.964369, 21.074154)
-
 [node name="Tourch35" parent="." instance=ExtResource("28_hacfn")]
 transform = Transform3D(0.99851215, 0, 0.054531828, 0, 1, 0, -0.054531828, 0, 0.99851215, -8.669864, 3.964369, 21.074154)
-
-[node name="Tourch36" parent="." instance=ExtResource("28_hacfn")]
-transform = Transform3D(0.99851215, 0, 0.054531828, 0, 1, 0, -0.054531828, 0, 0.99851215, 6.387849, 3.964369, 21.074154)
-
-[node name="Tourch37" parent="." instance=ExtResource("28_hacfn")]
-transform = Transform3D(0.99851215, 0, 0.054531828, 0, 1, 0, -0.054531828, 0, 0.99851215, 16.692146, 3.964369, 21.074154)
-
-[node name="Tourch38" parent="." instance=ExtResource("28_hacfn")]
-transform = Transform3D(0.020924918, 0, -0.99978113, 0, 1, 0, 0.99978113, 0, 0.020924918, 22.046797, 3.964369, 29.530245)
 
 [node name="Tourch39" parent="." instance=ExtResource("28_hacfn")]
 transform = Transform3D(0.020924918, 0, -0.99978113, 0, 1, 0, 0.99978113, 0, 0.020924918, 22.046797, 3.964369, 42.866863)
 
-[node name="Tourch40" parent="." instance=ExtResource("28_hacfn")]
-transform = Transform3D(0.020924918, 0, -0.99978113, 0, 1, 0, 0.99978113, 0, 0.020924918, 22.046797, 3.964369, 53.73782)
-
 [node name="Tourch7" parent="." instance=ExtResource("28_hacfn")]
 transform = Transform3D(-0.13533509, 0, 0.9907999, 0, 1, 0, -0.9907999, 0, -0.13533509, 16.478983, 3.964369, -3.8098454)
-
-[node name="Tourch8" parent="." instance=ExtResource("28_hacfn")]
-transform = Transform3D(-0.13533509, 0, 0.9907999, 0, 1, 0, -0.9907999, 0, -0.13533509, 16.478983, 3.964369, -24.68295)
 
 [node name="Tourch9" parent="." instance=ExtResource("28_hacfn")]
 transform = Transform3D(0.99876827, 0, -0.049616836, 0, 1, 0, 0.049616836, 0, 0.99876827, 55.88309, 3.964369, -29.649652)
@@ -745,11 +691,8 @@ transform = Transform3D(-0.111451626, 0, -0.9937698, 0, 1, 0, 0.9937698, 0, -0.1
 [node name="Tourch13" parent="." instance=ExtResource("28_hacfn")]
 transform = Transform3D(-0.111451626, 0, -0.9937698, 0, 1, 0, 0.9937698, 0, -0.111451626, 67.15325, 4.786434, -9.33588)
 
-[node name="Tourch14" parent="." instance=ExtResource("28_hacfn")]
-transform = Transform3D(-0.99908733, 0, 0.04271266, 0, 1, 0, -0.04271266, 0, -0.99908733, 48.425407, 4.0484295, 8.12033)
-
 [node name="Tourch15" parent="." instance=ExtResource("28_hacfn")]
-transform = Transform3D(-0.99908733, 0, 0.04271266, 0, 1, 0, -0.04271266, 0, -0.99908733, 27.403467, 4.0484295, 8.12033)
+transform = Transform3D(-0.99908733, 0, 0.04271266, 0, 1, 0, -0.04271266, 0, -0.99908733, 40.26615, 4.0484295, 8.12033)
 
 [node name="Tourch16" parent="." instance=ExtResource("28_hacfn")]
 transform = Transform3D(-0.99908733, 0, 0.04271266, 0, 1, 0, -0.04271266, 0, -0.99908733, 46.50364, 23.02494, 8.12033)
