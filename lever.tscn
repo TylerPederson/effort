@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ja3vnixww6jc"]
+[gd_scene load_steps=17 format=3 uid="uid://ja3vnixww6jc"]
 
 [ext_resource type="Script" uid="uid://dvgqwtfx7b0ix" path="res://lever.gd" id="1_0ohsc"]
 [ext_resource type="PackedScene" uid="uid://vei5oj44pyjd" path="res://Inventory/Controllers/item_interact.tscn" id="2_1btnt"]
@@ -11,6 +11,9 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76uva"]
 next_pass = ExtResource("2_h01c4")
 metallic = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h01c4"]
+albedo_texture = ExtResource("3_awwea")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_73lsj"]
 
@@ -33,7 +36,7 @@ stack_limit = 1
 item_desc = "The handle of a lever"
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h01c4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awwea"]
 albedo_texture = ExtResource("3_awwea")
 
 [sub_resource type="PrismMesh" id="PrismMesh_awwea"]
@@ -59,6 +62,7 @@ material = SubResource("StandardMaterial3D_76uva")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.125, 0, 0, 0, 0.35355338, -0.16263457, 0, 0.35355338, 0.16263457, -0.05200863, 0.9457675, 0.5911942)
+material_override = SubResource("StandardMaterial3D_h01c4")
 mesh = SubResource("CylinderMesh_73lsj")
 surface_material_override/0 = SubResource("StandardMaterial3D_7uavd")
 
@@ -71,7 +75,7 @@ item_data = SubResource("Resource_76uva")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.0039295554, 1.8357563, -0.0052773654)
-material_override = SubResource("StandardMaterial3D_h01c4")
+material_override = SubResource("StandardMaterial3D_awwea")
 mesh = SubResource("PrismMesh_awwea")
 
 [connection signal="triggered" from="ItemInteract" to="." method="interact"]

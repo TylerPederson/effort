@@ -1,10 +1,10 @@
-[gd_scene load_steps=46 format=3 uid="uid://blgnpk61vbef4"]
+[gd_scene load_steps=47 format=3 uid="uid://blgnpk61vbef4"]
 
 [ext_resource type="PackedScene" uid="uid://bi7lqj8b1xefg" path="res://auto_door.tscn" id="2_k3mmv"]
 [ext_resource type="Material" uid="uid://um2rf3mttrd4" path="res://Textures/dungeon_floors.tres" id="3_mws0n"]
 [ext_resource type="Material" uid="uid://dnrikdttf3n5t" path="res://Textures/dungeon_walls.tres" id="4_hacfn"]
 [ext_resource type="PackedScene" uid="uid://djc4bao8ntfk2" path="res://MovingPlatform.tscn" id="4_ram5n"]
-[ext_resource type="Texture2D" uid="uid://bx7p4if3qihre" path="res://wood_2_64_.png" id="4_yvl2o"]
+[ext_resource type="Texture2D" uid="uid://bx7p4if3qihre" path="res://Textures/wood_2_64_.png" id="4_yvl2o"]
 [ext_resource type="PackedScene" uid="uid://da7uc6l3gvjq1" path="res://action_player.tscn" id="5_aut6f"]
 [ext_resource type="PackedScene" uid="uid://ja3vnixww6jc" path="res://lever.tscn" id="6_twn38"]
 [ext_resource type="Script" uid="uid://dog5tek13ypnw" path="res://game_manager.gd" id="7_k3mmv"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://dgx5gf2x7853m" path="res://transport_level_area.tscn" id="26_mws0n"]
 [ext_resource type="PackedScene" uid="uid://clerkr85kk6ww" path="res://Boss/boss_room.tscn" id="27_hacfn"]
 [ext_resource type="PackedScene" uid="uid://cy2rc2o0pkeh6" path="res://tourch.tscn" id="28_hacfn"]
+[ext_resource type="PackedScene" uid="uid://dt7010bk4v65s" path="res://banner.tscn" id="30_scpje"]
 
 [sub_resource type="Curve3D" id="Curve3D_k3mmv"]
 resource_local_to_scene = true
@@ -696,6 +697,12 @@ transform = Transform3D(-0.99908733, 0, 0.04271266, 0, 1, 0, -0.04271266, 0, -0.
 
 [node name="Tourch16" parent="." instance=ExtResource("28_hacfn")]
 transform = Transform3D(-0.99908733, 0, 0.04271266, 0, 1, 0, -0.04271266, 0, -0.99908733, 46.50364, 23.02494, 8.12033)
+
+[node name="Banner" parent="." instance=ExtResource("30_scpje")]
+transform = Transform3D(-0.05436504, 0, -5.0647087, 0, 5.065, 0, 5.0647087, 0, -0.05436504, 14.87657, 12.362958, -14.7832155)
+
+[node name="Banner2" parent="." instance=ExtResource("30_scpje")]
+transform = Transform3D(0.045260638, 0, 5.0647974, 0, 5.0649996, 0, -5.0647974, 0, 0.045260638, -16.022413, 12.362958, -8.54201)
 
 [connection signal="all_enemies_defeated" from="EnemyManager" to="Choice_Tray_Spawn" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="EnemyManager2" to="Choice_Tray_Spawn2" method="spawn_collectible_tray"]

@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi7lqj8b1xefg"]
+[gd_scene load_steps=6 format=3 uid="uid://bi7lqj8b1xefg"]
 
 [ext_resource type="Script" uid="uid://buaorxiu6dq26" path="res://auto_door.gd" id="1_ay7p0"]
-[ext_resource type="Texture2D" uid="uid://b1uoi7uyiftyd" path="res://wood_7_64_.png" id="2_gco3u"]
+[ext_resource type="Texture2D" uid="uid://b1uoi7uyiftyd" path="res://Textures/wood_7_64_.png" id="2_gco3u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gco3u"]
+albedo_texture = ExtResource("2_gco3u")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ay7p0"]
 albedo_texture = ExtResource("2_gco3u")
@@ -13,6 +16,7 @@ script = ExtResource("1_ay7p0")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 5.5, 0, 0, 0, 0.3, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_gco3u")
 material = SubResource("StandardMaterial3D_ay7p0")
 
 [node name="Area3D" type="Area3D" parent="."]
