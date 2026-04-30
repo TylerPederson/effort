@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dt7010bk4v65s"]
 
-[ext_resource type="Texture2D" uid="uid://3rcvxye58x13" path="res://Textures/—Pngtree—ornate medieval banner with shield_20315067.png" id="1_2iyem"]
+[ext_resource type="Texture2D" uid="uid://bblyo3f047oob" path="res://kindpng_3275123.png" id="1_2iyem"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ync5d"]
 transparency = 1
@@ -8,10 +8,10 @@ albedo_texture = ExtResource("1_2iyem")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_05pf3"]
 
-[node name="Banner" type="Node3D"]
+[node name="BannerDragon" type="Node3D"]
 transform = Transform3D(5.065, 0, 0, 0, 5.065, 0, 0, 0, 5.065, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.085, 0, 0, 0, -2.0544352e-08, -1.36, 0, 0.47, -5.9447487e-08, 0, 0, 0)
+transform = Transform3D(0.8, 0, 0, 0, -2.0544352e-08, -1.36, 0, 0.47, -5.9447487e-08, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_ync5d")
 mesh = SubResource("PlaneMesh_05pf3")

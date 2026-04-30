@@ -1,0 +1,37 @@
+[gd_scene load_steps=9 format=3 uid="uid://dy1vqrk4s1kpo"]
+
+[ext_resource type="Script" uid="uid://dvdv7ktscxsc" path="res://painting_10.gd" id="1_xrlsr"]
+[ext_resource type="Texture2D" uid="uid://cng2ioee2bu0q" path="res://Textures/wood_19_64_.png" id="1_y6loh"]
+[ext_resource type="Texture2D" uid="uid://cmpveitamertv" path="res://Textures/birmingham-museums-trust-Kv1hYl9LlxU-unsplash.jpg" id="2_tskmm"]
+[ext_resource type="Script" uid="uid://bv1ed6c1jpsk6" path="res://omni_light_3d.gd" id="3_tskmm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrlsr"]
+albedo_texture = ExtResource("1_y6loh")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qshlk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qqaka"]
+albedo_texture = ExtResource("2_tskmm")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_273mf"]
+
+[node name="Painting_10" type="Node3D"]
+script = ExtResource("1_xrlsr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.71, 0, 0, 0, -1.3620469e-07, -2.921, 0, 3.116, -1.2768096e-07, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_xrlsr")
+mesh = SubResource("PlaneMesh_qshlk")
+
+[node name="woman_painting" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.445, 0, 0, 0, -1.1644714e-07, -2.664, 0, 2.664, -1.1644714e-07, 0, 0, 0.016106725)
+material_override = SubResource("StandardMaterial3D_qqaka")
+mesh = SubResource("PlaneMesh_273mf")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7763568e-15, 0.39108703)
+light_energy = 2.554
+omni_range = 3.0
+script = ExtResource("3_tskmm")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
