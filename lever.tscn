@@ -29,4 +29,5 @@ transform = Transform3D(3.8800004, 0, 3.7252903e-09, -3.7252903e-09, 3.88, -2.38
 shape = SubResource("BoxShape3D_0ohsc")
 
 [node name="EnvioInteract" parent="." instance=ExtResource("2_7uavd")]
+one_shot = true
 interaction_sound_effect = ExtResource("3_soi7j")
