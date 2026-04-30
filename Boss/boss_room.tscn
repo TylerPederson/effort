@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://clerkr85kk6ww"]
+[gd_scene load_steps=28 format=3 uid="uid://clerkr85kk6ww"]
 
 [ext_resource type="Script" uid="uid://23jmmfc02jmu" path="res://Boss/door_pivot.gd" id="1_0yjcu"]
 [ext_resource type="Texture2D" uid="uid://bg3luom4u5mpd" path="res://Boss/Textures_BossRoom/Bricks_17-128x128.png" id="1_j8hxa"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dc0c3b21pouhy" path="res://Inventory/Items/crossbow.tscn" id="3_rg28a"]
 [ext_resource type="Texture2D" uid="uid://crgkkefe5lgp4" path="res://Boss/Textures_BossRoom/Wood_06-128x128.png" id="4_pq32u"]
 [ext_resource type="PackedScene" uid="uid://byyd64cxpx5fv" path="res://Inventory/Items/tnt_bag.tscn" id="5_51qfk"]
+[ext_resource type="AudioStream" uid="uid://ccmau1ai6c7u7" path="res://Boss/BossAudio/Portcullis Gate.wav" id="5_ukpyv"]
 [ext_resource type="PackedScene" uid="uid://bttbghaapi13t" path="res://Boss/SpikeFloor.tscn" id="6_51qfk"]
 [ext_resource type="PackedScene" uid="uid://1fhefww4sbje" path="res://Boss/torches_boss.tscn" id="6_pq32u"]
 [ext_resource type="PackedScene" uid="uid://dfb7tufanvxwp" path="res://Boss/DoorOutline.tscn" id="11_pq32u"]
@@ -125,11 +126,15 @@ use_collision = true
 size = Vector3(1, 18, 10)
 material = SubResource("StandardMaterial3D_any6y")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="DoorPivot"]
+stream = ExtResource("5_ukpyv")
+bus = &"SFX"
+
 [node name="DoorTriggerOpen" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.491646, 2.9044192, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DoorTriggerOpen"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61187744, -0.15383911)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.67688, 0.61187744, -0.15383911)
 shape = SubResource("BoxShape3D_any6y")
 
 [node name="DoorTriggerClose" type="Area3D" parent="."]
@@ -199,7 +204,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.959642, -7.1436086, -8.374
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.813503, 4.711226, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_mth68")]
-transform = Transform3D(0.07050508, 0, 0.99751145, 0, 1, 0, -0.99751145, 0, 0.07050508, 123.097, 3.0710497, 0)
+transform = Transform3D(0.07050508, 0, 0.99751145, 0, 1, 0, -0.99751145, 0, 0.07050508, 55.565163, 3.0710497, 0)
 
 [node name="TNT_Bag" parent="." instance=ExtResource("5_51qfk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.922283, 2.9565783, -2.3019605)

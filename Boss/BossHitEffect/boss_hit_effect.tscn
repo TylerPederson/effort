@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://d0peckb00x4i3"]
+[gd_scene load_steps=23 format=3 uid="uid://d0peckb00x4i3"]
 
 [ext_resource type="Shader" uid="uid://8jfkkutnnhw" path="res://Boss/BossHitEffect/boss_hit_effect.tres" id="1_q8b6c"]
 [ext_resource type="Texture2D" uid="uid://vtbtwc1ca6ri" path="res://Boss/BossHitEffect/T_flare81.png" id="2_koudy"]
 [ext_resource type="Shader" uid="uid://f7u1jvnvwy5y" path="res://Boss/BossHitEffect/sparks.tres" id="3_sywye"]
 [ext_resource type="Texture2D" uid="uid://qb1ywboi5387" path="res://Boss/BossHitEffect/T_circle42.PNG" id="4_37xtu"]
+[ext_resource type="AudioStream" uid="uid://bs52ahrsdrl0k" path="res://Boss/BossAudio/Sword Impact Hit 1.wav" id="5_37xtu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sywye"]
 render_priority = 0
@@ -18,7 +19,8 @@ point_count = 3
 curve = SubResource("Curve_koudy")
 
 [sub_resource type="Gradient" id="Gradient_q8b6c"]
-colors = PackedColorArray(1, 0.56665117, 0.07016479, 1, 0.86716837, 0.31711304, 0, 1)
+offsets = PackedFloat32Array(0, 0.9929907)
+colors = PackedColorArray(1, 0.9265614, 0.07016479, 1, 0.97814435, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_koudy"]
 gradient = SubResource("Gradient_q8b6c")
@@ -97,6 +99,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_37xtu"]
 length = 0.001
@@ -119,6 +133,18 @@ tracks/1/path = NodePath("sparks:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -157,3 +183,7 @@ draw_pass_1 = SubResource("QuadMesh_sywye")
 libraries = {
 &"": SubResource("AnimationLibrary_qrulo")
 }
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_37xtu")
+bus = &"SFX"

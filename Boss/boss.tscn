@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=4 uid="uid://di4k0x1b5852r"]
+[gd_scene load_steps=97 format=4 uid="uid://di4k0x1b5852r"]
 
 [ext_resource type="Script" uid="uid://b8y7rivbw35ad" path="res://Boss/boss.gd" id="1_t20dt"]
 [ext_resource type="Script" uid="uid://dd4wpxl6enyas" path="res://Boss/BossStates/StateMachine.gd" id="2_4cnrr"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bkij8ev6kl4m2" path="res://Boss/weapon_trail.tscn" id="5_ju3tf"]
 [ext_resource type="PackedScene" uid="uid://d0peckb00x4i3" path="res://Boss/BossHitEffect/boss_hit_effect.tscn" id="6_ntee4"]
 [ext_resource type="PackedScene" uid="uid://630a8jxw7nws" path="res://Boss/SwordModel/sword.glb" id="7_mk3vo"]
+[ext_resource type="AudioStream" uid="uid://drdjo5j0rh0dx" path="res://Boss/BossAudio/Sword Sheath 2.wav" id="8_2j6g7"]
+[ext_resource type="AudioStream" uid="uid://dr363wmnya4g2" path="res://Boss/BossAudio/Stone Chain Walk 2.wav" id="9_myhfd"]
+[ext_resource type="AudioStream" uid="uid://cixwsicc7ekax" path="res://Boss/BossAudio/Sword Attack 1.wav" id="10_sri3m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7ba5a"]
 radius = 0.7963867
@@ -1253,6 +1256,18 @@ tracks/116/path = NodePath("Armature_004/Skeleton3D:mixamorig_RightToe_End")
 tracks/116/interp = 0
 tracks/116/loop_wrap = true
 tracks/116/keys = PackedFloat32Array(0, 1, -3.152527e-06, 40.504715, 1.0132794e-06)
+tracks/117/type = "value"
+tracks/117/imported = false
+tracks/117/enabled = true
+tracks/117/path = NodePath("AttackAudio:playing")
+tracks/117/interp = 1
+tracks/117/loop_wrap = true
+tracks/117/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_hmu18"]
 resource_name = "Attack 2"
@@ -2076,6 +2091,18 @@ tracks/116/path = NodePath("Armature_004/Skeleton3D:mixamorig_RightToe_End")
 tracks/116/interp = 0
 tracks/116/loop_wrap = true
 tracks/116/keys = PackedFloat32Array(0, 1, -1.911074e-06, 40.50472, -1.7881345e-07)
+tracks/117/type = "value"
+tracks/117/imported = false
+tracks/117/enabled = true
+tracks/117/path = NodePath("AttackAudio:playing")
+tracks/117/interp = 1
+tracks/117/loop_wrap = true
+tracks/117/keys = {
+"times": PackedFloat32Array(0.68),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_ic640"]
 resource_name = "Attack 4"
@@ -2899,6 +2926,18 @@ tracks/116/path = NodePath("Armature_004/Skeleton3D:mixamorig_RightToe_End")
 tracks/116/interp = 0
 tracks/116/loop_wrap = true
 tracks/116/keys = PackedFloat32Array(0, 1, -1.911074e-06, 40.50472, -1.7881345e-07)
+tracks/117/type = "value"
+tracks/117/imported = false
+tracks/117/enabled = true
+tracks/117/path = NodePath("AttackAudio:playing")
+tracks/117/interp = 1
+tracks/117/loop_wrap = true
+tracks/117/keys = {
+"times": PackedFloat32Array(0.43333334),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_b4a55"]
 resource_name = "Attack 5"
@@ -3722,6 +3761,18 @@ tracks/116/path = NodePath("Armature_004/Skeleton3D:mixamorig_RightToe_End")
 tracks/116/interp = 1
 tracks/116/loop_wrap = true
 tracks/116/keys = PackedFloat32Array(0, 1, -1.911074e-06, 40.50472, -1.7881345e-07)
+tracks/117/type = "value"
+tracks/117/imported = false
+tracks/117/enabled = true
+tracks/117/path = NodePath("AttackAudio:playing")
+tracks/117/interp = 1
+tracks/117/loop_wrap = true
+tracks/117/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_8ntqn"]
 resource_name = "Attack 6"
@@ -4545,6 +4596,18 @@ tracks/116/path = NodePath("Armature_004/Skeleton3D:mixamorig_RightToe_End")
 tracks/116/interp = 1
 tracks/116/loop_wrap = true
 tracks/116/keys = PackedFloat32Array(0, 1, -1.911074e-06, 40.50472, -1.7881345e-07)
+tracks/117/type = "value"
+tracks/117/imported = false
+tracks/117/enabled = true
+tracks/117/path = NodePath("AttackAudio:playing")
+tracks/117/interp = 1
+tracks/117/loop_wrap = true
+tracks/117/keys = {
+"times": PackedFloat32Array(0.8666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_p2s7j"]
 resource_name = "Attack3"
@@ -5368,6 +5431,18 @@ tracks/116/path = NodePath("Armature_004/Skeleton3D:mixamorig_RightToe_End")
 tracks/116/interp = 0
 tracks/116/loop_wrap = true
 tracks/116/keys = PackedFloat32Array(0, 1, -1.911074e-06, 40.50472, -1.7881345e-07)
+tracks/117/type = "value"
+tracks/117/imported = false
+tracks/117/enabled = true
+tracks/117/path = NodePath("AttackAudio:playing")
+tracks/117/interp = 1
+tracks/117/loop_wrap = true
+tracks/117/keys = {
+"times": PackedFloat32Array(0.67),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_lvkvy"]
 resource_name = "Crouch"
@@ -7838,6 +7913,18 @@ tracks/116/path = NodePath("Armature_004/Skeleton3D:mixamorig_RightToe_End")
 tracks/116/interp = 1
 tracks/116/loop_wrap = true
 tracks/116/keys = PackedFloat32Array(0, 1, 4.1192397e-06, 40.50472, -2.0861628e-06)
+tracks/117/type = "value"
+tracks/117/imported = false
+tracks/117/enabled = true
+tracks/117/path = NodePath("DeathAudio:playing")
+tracks/117/interp = 1
+tracks/117/loop_wrap = true
+tracks/117/keys = {
+"times": PackedFloat32Array(0.03),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_2g3nj"]
 resource_name = "Idle"
@@ -10310,6 +10397,33 @@ tracks/116/interp = 0
 tracks/116/loop_wrap = true
 tracks/116/keys = PackedFloat32Array(0, 1, -3.8836157e-07, 40.504734, 9.578961e-13)
 
+[sub_resource type="Animation" id="Animation_sri3m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackAudio:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DeathAudio:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xq4iq"]
 _data = {
 &"Attack": SubResource("Animation_pblts"),
@@ -10322,6 +10436,7 @@ _data = {
 &"Crouch loop": SubResource("Animation_wt02m"),
 &"Dying": SubResource("Animation_2e6yv"),
 &"Idle": SubResource("Animation_2g3nj"),
+&"RESET": SubResource("Animation_sri3m"),
 &"T-pose": SubResource("Animation_qi5i7"),
 &"Walking": SubResource("Animation_ikfb1")
 }
@@ -10516,7 +10631,7 @@ states/Start/position = Vector2(98, 105.5)
 states/Walking/node = SubResource("AnimationNodeAnimation_fdnl6")
 states/Walking/position = Vector2(530.95, 241.47955)
 transitions = ["Start", "Crouch loop", SubResource("AnimationNodeStateMachineTransition_71440"), "Crouch loop", "Crouch 2 2", SubResource("AnimationNodeStateMachineTransition_4o1ob"), "Crouch 2 2", "Idle", SubResource("AnimationNodeStateMachineTransition_iht7o"), "Idle", "Dying", SubResource("AnimationNodeStateMachineTransition_d6ame"), "Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_nlv3h"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_gg6m4"), "Attack", "Dying", SubResource("AnimationNodeStateMachineTransition_4d8y5"), "Attack 2", "Dying", SubResource("AnimationNodeStateMachineTransition_m0623"), "Attack 3", "Dying", SubResource("AnimationNodeStateMachineTransition_q4fyr"), "Attack 4", "Dying", SubResource("AnimationNodeStateMachineTransition_lv530"), "Attack 5", "Dying", SubResource("AnimationNodeStateMachineTransition_hpph4"), "Attack 6", "Dying", SubResource("AnimationNodeStateMachineTransition_ge71i"), "Attack 6", "Walking", SubResource("AnimationNodeStateMachineTransition_lmk7u"), "Attack 5", "Walking", SubResource("AnimationNodeStateMachineTransition_gcphv"), "Attack 4", "Walking", SubResource("AnimationNodeStateMachineTransition_2ojfn"), "Attack 3", "Walking", SubResource("AnimationNodeStateMachineTransition_gfne2"), "Attack 2", "Walking", SubResource("AnimationNodeStateMachineTransition_f1r8x"), "Attack", "Walking", SubResource("AnimationNodeStateMachineTransition_31282"), "Walking", "Attack", SubResource("AnimationNodeStateMachineTransition_kc8sr"), "Walking", "Attack 2", SubResource("AnimationNodeStateMachineTransition_xa8om"), "Walking", "Attack 3", SubResource("AnimationNodeStateMachineTransition_akxsh"), "Walking", "Attack 4", SubResource("AnimationNodeStateMachineTransition_goxkv"), "Walking", "Attack 5", SubResource("AnimationNodeStateMachineTransition_a7nx6"), "Walking", "Attack 6", SubResource("AnimationNodeStateMachineTransition_arvs8"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_p8pru"), "Attack 2", "Idle", SubResource("AnimationNodeStateMachineTransition_i4cph"), "Attack 3", "Idle", SubResource("AnimationNodeStateMachineTransition_cpht2"), "Attack 4", "Idle", SubResource("AnimationNodeStateMachineTransition_n3t60"), "Attack 5", "Idle", SubResource("AnimationNodeStateMachineTransition_3vtos"), "Attack 6", "Idle", SubResource("AnimationNodeStateMachineTransition_teg4e"), "Crouch 2 2", "Crouch", SubResource("AnimationNodeStateMachineTransition_mk3vo"), "Crouch", "Idle", SubResource("AnimationNodeStateMachineTransition_ju3tf"), "Crouch loop", "Crouch", SubResource("AnimationNodeStateMachineTransition_ntee4")]
-graph_offset = Vector2(92.888626, 47.33918)
+graph_offset = Vector2(400.01355, 163.27472)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_t20dt"]
 radius = 67.58358
@@ -11069,12 +11184,26 @@ transform = Transform3D(1, -7.450581e-09, 1.1175871e-08, 7.450581e-09, 1.0000001
 shape = SubResource("CapsuleShape3D_ju3tf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BossV2"]
+callback_mode_discrete = 0
 libraries = {
 &"": SubResource("AnimationLibrary_xq4iq")
 }
 
+[node name="AttackAudio" type="AudioStreamPlayer3D" parent="BossV2"]
+stream = ExtResource("10_sri3m")
+bus = &"SFX"
+
+[node name="DeathAudio" type="AudioStreamPlayer3D" parent="BossV2"]
+stream = ExtResource("8_2j6g7")
+bus = &"SFX"
+
+[node name="WalkingAudio" type="AudioStreamPlayer3D" parent="BossV2"]
+stream = ExtResource("9_myhfd")
+bus = &"SFX"
+
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../BossV2")
+callback_mode_discrete = 1
 tree_root = SubResource("AnimationNodeStateMachine_mk3vo")
 anim_player = NodePath("../BossV2/AnimationPlayer")
 parameters/Crouch/TimeSeek/seek_request = -1.0
@@ -11103,6 +11232,10 @@ shape = SubResource("CylinderShape3D_7ba5a")
 
 [node name="Health_Component" parent="." instance=ExtResource("4_0sshd")]
 max_hp = 300
+
+[node name="SwordSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("10_sri3m")
+bus = &"SFX"
 
 [connection signal="body_entered" from="BossV2/Armature_004/Skeleton3D/Left Hand/SwordL/PlayerHitL" to="." method="_on_player_hit_L"]
 [connection signal="body_entered" from="BossV2/Armature_004/Skeleton3D/Right Hand/SwordR/PlayerHitR" to="." method="_on_player_hit_R"]

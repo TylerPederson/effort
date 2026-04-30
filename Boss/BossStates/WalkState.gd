@@ -23,7 +23,8 @@ func _ready():	# Makes sure that attack or getup is not playing before waling
 	run = true
 	AIController.Awakening = false
 	AIController.get_node("AnimationTree").get("parameters/playback").travel("Walking")
-	
+
+
 func _physics_process(delta: float):
 	if AIController and run:		# Extra code to make sure boss targetting doesn't glitch out
 		var dir = AIController.player.global_position - AIController.global_position

@@ -1,6 +1,7 @@
 extends CharacterBody3D
 var speed = 6
 var rotate_speed: float = 6.0
+var death_scene = preload("res://Boss/boss_death.tscn")
 @onready var state_controller = get_node("StateMachine")
 @export var player: CharacterBody3D
 var direction: Vector3
@@ -48,6 +49,10 @@ func _on_animation_tree_animation_finished(anim_name):
 		_death()		# deletes boss if dying animation is playing
 		
 func  _death():	#deletss boss
+	var instance = death_scene.instantiate()
+	get_tree().current_scene.add_child(instance)
+	instance.global_position = global_position
+
 	self.queue_free()
 
 
