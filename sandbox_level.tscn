@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://blgnpk61vbef4"]
+[gd_scene load_steps=42 format=3 uid="uid://blgnpk61vbef4"]
 
 [ext_resource type="PackedScene" uid="uid://bi7lqj8b1xefg" path="res://auto_door.tscn" id="2_k3mmv"]
 [ext_resource type="Material" uid="uid://um2rf3mttrd4" path="res://Textures/dungeon_floors.tres" id="3_mws0n"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://ca4rbv2mvnwri" path="res://Inventory/Items/iron_sword.tscn" id="25_gswlp"]
 [ext_resource type="PackedScene" uid="uid://dgx5gf2x7853m" path="res://transport_level_area.tscn" id="26_mws0n"]
 [ext_resource type="PackedScene" uid="uid://clerkr85kk6ww" path="res://Boss/boss_room.tscn" id="27_hacfn"]
+[ext_resource type="Shader" uid="uid://8u5y27tvykqp" path="res://retro_look.gdshader" id="28_hacfn"]
 
 [sub_resource type="Curve3D" id="Curve3D_k3mmv"]
 resource_local_to_scene = true
@@ -106,6 +107,14 @@ _data = {
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hacfn"]
+shader = ExtResource("28_hacfn")
+shader_parameter/pixel_size = 2.15
+shader_parameter/color_levels = 7.625
+shader_parameter/dither_strength = 0.03
+shader_parameter/jitter_strength = 0.0015
+shader_parameter/scanline_strength = 0.08
 
 [node name="SandboxLevel" type="Node3D"]
 
@@ -615,6 +624,14 @@ size = Vector3(6.7865295, 8.532227, 0.9899292)
 
 [node name="iron_sword2" parent="." instance=ExtResource("25_gswlp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.62732, 0.38665068, -5.3887377)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_hacfn")
+offset_right = 1151.0
+offset_bottom = 648.0
+mouse_filter = 1
 
 [connection signal="all_enemies_defeated" from="EnemyManager" to="Choice_Tray_Spawn" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="EnemyManager2" to="Choice_Tray_Spawn2" method="spawn_collectible_tray"]
