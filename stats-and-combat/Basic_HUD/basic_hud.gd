@@ -1,10 +1,10 @@
-extends Control
+extends CanvasLayer
 class_name Basic_HUD
 
 @onready var hp_bar: ProgressBar = $HP_Bar
 @onready var stamina_bar: ProgressBar = $Stamina_Bar
 @onready var charge_bar: ProgressBar = $Charge_Bar
-@onready var info_label: Label = $InfoLabel
+@onready var info_label: Label = $CanvasLayer/InfoLabel
 @onready var buff_label: Label = $BuffLabel
 @onready var passive1: TextureRect = $Passive1
 @onready var passive2: TextureRect = $Passive2

@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://da7uc6l3gvjq1"]
+[gd_scene load_steps=22 format=3 uid="uid://da7uc6l3gvjq1"]
 
 [ext_resource type="Script" uid="uid://bgv7o8b1m5rfj" path="res://action_player.gd" id="1_okpe7"]
 [ext_resource type="PackedScene" uid="uid://ctpmannwcqc02" path="res://stats-and-combat/Components/weapon_component.tscn" id="2_b2k0g"]
+[ext_resource type="Shader" uid="uid://8u5y27tvykqp" path="res://retro_look.gdshader" id="3_ewxee"]
 [ext_resource type="PackedScene" uid="uid://cnyqybv3bcgfh" path="res://stats-and-combat/Components/health_component.tscn" id="4_kv11m"]
 [ext_resource type="PackedScene" uid="uid://dkb233trnmk0q" path="res://stats-and-combat/Components/hitbox_component.tscn" id="5_rhe7v"]
 [ext_resource type="PackedScene" uid="uid://dtgglf6kcaaf" path="res://stats-and-combat/Components/attack_component.tscn" id="6_0mgxw"]
@@ -14,6 +15,20 @@
 [ext_resource type="PackedScene" uid="uid://5ajj6hvux3jy" path="res://Inventory/Controllers/interaction_controller.tscn" id="13_3u1kb"]
 [ext_resource type="PackedScene" uid="uid://7hyg2hsh5jsl" path="res://Player/Hero_basic3.glb" id="13_ewxee"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://n2tolafmdf1b" path="res://Player/hero_animation.tres" id="14_3u1kb"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ewxee"]
+viewport_path = NodePath("WorldSubview")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lf5tp"]
+shader = ExtResource("3_ewxee")
+shader_parameter/pixel_size = 2.1
+shader_parameter/color_levels = 7.625
+shader_parameter/dither_strength = 0.03
+shader_parameter/jitter_strength = 0.0015
+shader_parameter/scanline_strength = 0.08
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lf5tp"]
+viewport_path = NodePath("TextSubview")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mx8re"]
 height = 3.1273193
@@ -30,6 +45,50 @@ max_look_boundary = 20.0
 
 [node name="Basic_HUD" parent="." instance=ExtResource("11_0mgxw")]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+follow_viewport_enabled = true
+
+[node name="WorldTexture" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_ewxee")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+light_mask = 2
+visibility_layer = 2
+material = SubResource("ShaderMaterial_lf5tp")
+offset_right = 1151.0
+offset_bottom = 648.0
+mouse_filter = 2
+
+[node name="TextTexture" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_lf5tp")
+expand_mode = 1
+
+[node name="WorldSubview" type="SubViewport" parent="."]
+size = Vector2i(1152, 648)
+
+[node name="WorldCamera" type="Camera3D" parent="WorldSubview"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+
+[node name="TextSubview" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(1142, 648)
+
+[node name="TextCamera" type="Camera3D" parent="TextSubview"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+cull_mask = 1048574
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56365967, 0)
 shape = SubResource("CapsuleShape3D_mx8re")
@@ -39,7 +98,13 @@ transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
 shape = SubResource("SeparationRayShape3D_4flbx")
 spring_length = 5.5
 
-[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+[node name="SpringarmEnd" type="Node3D" parent="SpringArm3D"]
+
+[node name="RemoteWorldCamera" type="RemoteTransform3D" parent="SpringArm3D/SpringarmEnd"]
+remote_path = NodePath("../../../WorldSubview/WorldCamera")
+
+[node name="RemoteTextCamera" type="RemoteTransform3D" parent="SpringArm3D/SpringarmEnd"]
+remote_path = NodePath("../../../TextSubview/TextCamera")
 
 [node name="HorizontalPivot" type="Node3D" parent="."]
 
@@ -101,28 +166,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Hero_Rig/Armature" index="0"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -1, 0)
-bones/0/position = Vector3(-7.353103e-24, 0.9122511, 1.1019279e-09)
+bones/0/position = Vector3(7.8317315e-23, 0.93157387, 4.405391e-10)
 bones/0/rotation = Quaternion(-8.557139e-09, 1.7114278e-08, -2.9289851e-16, 1)
 bones/1/rotation = Quaternion(1.9820225e-14, -8.881784e-15, -2.6166074e-23, 1)
-bones/2/rotation = Quaternion(9.0639287e-07, -1.2791828e-09, 0.990003, -0.14104624)
+bones/2/rotation = Quaternion(9.1640027e-07, -9.259151e-08, 0.9953112, -0.09672478)
 bones/3/rotation = Quaternion(0.06098973, -0.004187123, -0.11117566, 0.9919187)
 bones/5/position = Vector3(0.15046811, -0.049661037, -0.014043546)
-bones/5/rotation = Quaternion(0.04974463, 0.14975122, 0.9870182, -0.029918142)
+bones/5/rotation = Quaternion(0.05016695, 0.10234983, 0.9932536, -0.021332018)
 bones/5/scale = Vector3(1.0000029, 0.9999996, 1.0000741)
-bones/6/rotation = Quaternion(-0.2856201, -0.0001474506, -0.036489, 0.95764804)
+bones/6/rotation = Quaternion(-0.19077241, -0.00015128705, -0.024371916, 0.98133165)
 bones/6/scale = Vector3(0.9999995, 0.9999997, 1.0000002)
 bones/7/position = Vector3(-2.4497272e-08, 0.40076756, -4.099143e-09)
-bones/7/rotation = Quaternion(0.74908733, 0.052622907, -0.01684083, 0.6601632)
+bones/7/rotation = Quaternion(0.7157709, 0.046991017, -0.023517722, 0.69635534)
 bones/7/scale = Vector3(1.000004, 1.0000167, 0.99999803)
-bones/8/rotation = Quaternion(-9.509169e-07, -9.5515496e-08, 0.9900237, 0.1409016)
+bones/8/rotation = Quaternion(-9.508486e-07, -8.286363e-08, 0.9932655, 0.11586043)
 bones/9/rotation = Quaternion(0.06098973, 0.0041871225, 0.11117564, 0.9919187)
 bones/11/position = Vector3(-0.15046811, -0.049661037, -0.014043561)
-bones/11/rotation = Quaternion(-0.047178987, 0.14980431, 0.9871464, 0.029577285)
+bones/11/rotation = Quaternion(-0.047587182, 0.102381214, 0.993382, 0.021113137)
 bones/11/scale = Vector3(1.0000029, 0.99999976, 1.0000741)
-bones/12/rotation = Quaternion(-0.2856201, 0.00014748017, 0.036489, 0.95764804)
+bones/12/rotation = Quaternion(-0.19077244, 0.00015132017, 0.024371924, 0.98133165)
 bones/12/scale = Vector3(0.99999976, 0.9999999, 1.0000002)
 bones/13/position = Vector3(4.1289947e-08, 0.4007676, -1.3423174e-09)
-bones/13/rotation = Quaternion(0.74922967, -0.050424054, 0.015476801, 0.6602067)
+bones/13/rotation = Quaternion(0.7158966, -0.044861805, 0.022045437, 0.6964147)
 bones/13/scale = Vector3(1.000004, 1.0000168, 0.9999982)
 bones/14/position = Vector3(0.24436599, 0.4813246, 0.87825346)
 bones/14/rotation = Quaternion(-0.006855925, 0.7070735, 0.70707357, -0.006855925)
@@ -155,7 +220,7 @@ parameters/die/request = 0
 parameters/TimeScale/scale = 0.29999999999999716
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.99988467, -0.0010884827, -0.015197914, 0.0021849717, -0.97689956, 0.21368855, -0.015079417, -0.21369693, -0.9767835, 0.37283987, 0.07495487, -0.043388247)
+transform = Transform3D(0.99872017, -0.050401114, -0.004391514, -0.04829212, -0.97559905, 0.21418336, -0.015079425, -0.21369699, -0.97678345, 0.3363745, 0.088763714, -0.043388296)
 bone_name = "hand.r"
 bone_idx = 10
 use_external_skeleton = true
