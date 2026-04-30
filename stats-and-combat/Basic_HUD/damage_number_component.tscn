@@ -82,6 +82,7 @@ script = ExtResource("1_20bkl")
 [node name="Node3D" type="Node3D" parent="."]
 
 [node name="Label3D" type="Label3D" parent="Node3D"]
+layers = 2
 billboard = 2
 render_priority = 127
 outline_render_priority = 126

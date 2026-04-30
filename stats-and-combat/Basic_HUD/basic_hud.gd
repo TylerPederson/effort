@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 class_name Basic_HUD
 
 @onready var hp_bar: ProgressBar = $HP_Bar
