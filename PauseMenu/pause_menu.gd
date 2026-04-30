@@ -1,8 +1,8 @@
 extends Control
 
 
-const SETTINGS_MENU_SCENE = preload("res://Settings_menu/Settings.tscn")
-var settings_menu_instance = null
+#const SETTINGS_MENU_SCENE = preload("res://Settings_menu/Settings.tscn")
+#var settings_menu_instance = null
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED

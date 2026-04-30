@@ -10,6 +10,10 @@ signal stop_sprint
 const SPEED = 400.0
 const JUMP_VELOCITY = 4.5
 
+#///////////////////pauseMenu//////////////////////
+const pause_menu_scene = preload("res://PauseMenu/PauseMenu.tscn")
+#///////////////////////////////////////////////////
+
 @onready var sprint_component: SprintComponent = $Sprint_Component
 @onready var inventory_controller: InventoryController = $"Inventory Controller/CanvasLayer/Inventory UI"
 @onready var armor_component: ArmorComponent = $Armor_Component
@@ -17,6 +21,9 @@ const JUMP_VELOCITY = 4.5
 @onready var weapon_component: WeaponComponent = %WeaponHolder/Weapon_Component
 @onready var basic_hud: Basic_HUD = $Basic_HUD
 
+#/////////////////////////pauseMenu//////////////////////
+var pause_menu_instance = null
+#/////////////////////////////////////////////////////////
 
 #**********************julian######################
 @onready var raycast = $RayCast3D 
@@ -97,6 +104,41 @@ func abort_other_oneshots():
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	
+	#///////////////////////pauseMenuCode///////////////////////////////////
+	if event.is_action_pressed("ui_cancel"):
+#		if get_tree().paused:
+#			return
+#		pause_menu_instance = pause_menu_scene.instantiate()
+#		add_child(pause_menu_instance)
+#		get_tree().paused = true
+#		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+#		return
+
+		#if pause is opnen then close it
+		if pause_menu_instance != null:
+			get_tree().paused = false
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			pause_menu_instance.queue_free()
+			pause_menu_instance = null
+			return
+
+		# if inventory is open then close it
+		if inventory_controller.visible:
+			inventory_controller.visible = false
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			return
+
+		#or just open pause menu
+		
+		pause_menu_instance = pause_menu_scene.instantiate()
+		add_child(pause_menu_instance)
+		get_tree().paused = true
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		return
+#///////////////////////////////////////////////////////////////////////
+	
+	
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
 			_look += -event.relative * mouse_sensitivity
@@ -120,12 +162,14 @@ func _unhandled_input(event: InputEvent) -> void:
 			abort_other_oneshots()
 			animation_tree["parameters/grab/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	
-	
-	if event.is_action_pressed("ui_cancel"):
-		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+#///////////////////////////Removed to make pause work////////////////
+#	if event.is_action_pressed("ui_cancel"):
+#		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+#			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+#		else:
+#			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+#///////////////////////////////////////////////////////////////////////
+
 	
 	if event.is_action_pressed("ui_text_caret_line_start"):
 		get_tree().change_scene_to_file("res://MainMenu_GUI/MainMenu.tscn")
