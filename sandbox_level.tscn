@@ -110,7 +110,7 @@ point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hacfn"]
 shader = ExtResource("28_hacfn")
-shader_parameter/pixel_size = 2.0
+shader_parameter/pixel_size = 2.1
 shader_parameter/color_levels = 7.625
 shader_parameter/dither_strength = 0.03
 shader_parameter/jitter_strength = 0.0015
@@ -626,8 +626,12 @@ size = Vector3(6.7865295, 8.532227, 0.9899292)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.62732, 0.38665068, -5.3887377)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+follow_viewport_enabled = true
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+light_mask = 2
+visibility_layer = 2
 material = SubResource("ShaderMaterial_hacfn")
 offset_right = 1151.0
 offset_bottom = 648.0

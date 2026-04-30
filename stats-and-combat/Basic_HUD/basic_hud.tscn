@@ -22,14 +22,6 @@ bg_color = Color(0.22341174, 0.27090055, 1.92523e-07, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vs2jc"]
 bg_color = Color(0.764275, 0.95, 0.2945, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_km2ot"]
-font_size = 20
-font_color = Color(1, 0.7490196, 0, 1)
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 10
-shadow_color = Color(0, 0, 0, 0.3254902)
-
 [sub_resource type="LabelSettings" id="LabelSettings_2m07e"]
 font_size = 24
 font_color = Color(0.043137256, 1, 0.56078434, 1)
@@ -116,6 +108,14 @@ shader_parameter/edge_softness = 0.0
 shader_parameter/wave_strength = 0.01
 shader_parameter/wave_speed = 0.2
 
+[sub_resource type="LabelSettings" id="LabelSettings_km2ot"]
+font_size = 20
+font_color = Color(1, 0.7490196, 0, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 0.3254902)
+
 [node name="Basic_HUD" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -157,15 +157,6 @@ offset_bottom = 66.0
 theme_override_styles/background = SubResource("StyleBoxFlat_6eeui")
 theme_override_styles/fill = SubResource("StyleBoxFlat_vs2jc")
 show_percentage = false
-
-[node name="InfoLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 677.0
-offset_top = 1.0
-offset_right = 1151.0
-offset_bottom = 29.0
-text = "INFO"
-label_settings = SubResource("LabelSettings_km2ot")
 
 [node name="BuffLabel" type="Label" parent="."]
 layout_mode = 0
@@ -225,5 +216,16 @@ visibility_layer = 4
 material = SubResource("ShaderMaterial_sx6o5")
 position = Vector2(374, 570)
 texture = ExtResource("3_sx6o5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InfoLabel" type="Label" parent="CanvasLayer"]
+top_level = true
+offset_left = 677.0
+offset_top = 1.0
+offset_right = 1151.0
+offset_bottom = 29.0
+text = "INFO"
+label_settings = SubResource("LabelSettings_km2ot")
 
 [connection signal="timeout" from="Cooldown_Bar/Timer" to="." method="_on_timer_timeout"]
