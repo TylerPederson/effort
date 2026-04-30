@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cok33xlk3v2p8"]
+[gd_scene load_steps=8 format=3 uid="uid://cok33xlk3v2p8"]
 
 [ext_resource type="Script" uid="uid://ur38770bbco0" path="res://boss_door.gd" id="1_7cihc"]
 [ext_resource type="Texture2D" uid="uid://b1uoi7uyiftyd" path="res://Textures/wood_7_64_.png" id="2_jm6fi"]
+[ext_resource type="AudioStream" uid="uid://b0r1ql2esyfro" path="res://Sounds/Door_open.mp3" id="3_axgn3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_axgn3"]
 albedo_texture = ExtResource("2_jm6fi")
@@ -33,3 +34,6 @@ use_collision = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(10.845, 0, 0, 0, 10.845, 0, 0, 0, 10.845, -0.01, -1.3009324, 0)
 shape = SubResource("BoxShape3D_48p18")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_axgn3")

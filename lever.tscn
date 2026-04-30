@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ja3vnixww6jc"]
+[gd_scene load_steps=18 format=3 uid="uid://ja3vnixww6jc"]
 
 [ext_resource type="Script" uid="uid://dvgqwtfx7b0ix" path="res://lever.gd" id="1_0ohsc"]
 [ext_resource type="PackedScene" uid="uid://vei5oj44pyjd" path="res://Inventory/Controllers/item_interact.tscn" id="2_1btnt"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://dbma4pv21m4yu" path="res://Textures/wood_14_64_.png" id="3_awwea"]
 [ext_resource type="Script" uid="uid://c4t0ml4w6l2e3" path="res://Inventory/Actions/inspect_action.gd" id="4_gk4f0"]
 [ext_resource type="Script" uid="uid://du5u3pregm218" path="res://Inventory/item_data.gd" id="5_h01c4"]
+[ext_resource type="AudioStream" uid="uid://l75mngk7cpn5" path="res://Sounds/Lever_Sound.mp3" id="8_awwea"]
+[ext_resource type="PackedScene" uid="uid://dk1i2d7b8h75i" path="res://lantern.tscn" id="9_76uva"]
+[ext_resource type="AudioStream" uid="uid://ckljf1r6covq2" path="res://Sounds/bell.mp3" id="10_73lsj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76uva"]
 next_pass = ExtResource("2_h01c4")
@@ -35,12 +38,6 @@ action_data = SubResource("Resource_awwea")
 stack_limit = 1
 item_desc = "The handle of a lever"
 metadata/_custom_type_script = "uid://du5u3pregm218"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awwea"]
-albedo_texture = ExtResource("3_awwea")
-
-[sub_resource type="PrismMesh" id="PrismMesh_awwea"]
-size = Vector3(1.5, 0.51, 1.4)
 
 [node name="Lever" type="StaticBody3D"]
 script = ExtResource("1_0ohsc")
@@ -73,9 +70,13 @@ shape = SubResource("BoxShape3D_0ohsc")
 [node name="ItemInteract" parent="." instance=ExtResource("2_1btnt")]
 item_data = SubResource("Resource_76uva")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.0039295554, 1.8357563, -0.0052773654)
-material_override = SubResource("StandardMaterial3D_awwea")
-mesh = SubResource("PrismMesh_awwea")
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_awwea")
+
+[node name="Lantern" parent="." instance=ExtResource("9_76uva")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0061326027, 1.6040528, -0.019524127)
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("10_73lsj")
 
 [connection signal="triggered" from="ItemInteract" to="." method="interact"]
