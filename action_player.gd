@@ -97,28 +97,29 @@ func abort_other_oneshots():
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		if event is InputEventMouseMotion:
-			_look += -event.relative * mouse_sensitivity
-		
-		if event.is_action_pressed("combat_attack"):
-			if not inventory_controller.equipped_items["weapon_melee"] == null:
-				perform_attack.emit()
-				
+	if able_to_move:
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			if event is InputEventMouseMotion:
+				_look += -event.relative * mouse_sensitivity
+			
+			if event.is_action_pressed("combat_attack"):
+				if not inventory_controller.equipped_items["weapon_melee"] == null:
+					perform_attack.emit()
+					
 
-		if event.is_action_pressed("combat_alternative"):
-			if not inventory_controller.equipped_items["weapon_melee"] == null:
-				perform_attack_alternative.emit()
-		if event.is_action_released("combat_alternative"):
-			stop_attack_alternative.emit()
-		if event.is_action_pressed("move_sprint"):
-			perform_sprint.emit()
-		if event.is_action_released("move_sprint"):
-			stop_sprint.emit()
-		
-		if event.is_action_pressed("interact"):
-			abort_other_oneshots()
-			animation_tree["parameters/grab/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+			if event.is_action_pressed("combat_alternative"):
+				if not inventory_controller.equipped_items["weapon_melee"] == null:
+					perform_attack_alternative.emit()
+			if event.is_action_released("combat_alternative"):
+				stop_attack_alternative.emit()
+			if event.is_action_pressed("move_sprint"):
+				perform_sprint.emit()
+			if event.is_action_released("move_sprint"):
+				stop_sprint.emit()
+			
+			if event.is_action_pressed("interact"):
+				abort_other_oneshots()
+				animation_tree["parameters/grab/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	
 	
 	if event.is_action_pressed("ui_cancel"):
@@ -174,10 +175,33 @@ func _on_equip_change(slot: String, equip_data) -> void:
 	match slot:
 		"armor_helm", "armor_body", "armor_feet":
 			armor_component.update_equipment(inventory_controller.equipped_items)
-		"weapon_melee", "weapon_ranged":
+		"weapon_ranged":
 			weapon_component.update_weapon(inventory_controller.equipped_items)
 			attack_component._refresh_weapon()
-			print(inventory_controller.equipped_items["weapon_melee"])
+		"weapon_melee":
+			weapon_component.update_weapon(inventory_controller.equipped_items)
+			attack_component._refresh_weapon()
+			
+			for child in %WeaponMeshHolder.get_children():
+				child.visible = false
+			
+			if !inventory_controller.equipped_items["weapon_melee"]:
+				return
+			
+			print(inventory_controller.equipped_items["weapon_melee"].item_name)
+			match (inventory_controller.equipped_items["weapon_melee"].item_name):
+				"Steel Axe":
+					%Mesh_SteelAxe.visible = true
+				"Iron Sword":
+					%Mesh_IronSword.visible = true
+				"Crossbow":
+					%Mesh_Crossbow.visible = true
+				"Wooden Bow":
+					%Mesh_Bow.visible = true
+				"Katana":
+					%Mesh_Katana.visible = true
+				_:
+					print("unset everything")
 
 
 func _on_health_component_death() -> void:
