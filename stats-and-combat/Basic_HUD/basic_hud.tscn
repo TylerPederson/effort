@@ -1,6 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cs3phbnr8ujn0"]
+[gd_scene load_steps=15 format=3 uid="uid://cs3phbnr8ujn0"]
 
 [ext_resource type="Script" uid="uid://80untv763qtf" path="res://stats-and-combat/Basic_HUD/basic_hud.gd" id="1_km2ot"]
+[ext_resource type="Texture2D" uid="uid://bssb617swfmw7" path="res://stats-and-combat/Basic_HUD/Sprites/stat sphere.png" id="3_sx6o5"]
+[ext_resource type="Shader" uid="uid://dxi61uf6w1pqf" path="res://stats-and-combat/Basic_HUD/stamina_orb.gdshader" id="3_y8rrw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_km2ot"]
 bg_color = Color(0.27515873, 3.1585805e-07, 7.219613e-08, 1)
@@ -36,6 +38,71 @@ outline_color = Color(0, 0.21176471, 0, 1)
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Shader" id="Shader_2m07e"]
+code = "shader_type canvas_item;
+
+uniform vec4 color_full = vec4(1, 0, 0, 1);
+uniform vec4  color_empty = vec4(1, 0.0, 0.0, 1);
+uniform vec4 rim_color = vec4 (0,1,1,1);
+uniform float radius = .1;
+uniform float health = .7;
+uniform float edge_softness = 0.01;
+uniform float wave_strength = 0.02;
+uniform float wave_speed = 2.0;
+
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+
+void fragment() {
+	vec2 center = vec2(0.5, 0.5);
+	float dist = distance(UV, center);
+	float circle = smoothstep(radius, radius - edge_softness, dist);
+	float wave = sin((UV.x + TIME * wave_speed) * 10.0) * wave_strength;
+	
+	float fill_line = (1.0 - health);
+	
+	float liquid = step(UV.y + wave, fill_line);
+	vec4 col = mix(color_empty, color_full, liquid);
+	col.a *=circle;
+	
+	
+	
+
+	COLOR = col;
+	
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6eeui"]
+shader = SubResource("Shader_2m07e")
+shader_parameter/color_full = Vector4(0.2, 0, 0, 1)
+shader_parameter/color_empty = Vector4(1, 0, 0, 1)
+shader_parameter/rim_color = Vector4(50.96, 1, 1, 1.015)
+shader_parameter/radius = 0.475
+shader_parameter/health = 0.7
+shader_parameter/edge_softness = 0.0
+shader_parameter/wave_strength = 0.01
+shader_parameter/wave_speed = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sx6o5"]
+shader = ExtResource("3_y8rrw")
+shader_parameter/color_full = Vector4(0, 1, 0, 1)
+shader_parameter/color_empty = Vector4(0, 0, 0, 1)
+shader_parameter/rim_color = Vector4(0, 1, 1, 1)
+shader_parameter/radius = 0.49
+shader_parameter/health = 0.56
+shader_parameter/edge_softness = 0.0
+shader_parameter/wave_strength = 0.01
+shader_parameter/wave_speed = 0.2
+
 [node name="Basic_HUD" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -47,6 +114,7 @@ mouse_filter = 1
 script = ExtResource("1_km2ot")
 
 [node name="HP_Bar" type="ProgressBar" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 9.0
 offset_top = 9.0
@@ -57,6 +125,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_2m07e")
 show_percentage = false
 
 [node name="Stamina_Bar" type="ProgressBar" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 9.0
 offset_top = 41.0
@@ -114,6 +183,7 @@ offset_left = 1000.0
 offset_top = 550.0
 offset_right = 1100.0
 offset_bottom = 650.0
+
 [node name="Cooldown_Bar" type="ProgressBar" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -130,5 +200,15 @@ grow_vertical = 0
 show_percentage = false
 
 [node name="Timer" type="Timer" parent="Cooldown_Bar"]
+
+[node name="health_orb" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_6eeui")
+position = Vector2(128.565, 570)
+texture = ExtResource("3_sx6o5")
+
+[node name="stamina_orb" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_sx6o5")
+position = Vector2(374, 570)
+texture = ExtResource("3_sx6o5")
 
 [connection signal="timeout" from="Cooldown_Bar/Timer" to="." method="_on_timer_timeout"]
