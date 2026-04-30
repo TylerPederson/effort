@@ -133,6 +133,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		pause_menu_instance = pause_menu_scene.instantiate()
 		add_child(pause_menu_instance)
+		pause_menu_instance.tree_exited.connect(func(): pause_menu_instance = null)
 		get_tree().paused = true
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		return
