@@ -50,6 +50,8 @@ func take_damage(damage: int) -> void:
 		display_damage.global_position = get_parent().get_node("Marker3D").global_position
 		display_damage.damage_display(damage)
 	
+	if get_parent().is_in_group("Player"):
+		get_parent().hurt_animation()
 	
 	if current_hp <= 0:
 		death.emit()
