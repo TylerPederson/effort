@@ -110,7 +110,7 @@ point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hacfn"]
 shader = ExtResource("28_hacfn")
-shader_parameter/pixel_size = 2.15
+shader_parameter/pixel_size = 2.0
 shader_parameter/color_levels = 7.625
 shader_parameter/dither_strength = 0.03
 shader_parameter/jitter_strength = 0.0015
@@ -631,7 +631,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.62732, 0.38665068, -5.38873
 material = SubResource("ShaderMaterial_hacfn")
 offset_right = 1151.0
 offset_bottom = 648.0
-mouse_filter = 1
+mouse_filter = 2
 
 [connection signal="all_enemies_defeated" from="EnemyManager" to="Choice_Tray_Spawn" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="EnemyManager2" to="Choice_Tray_Spawn2" method="spawn_collectible_tray"]
