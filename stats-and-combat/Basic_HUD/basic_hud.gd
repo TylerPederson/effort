@@ -11,6 +11,8 @@ class_name Basic_HUD
 @onready var passive3: TextureRect = $Passive3
 @onready var num_of_passives 
 @onready var passive_array
+@onready var hp_ratio
+@onready var stamina_ratio
 @onready var empty_passive = load("res://stats-and-combat/Basic_HUD/Sprites/empty_passive.png")
 @onready var damage_boost = load("res://stats-and-combat/Basic_HUD/Sprites/damage_boost.png")
 @onready var damage_cooldown = load("res://stats-and-combat/Basic_HUD/Sprites/damage_cooldown.png")
@@ -24,6 +26,10 @@ class_name Basic_HUD
 @onready var stamina_regen = load("res://stats-and-combat/Basic_HUD/Sprites/stamina_regen.png")
 @onready var cooldown_bar : ProgressBar = $Cooldown_Bar
 @onready var cooldown_timer : Timer = $Cooldown_Bar/Timer
+@onready var health_orb : Sprite2D = $health_orb
+@onready var health_mat = health_orb.material
+@onready var stamina_orb : Sprite2D = $stamina_orb
+@onready var stamina_mat = stamina_orb.material
 
 
 func _ready() -> void:
@@ -33,11 +39,14 @@ func _ready() -> void:
 	passive3.texture = empty_passive
 	passive_array = [passive1, passive2, passive3]
 	num_of_passives = 0
-	
+	hp_ratio = 1
+	stamina_ratio = 1
+	health_mat.set_shader_parameter("health", 0)
 	hp_bar.max_value = 100
 	hp_bar.value = 100
 	stamina_bar.max_value = 100
 	stamina_bar.value = 100
+	stamina_mat.set_shader_parameter("health", 0)
 	info_label.text = ""
 	buff_label.text = ""
 	cooldown_bar.visible = false
@@ -64,11 +73,16 @@ func _on_weapon_component_attack_started(time: Variant) -> void:
 func _on_health_component_health_change(current_hp: Variant, total_hp: Variant) -> void:
 	hp_bar.max_value = total_hp
 	hp_bar.value = current_hp
+	hp_ratio =  hp_bar.value / hp_bar.max_value
+	print(hp_ratio)
+	health_mat.set_shader_parameter("health", hp_ratio)
 
 
 func _on_stamina_component_stamina_change(current_stamina: Variant, total_stamina: Variant) -> void:
 	stamina_bar.max_value = total_stamina
 	stamina_bar.value = current_stamina
+	stamina_ratio = stamina_bar.value / stamina_bar.max_value
+	stamina_mat.set_shader_parameter("health", stamina_ratio)
 
 
 func _on_attack_alternative_component_perform_active(flag: bool, amount: float) -> void:
