@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=4 uid="uid://blgnpk61vbef4"]
+[gd_scene load_steps=63 format=4 uid="uid://blgnpk61vbef4"]
 
 [ext_resource type="PackedScene" path="res://auto_door.tscn" id="2_k3mmv"]
 [ext_resource type="Material" uid="uid://um2rf3mttrd4" path="res://Textures/dungeon_floors.tres" id="3_mws0n"]
@@ -28,8 +28,6 @@
 [ext_resource type="PackedScene" path="res://transport_level_area.tscn" id="26_mws0n"]
 [ext_resource type="PackedScene" uid="uid://clerkr85kk6ww" path="res://Boss/boss_room.tscn" id="27_hacfn"]
 [ext_resource type="Texture2D" uid="uid://cxnaa6y0m6t3" path="res://3D Models assets/PSX_Dungeon/Dungeon assets/Textures/TEX_Candle_01.png" id="31_ubyo5"]
-[ext_resource type="PackedScene" uid="uid://coih6jslqil7" path="res://3D Models assets/PSX_Dungeon/Dungeon assets/Models/Chandelier.fbx" id="31_v6iva"]
-[ext_resource type="PackedScene" uid="uid://b66pgvbe7y048" path="res://3D Models assets/PSX_Dungeon/Dungeon assets/Models/Arch_Fence.fbx" id="32_k8qcx"]
 [ext_resource type="Texture2D" uid="uid://dirdqx5yoecdi" path="res://3D Models assets/PSX_Dungeon/Dungeon assets/Textures/TEX_Chain_02.png" id="32_wfody"]
 [ext_resource type="Texture2D" uid="uid://buamdvjtacpmg" path="res://3D Models assets/PSX_Dungeon/Dungeon assets/Textures/TEX_Pillar_01.png" id="35_jdubm"]
 
@@ -825,45 +823,6 @@ size = Vector3(6.7865295, 8.532227, 0.9899292)
 
 [node name="iron_sword2" parent="." instance=ExtResource("25_gswlp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.62732, 0.38665068, -5.3887377)
-
-[node name="Chandelier" parent="." instance=ExtResource("31_v6iva")]
-transform = Transform3D(0.91090703, 0, 0.41261163, 0, 1, 0, -0.41261163, 0, 0.91090703, -65.4842, -21.136086, 72.11166)
-
-[node name="Arch_Fence" parent="." instance=ExtResource("32_k8qcx")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -14.982847, -2.0664272, 46.471127)
-
-[node name="Arch_Fence2" parent="." instance=ExtResource("32_k8qcx")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -7.1867447, -2.0664272, 46.471127)
-
-[node name="Arch_Fence3" parent="." instance=ExtResource("32_k8qcx")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.31453705, -2.0664272, 46.471127)
-
-[node name="Arch_Fence4" parent="." instance=ExtResource("32_k8qcx")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 7.905158, -2.0664272, 46.471127)
-
-[node name="Arch_Fence5" parent="." instance=ExtResource("32_k8qcx")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 15.740373, -2.0664272, 46.471127)
-
-[node name="Arch_Fence6" parent="." instance=ExtResource("32_k8qcx")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 23.681217, -2.0664272, 46.471127)
-
-[node name="Arch_Fence7" parent="." instance=ExtResource("32_k8qcx")]
-transform = Transform3D(0.011982463, -0.00035927177, 0.49985626, -0.005327111, 0.4999713, 0.00048705522, -0.49982798, -0.005337253, 0.011977941, -3.7797086, -2.0664272, 49.48996)
-
-[node name="Arch_Fence8" parent="." instance=ExtResource("32_k8qcx")]
-transform = Transform3D(0.011982463, -0.00035927177, 0.49985626, -0.005327111, 0.4999713, 0.00048705522, -0.49982798, -0.005337253, 0.011977941, -3.7797086, -2.0664272, 42.4426)
-
-[node name="Arch_Fence9" parent="." instance=ExtResource("32_k8qcx")]
-transform = Transform3D(0.011982463, -0.00035927177, 0.49985626, -0.005327111, 0.4999713, 0.00048705522, -0.49982798, -0.005337253, 0.011977941, -3.7797086, -2.0664272, 34.920887)
-
-[node name="Arch_Fence10" parent="." instance=ExtResource("32_k8qcx")]
-transform = Transform3D(0.011982463, -0.00035927177, 0.49985626, -0.005327111, 0.4999713, 0.00048705522, -0.49982798, -0.005337253, 0.011977941, -3.7797086, -2.0664272, 27.150867)
-
-[node name="Arch_Fence11" parent="." instance=ExtResource("32_k8qcx")]
-transform = Transform3D(0.011982463, -0.00035927177, 0.49985626, -0.005327111, 0.4999713, 0.00048705522, -0.49982798, -0.005337253, 0.011977941, -3.7797086, -2.2164898, 19.147043)
-
-[node name="Arch_Fence12" parent="." instance=ExtResource("32_k8qcx")]
-transform = Transform3D(0.011982463, -0.00035927177, 0.49985626, -0.005327111, 0.4999713, 0.00048705522, -0.49982798, -0.005337253, 0.011977941, -3.7797086, -2.1946745, 11.536517)
 
 [node name="Collapsed Pillar" type="MeshInstance3D" parent="."]
 transform = Transform3D(5.9604645e-08, 0, 1, 0, 1, 0, -1, 0, 5.9604645e-08, -25.922184, 0, 22.588827)
