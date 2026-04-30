@@ -31,24 +31,17 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_3fjk7")
 theme_override_font_sizes/font_size = 65
-text = "MasterVolume"
+text = "Volume"
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer"]
 layout_mode = 2
 step = 0.5
 
-[node name="Full Screen" type="Label" parent="VBoxContainer"]
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_3fjk7")
-theme_override_font_sizes/font_size = 65
+theme_override_font_sizes/font_size = 55
 text = "Full Screen"
-
-[node name="CheckButton" type="CheckButton" parent="VBoxContainer/Full Screen"]
-layout_mode = 0
-offset_left = 302.5
-offset_top = 20.0
-offset_right = 346.5
-offset_bottom = 44.0
 
 [node name="backButton" type="Button" parent="."]
 layout_mode = 1
@@ -61,3 +54,7 @@ grow_vertical = 0
 size_flags_vertical = 10
 theme_override_font_sizes/font_size = 45
 text = "Back"
+
+[connection signal="value_changed" from="VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="toggled" from="VBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="pressed" from="backButton" to="." method="_on_back_button_pressed"]
