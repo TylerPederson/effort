@@ -219,10 +219,33 @@ func _on_equip_change(slot: String, equip_data) -> void:
 	match slot:
 		"armor_helm", "armor_body", "armor_feet":
 			armor_component.update_equipment(inventory_controller.equipped_items)
-		"weapon_melee", "weapon_ranged":
+		"weapon_ranged":
 			weapon_component.update_weapon(inventory_controller.equipped_items)
 			attack_component._refresh_weapon()
-			print(inventory_controller.equipped_items["weapon_melee"])
+		"weapon_melee":
+			weapon_component.update_weapon(inventory_controller.equipped_items)
+			attack_component._refresh_weapon()
+			
+			for child in %WeaponMeshHolder.get_children():
+				child.visible = false
+			
+			if !inventory_controller.equipped_items["weapon_melee"]:
+				return
+			
+			print(inventory_controller.equipped_items["weapon_melee"].item_name)
+			match (inventory_controller.equipped_items["weapon_melee"].item_name):
+				"Steel Axe":
+					%Mesh_SteelAxe.visible = true
+				"Iron Sword":
+					%Mesh_IronSword.visible = true
+				"Crossbow":
+					%Mesh_Crossbow.visible = true
+				"Wooden Bow":
+					%Mesh_Bow.visible = true
+				"Katana":
+					%Mesh_Katana.visible = true
+				_:
+					print("unset everything")
 
 
 func _on_health_component_death() -> void:

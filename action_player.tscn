@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://da7uc6l3gvjq1"]
+[gd_scene load_steps=27 format=3 uid="uid://da7uc6l3gvjq1"]
 
 [ext_resource type="Script" uid="uid://bgv7o8b1m5rfj" path="res://action_player.gd" id="1_okpe7"]
 [ext_resource type="PackedScene" uid="uid://ctpmannwcqc02" path="res://stats-and-combat/Components/weapon_component.tscn" id="2_b2k0g"]
+[ext_resource type="Shader" uid="uid://8u5y27tvykqp" path="res://retro_look.gdshader" id="3_ewxee"]
 [ext_resource type="PackedScene" uid="uid://cnyqybv3bcgfh" path="res://stats-and-combat/Components/health_component.tscn" id="4_kv11m"]
 [ext_resource type="PackedScene" uid="uid://dkb233trnmk0q" path="res://stats-and-combat/Components/hitbox_component.tscn" id="5_rhe7v"]
 [ext_resource type="PackedScene" uid="uid://dtgglf6kcaaf" path="res://stats-and-combat/Components/attack_component.tscn" id="6_0mgxw"]
@@ -14,6 +15,25 @@
 [ext_resource type="PackedScene" uid="uid://5ajj6hvux3jy" path="res://Inventory/Controllers/interaction_controller.tscn" id="13_3u1kb"]
 [ext_resource type="PackedScene" uid="uid://7hyg2hsh5jsl" path="res://Player/Hero_basic3.glb" id="13_ewxee"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://n2tolafmdf1b" path="res://Player/hero_animation.tres" id="14_3u1kb"]
+[ext_resource type="PackedScene" uid="uid://dul6eyb6xt0km" path="res://Inventory/Items/Models/Sword.glb" id="16_lf5tp"]
+[ext_resource type="PackedScene" uid="uid://bfmeyvy22l5uk" path="res://Inventory/Items/Models/Axe.glb" id="17_02uis"]
+[ext_resource type="PackedScene" uid="uid://cy7dmedlthsis" path="res://Inventory/Items/Models/Crossbow.glb" id="18_x8p6m"]
+[ext_resource type="PackedScene" uid="uid://ba6dg3mai1tep" path="res://Inventory/Items/Models/Wooden Bow.glb" id="19_37x3a"]
+[ext_resource type="PackedScene" uid="uid://dnq7qevyyo87w" path="res://Inventory/Items/Models/Katana.glb" id="20_tvcsx"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ewxee"]
+viewport_path = NodePath("WorldSubview")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lf5tp"]
+shader = ExtResource("3_ewxee")
+shader_parameter/pixel_size = 2.1
+shader_parameter/color_levels = 7.625
+shader_parameter/dither_strength = 0.03
+shader_parameter/jitter_strength = 0.0015
+shader_parameter/scanline_strength = 0.08
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lf5tp"]
+viewport_path = NodePath("TextSubview")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mx8re"]
 height = 3.1273193
@@ -30,6 +50,51 @@ max_look_boundary = 20.0
 
 [node name="Basic_HUD" parent="." instance=ExtResource("11_0mgxw")]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+follow_viewport_enabled = true
+
+[node name="WorldTexture" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_ewxee")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+light_mask = 2
+visibility_layer = 2
+material = SubResource("ShaderMaterial_lf5tp")
+offset_right = 1151.0
+offset_bottom = 648.0
+mouse_filter = 2
+
+[node name="TextTexture" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_lf5tp")
+expand_mode = 1
+
+[node name="WorldSubview" type="SubViewport" parent="."]
+size = Vector2i(1152, 648)
+
+[node name="WorldCamera" type="Camera3D" parent="WorldSubview"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+cull_mask = 1048573
+
+[node name="TextSubview" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(1142, 648)
+
+[node name="TextCamera" type="Camera3D" parent="TextSubview"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+cull_mask = 1048574
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56365967, 0)
 shape = SubResource("CapsuleShape3D_mx8re")
@@ -39,7 +104,13 @@ transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
 shape = SubResource("SeparationRayShape3D_4flbx")
 spring_length = 5.5
 
-[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+[node name="SpringarmEnd" type="Node3D" parent="SpringArm3D"]
+
+[node name="RemoteWorldCamera" type="RemoteTransform3D" parent="SpringArm3D/SpringarmEnd"]
+remote_path = NodePath("../../../WorldSubview/WorldCamera")
+
+[node name="RemoteTextCamera" type="RemoteTransform3D" parent="SpringArm3D/SpringarmEnd"]
+remote_path = NodePath("../../../TextSubview/TextCamera")
 
 [node name="HorizontalPivot" type="Node3D" parent="."]
 
@@ -101,28 +172,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Hero_Rig/Armature" index="0"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -1, 0)
-bones/0/position = Vector3(-7.353103e-24, 0.9122511, 1.1019279e-09)
+bones/0/position = Vector3(-3.1321378e-23, 0.90227956, 1.44324e-09)
 bones/0/rotation = Quaternion(-8.557139e-09, 1.7114278e-08, -2.9289851e-16, 1)
 bones/1/rotation = Quaternion(1.9820225e-14, -8.881784e-15, -2.6166074e-23, 1)
-bones/2/rotation = Quaternion(9.0639287e-07, -1.2791828e-09, 0.990003, -0.14104624)
+bones/2/rotation = Quaternion(8.9604293e-07, -2.8565433e-10, 0.9864557, -0.16402858)
 bones/3/rotation = Quaternion(0.06098973, -0.004187123, -0.11117566, 0.9919187)
 bones/5/position = Vector3(0.15046811, -0.049661037, -0.014043546)
-bones/5/rotation = Quaternion(0.04974463, 0.14975122, 0.9870182, -0.029918142)
+bones/5/rotation = Quaternion(0.049540117, 0.1690427, 0.98379534, -0.033421956)
 bones/5/scale = Vector3(1.0000029, 0.9999996, 1.0000741)
-bones/6/rotation = Quaternion(-0.2856201, -0.0001474506, -0.036489, 0.95764804)
+bones/6/rotation = Quaternion(-0.32363728, -0.00014543482, -0.041345835, 0.94527745)
 bones/6/scale = Vector3(0.9999995, 0.9999997, 1.0000002)
 bones/7/position = Vector3(-2.4497272e-08, 0.40076756, -4.099143e-09)
-bones/7/rotation = Quaternion(0.74908733, 0.052622907, -0.01684083, 0.6601632)
+bones/7/rotation = Quaternion(0.7621597, 0.05488836, -0.014112274, 0.64490366)
 bones/7/scale = Vector3(1.000004, 1.0000167, 0.99999803)
-bones/8/rotation = Quaternion(-9.509169e-07, -9.5515496e-08, 0.9900237, 0.1409016)
+bones/8/rotation = Quaternion(-9.5221975e-07, -9.539862e-08, 0.9880831, 0.15392153)
 bones/9/rotation = Quaternion(0.06098973, 0.0041871225, 0.11117564, 0.9919187)
 bones/11/position = Vector3(-0.15046811, -0.049661037, -0.014043561)
-bones/11/rotation = Quaternion(-0.047178987, 0.14980431, 0.9871464, 0.029577285)
+bones/11/rotation = Quaternion(-0.046982087, 0.16910464, 0.9839235, 0.03303162)
 bones/11/scale = Vector3(1.0000029, 0.99999976, 1.0000741)
-bones/12/rotation = Quaternion(-0.2856201, 0.00014748017, 0.036489, 0.95764804)
+bones/12/rotation = Quaternion(-0.3236373, 0.00014547465, 0.041345846, 0.9452775)
 bones/12/scale = Vector3(0.99999976, 0.9999999, 1.0000002)
 bones/13/position = Vector3(4.1289947e-08, 0.4007676, -1.3423174e-09)
-bones/13/rotation = Quaternion(0.74922967, -0.050424054, 0.015476801, 0.6602067)
+bones/13/rotation = Quaternion(0.7623088, -0.05266263, 0.012793632, 0.6449406)
 bones/13/scale = Vector3(1.000004, 1.0000168, 0.9999982)
 bones/14/position = Vector3(0.24436599, 0.4813246, 0.87825346)
 bones/14/rotation = Quaternion(-0.006855925, 0.7070735, 0.70707357, -0.006855925)
@@ -155,14 +226,44 @@ parameters/die/request = 0
 parameters/TimeScale/scale = 0.29999999999999716
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.99988467, -0.0010884827, -0.015197914, 0.0021849717, -0.97689956, 0.21368855, -0.015079417, -0.21369693, -0.9767835, 0.37283987, 0.07495487, -0.043388247)
+transform = Transform3D(0.99948055, 0.02462846, -0.020817922, 0.02850584, -0.9765896, 0.21321437, -0.015079414, -0.2136969, -0.9767835, 0.3917272, 0.06858599, -0.043388233)
 bone_name = "hand.r"
 bone_idx = 10
 use_external_skeleton = true
 external_skeleton = NodePath("../Hero_Rig/Armature/Skeleton3D")
 
 [node name="WeaponMeshHolder" type="Node3D" parent="RightHandBone"]
+unique_name_in_owner = true
 transform = Transform3D(0.0058965697, 0.02364985, 0.19850923, 0.19405915, -0.048384376, 0, 0.048023727, 0.19261266, -0.024373857, 0, 0.05, 0)
+
+[node name="Mesh_IronSword" parent="RightHandBone/WeaponMeshHolder" instance=ExtResource("16_lf5tp")]
+unique_name_in_owner = true
+transform = Transform3D(2.7, 0, 0, 0, 2.7, 0, 0, 0, 2.7, 0, 0, 0)
+visible = false
+collision_layer = 0
+collision_mask = 0
+
+[node name="Mesh_SteelAxe" parent="RightHandBone/WeaponMeshHolder" instance=ExtResource("17_02uis")]
+unique_name_in_owner = true
+transform = Transform3D(1.285, 0, 0, 0, 1.285, 0, 0, 0, 1.285, 0, 0, 0)
+visible = false
+
+[node name="Mesh_Crossbow" parent="RightHandBone/WeaponMeshHolder" instance=ExtResource("18_x8p6m")]
+unique_name_in_owner = true
+transform = Transform3D(-0.53833556, -0.74692833, 0.39024672, 0.14436567, 0.3744917, 0.91592294, -0.83027345, 0.5494123, -0.09377117, 0.48501062, 0.8371967, 0.17728114)
+visible = false
+
+[node name="Mesh_Bow" parent="RightHandBone/WeaponMeshHolder" instance=ExtResource("19_37x3a")]
+unique_name_in_owner = true
+transform = Transform3D(-3.5886872, 0.34190023, 0.02128452, 0.32813644, 3.4952364, -0.81955874, -0.0983637, -0.813913, -3.5105402, 0.01993154, -0.0017763972, 0.069509625)
+visible = false
+collision_layer = 0
+collision_mask = 0
+
+[node name="Mesh_Katana" parent="RightHandBone/WeaponMeshHolder" instance=ExtResource("20_tvcsx")]
+unique_name_in_owner = true
+transform = Transform3D(-2.4922628, 0.61299235, -0.13328974, 0.6268662, 2.45429, -0.43405035, 0.023759585, -0.45343283, -2.5295718, 0.19926858, 0.91212386, -0.10477865)
+visible = false
 
 [connection signal="perform_attack" from="." to="Attack_Component" method="_on_attack_action"]
 [connection signal="attack_started" from="HorizontalPivot/WeaponHolder/Weapon_Component" to="." method="attack_animation"]

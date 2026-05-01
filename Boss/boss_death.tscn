@@ -1,0 +1,272 @@
+[gd_scene load_steps=18 format=3 uid="uid://dns0e8ky2dqgu"]
+
+[ext_resource type="Shader" uid="uid://f7u1jvnvwy5y" path="res://Boss/BossHitEffect/sparks.tres" id="1_5akqv"]
+[ext_resource type="Script" uid="uid://dcokfcyd58l2r" path="res://Boss/boss_death.gd" id="1_w5u7g"]
+[ext_resource type="Texture2D" uid="uid://qb1ywboi5387" path="res://Boss/BossHitEffect/T_circle42.PNG" id="2_w5u7g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8m5ck"]
+render_priority = 0
+shader = ExtResource("1_5akqv")
+shader_parameter/hit_texture = ExtResource("2_w5u7g")
+
+[sub_resource type="Curve" id="Curve_lbuch"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_37xtu"]
+curve = SubResource("Curve_lbuch")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sg2v3"]
+particle_flag_align_y = true
+spread = 180.0
+initial_velocity_min = 4.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, -5, 0)
+scale_min = 0.29999998
+scale_max = 0.5
+color = Color(0.9411765, 0, 0.09803922, 1)
+alpha_curve = SubResource("CurveTexture_37xtu")
+
+[sub_resource type="QuadMesh" id="QuadMesh_itwvt"]
+size = Vector2(0.16, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5akqv"]
+particle_flag_align_y = true
+spread = 180.0
+initial_velocity_min = 4.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, -5, 0)
+scale_min = 0.29999998
+scale_max = 0.5
+color = Color(0.9411765, 0, 0.87058824, 1)
+alpha_curve = SubResource("CurveTexture_37xtu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w5u7g"]
+particle_flag_align_y = true
+spread = 180.0
+initial_velocity_min = 4.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, -5, 0)
+scale_min = 0.29999998
+scale_max = 0.5
+color = Color(0.20392157, 0.2784314, 1, 1)
+alpha_curve = SubResource("CurveTexture_37xtu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8m5ck"]
+particle_flag_align_y = true
+spread = 180.0
+initial_velocity_min = 4.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, -5, 0)
+scale_min = 0.29999998
+scale_max = 0.5
+color = Color(1, 0.972549, 0, 1)
+alpha_curve = SubResource("CurveTexture_37xtu")
+
+[sub_resource type="Animation" id="Animation_5akqv"]
+resource_name = "boss_death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Red:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blue:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pink:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.19),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Yellow:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.19),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FlagPole:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -2.6417298, 0), Vector3(0, 2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w5u7g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Red:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blue:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pink:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Yellow:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FlagPole:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -2.6417298, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8m5ck"]
+_data = {
+&"RESET": SubResource("Animation_w5u7g"),
+&"boss_death": SubResource("Animation_5akqv")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5akqv"]
+albedo_color = Color(0.42557132, 0.42557135, 0.42557132, 1)
+metallic = 1.0
+
+[sub_resource type="PrismMesh" id="PrismMesh_5akqv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w5u7g"]
+albedo_color = Color(0.24871692, 0.7414775, 0.109116845, 1)
+
+[node name="BossDeath" type="Node3D"]
+script = ExtResource("1_w5u7g")
+
+[node name="Red" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9719645, 0)
+material_override = SubResource("ShaderMaterial_8m5ck")
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_sg2v3")
+draw_pass_1 = SubResource("QuadMesh_itwvt")
+
+[node name="Pink" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8024781, 0)
+material_override = SubResource("ShaderMaterial_8m5ck")
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_5akqv")
+draw_pass_1 = SubResource("QuadMesh_itwvt")
+
+[node name="Blue" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.84348667, 0)
+material_override = SubResource("ShaderMaterial_8m5ck")
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_w5u7g")
+draw_pass_1 = SubResource("QuadMesh_itwvt")
+
+[node name="Yellow" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9431081, 0)
+material_override = SubResource("ShaderMaterial_8m5ck")
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_8m5ck")
+draw_pass_1 = SubResource("QuadMesh_itwvt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8m5ck")
+}
+
+[node name="FlagPole" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -2.6417298, 0)
+radius = 0.1
+height = 5.0
+material = SubResource("StandardMaterial3D_5akqv")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="FlagPole"]
+transform = Transform3D(-4.371139e-08, -1.266927, 0, 1, -5.537914e-08, 0, 0, 0, 0.03255719, -0.5701816, 2.0028954, 0)
+mesh = SubResource("PrismMesh_5akqv")
+material = SubResource("StandardMaterial3D_w5u7g")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7670898, 0)
+size = Vector3(50, 50, 50)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.396282, 0)
