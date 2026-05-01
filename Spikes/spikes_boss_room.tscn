@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1akrsdewnntr"]
+
+[ext_resource type="PackedScene" uid="uid://1omebjldyn42" path="res://stats-and-combat/Components/damage_component.tscn" id="1_gagx4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gagx4"]
+albedo_color = Color(0.3019608, 0.27058825, 0.23529412, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_t3eke"]
+material = SubResource("StandardMaterial3D_gagx4")
+top_radius = 0.0
+bottom_radius = 0.2
+height = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8fhau"]
+size = Vector3(1, 0.8479614, 1)
+
+[node name="Spikes" type="Node3D"]
+
+[node name="Spike_mesh" type="Node3D" parent="."]
+
+[node name="Spike_1" type="MeshInstance3D" parent="Spike_mesh"]
+transform = Transform3D(1, 0, 0, 0, 0.75285363, 0, 0, 0, 1, 0, 0.3381852, 0)
+mesh = SubResource("CylinderMesh_t3eke")
+skeleton = NodePath("../..")
+
+[node name="Spike_2" type="MeshInstance3D" parent="Spike_mesh"]
+transform = Transform3D(1, 0, 0, 0, 0.6475196, 0, 0, 0, 1, 0.5, 0.32579827, 0.5)
+mesh = SubResource("CylinderMesh_t3eke")
+skeleton = NodePath("../..")
+
+[node name="Spike_3" type="MeshInstance3D" parent="Spike_mesh"]
+transform = Transform3D(1, 0, 0, 0, 1.1527431, 0, 0, 0, 1, 0.5, 0.5, -0.5)
+mesh = SubResource("CylinderMesh_t3eke")
+skeleton = NodePath("../..")
+
+[node name="Spike_4" type="MeshInstance3D" parent="Spike_mesh"]
+transform = Transform3D(1, 0, 0, 0, 1.3618331, 0, 0, 0, 1, -0.5, 0.64169884, -0.5)
+mesh = SubResource("CylinderMesh_t3eke")
+skeleton = NodePath("../..")
+
+[node name="Spike_5" type="MeshInstance3D" parent="Spike_mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, 0.5)
+mesh = SubResource("CylinderMesh_t3eke")
+skeleton = NodePath("../..")
+
+[node name="damage_component" parent="." instance=ExtResource("1_gagx4")]
+transform = Transform3D(1.566274, 0, 0, 0, 1.2352146, 0, 0, 0, 1.3713222, 0, 0, 0)
+damage_value = 1000
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="damage_component"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4239807, 0)
+shape = SubResource("BoxShape3D_8fhau")
