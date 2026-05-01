@@ -1,0 +1,140 @@
+[gd_scene load_steps=24 format=3 uid="uid://ccvd73ge8qwxu"]
+
+[ext_resource type="Script" uid="uid://crbevwsewvj61" path="res://Enemy/enemy.gd" id="1_q601x"]
+[ext_resource type="PackedScene" uid="uid://dkb233trnmk0q" path="res://stats-and-combat/Components/hitbox_component.tscn" id="2_vyukt"]
+[ext_resource type="Script" uid="uid://o5mb37flgy44" path="res://stats-and-combat/Components/health_component.gd" id="3_pmsio"]
+[ext_resource type="Script" uid="uid://xrvjfslc8yso" path="res://stats-and-combat/Components/attack_component.gd" id="4_u2rrs"]
+[ext_resource type="PackedScene" uid="uid://ctpmannwcqc02" path="res://stats-and-combat/Components/weapon_component.tscn" id="5_limm7"]
+[ext_resource type="PackedScene" uid="uid://bg16ugxonu0ke" path="res://stats-and-combat/Weapons/projectile.tscn" id="6_7xufg"]
+[ext_resource type="PackedScene" uid="uid://b5s26qhjtttb1" path="res://Enemy/mimic_chest.glb" id="7_q601x"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q601x"]
+radius = 0.92626953
+height = 2.4042969
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_am0pq"]
+height = 4.0
+radius = 12.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vyukt"]
+radius = 0.86865234
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0rspp"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_efk13"]
+animation = &"die"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nmr1a"]
+animation = &"hurt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_47ove"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jovdv"]
+animation = &"move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rdorl"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1w3kn"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mqp78"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sbh3k"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2fgfm"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_llu5w"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_glvfu"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wyh6i"]
+states/End/position = Vector2(858, 100)
+states/Start/position = Vector2(189, 100)
+states/attack/node = SubResource("AnimationNodeAnimation_0rspp")
+states/attack/position = Vector2(488, 13)
+states/die/node = SubResource("AnimationNodeAnimation_efk13")
+states/die/position = Vector2(759, 100)
+states/hurt/node = SubResource("AnimationNodeAnimation_nmr1a")
+states/hurt/position = Vector2(595, 100)
+states/idle/node = SubResource("AnimationNodeAnimation_47ove")
+states/idle/position = Vector2(342, 100)
+states/move/node = SubResource("AnimationNodeAnimation_jovdv")
+states/move/position = Vector2(488, 195)
+transitions = ["idle", "attack", SubResource("AnimationNodeStateMachineTransition_rdorl"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_1w3kn"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_mqp78"), "hurt", "die", SubResource("AnimationNodeStateMachineTransition_sbh3k"), "idle", "move", SubResource("AnimationNodeStateMachineTransition_2fgfm"), "move", "idle", SubResource("AnimationNodeStateMachineTransition_llu5w"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_glvfu")]
+graph_offset = Vector2(-16, -28)
+
+[node name="Enemy" type="CharacterBody3D" groups=["Enemy"]]
+script = ExtResource("1_q601x")
+
+[node name="Hitbox_Component" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_vyukt")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox_Component"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90895915, 0)
+shape = SubResource("CapsuleShape3D_q601x")
+
+[node name="HealthComponent" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_pmsio")
+max_hp = 20
+metadata/_custom_type_script = "uid://o5mb37flgy44"
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("CylinderShape3D_am0pq")
+
+[node name="AttackComponent" type="Node3D" parent="." node_paths=PackedStringArray("weapon_holder")]
+unique_name_in_owner = true
+script = ExtResource("4_u2rrs")
+weapon_holder = NodePath("../WeaponHolder")
+metadata/_custom_type_script = "uid://xrvjfslc8yso"
+
+[node name="WeaponHolder" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51132894, -0.23720807)
+
+[node name="Weapon_Component" parent="WeaponHolder" node_paths=PackedStringArray("weilder") instance=ExtResource("5_limm7")]
+unique_name_in_owner = true
+projectile_scene = ExtResource("6_7xufg")
+damage = 20
+cooldown = 2.0
+attack_range = 5.0
+weilder = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06591797, 1.0090332, 0)
+shape = SubResource("CylinderShape3D_vyukt")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4197489, 2.1441524, -0.6601864)
+
+[node name="Model" parent="." instance=ExtResource("7_q601x")]
+
+[node name="Armature" parent="Model" index="0"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Model/Armature" index="0"]
+bones/0/position = Vector3(-0.04394162, 0.026260441, -0.2912435)
+bones/0/rotation = Quaternion(-2.2665026e-18, 2.9715632e-09, -0.022562446, 0.9997455)
+bones/1/rotation = Quaternion(0.68101823, -0.0038121906, -0.00070836616, 0.7322563)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../Model")
+tree_root = SubResource("AnimationNodeStateMachine_wyh6i")
+anim_player = NodePath("../Model/AnimationPlayer")
+
+[connection signal="death" from="HealthComponent" to="." method="_on_health_component_death"]
+[connection signal="hit_damage" from="HealthComponent" to="." method="_on_health_component_hit_damage"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="attack_started" from="WeaponHolder/Weapon_Component" to="." method="_on_weapon_component_attack_started"]
+[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+
+[editable path="Model"]

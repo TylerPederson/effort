@@ -17,6 +17,5 @@ func deal_damage(damage) -> void:
 			return
 	
 	var hb_component : HitboxComponent = collider
-	print(hb_component)
 	hb_component.receive_damage(damage)
 	

@@ -47,9 +47,12 @@ func take_damage(damage: int) -> void:
 	if get_parent().get_node_or_null("Marker3D"):
 		var display_damage = damage_numbers.instantiate()
 		get_parent().add_child(display_damage)
-		display_damage.global_position = get_parent().get_node("Marker3D").global_position
+		var random_offset = Vector3(-2 * randf() + 1, -2 * randf() + 1, 0)
+		display_damage.global_position = get_parent().get_node("Marker3D").global_position + random_offset
 		display_damage.damage_display(damage)
 	
+	if get_parent().is_in_group("Player"):
+		get_parent().hurt_animation()
 	
 	if current_hp <= 0:
 		death.emit()

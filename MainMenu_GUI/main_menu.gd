@@ -1,5 +1,6 @@
 extends Control
 
+const SETTINGS_MENU_SCENE = preload("res://Settings_menu/Settings.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,6 +19,9 @@ func _on_start_pressed() -> void:
 
 func _on_setting_pressed() -> void:
 	print("setting button pressed")
+	var settings_menu = SETTINGS_MENU_SCENE.instantiate()
+	settings_menu.opened_from = "main_menu"
+	get_tree().current_scene.add_child(settings_menu)
 
 
 func _on_quit_pressed() -> void:

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://1fhefww4sbje"]
+
+[ext_resource type="Texture2D" uid="uid://dfykwbqic36bg" path="res://Boss/Textures_BossRoom/Bricks_16-128x128.png" id="1_5v51c"]
+[ext_resource type="PackedScene" uid="uid://bj4enqhuj8iah" path="res://Boss/Fire/Fire.tscn" id="2_tp4tt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tp4tt"]
+albedo_texture = ExtResource("1_5v51c")
+uv1_triplanar = true
+
+[node name="Torches_boss" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(1, 15, 1)
+material = SubResource("StandardMaterial3D_tp4tt")
+
+[node name="Fire" parent="." instance=ExtResource("2_tp4tt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5902557, 0)
