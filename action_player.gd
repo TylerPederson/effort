@@ -204,16 +204,6 @@ func frame_camera_rotation() -> void:
 	# By this point, "used" all the difference accumulated in _look since last frame, reset for next accumulation
 	_look = Vector2.ZERO
 	
-#############################julian###########################################
-#This is the function to interact with the lever
-func handle_interaction():
-	if Input.is_action_just_pressed("interact"):
-		if raycast.is_colliding():
-			var obj = raycast.get_collider()
-			if obj and obj.has_method("interact"):
-				obj.interact()
-##############################################################################
-
 
 func _on_equip_change(slot: String, equip_data) -> void:
 	match slot:

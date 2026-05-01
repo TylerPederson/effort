@@ -17,6 +17,7 @@ func _process(delta: float) -> void:
 func _on_death():
 	target_dummy_mesh.visible = false
 	destroyed_mesh.visible = true
+	
 	await get_tree().create_timer(2.0).timeout
 	queue_free()
 	
