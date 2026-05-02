@@ -1,0 +1,189 @@
+[gd_scene load_steps=23 format=3 uid="uid://d0peckb00x4i3"]
+
+[ext_resource type="Shader" uid="uid://8jfkkutnnhw" path="res://Boss/BossHitEffect/boss_hit_effect.tres" id="1_q8b6c"]
+[ext_resource type="Texture2D" uid="uid://vtbtwc1ca6ri" path="res://Boss/BossHitEffect/T_flare81.png" id="2_koudy"]
+[ext_resource type="Shader" uid="uid://f7u1jvnvwy5y" path="res://Boss/BossHitEffect/sparks.tres" id="3_sywye"]
+[ext_resource type="Texture2D" uid="uid://qb1ywboi5387" path="res://Boss/BossHitEffect/T_circle42.PNG" id="4_37xtu"]
+[ext_resource type="AudioStream" uid="uid://bs52ahrsdrl0k" path="res://Boss/BossAudio/Sword Impact Hit 1.wav" id="5_37xtu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sywye"]
+render_priority = 0
+shader = ExtResource("1_q8b6c")
+shader_parameter/hit_texture = ExtResource("2_koudy")
+
+[sub_resource type="Curve" id="Curve_koudy"]
+_data = [Vector2(0.014522828, 0), 0.0, 0.0, 0, 0, Vector2(0.5165975, 0.9885846), 0.0, 0.0, 0, 0, Vector2(0.97510374, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_sywye"]
+curve = SubResource("Curve_koudy")
+
+[sub_resource type="Gradient" id="Gradient_q8b6c"]
+offsets = PackedFloat32Array(0, 0.9929907)
+colors = PackedColorArray(1, 0.9265614, 0.07016479, 1, 0.97814435, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_koudy"]
+gradient = SubResource("Gradient_q8b6c")
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_q8b6c"]
+_data = [Vector2(0, 0.9406394), 0.0, -0.696956, 0, 0, Vector2(1, 0.070776224), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_koudy"]
+curve = SubResource("Curve_q8b6c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_37xtu"]
+angle_min = -179.99998
+angle_max = 180.00002
+gravity = Vector3(0, 0, 0)
+scale_min = 0.79999995
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_koudy")
+color_ramp = SubResource("GradientTexture1D_koudy")
+alpha_curve = SubResource("CurveTexture_sywye")
+
+[sub_resource type="QuadMesh" id="QuadMesh_qrulo"]
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q8b6c"]
+render_priority = 0
+shader = ExtResource("3_sywye")
+shader_parameter/hit_texture = ExtResource("4_37xtu")
+
+[sub_resource type="Curve" id="Curve_sywye"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_37xtu"]
+curve = SubResource("Curve_sywye")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_koudy"]
+particle_flag_align_y = true
+spread = 180.0
+initial_velocity_min = 4.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.29999998
+scale_max = 0.5
+color = Color(1, 0.98669523, 0.74966514, 1)
+alpha_curve = SubResource("CurveTexture_37xtu")
+
+[sub_resource type="QuadMesh" id="QuadMesh_sywye"]
+size = Vector2(0.16, 1)
+
+[sub_resource type="Animation" id="Animation_37xtu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hit_effect:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sparks:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_sywye"]
+resource_name = "hit_animation"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hit_effect:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sparks:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qrulo"]
+_data = {
+&"RESET": SubResource("Animation_37xtu"),
+&"hit_animation": SubResource("Animation_sywye")
+}
+
+[node name="boss_hit_effect" type="Node3D"]
+
+[node name="hit_effect" type="GPUParticles3D" parent="."]
+material_override = SubResource("ShaderMaterial_sywye")
+emitting = false
+amount = 1
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_37xtu")
+draw_pass_1 = SubResource("QuadMesh_qrulo")
+
+[node name="sparks" type="GPUParticles3D" parent="."]
+material_override = SubResource("ShaderMaterial_q8b6c")
+emitting = false
+amount = 50
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_koudy")
+draw_pass_1 = SubResource("QuadMesh_sywye")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qrulo")
+}
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_37xtu")
+bus = &"SFX"

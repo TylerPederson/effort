@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://d040krigx3ga1"]
+
+[ext_resource type="Texture2D" uid="uid://cng2ioee2bu0q" path="res://Textures/wood_19_64_.png" id="1_jk8xd"]
+[ext_resource type="Texture2D" uid="uid://c5w8ll7cceypv" path="res://Textures/birmingham-museums-trust-j18GyGgldIs-unsplash.jpg" id="2_ygp5e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n5gwg"]
+albedo_texture = ExtResource("1_jk8xd")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vf687"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5wn6o"]
+albedo_texture = ExtResource("2_ygp5e")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xiryd"]
+
+[node name="Paintingtwo" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.97, 0, 0, 0, -2.106889e-07, -4.82, 0, 4.82, -2.106889e-07, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_n5gwg")
+mesh = SubResource("PlaneMesh_vf687")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.47, 0, 0, 0, -2.5724154e-07, -4.266, 0, 5.885, -1.8647277e-07, 0, 0, 0.013392925)
+material_override = SubResource("StandardMaterial3D_5wn6o")
+mesh = SubResource("PlaneMesh_xiryd")

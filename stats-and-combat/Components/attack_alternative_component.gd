@@ -104,7 +104,7 @@ func _on_perform_end():
 	if attack_component == null:
 		return
 	
-	if perform_charge > 0.1:
+	if perform_charge > 0.5:
 		match(attack_component._equipped_weapon.attackStyle):
 			WeaponComponent.WeaponAttackStyle.STAB:
 				var armor_bonus = FlatArmorStrategy.new(ceil(perform_charge), flat_armor_time)
@@ -113,16 +113,17 @@ func _on_perform_end():
 			WeaponComponent.WeaponAttackStyle.SWING:
 				var armor_bonus = RatioArmorStrategy.new(ratio_armor_amount, perform_charge)
 				armor_component.add_armor_source(armor_bonus)
-				controller.basic_hud.display_buff("Temporary Proptection for " + str(snappedf(perform_charge, 0.1)), ratio_armor_time_rate)
+				controller.basic_hud.display_buff("Temporary Proptection for " + str(snappedf(perform_charge, 0.1)), ratio_armor_time_rate * perform_charge)
 			WeaponComponent.WeaponAttackStyle.SHOOT:
 				controller.velocity.y += perform_charge
 				controller.basic_hud.display_buff("Super Jump Strength: " +  str(snappedf(perform_charge, 0.1)))
 			_:
 				pass
-
+	
+	var previous_charge = perform_charge
 	perform_charge = 0.0
 	performing = false
-	perform_active.emit(false, 0)
+	perform_active.emit(false, previous_charge)
 
 
 func _get_max_charge_possible():

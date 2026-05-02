@@ -23,6 +23,8 @@ point_count = 2
 script = ExtResource("1_ukuck")
 
 [node name="Damage_Component" parent="." instance=ExtResource("2_6xd0t")]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Damage_Component"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5.9761684e-10, 0.013671875)
@@ -35,6 +37,8 @@ one_shot = true
 script = ExtResource("4_6xd0t")
 
 [node name="ExplosionArea" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionArea"]
 shape = SubResource("SphereShape3D_6xd0t")

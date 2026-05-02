@@ -30,6 +30,8 @@ func _process(delta):
 func _on_area_3d_body_entered(body): # Activates when player enters trigger 
 	#print_debug("Entered")
 	if body.name == "Player":
+		if !$AudioStreamPlayer.playing:
+			$AudioStreamPlayer.play()
 		drop = true
 	
 
@@ -37,4 +39,6 @@ func _on_area_3d_body_entered(body): # Activates when player enters trigger
 func _on_area_3d_2_body_exited(body):
 	#print_debug("Exited")
 	if body.name == "Player":
+		if !$AudioStreamPlayer.playing:
+			$AudioStreamPlayer.play()
 		lift = true

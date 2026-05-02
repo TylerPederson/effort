@@ -1,6 +1,20 @@
 extends Node3D
+class_name Choice_Tray
 
 signal collected(type: Collectible.TYPE)
+
+static var collectibles_list = [
+	Collectible.TYPE.HP_REGEN,
+	Collectible.TYPE.HP_BOOST,
+	Collectible.TYPE.STAMINA_REGEN,
+	Collectible.TYPE.STAMINA_BOOST,
+	Collectible.TYPE.BONUS_FLAT_ARMOR,
+	Collectible.TYPE.BONUS_RATIO_ARMOR,
+	Collectible.TYPE.SPRINT_USE_RATIO,
+	Collectible.TYPE.SPRINT_SPEED_BOOST,
+	Collectible.TYPE.DAMAGE_BOOST,
+	Collectible.TYPE.DAMAGE_COOLDOWN
+]
 
 static var to_collect = [
 	Collectible.TYPE.HP_REGEN,
@@ -15,7 +29,6 @@ static var to_collect = [
 	Collectible.TYPE.DAMAGE_COOLDOWN
 ]
 
-
 func _ready() -> void:
 	%Collectible1.set_type(select_available())
 	%Collectible2.set_type(select_available())
@@ -24,6 +37,9 @@ func _ready() -> void:
 	%Collectible1.visible = false
 	%Collectible2.visible = false
 	%Collectible3.visible = false
+
+static func reset_available_collectibles():
+	to_collect = collectibles_list.duplicate()
 
 func activate():
 	process_mode = Node.PROCESS_MODE_INHERIT

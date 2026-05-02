@@ -13,7 +13,7 @@ height = 1.1203613
 [sub_resource type="Resource" id="Resource_5dxt0"]
 resource_local_to_scene = true
 script = ExtResource("4_1aslp")
-armor_value = 10
+armor_value = 1
 metadata/_custom_type_script = "uid://cnlb1oem8hjot"
 
 [sub_resource type="Resource" id="Resource_ltoth"]

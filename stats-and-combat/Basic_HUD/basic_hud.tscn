@@ -1,6 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cs3phbnr8ujn0"]
+[gd_scene load_steps=15 format=3 uid="uid://cs3phbnr8ujn0"]
 
 [ext_resource type="Script" uid="uid://80untv763qtf" path="res://stats-and-combat/Basic_HUD/basic_hud.gd" id="1_km2ot"]
+[ext_resource type="Texture2D" uid="uid://bssb617swfmw7" path="res://stats-and-combat/Basic_HUD/Sprites/stat sphere.png" id="3_sx6o5"]
+[ext_resource type="Shader" uid="uid://dxi61uf6w1pqf" path="res://stats-and-combat/Basic_HUD/stamina_orb.gdshader" id="3_y8rrw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_km2ot"]
 bg_color = Color(0.27515873, 3.1585805e-07, 7.219613e-08, 1)
@@ -20,14 +22,6 @@ bg_color = Color(0.22341174, 0.27090055, 1.92523e-07, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vs2jc"]
 bg_color = Color(0.764275, 0.95, 0.2945, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_km2ot"]
-font_size = 20
-font_color = Color(1, 0.7490196, 0, 1)
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 10
-shadow_color = Color(0, 0, 0, 0.3254902)
-
 [sub_resource type="LabelSettings" id="LabelSettings_2m07e"]
 font_size = 24
 font_color = Color(0.043137256, 1, 0.56078434, 1)
@@ -36,18 +30,97 @@ outline_color = Color(0, 0.21176471, 0, 1)
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 1)
 
-[node name="Basic_HUD" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
+[sub_resource type="Shader" id="Shader_2m07e"]
+code = "shader_type canvas_item;
+
+uniform vec4 color_full = vec4(1, 0, 0, 1);
+uniform vec4  color_empty = vec4(1, 1, 1, 1);
+uniform vec4 rim_color = vec4 (1,1,1,1);
+uniform float radius = .1;
+uniform float health = .7;
+uniform float darkness : hint_range(0.0, 1.0) = 0.5;
+uniform float rim_darkness : hint_range(0.0, 5.0) = .5;
+
+uniform float edge_softness = 0.01;
+uniform float wave_strength = 0.02;
+uniform float wave_speed = 2.0;
+
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+
+void fragment() {
+	vec2 center = vec2(0.5, 0.5);
+	float dist = distance(UV, center);
+	float circle = smoothstep(radius, radius - edge_softness, dist);
+	float wave = sin((UV.x + TIME * wave_speed) * 10.0) * wave_strength;
+	
+	float fill_line = (1.0 - health);
+	float rim = smoothstep(radius - 0.02, radius, dist);
+	float light = 1.0 - dist*.9;
+	
+	float liquid = step(UV.y + wave, fill_line);
+	vec4 col = mix(color_empty, color_full, liquid);
+	col.rgb *= light;
+	col.rgb *= .8 - darkness * dist;
+	col.rgb += rim *rim_color.rgb * darkness;
+	col.a *=circle;
+	
+	
+	
+	
+
+	COLOR = col;
+	
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6eeui"]
+shader = SubResource("Shader_2m07e")
+shader_parameter/color_full = Vector4(0.2, 0, 0, 1)
+shader_parameter/color_empty = Vector4(1, 0, 0, 1)
+shader_parameter/rim_color = Vector4(1, 1, 1, 1.015)
+shader_parameter/radius = 0.475
+shader_parameter/health = 0.7
+shader_parameter/darkness = 0.5
+shader_parameter/rim_darkness = 5.0
+shader_parameter/edge_softness = 0.0
+shader_parameter/wave_strength = 0.01
+shader_parameter/wave_speed = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sx6o5"]
+shader = ExtResource("3_y8rrw")
+shader_parameter/color_full = Vector4(0, 0, 0, 1)
+shader_parameter/color_empty = Vector4(0, 1, 0, 1)
+shader_parameter/rim_color = Vector4(0, 1, 1, 1)
+shader_parameter/radius = 0.49
+shader_parameter/health = 0.56
+shader_parameter/darkness = 0.5
+shader_parameter/rim_darkness = 0.5
+shader_parameter/edge_softness = 0.0
+shader_parameter/wave_strength = 0.01
+shader_parameter/wave_speed = 0.2
+
+[sub_resource type="LabelSettings" id="LabelSettings_km2ot"]
+font_size = 20
+font_color = Color(1, 0.7490196, 0, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 0.3254902)
+
+[node name="Basic_HUD" type="CanvasLayer"]
 script = ExtResource("1_km2ot")
 
 [node name="HP_Bar" type="ProgressBar" parent="."]
-layout_mode = 0
+visible = false
 offset_left = 9.0
 offset_top = 9.0
 offset_right = 286.0
@@ -57,7 +130,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_2m07e")
 show_percentage = false
 
 [node name="Stamina_Bar" type="ProgressBar" parent="."]
-layout_mode = 0
+visible = false
 offset_left = 9.0
 offset_top = 41.0
 offset_right = 286.0
@@ -67,26 +140,17 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_sx6o5")
 show_percentage = false
 
 [node name="Charge_Bar" type="ProgressBar" parent="."]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 55.0
-offset_right = 286.0
-offset_bottom = 66.0
+visible = false
+offset_left = 275.60724
+offset_top = 645.0
+offset_right = 419.94962
+offset_bottom = 666.39276
+rotation = -1.5707964
 theme_override_styles/background = SubResource("StyleBoxFlat_6eeui")
 theme_override_styles/fill = SubResource("StyleBoxFlat_vs2jc")
 show_percentage = false
 
-[node name="InfoLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 677.0
-offset_top = 1.0
-offset_right = 1151.0
-offset_bottom = 29.0
-text = "INFO"
-label_settings = SubResource("LabelSettings_km2ot")
-
 [node name="BuffLabel" type="Label" parent="."]
-layout_mode = 0
 offset_left = 14.0
 offset_top = 87.0
 offset_right = 336.0
@@ -95,27 +159,24 @@ text = "Buffs"
 label_settings = SubResource("LabelSettings_2m07e")
 
 [node name="Passive1" type="TextureRect" parent="."]
-layout_mode = 0
 offset_left = 800.0
 offset_top = 550.0
 offset_right = 900.0
 offset_bottom = 650.0
 
 [node name="Passive2" type="TextureRect" parent="."]
-layout_mode = 0
 offset_left = 900.0
 offset_top = 550.0
 offset_right = 1000.0
 offset_bottom = 650.0
 
 [node name="Passive3" type="TextureRect" parent="."]
-layout_mode = 0
 offset_left = 1000.0
 offset_top = 550.0
 offset_right = 1100.0
 offset_bottom = 650.0
+
 [node name="Cooldown_Bar" type="ProgressBar" parent="."]
-layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -130,5 +191,29 @@ grow_vertical = 0
 show_percentage = false
 
 [node name="Timer" type="Timer" parent="Cooldown_Bar"]
+
+[node name="health_orb" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_6eeui")
+position = Vector2(128.565, 571)
+texture = ExtResource("3_sx6o5")
+
+[node name="stamina_orb" type="Sprite2D" parent="."]
+light_mask = 4
+visibility_layer = 4
+material = SubResource("ShaderMaterial_sx6o5")
+position = Vector2(374, 570)
+texture = ExtResource("3_sx6o5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InfoLabel" type="Label" parent="CanvasLayer"]
+top_level = true
+offset_left = 677.0
+offset_top = 1.0
+offset_right = 1151.0
+offset_bottom = 29.0
+text = "INFO"
+label_settings = SubResource("LabelSettings_km2ot")
+autowrap_mode = 3
 
 [connection signal="timeout" from="Cooldown_Bar/Timer" to="." method="_on_timer_timeout"]

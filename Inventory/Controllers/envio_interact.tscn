@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dalbymmd4kony"]
+
+[ext_resource type="Script" uid="uid://wg6okc5t1it8" path="res://Inventory/Controllers/envio_interact.gd" id="1_tu5ww"]
+
+[node name="EnvioInteract" type="Node"]
+script = ExtResource("1_tu5ww")

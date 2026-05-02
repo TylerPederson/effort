@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://cok33xlk3v2p8"]
+
+[ext_resource type="Script" uid="uid://ur38770bbco0" path="res://Boss/boss_door.gd" id="1_7cihc"]
+[ext_resource type="Texture2D" uid="uid://b1uoi7uyiftyd" path="res://Textures/wood_7_64_.png" id="2_jm6fi"]
+[ext_resource type="AudioStream" uid="uid://b0r1ql2esyfro" path="res://Sounds/Door_open.mp3" id="3_axgn3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_axgn3"]
+albedo_texture = ExtResource("2_jm6fi")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_48p18"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jm6fi"]
+albedo_texture = ExtResource("2_jm6fi")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_48p18"]
+
+[node name="BossDoor" type="Node3D"]
+script = ExtResource("1_7cihc")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(9, 0, 0, 0, 13.5, 0, 0, 0, 0.505, 4.5, 0, 0)
+material_override = SubResource("StandardMaterial3D_axgn3")
+use_collision = true
+material = SubResource("StandardMaterial3D_48p18")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(9, 0, 0, 0, 13.5, 0, 0, 0, 0.5, -4.5, 0, 0)
+material_override = SubResource("StandardMaterial3D_jm6fi")
+use_collision = true
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(10.845, 0, 0, 0, 10.845, 0, 0, 0, 10.845, -0.01, -1.3009324, 0)
+shape = SubResource("BoxShape3D_48p18")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_axgn3")
+volume_db = -10.0
+pitch_scale = 0.8
+bus = &"SFX"

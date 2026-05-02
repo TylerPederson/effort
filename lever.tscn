@@ -1,31 +1,28 @@
-[gd_scene load_steps=11 format=3 uid="uid://ja3vnixww6jc"]
+[gd_scene load_steps=14 format=3 uid="uid://ja3vnixww6jc"]
 
 [ext_resource type="Script" uid="uid://dvgqwtfx7b0ix" path="res://lever.gd" id="1_0ohsc"]
-[ext_resource type="PackedScene" uid="uid://vei5oj44pyjd" path="res://Inventory/Controllers/item_interact.tscn" id="2_1btnt"]
-[ext_resource type="Texture2D" uid="uid://0x4qmx5akmn6" path="res://Inventory/Items/Icons/lever handle.png" id="3_1kj1s"]
-[ext_resource type="Script" uid="uid://c4t0ml4w6l2e3" path="res://Inventory/Actions/inspect_action.gd" id="4_gk4f0"]
-[ext_resource type="Script" uid="uid://du5u3pregm218" path="res://Inventory/item_data.gd" id="5_h01c4"]
+[ext_resource type="PackedScene" uid="uid://dalbymmd4kony" path="res://Inventory/Controllers/envio_interact.tscn" id="2_7uavd"]
+[ext_resource type="Material" uid="uid://um2rf3mttrd4" path="res://Textures/dungeon_floors.tres" id="2_h01c4"]
+[ext_resource type="Texture2D" uid="uid://dbma4pv21m4yu" path="res://Textures/wood_14_64_.png" id="3_awwea"]
+[ext_resource type="AudioStream" uid="uid://c8m463owqwis6" path="res://Inventory/Sounds/lever_pull_effect.mp3" id="3_soi7j"]
+[ext_resource type="AudioStream" uid="uid://l75mngk7cpn5" path="res://Sounds/Lever_Sound.mp3" id="8_awwea"]
+[ext_resource type="PackedScene" uid="uid://dk1i2d7b8h75i" path="res://lantern.tscn" id="9_76uva"]
+[ext_resource type="AudioStream" uid="uid://ckljf1r6covq2" path="res://Sounds/bell.mp3" id="10_73lsj"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_1btnt"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76uva"]
+next_pass = ExtResource("2_h01c4")
+metallic = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h01c4"]
+albedo_texture = ExtResource("3_awwea")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_73lsj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7uavd"]
-albedo_color = Color(0.015686275, 1, 1, 1)
+albedo_texture = ExtResource("3_awwea")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0ohsc"]
 size = Vector3(0.3902893, 0.64746094, 0.8000488)
-
-[sub_resource type="Resource" id="Resource_awwea"]
-script = ExtResource("4_gk4f0")
-metadata/_custom_type_script = "uid://c4t0ml4w6l2e3"
-
-[sub_resource type="Resource" id="Resource_76uva"]
-script = ExtResource("5_h01c4")
-item_name = "Lever Handle"
-Item_icon = ExtResource("3_1kj1s")
-action_data = SubResource("Resource_awwea")
-stack_limit = 1
-item_desc = "The handle of a lever"
-metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="Lever" type="StaticBody3D"]
 script = ExtResource("1_0ohsc")
@@ -33,17 +30,39 @@ script = ExtResource("1_0ohsc")
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58618164, 0)
 size = Vector3(1, 2, 1)
+material = SubResource("StandardMaterial3D_76uva")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3716591, 0)
+size = Vector3(1.25, 0.094, 1.245)
+material = SubResource("StandardMaterial3D_76uva")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5400465, 0)
+size = Vector3(1.25, 0.094, 1.245)
+material = SubResource("StandardMaterial3D_76uva")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.125, 0, 0, 0, 0.35355338, -0.16263457, 0, 0.35355338, 0.16263457, -0.05200863, 0.9457675, 0.5911942)
-mesh = SubResource("CapsuleMesh_1btnt")
+material_override = SubResource("StandardMaterial3D_h01c4")
+mesh = SubResource("CylinderMesh_73lsj")
 surface_material_override/0 = SubResource("StandardMaterial3D_7uavd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(3.8800004, 0, 3.7252903e-09, -3.7252903e-09, 3.88, -2.3841858e-07, 7.450581e-09, 0, 3.88, 0.08742124, 0.68392587, 0.5110498)
 shape = SubResource("BoxShape3D_0ohsc")
 
-[node name="ItemInteract" parent="." instance=ExtResource("2_1btnt")]
-item_data = SubResource("Resource_76uva")
+[node name="AudioStreamPlayer1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_awwea")
+bus = &"SFX"
 
-[connection signal="triggered" from="ItemInteract" to="." method="interact"]
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_73lsj")
+bus = &"SFX"
+
+[node name="Lantern" parent="." instance=ExtResource("9_76uva")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0061326027, 1.6040528, -0.019524127)
+
+[node name="EnvioInteract" parent="." instance=ExtResource("2_7uavd")]
+one_shot = true
+interaction_sound_effect = ExtResource("3_soi7j")

@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://3g12apnjr30v"]
+
+[ext_resource type="PackedScene" uid="uid://b6cexdbvo76r0" path="res://Inventory/Items/Models/Low_Poly_Chest [2.0]/Low_Poly_Chest [2.0] GLTF.glb" id="1_n4n0r"]
+[ext_resource type="Script" uid="uid://b1fjefsxg7hrm" path="res://Inventory/Containers/chest.gd" id="2_wivu6"]
+[ext_resource type="PackedScene" uid="uid://cik50mrtgkppq" path="res://stats-and-combat/Components/loot_component.tscn" id="3_wxw2s"]
+[ext_resource type="PackedScene" uid="uid://dalbymmd4kony" path="res://Inventory/Controllers/envio_interact.tscn" id="4_86pca"]
+[ext_resource type="AudioStream" uid="uid://d21fi67qwguvw" path="res://Inventory/Sounds/chest_opening_effect.mp3" id="5_428rp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0442b"]
+size = Vector3(1.2319336, 1.006897, 0.86694336)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n4n0r"]
+size = Vector3(1.532959, 0.88916016, 0.94140625)
+
+[node name="Chest" instance=ExtResource("1_n4n0r")]
+script = ExtResource("2_wivu6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -0.006591797, 0.62200016, -0.0045166016)
+shape = SubResource("BoxShape3D_0442b")
+
+[node name="LootComponent" parent="." index="1" instance=ExtResource("3_wxw2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9473857, 0)
+
+[node name="EnvioInteract" parent="." index="2" instance=ExtResource("4_86pca")]
+one_shot = true
+interaction_sound_effect = ExtResource("5_428rp")
+
+[node name="Armature" parent="." index="3"]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+
+[node name="Chest_Top" parent="Armature/Bone/Bone_001" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 5.3290705e-15, 1.7881393e-07, 5.9604645e-08)
+
+[node name="OpenLidCollison" type="CollisionShape3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0064697266, 0.91338146, -1.0256201)
+shape = SubResource("BoxShape3D_n4n0r")
+disabled = true

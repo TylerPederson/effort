@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://djlmxq8y63k05"]
+
+[ext_resource type="Texture2D" uid="uid://bg3luom4u5mpd" path="res://Boss/Textures_BossRoom/Bricks_17-128x128.png" id="1_4xpv1"]
+[ext_resource type="PackedScene" uid="uid://1fhefww4sbje" path="res://Boss/torches_boss.tscn" id="2_p2lmd"]
+[ext_resource type="Material" uid="uid://byorj3kxjaem0" path="res://Textures/boss_walkway_floor.tres" id="3_ye3u1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p2lmd"]
+albedo_texture = ExtResource("1_4xpv1")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ye3u1"]
+albedo_texture = ExtResource("1_4xpv1")
+uv1_triplanar = true
+
+[node name="boss_outside_path" type="Node3D"]
+
+[node name="OutisidePath" type="CSGBox3D" parent="."]
+transform = Transform3D(-5.554281e-08, -0.99999994, 0, 1.2706714, -4.3711385e-08, 0, 0, 0, 0.99999994, 0, 0, 0)
+use_collision = true
+size = Vector3(1, 92, 12)
+material = SubResource("StandardMaterial3D_p2lmd")
+
+[node name="Torches_boss" parent="." instance=ExtResource("2_p2lmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, -3, -5.499)
+
+[node name="Torches_boss7" parent="." instance=ExtResource("2_p2lmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, -3, 5.499)
+
+[node name="Torches_boss2" parent="." instance=ExtResource("2_p2lmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -3, -5.499)
+
+[node name="Torches_boss8" parent="." instance=ExtResource("2_p2lmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -3, 5.499)
+
+[node name="Torches_boss3" parent="." instance=ExtResource("2_p2lmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -3, -5.499)
+
+[node name="Torches_boss9" parent="." instance=ExtResource("2_p2lmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -3, 5.499)
+
+[node name="Torches_boss4" parent="." instance=ExtResource("2_p2lmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -5.499)
+
+[node name="Torches_boss10" parent="." instance=ExtResource("2_p2lmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 5.499)
+
+[node name="Torches_boss5" parent="." instance=ExtResource("2_p2lmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -3, -5.499)
+
+[node name="Torches_boss11" parent="." instance=ExtResource("2_p2lmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -3, 5.499)
+
+[node name="Torches_boss6" parent="." instance=ExtResource("2_p2lmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -3, -5.499)
+
+[node name="Torches_boss12" parent="." instance=ExtResource("2_p2lmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -3, 5.499)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5.4886975)
+use_collision = true
+size = Vector3(92, 1, 1)
+material = ExtResource("3_ye3u1")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5.489)
+use_collision = true
+size = Vector3(92, 1, 1)
+material = SubResource("StandardMaterial3D_ye3u1")

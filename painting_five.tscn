@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://k7ytyuesl6e6"]
+
+[ext_resource type="Texture2D" uid="uid://cng2ioee2bu0q" path="res://Textures/wood_19_64_.png" id="1_3y3sh"]
+[ext_resource type="Texture2D" uid="uid://b386cqroyk24k" path="res://Textures/europeana-QaUm-ISDXVw-unsplash.jpg" id="2_kaero"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b5ksm"]
+albedo_texture = ExtResource("1_3y3sh")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w6r3w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_14rh6"]
+albedo_texture = ExtResource("2_kaero")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r0b2t"]
+
+[node name="paintingFive" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.85, 0, 0, 0, -1.0009908e-07, -2.29, 0, 2.29, -1.0009908e-07, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_b5ksm")
+mesh = SubResource("PlaneMesh_w6r3w")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.66, 0, 0, 0, -8.36636e-08, -2.076, 0, 1.914, -9.074484e-08, 0, 0, 0.0060334206)
+material_override = SubResource("StandardMaterial3D_14rh6")
+mesh = SubResource("PlaneMesh_r0b2t")
