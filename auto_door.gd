@@ -2,7 +2,7 @@ extends Node3D
 
 @onready var door_mesh = $CSGBox3D 
 @onready var area = $Area3D
-@onready var audio = $AudioStreamPlayer3D
+@onready var audio = $AudioStreamPlayer
 
 var closed_position : Vector3
 var open_position : Vector3

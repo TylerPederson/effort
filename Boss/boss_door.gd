@@ -3,7 +3,7 @@ extends Node3D
 @onready var door_right = $CSGBox3D
 @onready var door_left = $CSGBox3D2
 @onready var area = $Area3D
-@onready var audio = $AudioStreamPlayer3D
+@onready var audio = $AudioStreamPlayer
 
 var door_right_open: Vector3 
 var door_right_closed: Vector3 
@@ -59,7 +59,8 @@ func _process(_delta):
 
 func _on_body_entered(body): 	
 	if not unlocked:
-		print("Door is Locked")
+		if body is CharacterBody3D:
+			get_tree().get_first_node_in_group("Player").basic_hud.display_info("Door is locked...", 3.0)
 		return
 			
 	if body is CharacterBody3D:
@@ -68,6 +69,8 @@ func _on_body_entered(body):
 		audio.play()
 
 func _on_body_exited(body):
+	if not unlocked:
+		return
 	if body is CharacterBody3D:
 		closing = true
 		opening = false

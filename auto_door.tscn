@@ -26,6 +26,7 @@ material = SubResource("StandardMaterial3D_ay7p0")
 transform = Transform3D(9.605, 0, 0, 0, 9.605, 0, 0, 0, 9.605, 0, 0, 0)
 shape = SubResource("BoxShape3D_gco3u")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_pyw5h")
 volume_db = -10.0
+bus = &"SFX"

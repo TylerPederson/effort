@@ -140,10 +140,12 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_sx6o5")
 show_percentage = false
 
 [node name="Charge_Bar" type="ProgressBar" parent="."]
-offset_left = 9.0
-offset_top = 55.0
-offset_right = 286.0
-offset_bottom = 66.0
+visible = false
+offset_left = 275.60724
+offset_top = 645.0
+offset_right = 419.94962
+offset_bottom = 666.39276
+rotation = -1.5707964
 theme_override_styles/background = SubResource("StyleBoxFlat_6eeui")
 theme_override_styles/fill = SubResource("StyleBoxFlat_vs2jc")
 show_percentage = false
@@ -212,5 +214,6 @@ offset_right = 1151.0
 offset_bottom = 29.0
 text = "INFO"
 label_settings = SubResource("LabelSettings_km2ot")
+autowrap_mode = 3
 
 [connection signal="timeout" from="Cooldown_Bar/Timer" to="." method="_on_timer_timeout"]

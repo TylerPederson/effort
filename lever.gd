@@ -1,9 +1,8 @@
 extends Node3D
 
 @onready var mesh = $MeshInstance3D
-@onready var item_interact: Node = $ItemInteract
-@onready var audio = $AudioStreamPlayer3D
-@onready var bell = $AudioStreamPlayer3D2
+@onready var audio = $AudioStreamPlayer1
+@onready var bell = $AudioStreamPlayer2
 @onready var lantern = $Lantern
 @onready var envio_interact: EnvioInteract = $EnvioInteract
 
