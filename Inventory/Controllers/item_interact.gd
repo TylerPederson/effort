@@ -1,4 +1,5 @@
 extends Node
+class_name ItemInteract
 
 @export var item_data: ItemData
 @export var collect_sound_effect: AudioStreamMP3

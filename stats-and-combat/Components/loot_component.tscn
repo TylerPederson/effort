@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://cik50mrtgkppq"]
+
+[ext_resource type="Script" uid="uid://bbrb5r5gie3sn" path="res://stats-and-combat/Components/loot_component.gd" id="1_7n2fx"]
+
+[sub_resource type="Gradient" id="Gradient_7n2fx"]
+offsets = PackedFloat32Array(0, 0.1800948, 0.3744076, 0.56398106, 0.72511846, 0.86255926, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.68333334, 0, 1, 1, 0.9166666, 0, 1, 0.0333333, 1, 0, 1, 0, 0.0666666, 1, 1, 0.5, 0, 1, 1, 1, 0, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_le636"]
+gradient = SubResource("Gradient_7n2fx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w3kdg"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 8.0
+initial_velocity_max = 12.0
+angular_velocity_min = 8.999984
+angular_velocity_max = 10.999984
+orbit_velocity_min = -2.0
+orbit_velocity_max = 2.0000002
+damping_min = 1.0
+damping_max = 3.0000002
+scale_min = 0.0
+scale_max = 0.39999998
+color_ramp = SubResource("GradientTexture1D_le636")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7n2fx"]
+vertex_color_use_as_albedo = true
+emission = Color(1, 1, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_qqckm"]
+material = SubResource("StandardMaterial3D_7n2fx")
+size = Vector2(0.7, 0.3)
+
+[node name="LootComponent" type="Node3D"]
+script = ExtResource("1_7n2fx")
+
+[node name="Confetti" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 70
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_w3kdg")
+draw_pass_1 = SubResource("QuadMesh_qqckm")

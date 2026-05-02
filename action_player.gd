@@ -10,6 +10,10 @@ signal stop_sprint
 const SPEED = 400.0
 const JUMP_VELOCITY = 4.5
 
+#///////////////////pauseMenu//////////////////////
+const pause_menu_scene = preload("res://PauseMenu/PauseMenu.tscn")
+#///////////////////////////////////////////////////
+
 @onready var sprint_component: SprintComponent = $Sprint_Component
 @onready var inventory_controller: InventoryController = $"Inventory Controller/CanvasLayer/Inventory UI"
 @onready var armor_component: ArmorComponent = $Armor_Component
@@ -17,6 +21,9 @@ const JUMP_VELOCITY = 4.5
 @onready var weapon_component: WeaponComponent = %WeaponHolder/Weapon_Component
 @onready var basic_hud: Basic_HUD = $Basic_HUD
 
+#/////////////////////////pauseMenu//////////////////////
+var pause_menu_instance = null
+#/////////////////////////////////////////////////////////
 
 #**********************julian######################
 @onready var raycast = $RayCast3D 
@@ -97,6 +104,41 @@ func abort_other_oneshots():
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	
+	#///////////////////////pauseMenuCode///////////////////////////////////
+	if event.is_action_pressed("ui_cancel"):
+		if pause_menu_instance == null:
+			pause_menu_instance = pause_menu_scene.instantiate()
+			%InfoScreens.add_child(pause_menu_instance)
+			get_tree().paused = true
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			return
+
+		#if pause is opnen then close it
+		if pause_menu_instance != null:
+			get_tree().paused = false
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			pause_menu_instance.queue_free()
+			pause_menu_instance = null
+			return
+
+		# if inventory is open then close it
+		if inventory_controller.visible:
+			inventory_controller.visible = false
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			return
+
+		#or just open pause menu
+		
+		#pause_menu_instance = pause_menu_scene.instantiate()
+		#add_child(pause_menu_instance)
+		#pause_menu_instance.tree_exited.connect(func(): pause_menu_instance = null)
+		#get_tree().paused = true
+		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		#return
+#///////////////////////////////////////////////////////////////////////
+	
+	
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
 			_look += -event.relative * mouse_sensitivity
@@ -120,12 +162,14 @@ func _unhandled_input(event: InputEvent) -> void:
 			abort_other_oneshots()
 			animation_tree["parameters/grab/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	
-	
-	if event.is_action_pressed("ui_cancel"):
-		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+#///////////////////////////Removed to make pause work////////////////
+#	if event.is_action_pressed("ui_cancel"):
+#		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+#			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+#		else:
+#			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+#///////////////////////////////////////////////////////////////////////
+
 	
 	if event.is_action_pressed("ui_text_caret_line_start"):
 		get_tree().change_scene_to_file("res://MainMenu_GUI/MainMenu.tscn")
@@ -159,29 +203,45 @@ func frame_camera_rotation() -> void:
 	# By this point, "used" all the difference accumulated in _look since last frame, reset for next accumulation
 	_look = Vector2.ZERO
 	
-#############################julian###########################################
-#This is the function to interact with the lever
-func handle_interaction():
-	if Input.is_action_just_pressed("interact"):
-		if raycast.is_colliding():
-			var obj = raycast.get_collider()
-			if obj and obj.has_method("interact"):
-				obj.interact()
-##############################################################################
-
 
 func _on_equip_change(slot: String, equip_data) -> void:
 	match slot:
 		"armor_helm", "armor_body", "armor_feet":
 			armor_component.update_equipment(inventory_controller.equipped_items)
-		"weapon_melee", "weapon_ranged":
+		"weapon_ranged":
 			weapon_component.update_weapon(inventory_controller.equipped_items)
 			attack_component._refresh_weapon()
+		"weapon_melee":
+			weapon_component.update_weapon(inventory_controller.equipped_items)
+			attack_component._refresh_weapon()
+			
+			for child in %WeaponMeshHolder.get_children():
+				child.visible = false
+			
+			if !inventory_controller.equipped_items["weapon_melee"]:
+				return
+			
+			print(inventory_controller.equipped_items["weapon_melee"].item_name)
+			match (inventory_controller.equipped_items["weapon_melee"].item_name):
+				"Steel Axe":
+					%Mesh_SteelAxe.visible = true
+				"Iron Sword":
+					%Mesh_IronSword.visible = true
+				"Crossbow":
+					%Mesh_Crossbow.visible = true
+				"Wooden Bow":
+					%Mesh_Bow.visible = true
+				"Katana":
+					%Mesh_Katana.visible = true
+				_:
+					print("unset everything")
 
 
 func _on_health_component_death() -> void:
 	able_to_move = false
 	basic_hud.display_info("You have died...", 3.0)
+	abort_other_oneshots()
+	animation_tree["parameters/die/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	await get_tree().create_timer(3.0).timeout
 	
 	get_tree().change_scene_to_file("res://MainMenu_GUI/MainMenu.tscn")

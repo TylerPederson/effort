@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bg16ugxonu0ke" path="res://stats-and-combat/Weapons/projectile.tscn" id="6_7xufg"]
 [ext_resource type="PackedScene" uid="uid://b5s26qhjtttb1" path="res://Enemy/mimic_chest.glb" id="7_q601x"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_q601x"]
-height = 2.387207
-radius = 0.81640625
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q601x"]
+radius = 0.92626953
+height = 2.4042969
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_am0pq"]
 height = 4.0
@@ -76,8 +76,8 @@ script = ExtResource("1_q601x")
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox_Component"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1887207, 0)
-shape = SubResource("CylinderShape3D_q601x")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90895915, 0)
+shape = SubResource("CapsuleShape3D_q601x")
 
 [node name="HealthComponent" type="Node" parent="."]
 unique_name_in_owner = true
@@ -121,9 +121,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4197489, 2.1441524, -0.660
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Model/Armature" index="0"]
-bones/0/position = Vector3(0.07008433, 0.017707963, -0.2912435)
-bones/0/rotation = Quaternion(-1.7512505e-18, 2.9715694e-09, -0.018106373, 0.9998361)
-bones/1/rotation = Quaternion(0.7071009, -0.0013911393, -4.5579287e-05, 0.7071113)
+bones/0/position = Vector3(-0.04394162, 0.026260441, -0.2912435)
+bones/0/rotation = Quaternion(-2.2665026e-18, 2.9715632e-09, -0.022562446, 0.9997455)
+bones/1/rotation = Quaternion(0.68101823, -0.0038121906, -0.00070836616, 0.7322563)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Model")

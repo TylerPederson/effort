@@ -77,7 +77,7 @@ func _process(delta: float) -> void:
 		
 		# Any future logic dependent on enemy type would go here
 		if type == EnemyType.Ranged:
-			pass
+			%AttackComponent.set_auto_attack(true)
 		if type == EnemyType.Melee:
 			pass
 	else:
