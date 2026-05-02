@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://clerkr85kk6ww"]
+[gd_scene load_steps=25 format=3 uid="uid://clerkr85kk6ww"]
 
 [ext_resource type="Script" uid="uid://23jmmfc02jmu" path="res://Boss/door_pivot.gd" id="1_0yjcu"]
 [ext_resource type="Texture2D" uid="uid://bg3luom4u5mpd" path="res://Boss/Textures_BossRoom/Bricks_17-128x128.png" id="1_j8hxa"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://ccmau1ai6c7u7" path="res://Boss/BossAudio/Portcullis Gate.wav" id="5_ukpyv"]
 [ext_resource type="PackedScene" uid="uid://bttbghaapi13t" path="res://Boss/SpikeFloor.tscn" id="6_51qfk"]
 [ext_resource type="PackedScene" uid="uid://1fhefww4sbje" path="res://Boss/torches_boss.tscn" id="6_pq32u"]
+[ext_resource type="Environment" uid="uid://bjchj8nsyyli5" path="res://Utility/Boss_Environment.tres" id="9_ukpyv"]
 [ext_resource type="PackedScene" uid="uid://cpdst700ikydj" path="res://Boss/death_box.tscn" id="11_bnrpt"]
 [ext_resource type="PackedScene" uid="uid://dfb7tufanvxwp" path="res://Boss/DoorOutline.tscn" id="11_pq32u"]
 [ext_resource type="PackedScene" uid="uid://djlmxq8y63k05" path="res://Boss/boss_outside_path.tscn" id="12_bnrpt"]
@@ -47,26 +48,6 @@ size = Vector3(2.666504, 4.5301514, 23.122925)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r2qyn"]
 size = Vector3(1, 5, 24.733025)
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j8hxa"]
-sky_top_color = Color(0.0016159313, 0.037322164, 0.10223428, 1)
-sky_horizon_color = Color(0, 0, 0, 1)
-sky_cover_modulate = Color(0, 0, 0, 1)
-ground_bottom_color = Color(0, 0, 0, 1)
-ground_horizon_color = Color(0.016997028, 0.017779395, 0.019408137, 1)
-
-[sub_resource type="Sky" id="Sky_2n5hb"]
-sky_material = SubResource("ProceduralSkyMaterial_j8hxa")
-
-[sub_resource type="Environment" id="Environment_51qfk"]
-background_mode = 2
-sky = SubResource("Sky_2n5hb")
-ambient_light_source = 1
-glow_enabled = true
-glow_levels/4 = 3.0
-glow_intensity = 5.0
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.0
 
 [sub_resource type="FogMaterial" id="FogMaterial_bw7y0"]
 density = 0.5
@@ -143,11 +124,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.510063, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.83325195, 4.166465, 1.5302124)
 shape = SubResource("BoxShape3D_n8ie0")
 
-[node name="Boss" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_r2qyn")]
+[node name="Boss" parent="." instance=ExtResource("3_r2qyn")]
 transform = Transform3D(7.1549286e-09, 0, -0.6, 0, 0.6, 0, 0.6, 0, 7.1549286e-09, -6.83292, 1.8442335, 0.21916246)
 collision_layer = 3
 collision_mask = 3
-player = NodePath("")
 
 [node name="Invisable Walls" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.068538, 0)
@@ -203,7 +183,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.959642, -7.1436086, -8.374
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.3538065, -10, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_51qfk")
+environment = ExtResource("9_ukpyv")
 
 [node name="FogVolume" type="FogVolume" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.7349162, 0, 0, 0, 1, 44.783432, -1.391, 0.12584591)

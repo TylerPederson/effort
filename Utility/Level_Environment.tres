@@ -1,0 +1,20 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://bliuihkmove85"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s6xw7"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_vg0gq"]
+sky_material = SubResource("ProceduralSkyMaterial_s6xw7")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_vg0gq")
+tonemap_mode = 2
+ssao_enabled = true
+ssao_radius = 5.0
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.100705005, 0.093313225, 0.14214805, 1)
+fog_light_energy = 3.5
+fog_density = 0.02
