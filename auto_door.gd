@@ -2,6 +2,7 @@ extends Node3D
 
 @onready var door_mesh = $CSGBox3D 
 @onready var area = $Area3D
+@onready var audio = $AudioStreamPlayer3D
 
 var closed_position : Vector3
 var open_position : Vector3
@@ -36,8 +37,12 @@ func _on_body_entered(body):
 	if body is CharacterBody3D:
 		opening = true
 		closing = false
+		audio.play()
+		
 
 func _on_body_exited(body):
 	if body is CharacterBody3D:
 		closing = true
 		opening = false
+		audio.play()
+		

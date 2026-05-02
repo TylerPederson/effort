@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://cy2rc2o0pkeh6"]
+
+[ext_resource type="Texture2D" uid="uid://dbma4pv21m4yu" path="res://Textures/wood_14_64_.png" id="1_vs00q"]
+[ext_resource type="PackedScene" uid="uid://dyuof78ryja42" path="res://fire_particles.tscn" id="2_jdd4k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l11ko"]
+albedo_texture = ExtResource("1_vs00q")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_48s5n"]
+albedo_color = Color(0.43519226, 0.4351923, 0.43519217, 1)
+albedo_texture = ExtResource("1_vs00q")
+
+[sub_resource type="SphereMesh" id="SphereMesh_3kn0f"]
+material = SubResource("StandardMaterial3D_48s5n")
+
+[node name="Tourch" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.81529963, -0.5790393, 0, 0.5790393, 0.81529963, -0.0027098358, -0.2459862, -0.26324868)
+size = Vector3(0.18743896, 1.7338867, 0.15719604)
+material = SubResource("StandardMaterial3D_l11ko")
+
+[node name="FireParticles" parent="." instance=ExtResource("2_jdd4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.018013895, 0.41636103, 0.17034638)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.335, 0, 0, 0, 0.335, 0, 0, 0, 0.335, -0.0024629831, 0.34640315, 0.1628586)
+mesh = SubResource("SphereMesh_3kn0f")
