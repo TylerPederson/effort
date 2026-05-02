@@ -30,15 +30,5 @@ func _on_quit_pressed() -> void:
 	get_tree().quit()
 
 
-func _on_button_sandbox_pressed() -> void:
-	print("Sandbox button pressed")
-	get_tree().change_scene_to_file("res://Spikes/sandbox_level_spikes.tscn")
-
-
-func _on_button_boss_pressed() -> void:
-	print("Boss button pressed")
-	get_tree().change_scene_to_file("res://Boss/boss_room.tscn")
-
-
 func _on_credits_button_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://CreditsMenu/credits_page.tscn")

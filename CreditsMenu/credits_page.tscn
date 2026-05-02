@@ -1,0 +1,197 @@
+[gd_scene load_steps=9 format=3 uid="uid://cdbbqnlhalbe3"]
+
+[ext_resource type="Texture2D" uid="uid://d2j2ddvkh7pyw" path="res://CreditsMenu/Desperados.png" id="1_nb84k"]
+[ext_resource type="Script" uid="uid://50spvco2i8k5" path="res://CreditsMenu/credits_page.gd" id="1_rdgei"]
+[ext_resource type="LabelSettings" uid="uid://dmogj46ecfqia" path="res://CreditsMenu/credit_label_settings.tres" id="2_rdgei"]
+[ext_resource type="LabelSettings" uid="uid://cwdeq86m3fku3" path="res://CreditsMenu/credit_label_settings2.tres" id="3_nt8cw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phjo5"]
+bg_color = Color(0.0039164834, 0.06886938, 0.13480851, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.96578616, 0.7697484, 0.32645613, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6lctk"]
+texture = ExtResource("1_nb84k")
+
+[sub_resource type="LabelSettings" id="LabelSettings_lbvjp"]
+font_size = 48
+font_color = Color(1, 1, 0.45490196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nb84k"]
+bg_color = Color(0.19793722, 0.19793725, 0.19793713, 1)
+
+[node name="CreditsPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rdgei")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="PanelContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_phjo5")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_6lctk")
+
+[node name="TeamName" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Made by Team Desperados"
+label_settings = SubResource("LabelSettings_lbvjp")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Members1" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Project Manager - Tyler Pederson"
+label_settings = ExtResource("2_rdgei")
+
+[node name="Info1" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Player and Enemy Design, Weapons, Powerups"
+label_settings = ExtResource("3_nt8cw")
+
+[node name="Members2" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Project Manager Assistant - Carlos Arana"
+label_settings = ExtResource("2_rdgei")
+
+[node name="Info2" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Inventory System and Loot Mechanics"
+label_settings = ExtResource("3_nt8cw")
+
+[node name="Members3" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Software Engineer - Antonio Mora"
+label_settings = ExtResource("2_rdgei")
+
+[node name="Info3" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Level Design and Art Direction"
+label_settings = ExtResource("3_nt8cw")
+
+[node name="Members4" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Software Engineer - Julian Sagasta"
+label_settings = ExtResource("2_rdgei")
+
+[node name="Info4" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Level Design and Lighting"
+label_settings = ExtResource("3_nt8cw")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Members5" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Software Engineer - Renard \"Clayton\" Reyes"
+label_settings = ExtResource("2_rdgei")
+
+[node name="Info5" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Shader, Game UI, Music System"
+label_settings = ExtResource("3_nt8cw")
+
+[node name="Members6" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Software Engineer - Edgar Alamillo"
+label_settings = ExtResource("2_rdgei")
+
+[node name="Info6" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Boss design and Environmental Systems"
+label_settings = ExtResource("3_nt8cw")
+
+[node name="Members7" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Software Engineer - Jonathan Espinoza"
+label_settings = ExtResource("2_rdgei")
+
+[node name="Info7" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Menu Design and Settings"
+label_settings = ExtResource("3_nt8cw")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Addition" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Additional Thanks To"
+label_settings = ExtResource("2_rdgei")
+
+[node name="Addition2" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "TomMusic, Screaming Brain Studios, Unsplash, Duende,
+ Acerola, Goblinatron, Kevin MacLeod"
+label_settings = ExtResource("3_nt8cw")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 579.0
+offset_right = 229.48387
+offset_bottom = 628.0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = SubResource("StyleBoxFlat_nb84k")
+text = "Return to Menu"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
