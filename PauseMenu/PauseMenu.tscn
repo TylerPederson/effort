@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://c4gihg687p1wc" path="res://PauseMenu/pause_menu.gd" id="1_eyhbq"]
 
 [node name="PauseMenu" type="Control"]
+z_index = 100
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.31925523, 0.31925526, 0.31925526, 1)
+color = Color(0.31711304, 0.31711304, 0.31711304, 0.5)
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
@@ -28,38 +29,59 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -261.0
+offset_top = -146.0
+offset_right = 261.0
+offset_bottom = 146.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="GridContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="GridContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="GridContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("1_egqmv")
 theme_override_font_sizes/font_size = 65
 text = "PAUSE"
 horizontal_alignment = 1
 
-[node name="ResumeButton" type="Button" parent="GridContainer"]
+[node name="ResumeButton" type="Button" parent="GridContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_egqmv")
 theme_override_font_sizes/font_size = 55
 text = "Resume"
 
-[node name="SettingButton" type="Button" parent="GridContainer"]
+[node name="SettingButton" type="Button" parent="GridContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_egqmv")
 theme_override_font_sizes/font_size = 55
 text = "Settings"
 
-[node name="QuitButton" type="Button" parent="GridContainer"]
+[node name="MenuButton" type="Button" parent="GridContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_egqmv")
+theme_override_font_sizes/font_size = 55
+text = "Menu
+"
+
+[node name="QuitButton" type="Button" parent="GridContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_egqmv")
 theme_override_font_sizes/font_size = 55
 text = "Quit"
+autowrap_mode = 3
 
-[connection signal="pressed" from="GridContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="GridContainer/SettingButton" to="." method="_on_setting_button_pressed"]
-[connection signal="pressed" from="GridContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="GridContainer/CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="GridContainer/CenterContainer/VBoxContainer/SettingButton" to="." method="_on_setting_button_pressed"]
+[connection signal="pressed" from="GridContainer/CenterContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="mouse_exited" from="GridContainer/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_mouse_exited"]
+[connection signal="pressed" from="GridContainer/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

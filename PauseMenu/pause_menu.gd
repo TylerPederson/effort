@@ -1,8 +1,6 @@
 extends Control
 
-
-#const SETTINGS_MENU_SCENE = preload("res://Settings_menu/Settings.tscn")
-#var settings_menu_instance = null
+const SETTINGS_MENU_SCENE = preload("res://Settings_menu/Settings.tscn")
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
@@ -21,15 +19,21 @@ func _on_resume_button_pressed() -> void:
 
 func _on_setting_button_pressed() -> void:
 	print("Settings has been pressed")
-	# Put your settings menu code here later
+	var settings_menu = SETTINGS_MENU_SCENE.instantiate()
+	add_child(settings_menu)
 
 
 func _on_quit_button_pressed() -> void:
-	print("Quit has been pressed")
+	if %QuitButton.text == "Click again to confirm":
+		get_tree().quit()
+	%QuitButton.text = "Click again to confirm"
+
+func _on_quit_button_mouse_exited() -> void:
+	%QuitButton.text = "Quit"
+
+
+func _on_menu_button_pressed() -> void:
+	print("Menu has been pressed")
 	get_tree().paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	get_tree().change_scene_to_file("res://MainMenu_GUI/MainMenu.tscn")
-
-
-	#mouse capture code
-	#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if _is_paused else Input.MOUSE_MODE_CAPTURED

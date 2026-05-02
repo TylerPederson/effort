@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyibhaixg0q50"]
+[gd_scene load_steps=4 format=3 uid="uid://cyibhaixg0q50"]
 
 [ext_resource type="FontFile" uid="uid://cksl17ygj8juv" path="res://MainMenu_GUI/Resources/WEST____.TTF" id="1_3fjk7"]
 [ext_resource type="Script" uid="uid://d0uv5a78vonw7" path="res://Settings_menu/settings.gd" id="1_rhtut"]
+[ext_resource type="Texture2D" uid="uid://cvdxqlfyj5xig" path="res://Settings_menu/Brick Background.png" id="2_bxj7b"]
 
 [node name="Settings" type="Control"]
-process_mode = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +12,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rhtut")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1149.0
+offset_bottom = 649.0
+texture = ExtResource("2_bxj7b")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1157.0
+offset_bottom = 651.0
+color = Color(0.09985284, 0.14733289, 0.35419908, 0.43100002)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -31,11 +43,40 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_3fjk7")
 theme_override_font_sizes/font_size = 65
-text = "Volume"
+text = "Overall Volume"
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer"]
+[node name="MasterHSlider" type="HSlider" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-step = 0.5
+max_value = 1.5
+step = 0.001
+value = 1.5
+
+[node name="MusicVolume" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_3fjk7")
+theme_override_font_sizes/font_size = 65
+text = "Music Volume"
+
+[node name="MusicHSlider" type="HSlider" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.5
+step = 0.001
+value = 1.5
+
+[node name="SFXVolume" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_3fjk7")
+theme_override_font_sizes/font_size = 65
+text = "SFX Volume"
+
+[node name="SFXHSlider" type="HSlider" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.5
+step = 0.001
+value = 1.5
 
 [node name="CheckButton" type="CheckButton" parent="VBoxContainer"]
 layout_mode = 2
@@ -52,9 +93,12 @@ offset_top = -71.0
 offset_right = 351.0
 grow_vertical = 0
 size_flags_vertical = 10
+theme_override_colors/font_disabled_color = Color(0.8750814, 0.8750814, 0.8750814, 0.558)
 theme_override_font_sizes/font_size = 45
 text = "Back"
 
-[connection signal="value_changed" from="VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
-[connection signal="toggled" from="VBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="value_changed" from="VBoxContainer/MasterHSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/MusicHSlider" to="." method="_on_music_h_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/SFXHSlider" to="." method="_on_sfxh_slider_value_changed"]
+[connection signal="pressed" from="VBoxContainer/CheckButton" to="." method="_on_check_button_pressed"]
 [connection signal="pressed" from="backButton" to="." method="_on_back_button_pressed"]

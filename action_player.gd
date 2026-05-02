@@ -107,13 +107,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	#///////////////////////pauseMenuCode///////////////////////////////////
 	if event.is_action_pressed("ui_cancel"):
-#		if get_tree().paused:
-#			return
-#		pause_menu_instance = pause_menu_scene.instantiate()
-#		add_child(pause_menu_instance)
-#		get_tree().paused = true
-#		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-#		return
+		if pause_menu_instance == null:
+			pause_menu_instance = pause_menu_scene.instantiate()
+			%InfoScreens.add_child(pause_menu_instance)
+			get_tree().paused = true
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			return
 
 		#if pause is opnen then close it
 		if pause_menu_instance != null:
@@ -131,12 +130,12 @@ func _unhandled_input(event: InputEvent) -> void:
 
 		#or just open pause menu
 		
-		pause_menu_instance = pause_menu_scene.instantiate()
-		add_child(pause_menu_instance)
-		pause_menu_instance.tree_exited.connect(func(): pause_menu_instance = null)
-		get_tree().paused = true
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		return
+		#pause_menu_instance = pause_menu_scene.instantiate()
+		#add_child(pause_menu_instance)
+		#pause_menu_instance.tree_exited.connect(func(): pause_menu_instance = null)
+		#get_tree().paused = true
+		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		#return
 #///////////////////////////////////////////////////////////////////////
 	
 	
