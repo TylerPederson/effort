@@ -259,6 +259,8 @@ func alternative_attack_animation(flag: bool, total: float) -> void:
 	if !flag:
 		if !is_on_floor():
 			return
+		if total < 0.5:
+			return
 		abort_other_oneshots()
 		animation_tree["parameters/cheer/request"] =  AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 

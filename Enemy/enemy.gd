@@ -68,7 +68,7 @@ func _process(delta: float) -> void:
 	if following:
 		# Attempt to attack toward player
 		state_machine.travel("move")
-		if (player.position.distance_squared_to(position) < attack_dist_sqaured):
+		if (player.global_position.distance_squared_to(global_position) < attack_dist_sqaured):
 			%AttackComponent.set_auto_attack(true)
 		else:
 			%AttackComponent.set_auto_attack(false)

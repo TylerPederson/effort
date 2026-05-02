@@ -133,7 +133,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_dsf2w")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_hfavc")
 theme_override_styles/hover = SubResource("StyleBoxFlat_p4l7n")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_x5sud")
-text = "SETTINGS"
+text = "CREDITS"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
