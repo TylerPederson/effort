@@ -38,3 +38,7 @@ func _on_button_sandbox_pressed() -> void:
 func _on_button_boss_pressed() -> void:
 	print("Boss button pressed")
 	get_tree().change_scene_to_file("res://Boss/boss_room.tscn")
+
+
+func _on_credits_button_pressed() -> void:
+	pass # Replace with function body.
