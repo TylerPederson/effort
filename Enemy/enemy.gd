@@ -54,7 +54,9 @@ func _ready() -> void:
 	
 	player = get_tree().get_first_node_in_group("Player")
 	state_machine = animation_tree.get("parameters/playback") as AnimationNodeStateMachinePlayback
-
+	var loot_component = get_node_or_null("LootComponent")
+	if loot_component:
+		connect("died", loot_component.drop_loot)
 
 
 # Handle any custom behavior logic each frame

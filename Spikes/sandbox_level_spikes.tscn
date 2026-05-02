@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://lufehvu5wiic"]
+[gd_scene load_steps=38 format=3 uid="uid://lufehvu5wiic"]
 
 [ext_resource type="PackedScene" uid="uid://da7uc6l3gvjq1" path="res://action_player.tscn" id="1_wtjuy"]
 [ext_resource type="PackedScene" uid="uid://c3pthttcuaq4i" path="res://Utility/sign_post.tscn" id="3_1krsa"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dxr4crto8qro3" path="res://Enemy/enemy_rat.tscn" id="9_nmbow"]
 [ext_resource type="PackedScene" uid="uid://d4c0ja7e01arr" path="res://Inventory/Items/health_potion.tscn" id="9_xehvc"]
 [ext_resource type="PackedScene" uid="uid://ca4rbv2mvnwri" path="res://Inventory/Items/iron_sword.tscn" id="10_iin2v"]
+[ext_resource type="PackedScene" uid="uid://cik50mrtgkppq" path="res://stats-and-combat/Components/loot_component.tscn" id="11_r3nkv"]
 [ext_resource type="PackedScene" uid="uid://dlv5otj1bfse8" path="res://Inventory/Items/wooden_bow.tscn" id="11_xehvc"]
 [ext_resource type="PackedScene" uid="uid://b56eyuxlbyrbt" path="res://Inventory/Items/stam_potion.tscn" id="12_iin2v"]
 [ext_resource type="PackedScene" uid="uid://oe22rdvq4kqd" path="res://Inventory/Items/iron_armor.tscn" id="13_hxxx7"]
@@ -24,6 +25,8 @@
 [ext_resource type="PackedScene" uid="uid://df4jfksjg3dw7" path="res://Inventory/Items/quiver.tscn" id="20_rx2kt"]
 [ext_resource type="PackedScene" uid="uid://byyd64cxpx5fv" path="res://Inventory/Items/tnt_bag.tscn" id="21_5ocdp"]
 [ext_resource type="PackedScene" uid="uid://ccvd73ge8qwxu" path="res://Enemy/enemy_mimic.tscn" id="24_idlq1"]
+[ext_resource type="PackedScene" uid="uid://3g12apnjr30v" path="res://Inventory/Containers/chest.tscn" id="25_wsv84"]
+[ext_resource type="Script" uid="uid://w62e1sadn7yf" path="res://stats-and-combat/Components/loot-table.gd" id="26_r3nkv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s6xw7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -42,6 +45,36 @@ glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xftbl"]
 albedo_color = Color(1, 0.26666668, 0.20392157, 1)
+
+[sub_resource type="Resource" id="Resource_r3nkv"]
+script = ExtResource("26_r3nkv")
+table = Array[PackedScene]([ExtResource("21_5ocdp")])
+loot_max = 1
+spawn_force_max = 7.0
+metadata/_custom_type_script = "uid://w62e1sadn7yf"
+
+[sub_resource type="Resource" id="Resource_jmtxt"]
+script = ExtResource("26_r3nkv")
+table = Array[PackedScene]([ExtResource("20_rx2kt"), ExtResource("10_iin2v")])
+spawn_force_max = 5.0
+metadata/_custom_type_script = "uid://w62e1sadn7yf"
+
+[sub_resource type="Resource" id="Resource_lpdfi"]
+script = ExtResource("26_r3nkv")
+table = Array[PackedScene]([ExtResource("9_xehvc"), ExtResource("12_iin2v")])
+metadata/_custom_type_script = "uid://w62e1sadn7yf"
+
+[sub_resource type="Resource" id="Resource_k4xod"]
+script = ExtResource("26_r3nkv")
+table = Array[PackedScene]([ExtResource("16_svfcn")])
+loot_max = 10
+metadata/_custom_type_script = "uid://w62e1sadn7yf"
+
+[sub_resource type="Resource" id="Resource_wsv84"]
+script = ExtResource("26_r3nkv")
+table = Array[PackedScene]([ExtResource("16_svfcn"), ExtResource("19_r5cfg"), ExtResource("13_hxxx7"), ExtResource("10_iin2v"), ExtResource("17_6lovs"), ExtResource("8_jqmsg"), ExtResource("18_ol8s5"), ExtResource("20_rx2kt")])
+loot_max = 1
+metadata/_custom_type_script = "uid://w62e1sadn7yf"
 
 [node name="SandboxLevel" type="Node3D"]
 
@@ -252,11 +285,17 @@ manager = NodePath("../EnemyManager3")
 transform = Transform3D(0.36973065, 0, -0.92913926, 0, 1, 0, 0.92913926, 0, 0.36973065, 11.247786, 0, -23.067236)
 manager = NodePath("../EnemyManager3")
 
+[node name="LootComponent" parent="Enemies/Enemy_Rat6" instance=ExtResource("11_r3nkv")]
+loot_table = SubResource("Resource_r3nkv")
+
 [node name="EnemyMimic" parent="Enemies" instance=ExtResource("24_idlq1")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 23.605234, 0, 2.2444031)
 move_speed = 120.0
 health = 50
 attack_cooldown = 2.0
+
+[node name="LootComponent" parent="Enemies/EnemyMimic" instance=ExtResource("11_r3nkv")]
+loot_table = SubResource("Resource_jmtxt")
 
 [node name="EnemyMimic2" parent="Enemies" instance=ExtResource("24_idlq1")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 23.845682, 0.0036716461, -4.1074157)
@@ -355,9 +394,51 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9944534, 0.56006837, 8.025
 [node name="TNT_Bag2" parent="Items" instance=ExtResource("21_5ocdp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9944534, 0.56006837, 9.443686)
 
+[node name="Chest" parent="." instance=ExtResource("25_wsv84")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.871937, 0.0036725998, 16.380249)
+
+[node name="LootComponent" parent="Chest" index="1"]
+loot_table = SubResource("Resource_lpdfi")
+
+[node name="Chest2" parent="." instance=ExtResource("25_wsv84")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.871937, 0.0036725998, 12.465079)
+
+[node name="LootComponent" parent="Chest2" index="1"]
+loot_table = SubResource("Resource_k4xod")
+
+[node name="Chest3" parent="." instance=ExtResource("25_wsv84")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.517626, 0.0036725998, 8.0599)
+
+[node name="LootComponent" parent="Chest3" index="1"]
+loot_table = SubResource("Resource_wsv84")
+
+[node name="Chest4" parent="." instance=ExtResource("25_wsv84")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.517626, 0.0036725998, 5.755801)
+
+[node name="LootComponent" parent="Chest4" index="1"]
+loot_table = SubResource("Resource_wsv84")
+
+[node name="Chest5" parent="." instance=ExtResource("25_wsv84")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.517626, 0.0036725998, 3.37538)
+
+[node name="LootComponent" parent="Chest5" index="1"]
+loot_table = SubResource("Resource_wsv84")
+
+[node name="Chest6" parent="." instance=ExtResource("25_wsv84")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.517626, 0.0036725998, 1.0136104)
+
+[node name="LootComponent" parent="Chest6" index="1"]
+loot_table = SubResource("Resource_wsv84")
+
 [connection signal="all_enemies_defeated" from="Enemies/EnemyManager" to="Collectibles/Choice_Tray_Spawn2" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="Enemies/EnemyManager2" to="Collectibles/Choice_Tray_Spawn3" method="spawn_collectible_tray"]
 [connection signal="all_enemies_defeated" from="Enemies/EnemyManager3" to="Collectibles/Choice_Tray_Spawn4" method="spawn_collectible_tray"]
 
 [editable path="Obstacles/SignPost"]
 [editable path="Obstacles/SignPost2"]
+[editable path="Chest"]
+[editable path="Chest2"]
+[editable path="Chest3"]
+[editable path="Chest4"]
+[editable path="Chest5"]
+[editable path="Chest6"]
