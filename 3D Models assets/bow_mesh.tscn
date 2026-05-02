@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c40d0pnagtd2q"]
+
+[ext_resource type="ArrayMesh" uid="uid://cnjsd16g66aaj" path="res://3D Models assets/bow_mesh.tres" id="1_egh0d"]
+
+[node name="BowMesh" type="Node3D"]
+transform = Transform3D(42.145, 0, 0, 0, 42.145, 0, 0, 0, 42.145, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_egh0d")

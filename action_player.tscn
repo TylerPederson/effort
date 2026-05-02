@@ -15,10 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://5ajj6hvux3jy" path="res://Inventory/Controllers/interaction_controller.tscn" id="13_3u1kb"]
 [ext_resource type="PackedScene" uid="uid://7hyg2hsh5jsl" path="res://Player/Hero_basic3.glb" id="13_ewxee"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://n2tolafmdf1b" path="res://Player/hero_animation.tres" id="14_3u1kb"]
-[ext_resource type="PackedScene" uid="uid://dul6eyb6xt0km" path="res://Inventory/Items/Models/Sword.glb" id="16_lf5tp"]
 [ext_resource type="PackedScene" uid="uid://bfmeyvy22l5uk" path="res://Inventory/Items/Models/Axe.glb" id="17_02uis"]
 [ext_resource type="PackedScene" uid="uid://cy7dmedlthsis" path="res://Inventory/Items/Models/Crossbow.glb" id="18_x8p6m"]
-[ext_resource type="PackedScene" uid="uid://ba6dg3mai1tep" path="res://Inventory/Items/Models/Wooden Bow.glb" id="19_37x3a"]
+[ext_resource type="PackedScene" uid="uid://c40d0pnagtd2q" path="res://3D Models assets/bow_mesh.tscn" id="19_tvcsx"]
+[ext_resource type="PackedScene" uid="uid://yaqfb7ddgk04" path="res://3D Models assets/iron_sword_mesh.tscn" id="20_pvtks"]
 [ext_resource type="PackedScene" uid="uid://dnq7qevyyo87w" path="res://Inventory/Items/Models/Katana.glb" id="20_tvcsx"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ewxee"]
@@ -50,7 +50,7 @@ max_look_boundary = 20.0
 
 [node name="InfoScreens" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
-layer = 2
+layer = 10
 
 [node name="Basic_HUD" parent="." instance=ExtResource("11_0mgxw")]
 
@@ -176,28 +176,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Hero_Rig/Armature" index="0"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -1, 0)
-bones/0/position = Vector3(5.6538166e-23, 0.93388236, 3.615248e-10)
+bones/0/position = Vector3(1.160215e-23, 0.91288203, 1.0803324e-09)
 bones/0/rotation = Quaternion(-8.557139e-09, 1.7114278e-08, -2.9289851e-16, 1)
 bones/1/rotation = Quaternion(1.9820225e-14, -8.881784e-15, -2.6166074e-23, 1)
-bones/2/rotation = Quaternion(9.169199e-07, -9.281882e-08, 0.9958128, -0.09141723)
+bones/2/rotation = Quaternion(9.037751e-07, -1.3413906e-09, 0.9902075, -0.13960363)
 bones/3/rotation = Quaternion(0.06098973, -0.004187123, -0.11117566, 0.9919187)
 bones/5/position = Vector3(0.15046811, -0.049661037, -0.014043546)
-bones/5/rotation = Quaternion(0.050223194, 0.09490825, 0.9940174, -0.01998686)
+bones/5/rotation = Quaternion(0.049757533, 0.14846839, 0.9872184, -0.029685315)
 bones/5/scale = Vector3(1.0000029, 0.9999996, 1.0000741)
-bones/6/rotation = Quaternion(-0.17573002, -0.00015174464, -0.022450222, 0.98418236)
+bones/6/rotation = Quaternion(-0.28307882, -0.00014756783, -0.03616433, 0.9584146)
 bones/6/scale = Vector3(0.9999995, 0.9999997, 1.0000002)
 bones/7/position = Vector3(-2.4497272e-08, 0.40076756, -4.099143e-09)
-bones/7/rotation = Quaternion(0.7103866, 0.046098128, -0.02456244, 0.7018708)
+bones/7/rotation = Quaternion(0.74820805, 0.05247173, -0.017022002, 0.66116697)
 bones/7/scale = Vector3(1.000004, 1.0000167, 0.99999803)
-bones/8/rotation = Quaternion(-9.4906187e-07, -7.888742e-08, 0.99361056, 0.11286396)
+bones/8/rotation = Quaternion(-9.5230575e-07, -9.5522715e-08, 0.9901394, 0.14008531)
 bones/9/rotation = Quaternion(0.06098973, 0.0041871225, 0.11117564, 0.9919187)
 bones/11/position = Vector3(-0.15046811, -0.049661037, -0.014043561)
-bones/11/rotation = Quaternion(-0.047641777, 0.09493623, 0.9941458, 0.019787172)
+bones/11/rotation = Quaternion(-0.047191467, 0.14852083, 0.9873466, 0.029347755)
 bones/11/scale = Vector3(1.0000029, 0.99999976, 1.0000741)
-bones/12/rotation = Quaternion(-0.17573008, 0.00015178171, 0.022450225, 0.9841824)
+bones/12/rotation = Quaternion(-0.28307882, 0.00014760753, 0.036164336, 0.9584146)
 bones/12/scale = Vector3(0.99999976, 0.9999999, 1.0000002)
 bones/13/position = Vector3(4.1289947e-08, 0.4007676, -1.3423174e-09)
-bones/13/rotation = Quaternion(0.71050954, -0.043980308, 0.02307357, 0.7019327)
+bones/13/rotation = Quaternion(0.74834985, -0.050274655, 0.015654981, 0.661211)
 bones/13/scale = Vector3(1.000004, 1.0000168, 0.9999982)
 bones/14/position = Vector3(0.24436599, 0.4813246, 0.87825346)
 bones/14/rotation = Quaternion(-0.006855925, 0.7070735, 0.70707357, -0.006855925)
@@ -230,7 +230,7 @@ parameters/die/request = 0
 parameters/TimeScale/scale = 0.29999999999999716
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.99841064, -0.05628552, -0.0030993742, -0.054316007, -0.9752772, 0.21420595, -0.01507943, -0.213697, -0.97678345, 0.33200124, 0.09053695, -0.043388307)
+transform = Transform3D(0.999887, -0.002699296, -0.014845541, 0.00053625903, -0.9768966, 0.21371335, -0.015079414, -0.21369693, -0.9767835, 0.37165388, 0.07537651, -0.043388247)
 bone_name = "hand.r"
 bone_idx = 10
 use_external_skeleton = true
@@ -239,13 +239,6 @@ external_skeleton = NodePath("../Hero_Rig/Armature/Skeleton3D")
 [node name="WeaponMeshHolder" type="Node3D" parent="RightHandBone"]
 unique_name_in_owner = true
 transform = Transform3D(0.0058965697, 0.02364985, 0.19850923, 0.19405915, -0.048384376, 0, 0.048023727, 0.19261266, -0.024373857, 0, 0.05, 0)
-
-[node name="Mesh_IronSword" parent="RightHandBone/WeaponMeshHolder" instance=ExtResource("16_lf5tp")]
-unique_name_in_owner = true
-transform = Transform3D(2.7, 0, 0, 0, 2.7, 0, 0, 0, 2.7, 0, 0, 0)
-visible = false
-collision_layer = 0
-collision_mask = 0
 
 [node name="Mesh_SteelAxe" parent="RightHandBone/WeaponMeshHolder" instance=ExtResource("17_02uis")]
 unique_name_in_owner = true
@@ -257,16 +250,19 @@ unique_name_in_owner = true
 transform = Transform3D(-0.53833556, -0.74692833, 0.39024672, 0.14436567, 0.3744917, 0.91592294, -0.83027345, 0.5494123, -0.09377117, 0.48501062, 0.8371967, 0.17728114)
 visible = false
 
-[node name="Mesh_Bow" parent="RightHandBone/WeaponMeshHolder" instance=ExtResource("19_37x3a")]
-unique_name_in_owner = true
-transform = Transform3D(-3.5886872, 0.34190023, 0.02128452, 0.32813644, 3.4952364, -0.81955874, -0.0983637, -0.813913, -3.5105402, 0.01993154, -0.0017763972, 0.069509625)
-visible = false
-collision_layer = 0
-collision_mask = 0
-
 [node name="Mesh_Katana" parent="RightHandBone/WeaponMeshHolder" instance=ExtResource("20_tvcsx")]
 unique_name_in_owner = true
 transform = Transform3D(-2.4922628, 0.61299235, -0.13328974, 0.6268662, 2.45429, -0.43405035, 0.023759585, -0.45343283, -2.5295718, 0.19926858, 0.91212386, -0.10477865)
+visible = false
+
+[node name="Mesh_Bow" parent="RightHandBone/WeaponMeshHolder" instance=ExtResource("19_tvcsx")]
+unique_name_in_owner = true
+transform = Transform3D(-353.25226, 175.65472, -66.01584, -108.531235, -76.45286, 377.3272, 153.08067, 351.14142, 115.1779, -0.2159445, 0.122133076, 0.12754285)
+visible = false
+
+[node name="Mesh_IronSword" parent="RightHandBone/WeaponMeshHolder" instance=ExtResource("20_pvtks")]
+unique_name_in_owner = true
+transform = Transform3D(309.94473, -154.67345, 50.103657, -55.11017, 1.5274168, 345.63065, -152.96118, -313.96463, -23.001902, 0.04902014, -0.018970609, 0.045975924)
 visible = false
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]

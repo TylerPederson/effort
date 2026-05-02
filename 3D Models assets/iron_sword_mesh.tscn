@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://yaqfb7ddgk04"]
+
+[ext_resource type="ArrayMesh" uid="uid://ba26jn4ijck4b" path="res://stats-and-combat/Collectible/Meshes/iron_sword_mesh.tres" id="1_ntlsd"]
+
+[node name="IronSwordMesh" type="Node3D"]
+transform = Transform3D(21.7, 0, 0, 0, 21.7, 0, 0, 0, 21.7, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ntlsd")
