@@ -95,6 +95,7 @@ func play_sound_effect(sound_effect: AudioStream) -> void:
 	var audio_player := AudioStreamPlayer.new()
 	add_child(audio_player)
 	audio_player.stream = sound_effect
+	audio_player.bus = "SFX"
 	
 	audio_player.finished.connect(audio_player.queue_free)
 	audio_player.play()

@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 
 func _on_start_pressed() -> void:
 	print("Start button pressed")
+	Choice_Tray.reset_available_collectibles()
 	get_tree().change_scene_to_file("res://sandbox_level.tscn")
 
 
