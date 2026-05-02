@@ -25,7 +25,7 @@ var attacking : bool = false
 var player = null
 
 @onready var timer: Timer = %Timer
-@onready var attack_cast: RayCast3D = %AttackCast
+@onready var attack_cast: ShapeCast3D = %AttackCast
 @onready var swing_path_follow: PathFollow3D = %SwingPathFollow
 @onready var stab_start_position: Node3D = %StabStartPosition
 

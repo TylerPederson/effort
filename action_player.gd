@@ -187,6 +187,7 @@ func get_movement_direction() -> Vector3:
 # rotates pivot nodes to store how much the player has rotated based on how much
 # the mouse moves  each from
 func frame_camera_rotation() -> void:
+	
 	horizontal_pivot.rotate_y(_look.x)
 	vertical_pivot.rotate_x(_look.y)
 	

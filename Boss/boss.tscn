@@ -11158,6 +11158,8 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 
 [node name="PlayerHitL" type="Area3D" parent="BossV2/Armature_004/Skeleton3D/Left Hand/SwordL"]
 transform = Transform3D(0.002631152, 0.0005960545, -0.0019577763, 0.00073746254, -0.003250733, 1.4094985e-06, -0.0019090086, -0.00043424775, -0.0026978203, -0.0102568865, 0.30086738, 0.04936102)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BossV2/Armature_004/Skeleton3D/Left Hand/SwordL/PlayerHitL"]
 transform = Transform3D(0.9642968, -0.22338068, 0.14222369, 0.23160857, 0.97181207, -0.04398507, -0.12838997, 0.07535745, 0.9888559, -65.82898, 317.424, 3.8500366)
@@ -11178,6 +11180,8 @@ transform = Transform3D(0.99999976, -2.9802322e-08, 1.0430813e-07, 0, 0.9999996,
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 
 [node name="PlayerHitR" type="Area3D" parent="BossV2/Armature_004/Skeleton3D/Right Hand/SwordR"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BossV2/Armature_004/Skeleton3D/Right Hand/SwordR/PlayerHitR"]
 transform = Transform3D(1, -7.450581e-09, 1.1175871e-08, 7.450581e-09, 1.0000001, 0, 2.6077032e-08, 0, 1, 1.1920929e-07, -0.69873077, -2.0861626e-07)

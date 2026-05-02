@@ -45,15 +45,14 @@ func _on_animation_tree_animation_finished(anim_name):
 	elif  attack:#"Attack" in anim_name or "Attack 2" in anim_name or "Attack 3" in anim_name or "Attack 4" in anim_name or "Attack 5" in anim_name or "Attack 6" in anim_name:	#Loops attack animation in near
 		if (player in get_node("AttackPlayer").get_overlapping_bodies()) and !dead:
 			state_controller._change_state("Attack")
-	elif  "Dying" in anim_name:
-		_death()		# deletes boss if dying animation is playing
-		
+
 func  _death():	#deletss boss
 	var instance = death_scene.instantiate()
 	get_tree().current_scene.add_child(instance)
 	instance.global_position = global_position
-
+	await get_tree().create_timer(5.0).timeout
 	self.queue_free()
+	get_tree().change_scene_to_file("res://MainMenu_GUI/MainMenu.tscn")
 
 
 func _on_player_hit_detection_body_entered(body):	# Damage player function
@@ -66,6 +65,7 @@ func _hit(damage: int):	# Player damages boss function
 	health -= damage
 	if health < 0:
 		state_controller._change_state("Death")
+		_death()
 
 
 func _on_player_hit_L(body):	# Damage player function

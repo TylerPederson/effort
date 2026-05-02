@@ -12,6 +12,8 @@ height = 0.8613281
 script = ExtResource("1_wbu8m")
 
 [node name="Damage_Component" parent="." instance=ExtResource("2_vbgnd")]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Damage_Component"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5.9761684e-10, 0.013671875)

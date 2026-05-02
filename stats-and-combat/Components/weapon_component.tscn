@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://ceqis4ngjspbn" path="res://stats-and-combat/Components/weapon_component.gd" id="1_tnkkm"]
 [ext_resource type="Script" uid="uid://dejjvloqulsca" path="res://stats-and-combat/Components/attack_cast.gd" id="2_6v18b"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_6v18b"]
+size = Vector3(0.1, 0.1, 1)
+
 [sub_resource type="Curve3D" id="Curve3D_6v18b"]
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.5, 0, 0, 0.35, 0, 0.4, -0.35, 0, -0.4, 1, 0, -1, 0.35, 0, -0.4, -0.35, 0, 0.4, -1, 0, -1, 0, 0, 0, 0, 0, 0, -1.5, 0, 0),
@@ -10,19 +13,16 @@ _data = {
 }
 point_count = 4
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6v18b"]
-radius = 0.1
-height = 2.505
-
 [node name="Weapon_Component" type="Node3D"]
 script = ExtResource("1_tnkkm")
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
 
-[node name="AttackCast" type="RayCast3D" parent="."]
+[node name="AttackCast" type="ShapeCast3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.3603862)
+shape = SubResource("BoxShape3D_6v18b")
+collision_mask = 2
 collide_with_areas = true
 script = ExtResource("2_6v18b")
 
@@ -38,9 +38,5 @@ loop = false
 [node name="StabStartPosition" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5209105, 0, 0)
-
-[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_6v18b")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

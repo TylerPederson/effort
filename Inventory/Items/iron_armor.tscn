@@ -14,7 +14,7 @@ height = 1.3043213
 [sub_resource type="Resource" id="Resource_7nrgp"]
 script = ExtResource("4_g3t0q")
 equipement_type = 1
-armor_value = 25
+armor_value = 2
 metadata/_custom_type_script = "uid://cnlb1oem8hjot"
 
 [sub_resource type="Resource" id="Resource_n4x3h"]
