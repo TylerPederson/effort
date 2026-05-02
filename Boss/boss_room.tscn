@@ -1,18 +1,17 @@
-[gd_scene load_steps=28 format=3 uid="uid://clerkr85kk6ww"]
+[gd_scene load_steps=27 format=3 uid="uid://clerkr85kk6ww"]
 
 [ext_resource type="Script" uid="uid://23jmmfc02jmu" path="res://Boss/door_pivot.gd" id="1_0yjcu"]
 [ext_resource type="Texture2D" uid="uid://bg3luom4u5mpd" path="res://Boss/Textures_BossRoom/Bricks_17-128x128.png" id="1_j8hxa"]
 [ext_resource type="Texture2D" uid="uid://dfykwbqic36bg" path="res://Boss/Textures_BossRoom/Bricks_16-128x128.png" id="2_2n5hb"]
-[ext_resource type="PackedScene" uid="uid://da7uc6l3gvjq1" path="res://action_player.tscn" id="3_mth68"]
 [ext_resource type="PackedScene" uid="uid://di4k0x1b5852r" path="res://Boss/boss.tscn" id="3_r2qyn"]
-[ext_resource type="PackedScene" uid="uid://dc0c3b21pouhy" path="res://Inventory/Items/crossbow.tscn" id="3_rg28a"]
 [ext_resource type="Texture2D" uid="uid://crgkkefe5lgp4" path="res://Boss/Textures_BossRoom/Wood_06-128x128.png" id="4_pq32u"]
-[ext_resource type="PackedScene" uid="uid://byyd64cxpx5fv" path="res://Inventory/Items/tnt_bag.tscn" id="5_51qfk"]
 [ext_resource type="AudioStream" uid="uid://ccmau1ai6c7u7" path="res://Boss/BossAudio/Portcullis Gate.wav" id="5_ukpyv"]
 [ext_resource type="PackedScene" uid="uid://bttbghaapi13t" path="res://Boss/SpikeFloor.tscn" id="6_51qfk"]
 [ext_resource type="PackedScene" uid="uid://1fhefww4sbje" path="res://Boss/torches_boss.tscn" id="6_pq32u"]
+[ext_resource type="PackedScene" uid="uid://cpdst700ikydj" path="res://Boss/death_box.tscn" id="11_bnrpt"]
 [ext_resource type="PackedScene" uid="uid://dfb7tufanvxwp" path="res://Boss/DoorOutline.tscn" id="11_pq32u"]
 [ext_resource type="PackedScene" uid="uid://djlmxq8y63k05" path="res://Boss/boss_outside_path.tscn" id="12_bnrpt"]
+[ext_resource type="AudioStream" uid="uid://cddho73yaa73o" path="res://Audio/Undaunted.mp3" id="13_ukpyv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bnrpt"]
 albedo_texture = ExtResource("1_j8hxa")
@@ -126,7 +125,7 @@ use_collision = true
 size = Vector3(1, 18, 10)
 material = SubResource("StandardMaterial3D_any6y")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="DoorPivot"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DoorPivot"]
 stream = ExtResource("5_ukpyv")
 bus = &"SFX"
 
@@ -148,7 +147,7 @@ shape = SubResource("BoxShape3D_n8ie0")
 transform = Transform3D(7.1549286e-09, 0, -0.6, 0, 0.6, 0, 0.6, 0, 7.1549286e-09, -6.83292, 1.8442335, 0.21916246)
 collision_layer = 3
 collision_mask = 3
-player = NodePath("../Player")
+player = NodePath("")
 
 [node name="Invisable Walls" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.068538, 0)
@@ -200,15 +199,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.959642, -7.1436086, 7.7645
 [node name="Torches_boss5" parent="Invisable Walls" instance=ExtResource("6_pq32u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.959642, -7.1436086, -8.374177)
 
-[node name="Crossbow" parent="." instance=ExtResource("3_rg28a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.813503, 4.711226, 0)
-
-[node name="Player" parent="." instance=ExtResource("3_mth68")]
-transform = Transform3D(0.07050508, 0, 0.99751145, 0, 1, 0, -0.99751145, 0, 0.07050508, 55.565163, 3.0710497, 0)
-
-[node name="TNT_Bag" parent="." instance=ExtResource("5_51qfk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.922283, 2.9565783, -2.3019605)
-
 [node name="SpikeFloor" parent="." instance=ExtResource("6_51qfk")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.3538065, -10, 0)
 
@@ -230,6 +220,12 @@ material = SubResource("StandardMaterial3D_ukpyv")
 
 [node name="boss_outside_path" parent="." instance=ExtResource("12_bnrpt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83.339, 1.436, 0.134)
+
+[node name="DeathBox" parent="." instance=ExtResource("11_bnrpt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.165262, 0)
+
+[node name="Boss_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_ukpyv")
 
 [connection signal="body_entered" from="DoorTriggerOpen" to="DoorPivot" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="DoorTriggerClose" to="DoorPivot" method="_on_area_3d_2_body_exited"]

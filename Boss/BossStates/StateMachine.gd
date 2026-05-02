@@ -9,6 +9,8 @@ var state = {
 func _change_state(newState: String):	# Changes state if it is not dead
 	if newState != "Walk":
 		$"../BossV2/WalkingAudio".stop()
+	if newState == "Walk":
+		$"../BossV2/WalkingAudio".play()
 	if get_child_count() != 0:	# Remove the last states if not dead
 		if !("Death" in get_child(0).name):
 			get_child(0).queue_free()

@@ -8750,6 +8750,33 @@ tracks/116/interp = 0
 tracks/116/loop_wrap = true
 tracks/116/keys = PackedFloat32Array(0, 1, -2.1699819e-07, 40.504723, 5.9605114e-08)
 
+[sub_resource type="Animation" id="Animation_sri3m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackAudio:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DeathAudio:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_qi5i7"]
 resource_name = "T-pose"
 length = 0.06666667
@@ -10397,33 +10424,6 @@ tracks/116/interp = 0
 tracks/116/loop_wrap = true
 tracks/116/keys = PackedFloat32Array(0, 1, -3.8836157e-07, 40.504734, 9.578961e-13)
 
-[sub_resource type="Animation" id="Animation_sri3m"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AttackAudio:playing")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DeathAudio:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xq4iq"]
 _data = {
 &"Attack": SubResource("Animation_pblts"),
@@ -11189,15 +11189,15 @@ libraries = {
 &"": SubResource("AnimationLibrary_xq4iq")
 }
 
-[node name="AttackAudio" type="AudioStreamPlayer3D" parent="BossV2"]
+[node name="AttackAudio" type="AudioStreamPlayer" parent="BossV2"]
 stream = ExtResource("10_sri3m")
 bus = &"SFX"
 
-[node name="DeathAudio" type="AudioStreamPlayer3D" parent="BossV2"]
+[node name="DeathAudio" type="AudioStreamPlayer" parent="BossV2"]
 stream = ExtResource("8_2j6g7")
 bus = &"SFX"
 
-[node name="WalkingAudio" type="AudioStreamPlayer3D" parent="BossV2"]
+[node name="WalkingAudio" type="AudioStreamPlayer" parent="BossV2"]
 stream = ExtResource("9_myhfd")
 bus = &"SFX"
 
@@ -11233,7 +11233,7 @@ shape = SubResource("CylinderShape3D_7ba5a")
 [node name="Health_Component" parent="." instance=ExtResource("4_0sshd")]
 max_hp = 300
 
-[node name="SwordSound" type="AudioStreamPlayer3D" parent="."]
+[node name="SwordSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_sri3m")
 bus = &"SFX"
 
