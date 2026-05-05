@@ -22,12 +22,14 @@ script = ExtResource("1_7cihc")
 transform = Transform3D(9, 0, 0, 0, 13.5, 0, 0, 0, 0.505, 4.5, 0, 0)
 material_override = SubResource("StandardMaterial3D_axgn3")
 use_collision = true
+collision_layer = 129
 material = SubResource("StandardMaterial3D_48p18")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(9, 0, 0, 0, 13.5, 0, 0, 0, 0.5, -4.5, 0, 0)
 material_override = SubResource("StandardMaterial3D_jm6fi")
 use_collision = true
+collision_layer = 129
 
 [node name="Area3D" type="Area3D" parent="."]
 
