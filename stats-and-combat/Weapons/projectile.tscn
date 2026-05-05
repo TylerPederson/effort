@@ -25,4 +25,15 @@ one_shot = true
 [node name="Arrow" parent="." instance=ExtResource("3_vbgnd")]
 transform = Transform3D(0.285, 0, 0, 0, -0.285, 2.4915492e-08, 0, -2.4915492e-08, -0.285, 0, 0, 0)
 
+[node name="FalloffTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.15
+
+[node name="FalloffStartTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+autostart = true
+
 [connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]
+[connection signal="timeout" from="FalloffTimer" to="." method="_on_falloff_timer_timeout"]
+[connection signal="timeout" from="FalloffStartTimer" to="." method="_on_falloff_start_timer_timeout"]

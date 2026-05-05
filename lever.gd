@@ -10,9 +10,6 @@ func _ready() -> void:
 	envio_interact.parent = self
 
 func interact():
-	print("TRIED")
-	print("Lever activated!")
-
 	GameManager.lever_activated()
 	pull_lever()
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=4 uid="uid://di4k0x1b5852r"]
+[gd_scene load_steps=98 format=4 uid="uid://di4k0x1b5852r"]
 
 [ext_resource type="Script" uid="uid://b8y7rivbw35ad" path="res://Boss/boss.gd" id="1_t20dt"]
 [ext_resource type="Script" uid="uid://dd4wpxl6enyas" path="res://Boss/BossStates/StateMachine.gd" id="2_4cnrr"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://drdjo5j0rh0dx" path="res://Boss/BossAudio/Sword Sheath 2.wav" id="8_2j6g7"]
 [ext_resource type="AudioStream" uid="uid://dr363wmnya4g2" path="res://Boss/BossAudio/Stone Chain Walk 2.wav" id="9_myhfd"]
 [ext_resource type="AudioStream" uid="uid://cixwsicc7ekax" path="res://Boss/BossAudio/Sword Attack 1.wav" id="10_sri3m"]
+[ext_resource type="PackedScene" uid="uid://udnibojirirx" path="res://stats-and-combat/Basic_HUD/damage_number_component.tscn" id="13_tjlxr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7ba5a"]
 radius = 0.7963867
@@ -11240,6 +11241,11 @@ max_hp = 300
 [node name="SwordSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_sri3m")
 bus = &"SFX"
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0947065, 0)
+
+[node name="DamageNumberComponent" parent="." instance=ExtResource("13_tjlxr")]
 
 [connection signal="body_entered" from="BossV2/Armature_004/Skeleton3D/Left Hand/SwordL/PlayerHitL" to="." method="_on_player_hit_L"]
 [connection signal="body_entered" from="BossV2/Armature_004/Skeleton3D/Right Hand/SwordR/PlayerHitR" to="." method="_on_player_hit_R"]

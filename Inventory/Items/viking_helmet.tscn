@@ -26,6 +26,9 @@ item_desc = "[p align=center]A helmet with spike fit for a viking of old. To the
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="viking_helmet" instance=ExtResource("1_sg6pf")]
+collision_layer = 4
+linear_damp = 1.0
+angular_damp = 1.0
 
 [node name="nose3 vikingHelmet" parent="." index="0"]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)

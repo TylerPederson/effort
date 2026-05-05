@@ -28,6 +28,9 @@ item_desc = "[center]Provides 50% [color=gray]damage reduction[/color] for 15 se
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="Armor Potion" type="RigidBody3D"]
+collision_layer = 4
+linear_damp = 1.0
+angular_damp = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5905609, 0)

@@ -22,7 +22,7 @@ albedo_texture = ExtResource("3_awwea")
 albedo_texture = ExtResource("3_awwea")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0ohsc"]
-size = Vector3(0.3902893, 0.64746094, 0.8000488)
+size = Vector3(0.34895325, 0.64746094, 0.48962402)
 
 [node name="Lever" type="StaticBody3D"]
 script = ExtResource("1_0ohsc")
@@ -49,7 +49,7 @@ mesh = SubResource("CylinderMesh_73lsj")
 surface_material_override/0 = SubResource("StandardMaterial3D_7uavd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(3.8800004, 0, 3.7252903e-09, -3.7252903e-09, 3.88, -2.3841858e-07, 7.450581e-09, 0, 3.88, 0.08742124, 0.68392587, 0.5110498)
+transform = Transform3D(3.8800004, 0, 3.7252903e-09, -3.7252903e-09, 3.88, -2.3841858e-07, 7.450581e-09, 0, 3.88, 0.007229276, 0.68392587, 0.2815747)
 shape = SubResource("BoxShape3D_0ohsc")
 
 [node name="AudioStreamPlayer1" type="AudioStreamPlayer" parent="."]

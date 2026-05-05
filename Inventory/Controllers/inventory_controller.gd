@@ -8,6 +8,7 @@ signal equip_change(slot: String, equip_data)
 @onready var tooltip_panel: Control = %tooltip_panel
 @onready var panel: Panel = $Panel
 @onready var context_menu: PopupMenu = PopupMenu.new()
+@onready var player_HUD = get_tree().get_first_node_in_group("Player").get_node("Basic_HUD")
 
 var inventory_slot_prefab: PackedScene = load("res://Inventory/inventory_slot.tscn")
 
@@ -72,20 +73,20 @@ func setup_equip_slots() -> void:
 			0:
 				# Hotbar1
 				slot.global_position = Vector2(698, 368)
-				slot.default_icon = load("res://Inventory/SlotIcons/slotHot.png")
+				slot.default_icon = load("res://Inventory/SlotIcons/slotHot1.png")
 				slot.update_base_slot()
 				equipped_slots.set(slot.inventory_slot_id, slot)
 			1:
 				
 				#Hotbar2
 				slot.global_position = Vector2(794, 368)
-				slot.default_icon = load("res://Inventory/SlotIcons/slotHot.png")
+				slot.default_icon = load("res://Inventory/SlotIcons/slotHot2.png")
 				slot.update_base_slot()
 				equipped_slots.set(slot.inventory_slot_id, slot)
 			2:
 				#Hotbar3
 				slot.global_position = Vector2(890, 368)
-				slot.default_icon = load("res://Inventory/SlotIcons/slotHot.png")
+				slot.default_icon = load("res://Inventory/SlotIcons/slotHot3.png")
 				slot.update_base_slot()
 				equipped_slots.set(slot.inventory_slot_id, slot)
 			3:
@@ -721,14 +722,26 @@ func use_collectable(slot_id: int) -> void:
 	if not slot.slot_data:
 		return
 	
+	if %ConsumableTimer.time_left > 0.0:
+		return
+	
 	# Add all consumable item actions here!
 	var action_data: ActionData = slot.slot_data.action_data
 	match action_data.modifier_name:
 			"modify_health":
-				interaction_controller.modify_health(action_data.modifier_value)
+				if interaction_controller.modify_health(action_data.modifier_value):
+					%ConsumableTimer.start()
+				else:
+					player_HUD.display_info("Already Full Health", 2.0)
+					return
 			"modify_stamina":
-				interaction_controller.modify_stamina(action_data.modifier_value)
+				if interaction_controller.modify_stamina(action_data.modifier_value):
+					%ConsumableTimer.start()
+				else:
+					player_HUD.display_info("Already Full Stamina", 2.0)
+					return
 			"modify_armor":
+				%ConsumableTimer.start()
 				interaction_controller.modify_armor(action_data.modifier_value)
 	
 	slot.slot_data.items_stacked -= 1

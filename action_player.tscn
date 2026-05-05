@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://da7uc6l3gvjq1"]
+[gd_scene load_steps=28 format=3 uid="uid://da7uc6l3gvjq1"]
 
 [ext_resource type="Script" uid="uid://bgv7o8b1m5rfj" path="res://action_player.gd" id="1_okpe7"]
 [ext_resource type="PackedScene" uid="uid://ctpmannwcqc02" path="res://stats-and-combat/Components/weapon_component.tscn" id="2_b2k0g"]
@@ -42,6 +42,9 @@ height = 3.1273193
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qmomh"]
 height = 3.1085205
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tvcsx"]
+size = Vector3(1.2, 3, 1.5)
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_okpe7")
@@ -88,7 +91,7 @@ expand_mode = 1
 size = Vector2i(1152, 648)
 
 [node name="WorldCamera" type="Camera3D" parent="WorldSubview"]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, -0.7030293)
 cull_mask = 1048573
 
 [node name="TextSubview" type="SubViewport" parent="."]
@@ -96,25 +99,15 @@ transparent_bg = true
 size = Vector2i(1142, 648)
 
 [node name="TextCamera" type="Camera3D" parent="TextSubview"]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, -0.7030293)
 cull_mask = 1048574
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56365967, 0)
 shape = SubResource("CapsuleShape3D_mx8re")
 
-[node name="SpringArm3D" type="SpringArm3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
-shape = SubResource("SeparationRayShape3D_4flbx")
-spring_length = 5.5
-
-[node name="SpringarmEnd" type="Node3D" parent="SpringArm3D"]
-
-[node name="RemoteWorldCamera" type="RemoteTransform3D" parent="SpringArm3D/SpringarmEnd"]
-remote_path = NodePath("../../../WorldSubview/WorldCamera")
-
-[node name="RemoteTextCamera" type="RemoteTransform3D" parent="SpringArm3D/SpringarmEnd"]
-remote_path = NodePath("../../../TextSubview/TextCamera")
+[node name="CentralPivot" type="Node3D" parent="."]
+unique_name_in_owner = true
 
 [node name="HorizontalPivot" type="Node3D" parent="."]
 
@@ -122,6 +115,9 @@ remote_path = NodePath("../../../TextSubview/TextCamera")
 
 [node name="RemoteTransform3D2" type="RemoteTransform3D" parent="HorizontalPivot/VerticalPivot"]
 remote_path = NodePath("../../../RayCast3D")
+
+[node name="RemoteTransform3D3" type="RemoteTransform3D" parent="HorizontalPivot/VerticalPivot"]
+remote_path = NodePath("../../../ShapeCast3D")
 
 [node name="WeaponHolder" type="Node3D" parent="HorizontalPivot"]
 unique_name_in_owner = true
@@ -134,6 +130,24 @@ weilder = NodePath("../../..")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="HorizontalPivot"]
 remote_path = NodePath("../../Hero_Rig")
+
+[node name="SpringArmPivot" type="Node3D" parent="HorizontalPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7030293)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="HorizontalPivot/SpringArmPivot"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+collision_mask = 128
+shape = SubResource("SeparationRayShape3D_4flbx")
+spring_length = 5.5
+
+[node name="SpringarmEnd" type="Node3D" parent="HorizontalPivot/SpringArmPivot/SpringArm3D"]
+
+[node name="RemoteWorldCamera" type="RemoteTransform3D" parent="HorizontalPivot/SpringArmPivot/SpringArm3D/SpringarmEnd"]
+remote_path = NodePath("../../../../../WorldSubview/WorldCamera")
+
+[node name="RemoteTextCamera" type="RemoteTransform3D" parent="HorizontalPivot/SpringArmPivot/SpringArm3D/SpringarmEnd"]
+remote_path = NodePath("../../../../../TextSubview/TextCamera")
 
 [node name="Health_Component" parent="." instance=ExtResource("4_kv11m")]
 max_hp = 100
@@ -153,6 +167,10 @@ weapon_holder = NodePath("../HorizontalPivot/WeaponHolder")
 [node name="Stamina_Component" parent="." instance=ExtResource("8_xaelo")]
 
 [node name="Attack_Alternative_Component" parent="." instance=ExtResource("9_kv11m")]
+flat_armor_amount_rate = 1.0
+flat_armor_time = 7.0
+ratio_armor_time_rate = 1.75
+jump_charge_rate = 3.0
 
 [node name="Armor_Component" parent="." instance=ExtResource("11_7lffo")]
 
@@ -161,6 +179,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9088831, 0.6025256)
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -2)
+collision_mask = 5
 
 [node name="Inventory Controller" parent="." instance=ExtResource("12_7lffo")]
 
@@ -176,28 +195,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Hero_Rig/Armature" index="0"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -1, 0)
-bones/0/position = Vector3(1.8954794e-23, 0.93963313, 1.646824e-10)
+bones/0/position = Vector3(2.972136e-23, 0.931902, 4.2930676e-10)
 bones/0/rotation = Quaternion(-8.557139e-09, 1.7114278e-08, -2.9289851e-16, 1)
 bones/1/rotation = Quaternion(1.9820225e-14, -8.881784e-15, -2.6166074e-23, 1)
-bones/2/rotation = Quaternion(9.1857873e-07, -9.338339e-08, 0.99693847, -0.078190245)
+bones/2/rotation = Quaternion(9.182084e-07, -9.262415e-08, 0.9953843, -0.0959705)
 bones/3/rotation = Quaternion(0.06098973, -0.004187123, -0.11117566, 0.9919187)
 bones/5/position = Vector3(0.15046811, -0.049661037, -0.014043546)
-bones/5/rotation = Quaternion(0.050372668, 0.07308576, 0.9959236, -0.016045628)
+bones/5/rotation = Quaternion(0.050175417, 0.10125518, 0.99336964, -0.021134205)
 bones/5/scale = Vector3(1.0000029, 0.9999996, 1.0000741)
-bones/6/rotation = Quaternion(-0.13143541, -0.0001528681, -0.016791489, 0.99118257)
+bones/6/rotation = Quaternion(-0.18856157, -0.00015136349, -0.02408948, 0.9817659)
 bones/6/scale = Vector3(0.9999995, 0.9999997, 1.0000002)
 bones/7/position = Vector3(-2.4497272e-08, 0.40076756, -4.099143e-09)
-bones/7/rotation = Quaternion(0.69435734, 0.043465756, -0.027619766, 0.71778536)
+bones/7/rotation = Quaternion(0.71498126, 0.0468598, -0.02367163, 0.6971698)
 bones/7/scale = Vector3(1.000004, 1.0000167, 0.99999803)
-bones/8/rotation = Quaternion(-9.4907074e-07, -9.582712e-08, 0.99443036, 0.105395734)
+bones/8/rotation = Quaternion(-9.524615e-07, -9.574011e-08, 0.9933151, 0.11543448)
 bones/9/rotation = Quaternion(0.06098973, 0.0041871225, 0.11117564, 0.9919187)
 bones/11/position = Vector3(-0.15046811, -0.049661037, -0.014043561)
-bones/11/rotation = Quaternion(-0.047787223, 0.07310379, 0.99605185, 0.015902258)
+bones/11/rotation = Quaternion(-0.0475954, 0.10128609, 0.9934981, 0.020918146)
 bones/11/scale = Vector3(1.0000029, 0.99999976, 1.0000741)
-bones/12/rotation = Quaternion(-0.13143541, 0.00015291641, 0.016791493, 0.99118257)
+bones/12/rotation = Quaternion(-0.18856157, 0.00015139033, 0.024089487, 0.9817659)
 bones/12/scale = Vector3(0.99999976, 0.9999999, 1.0000002)
 bones/13/position = Vector3(4.1289947e-08, 0.4007676, -1.3423174e-09)
-bones/13/rotation = Quaternion(0.69447285, -0.041382078, 0.026082888, 0.7178543)
+bones/13/rotation = Quaternion(0.7151066, -0.04473224, 0.022196895, 0.69722944)
 bones/13/scale = Vector3(1.000004, 1.0000168, 0.9999982)
 bones/14/position = Vector3(0.24436599, 0.4813246, 0.87825346)
 bones/14/rotation = Quaternion(-0.006855925, 0.7070735, 0.70707357, -0.006855925)
@@ -230,7 +249,7 @@ parameters/die/request = 0
 parameters/TimeScale/scale = 0.29999999999999716
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.9974817, -0.07093332, 0.00011955743, -0.06931163, -0.9743215, 0.21422832, -0.015079426, -0.21369699, -0.97678345, 0.32109487, 0.09506917, -0.04338829)
+transform = Transform3D(0.9986784, -0.051237836, -0.004207809, -0.04914866, -0.97555554, 0.21418703, -0.015079417, -0.21369696, -0.97678345, 0.3357529, 0.08901417, -0.043388277)
 bone_name = "hand.r"
 bone_idx = 10
 use_external_skeleton = true
@@ -267,6 +286,18 @@ visible = false
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 current = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+light_energy = 0.7
+light_negative = true
+spot_range = 6.075515
+spot_angle = 23.218317
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+shape = SubResource("BoxShape3D_tvcsx")
+target_position = Vector3(0, 0, -1.25)
+collision_mask = 5
 
 [connection signal="perform_attack" from="." to="Attack_Component" method="_on_attack_action"]
 [connection signal="attack_started" from="HorizontalPivot/WeaponHolder/Weapon_Component" to="." method="attack_animation"]

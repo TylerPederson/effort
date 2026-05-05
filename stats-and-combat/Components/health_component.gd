@@ -34,6 +34,8 @@ func _attach_armor():
 			armor_component = c
 			break
 
+func is_full_health() -> bool:
+	return current_hp == max_hp + bonus_hp
 
 func take_damage(damage: int) -> void:
 	if died:
@@ -46,6 +48,9 @@ func take_damage(damage: int) -> void:
 	current_hp -= damage
 	if get_parent().get_node_or_null("Marker3D"):
 		var display_damage = damage_numbers.instantiate()
+		display_damage.color = Color(0.911, 0.811, 0.0, 1.0)
+		if get_parent().is_in_group("Player"):
+			display_damage.color = Color(0.985, 0.367, 0.283, 1.0)
 		get_parent().add_child(display_damage)
 		var random_offset = Vector3(-2 * randf() + 1, -2 * randf() + 1, 0)
 		display_damage.global_position = get_parent().get_node("Marker3D").global_position + random_offset

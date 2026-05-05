@@ -29,6 +29,9 @@ item_desc = "[p align=center]A common potion made to modify your [color=green]st
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="stam_potion" instance=ExtResource("1_1kvtt")]
+collision_layer = 4
+linear_damp = 1.0
+angular_damp = 1.0
 
 [node name="pCube1_Vidro_0" parent="Sketchfab_model/3e03cfa7ed67468692d90b8a6f3a4d8d_fbx/RootNode/pCube1" index="0"]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)

@@ -49,6 +49,8 @@ func use_stamina(amount: float):
 func gain_stamina(amount: float):
 	current_stamina = min(max_stamina + bonus_stamina, current_stamina + amount)
 
+func is_full_stamina() -> bool:
+	return current_stamina == max_stamina + bonus_stamina
 
 func _on_regen_timer_timeout() -> void:
 	current_stamina = max(MIN_STAMINA, current_stamina)

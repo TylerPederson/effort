@@ -28,6 +28,9 @@ item_desc = "[p align=center]This quiver holds more arrows than you need[/p] [p]
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="Quiver" type="RigidBody3D"]
+collision_layer = 4
+linear_damp = 1.0
+angular_damp = 1.0
 
 [node name="Quiver1" parent="." instance=ExtResource("1_ibq5i")]
 transform = Transform3D(2.408305, 0.67087054, 0, -0.67087054, 2.408305, 0, 0, 0, 2.5, 0, 0, 0)

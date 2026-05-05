@@ -63,7 +63,18 @@ initial_velocity_max = 1.0
 scale_amount_curve = SubResource("Curve_k80on")
 color = Color(1, 0.94166666, 0.75, 1)
 
+[node name="FalloffTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.15
+
+[node name="FalloffStartTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+autostart = true
+
 [connection signal="successful_hit" from="Damage_Component" to="ExplosionCreator" method="create_explosion"]
 [connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]
 [connection signal="area_entered" from="ExplosionArea" to="ExplosionCreator" method="track_object"]
 [connection signal="area_exited" from="ExplosionArea" to="ExplosionCreator" method="untrack_object"]
+[connection signal="timeout" from="FalloffTimer" to="." method="_on_falloff_timer_timeout"]
+[connection signal="timeout" from="FalloffStartTimer" to="." method="_on_falloff_start_timer_timeout"]

@@ -24,10 +24,13 @@ item_name = "Steel Axe"
 Item_icon = ExtResource("3_tvpqv")
 action_data = SubResource("Resource_ohcel")
 stack_limit = 1
-item_desc = "[p align=center]A heavy blued steel axe[/p][p] [/p][p align=center][font_size=10][color=dark_gray][i]It might build your muscles just by swinging it around![/i][/color][/font_size][/p]"
+item_desc = "[p align=center]A heavy blued steel axe[/p][p] [/p][p align=center][font_size=10][color=dark_gray][i]It might build your muscles just by swinging it around![/i][/color][/font_size][/p][p align=center][font_size=12]Attack Type: Arcing Swing[/font_size][/p]"
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="steel_axe" type="RigidBody3D"]
+collision_layer = 4
+linear_damp = 1.0
+angular_damp = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_vijb3")

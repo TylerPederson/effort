@@ -27,6 +27,9 @@ item_desc = "[p align=center]Hand-crafted light leather, it's better than nothin
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="Leather_Tunic" type="RigidBody3D"]
+collision_layer = 4
+linear_damp = 1.0
+angular_damp = 1.0
 
 [node name="Leather_Tunic" parent="." instance=ExtResource("1_tl5hu")]
 transform = Transform3D(1.24, 0, 0, 0, 1.24, 0, 0, 0, 1.24, 0, 0, 0)

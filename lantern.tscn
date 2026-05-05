@@ -1,7 +1,8 @@
-[gd_scene load_steps=27 format=3 uid="uid://dk1i2d7b8h75i"]
+[gd_scene load_steps=28 format=3 uid="uid://dk1i2d7b8h75i"]
 
 [ext_resource type="Texture2D" uid="uid://dbma4pv21m4yu" path="res://Textures/wood_14_64_.png" id="1_kxgpu"]
 [ext_resource type="Script" uid="uid://dwjmjioact1ko" path="res://lantern.gd" id="1_s57vn"]
+[ext_resource type="Shader" uid="uid://bee68pwvlmgl3" path="res://Materials/lantern.gdshader" id="3_s57vn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aeluj"]
 albedo_texture = ExtResource("1_kxgpu")
@@ -71,15 +72,14 @@ roughness = 0.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_svthm"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3lmsq"]
-transparency = 1
-albedo_color = Color(1, 0.25490198, 1, 1)
-roughness = 0.0
-emission_enabled = true
-emission = Color(0.7929253, 0.10300366, 0.1641615, 1)
-emission_energy_multiplier = 50.0
+[sub_resource type="SphereMesh" id="SphereMesh_s57vn"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_1k0u0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y7vr3"]
+render_priority = 0
+shader = ExtResource("3_s57vn")
+shader_parameter/color1 = Vector3(0.9, 0.225, 0.65)
+shader_parameter/color2 = Vector3(0.9, 0.2, 0.2)
+shader_parameter/blend_factor = 0.0
 
 [node name="Lantern" type="Node3D"]
 script = ExtResource("1_s57vn")
@@ -187,9 +187,9 @@ mesh = SubResource("CylinderMesh_svthm")
 
 [node name="Ball" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.435, 0, 0, 0, 0.435, 0, 0, 0, 0.435, 0, 0.40218508, 0)
-material_override = SubResource("StandardMaterial3D_3lmsq")
 transparency = 0.06
-mesh = SubResource("SphereMesh_1k0u0")
+mesh = SubResource("SphereMesh_s57vn")
+surface_material_override/0 = SubResource("ShaderMaterial_y7vr3")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
