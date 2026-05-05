@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyibhaixg0q50"]
+[gd_scene load_steps=6 format=3 uid="uid://cyibhaixg0q50"]
 
 [ext_resource type="FontFile" uid="uid://cksl17ygj8juv" path="res://MainMenu_GUI/Resources/WEST____.TTF" id="1_3fjk7"]
 [ext_resource type="Script" uid="uid://d0uv5a78vonw7" path="res://Settings_menu/settings.gd" id="1_rhtut"]
 [ext_resource type="Texture2D" uid="uid://cvdxqlfyj5xig" path="res://Settings_menu/Brick Background.png" id="2_bxj7b"]
+[ext_resource type="Script" uid="uid://3506pgcv5u5y" path="res://Settings_menu/control_hover.gd" id="4_svc51"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y5a58"]
+font_size = 20
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -14,9 +18,12 @@ grow_vertical = 2
 script = ExtResource("1_rhtut")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 1149.0
-offset_bottom = 649.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_bxj7b")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -97,8 +104,50 @@ theme_override_colors/font_disabled_color = Color(0.8750814, 0.8750814, 0.875081
 theme_override_font_sizes/font_size = 45
 text = "Back"
 
+[node name="ControlsTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bxj7b")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -244.0
+offset_top = -69.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("4_svc51")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -11.5
+offset_right = 87.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hover to view controls"
+label_settings = SubResource("LabelSettings_y5a58")
+
 [connection signal="value_changed" from="VBoxContainer/MasterHSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/MusicHSlider" to="." method="_on_music_h_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/SFXHSlider" to="." method="_on_sfxh_slider_value_changed"]
 [connection signal="pressed" from="VBoxContainer/CheckButton" to="." method="_on_check_button_pressed"]
 [connection signal="pressed" from="backButton" to="." method="_on_back_button_pressed"]
+[connection signal="mouse_entered" from="Panel" to="Panel" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Panel" to="Panel" method="_on_mouse_exited"]

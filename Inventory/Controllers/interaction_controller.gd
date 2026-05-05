@@ -1,6 +1,7 @@
 extends Node
 
 @onready var raycast: RayCast3D = $"../RayCast3D"
+@onready var shapecast : ShapeCast3D = $"../ShapeCast3D"
 @onready var inventory_controller: Node = $"../Inventory Controller/CanvasLayer/Inventory UI"
 
 var player : Node3D
@@ -49,23 +50,26 @@ func _input(_event: InputEvent) -> void:
 func try_taking_item() -> void:
 	if !Input.is_action_just_pressed("interact"):
 		return
-	if !raycast.is_colliding():
+	#if !raycast.is_colliding():
+	if !shapecast.is_colliding():
 		return
-	print("collided")
-	var obj = find_interaction_component(raycast.get_collider())
-	print(str(raycast.get_collider()))
-	if obj == null:
-		return
-	
-	if !obj.has_method("interact"):
-		return
+	#var obj = find_interaction_component(raycast.get_collider())
+	#print(str(raycast.get_collider()))
+	for i in range(shapecast.get_collision_count()):
+		var c = shapecast.get_collider(i)
+		var obj = find_interaction_component(c)
+		if obj == null:
+			continue
 		
-	if obj is ItemInteract:
-		obj.item_collected.connect(_on_item_collected)
-	if obj is EnvioInteract:
-		play_sound_effect(obj.interaction_sound_effect)
-	
-	obj.interact()
+		if !obj.has_method("interact"):
+			return
+			
+		if obj is ItemInteract:
+			obj.item_collected.connect(_on_item_collected)
+		if obj is EnvioInteract:
+			play_sound_effect(obj.interaction_sound_effect)
+		
+		obj.interact()
 
 # Signal emmited when item is picked up
 func _on_item_collected(item: Node):	
@@ -112,11 +116,14 @@ func find_interaction_component(object: Node) -> Node:
 	 
 
 # Put all action code here!
-func modify_health(modifier_value: int) -> void:
+func modify_health(modifier_value: int) -> bool:
 	for c in player.get_children():
 		if c is HealthComponent:
+			if c.is_full_health():
+				return false
 			c.current_hp += modifier_value
-			return
+			return true
+	return false
 
 func modify_stamina(modifier_value: int) -> void:
 	for c in player.get_children():

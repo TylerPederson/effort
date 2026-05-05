@@ -65,11 +65,11 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("move_jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		state_machine.travel("jump")
+	if able_to_move:
+		# Handle jump.
+		if Input.is_action_just_pressed("move_jump") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
+			state_machine.travel("jump")
 
 	# Moves based on input keys and facing direction. Smoothly stops if no key is pressed
 	var direction := get_movement_direction()
@@ -127,18 +127,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			inventory_controller.visible = false
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			return
-
-		#or just open pause menu
+	#///////////////////////////////////////////////////////////////////////
+	
+	if !able_to_move:
+		return
 		
-		#pause_menu_instance = pause_menu_scene.instantiate()
-		#add_child(pause_menu_instance)
-		#pause_menu_instance.tree_exited.connect(func(): pause_menu_instance = null)
-		#get_tree().paused = true
-		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		#return
-#///////////////////////////////////////////////////////////////////////
-	
-	
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
 			_look += -event.relative * mouse_sensitivity
@@ -161,18 +154,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.is_action_pressed("interact"):
 			abort_other_oneshots()
 			animation_tree["parameters/grab/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-	
-#///////////////////////////Removed to make pause work////////////////
-#	if event.is_action_pressed("ui_cancel"):
-#		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-#			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-#		else:
-#			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-#///////////////////////////////////////////////////////////////////////
 
-	
-	if event.is_action_pressed("ui_text_caret_line_start"):
-		get_tree().change_scene_to_file("res://MainMenu_GUI/MainMenu.tscn")
 
 # Calculates the desired movement direction based on input direction and which way the player is facing
 func get_movement_direction() -> Vector3:
@@ -205,7 +187,7 @@ func frame_camera_rotation() -> void:
 	_look = Vector2.ZERO
 	
 
-func _on_equip_change(slot: String, equip_data) -> void:
+func _on_equip_change(slot: String, _equip_data) -> void:
 	match slot:
 		"armor_helm", "armor_body", "armor_feet":
 			armor_component.update_equipment(inventory_controller.equipped_items)
@@ -222,7 +204,6 @@ func _on_equip_change(slot: String, equip_data) -> void:
 			if !inventory_controller.equipped_items["weapon_melee"]:
 				return
 			
-			print(inventory_controller.equipped_items["weapon_melee"].item_name)
 			match (inventory_controller.equipped_items["weapon_melee"].item_name):
 				"Steel Axe":
 					%Mesh_SteelAxe.visible = true

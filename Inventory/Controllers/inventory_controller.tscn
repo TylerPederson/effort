@@ -130,6 +130,11 @@ offset_right = 73.0
 offset_bottom = 95.0
 text = "All"
 
+[node name="ConsumableTimer" type="Timer" parent="CanvasLayer/Inventory UI"]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
+
 [connection signal="pressed" from="CanvasLayer/Inventory UI/Panel/Sort Buttons/Alpha Sort" to="CanvasLayer/Inventory UI" method="_on_alpha_sort_pressed"]
 [connection signal="pressed" from="CanvasLayer/Inventory UI/Panel/Sort Buttons/Equipment Sort" to="CanvasLayer/Inventory UI" method="_on_equipment_sort_pressed"]
 [connection signal="pressed" from="CanvasLayer/Inventory UI/Panel/Sort Buttons/Comsumable Sort" to="CanvasLayer/Inventory UI" method="_on_comsumable_sort_pressed"]

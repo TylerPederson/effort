@@ -29,6 +29,9 @@ item_desc = "[p align=center]You can launch these sticks of TNT with a ranged we
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="TNT_Bag" type="RigidBody3D"]
+collision_layer = 4
+linear_damp = 1.0
+angular_damp = 1.0
 
 [node name="TNT_Bag" parent="." instance=ExtResource("1_hf1tx")]
 

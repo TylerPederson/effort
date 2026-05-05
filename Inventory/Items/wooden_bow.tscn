@@ -30,6 +30,9 @@ item_desc = "[p align=center]A basic bow, nothing special to this one[/p] [p] [/
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="wooden_bow" instance=ExtResource("1_mtpdl")]
+collision_layer = 4
+linear_damp = 1.0
+angular_damp = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14482763, 0, 0)

@@ -27,6 +27,9 @@ item_desc = "[center]Modifies your [color=red]health[/color] by 60 [p] [/p] [p][
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="Health Potion" instance=ExtResource("1_bn0hy")]
+collision_layer = 4
+linear_damp = 1.0
+angular_damp = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(0.87, 0, 0, 0, 0.87, 0, 0, 0, 0.87, 0, 0.46299183, 0)

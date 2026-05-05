@@ -8,8 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://bhyme3fskao44" path="res://Inventory/Sounds/debug_pickup_sound.mp3" id="6_vpei0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4lrh0"]
-radius = 0.22216797
-height = 2.4456787
+radius = 0.36523438
+height = 1.5963593
 
 [sub_resource type="Resource" id="Resource_vms5s"]
 resource_local_to_scene = true
@@ -30,9 +30,12 @@ item_desc = "[p align=center]le sword of iron, standard issue[/p][p] [/p][p alig
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="iron_sword" instance=ExtResource("1_bgprq")]
+collision_layer = 4
+linear_damp = 1.0
+angular_damp = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77716064, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85349274, 0)
 shape = SubResource("CapsuleShape3D_4lrh0")
 
 [node name="ItemInteract" parent="." index="2" instance=ExtResource("2_l1xro")]

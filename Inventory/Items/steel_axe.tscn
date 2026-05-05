@@ -28,6 +28,9 @@ item_desc = "[p align=center]A heavy blued steel axe[/p][p] [/p][p align=center]
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="steel_axe" type="RigidBody3D"]
+collision_layer = 4
+linear_damp = 1.0
+angular_damp = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_vijb3")

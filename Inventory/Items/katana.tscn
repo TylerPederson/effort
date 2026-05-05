@@ -8,7 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://bhyme3fskao44" path="res://Inventory/Sounds/debug_pickup_sound.mp3" id="6_8ir3b"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hr1s6"]
-height = 3.6374512
+radius = 0.6357422
+height = 2.189392
 
 [sub_resource type="Resource" id="Resource_d8rnx"]
 script = ExtResource("4_5qpht")
@@ -29,9 +30,12 @@ item_desc = "[p align=center]An agile blade[/p][p] [/p][p align=center][font_siz
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="Katana" type="RigidBody3D"]
+collision_layer = 4
+linear_damp = 1.0
+angular_damp = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0216064, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.908844, 0)
 shape = SubResource("CapsuleShape3D_hr1s6")
 
 [node name="Katana" parent="." instance=ExtResource("1_16fgh")]

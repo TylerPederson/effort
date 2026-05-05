@@ -8,25 +8,23 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
 func _on_start_pressed() -> void:
-	print("Start button pressed")
+	GameManager.reset_levers_count()
 	Choice_Tray.reset_available_collectibles()
 	get_tree().change_scene_to_file("res://sandbox_level.tscn")
 
 
 func _on_setting_pressed() -> void:
-	print("setting button pressed")
 	var settings_menu = SETTINGS_MENU_SCENE.instantiate()
 	settings_menu.opened_from = "main_menu"
 	get_tree().current_scene.add_child(settings_menu)
 
 
 func _on_quit_pressed() -> void:
-	print("quit button pressed")
 	get_tree().quit()
 
 
