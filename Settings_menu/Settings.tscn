@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyibhaixg0q50"]
+[gd_scene load_steps=7 format=3 uid="uid://cyibhaixg0q50"]
 
 [ext_resource type="FontFile" uid="uid://cksl17ygj8juv" path="res://MainMenu_GUI/Resources/WEST____.TTF" id="1_3fjk7"]
 [ext_resource type="Script" uid="uid://d0uv5a78vonw7" path="res://Settings_menu/settings.gd" id="1_rhtut"]
 [ext_resource type="Texture2D" uid="uid://cvdxqlfyj5xig" path="res://Settings_menu/Brick Background.png" id="2_bxj7b"]
 [ext_resource type="Script" uid="uid://3506pgcv5u5y" path="res://Settings_menu/control_hover.gd" id="4_svc51"]
+[ext_resource type="Texture2D" uid="uid://dd58qktidt2h" path="res://Settings_menu/ControlsPanel.png" id="4_y5a58"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_y5a58"]
 font_size = 20
@@ -113,7 +114,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_bxj7b")
+texture = ExtResource("4_y5a58")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

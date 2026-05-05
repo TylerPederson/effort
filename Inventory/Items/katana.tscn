@@ -26,7 +26,7 @@ item_name = "Katana"
 Item_icon = ExtResource("3_58c0u")
 action_data = SubResource("Resource_d8rnx")
 stack_limit = 1
-item_desc = "[p align=center]An agile blade[/p][p] [/p][p align=center][font_size=10][color=dark_gray][i]Death by a thousand cuts[/i][/color][/font_size][/p]"
+item_desc = "[p align=center]An agile blade[/p][p] [/p][p align=center][font_size=10][color=dark_gray][i]Death by a thousand cuts[/i][/color][/font_size][/p][p align=center][font_size=12]Attack Type: Arcing Swing[/font_size][/p]"
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="Katana" type="RigidBody3D"]

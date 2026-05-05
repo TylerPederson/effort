@@ -125,11 +125,14 @@ func modify_health(modifier_value: int) -> bool:
 			return true
 	return false
 
-func modify_stamina(modifier_value: int) -> void:
+func modify_stamina(modifier_value: int) -> bool:
 	for c in player.get_children():
 		if c is StaminaComponent:
+			if c.is_full_stamina():
+				return false
 			c.current_stamina += modifier_value
-			return
+			return true
+	return false
 
 func modify_armor(modifier_value: int) -> void:
 	for c in player.get_children():

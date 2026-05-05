@@ -17,7 +17,7 @@ script = ExtResource("4_uyj5y")
 equipement_type = 3
 weapon_damage = 10
 weapon_cooldown = 2.0
-weapon_range = 20.0
+weapon_range = 22.0
 attack_type = 2
 metadata/_custom_type_script = "uid://cnlb1oem8hjot"
 
@@ -27,7 +27,7 @@ item_name = "Crossbow"
 Item_icon = ExtResource("3_ar0l5")
 action_data = SubResource("Resource_15jaf")
 stack_limit = 1
-item_desc = "[p align=center]A fine crossbow. The tension causes the bolt to shoot fast.[/p] [p] [/p] [p align=center][color=dark_gray][i][font_size=10]Careful not to shoot your eye out![/font_size][/i][/color][/p]"
+item_desc = "[p align=center]A fine crossbow. The tension causes the bolt to shoot fast.[/p] [p] [/p] [p align=center][color=dark_gray][i][font_size=10]Careful not to shoot your eye out![/font_size][/i][/color][/p][p align=center][font_size=12]Attack Type: Shoot Ammo[/font_size][/p]"
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="Crossbow" type="RigidBody3D"]

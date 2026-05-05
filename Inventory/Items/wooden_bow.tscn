@@ -15,7 +15,7 @@ script = ExtResource("4_igq7x")
 equipement_type = 3
 weapon_damage = 15
 weapon_cooldown = 1.0
-weapon_range = 10.0
+weapon_range = 14.0
 attack_type = 2
 metadata/_custom_type_script = "uid://cnlb1oem8hjot"
 
@@ -26,7 +26,7 @@ item_name = "Wooden Bow"
 Item_icon = ExtResource("3_46ep5")
 action_data = SubResource("Resource_mxmf8")
 stack_limit = 1
-item_desc = "[p align=center]A basic bow, nothing special to this one[/p] [p] [/p] [p align=center][color=dark_gray][i][font_size=10]Basically just a couple of sticks and string if we are honest[/font_size][/i][/color][/p]"
+item_desc = "[p align=center]A basic bow, nothing special to this one[/p] [p] [/p] [p align=center][color=dark_gray][i][font_size=10]Basically just a couple of sticks and string if we are honest[/font_size][/i][/color][/p][p align=center][font_size=12]Attack Type: Shoot Ammo[/font_size][/p]"
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="wooden_bow" instance=ExtResource("1_mtpdl")]

@@ -26,7 +26,7 @@ item_name = "Iron Sword"
 Item_icon = ExtResource("3_m0uuq")
 action_data = SubResource("Resource_vms5s")
 stack_limit = 1
-item_desc = "[p align=center]le sword of iron, standard issue[/p][p] [/p][p align=center][font_size=10][color=dark_gray][i]A bit rusty around the ege but get the job done[/i][/color][/font_size][/p]"
+item_desc = "[p align=center]le sword of iron, standard issue[/p][p] [/p][p align=center][font_size=10][color=dark_gray][i]A bit rusty around the ege but get the job done[/i][/color][/font_size][/p][p align=center][font_size=12]Attack Type: Straight Stab[/font_size][/p]"
 metadata/_custom_type_script = "uid://du5u3pregm218"
 
 [node name="iron_sword" instance=ExtResource("1_bgprq")]
