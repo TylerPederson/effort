@@ -73,20 +73,20 @@ func setup_equip_slots() -> void:
 			0:
 				# Hotbar1
 				slot.global_position = Vector2(698, 368)
-				slot.default_icon = load("res://Inventory/SlotIcons/slotHot.png")
+				slot.default_icon = load("res://Inventory/SlotIcons/slotHot1.png")
 				slot.update_base_slot()
 				equipped_slots.set(slot.inventory_slot_id, slot)
 			1:
 				
 				#Hotbar2
 				slot.global_position = Vector2(794, 368)
-				slot.default_icon = load("res://Inventory/SlotIcons/slotHot.png")
+				slot.default_icon = load("res://Inventory/SlotIcons/slotHot2.png")
 				slot.update_base_slot()
 				equipped_slots.set(slot.inventory_slot_id, slot)
 			2:
 				#Hotbar3
 				slot.global_position = Vector2(890, 368)
-				slot.default_icon = load("res://Inventory/SlotIcons/slotHot.png")
+				slot.default_icon = load("res://Inventory/SlotIcons/slotHot3.png")
 				slot.update_base_slot()
 				equipped_slots.set(slot.inventory_slot_id, slot)
 			3:

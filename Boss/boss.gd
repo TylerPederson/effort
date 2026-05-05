@@ -7,8 +7,8 @@ var death_scene = preload("res://Boss/boss_death.tscn")
 var direction: Vector3
 var Awakening: bool = false
 var attack: bool = false
-var health: int = 100
-var boss_damage: int = 7
+var health: int = 300
+var boss_damage: int = 8
 var dead: bool = false
 
 func _ready():
