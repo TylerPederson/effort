@@ -181,7 +181,7 @@ func frame_camera_rotation() -> void:
 	)
 	
 	# Spring arm only needs to copy what the vertical pivot has already stored.
-	$SpringArm3D.global_transform = vertical_pivot.global_transform
+	%SpringArm3D.global_rotation = vertical_pivot.global_rotation
 	
 	# By this point, "used" all the difference accumulated in _look since last frame, reset for next accumulation
 	_look = Vector2.ZERO

@@ -91,7 +91,7 @@ expand_mode = 1
 size = Vector2i(1152, 648)
 
 [node name="WorldCamera" type="Camera3D" parent="WorldSubview"]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, -0.7030293)
 cull_mask = 1048573
 
 [node name="TextSubview" type="SubViewport" parent="."]
@@ -99,25 +99,15 @@ transparent_bg = true
 size = Vector2i(1142, 648)
 
 [node name="TextCamera" type="Camera3D" parent="TextSubview"]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, -0.7030293)
 cull_mask = 1048574
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56365967, 0)
 shape = SubResource("CapsuleShape3D_mx8re")
 
-[node name="SpringArm3D" type="SpringArm3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
-shape = SubResource("SeparationRayShape3D_4flbx")
-spring_length = 5.5
-
-[node name="SpringarmEnd" type="Node3D" parent="SpringArm3D"]
-
-[node name="RemoteWorldCamera" type="RemoteTransform3D" parent="SpringArm3D/SpringarmEnd"]
-remote_path = NodePath("../../../WorldSubview/WorldCamera")
-
-[node name="RemoteTextCamera" type="RemoteTransform3D" parent="SpringArm3D/SpringarmEnd"]
-remote_path = NodePath("../../../TextSubview/TextCamera")
+[node name="CentralPivot" type="Node3D" parent="."]
+unique_name_in_owner = true
 
 [node name="HorizontalPivot" type="Node3D" parent="."]
 
@@ -140,6 +130,24 @@ weilder = NodePath("../../..")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="HorizontalPivot"]
 remote_path = NodePath("../../Hero_Rig")
+
+[node name="SpringArmPivot" type="Node3D" parent="HorizontalPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7030293)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="HorizontalPivot/SpringArmPivot"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+collision_mask = 128
+shape = SubResource("SeparationRayShape3D_4flbx")
+spring_length = 5.5
+
+[node name="SpringarmEnd" type="Node3D" parent="HorizontalPivot/SpringArmPivot/SpringArm3D"]
+
+[node name="RemoteWorldCamera" type="RemoteTransform3D" parent="HorizontalPivot/SpringArmPivot/SpringArm3D/SpringarmEnd"]
+remote_path = NodePath("../../../../../WorldSubview/WorldCamera")
+
+[node name="RemoteTextCamera" type="RemoteTransform3D" parent="HorizontalPivot/SpringArmPivot/SpringArm3D/SpringarmEnd"]
+remote_path = NodePath("../../../../../TextSubview/TextCamera")
 
 [node name="Health_Component" parent="." instance=ExtResource("4_kv11m")]
 max_hp = 100
@@ -187,28 +195,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Hero_Rig/Armature" index="0"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -1, 0)
-bones/0/position = Vector3(-4.8095603e-24, 0.904389, 1.3710358e-09)
+bones/0/position = Vector3(2.972136e-23, 0.931902, 4.2930676e-10)
 bones/0/rotation = Quaternion(-8.557139e-09, 1.7114278e-08, -2.9289851e-16, 1)
 bones/1/rotation = Quaternion(1.9820225e-14, -8.881784e-15, -2.6166074e-23, 1)
-bones/2/rotation = Quaternion(8.925289e-07, -5.039065e-10, 0.9872806, -0.15898736)
+bones/2/rotation = Quaternion(9.182084e-07, -9.262415e-08, 0.9953843, -0.0959705)
 bones/3/rotation = Quaternion(0.06098973, -0.004187123, -0.11117566, 0.9919187)
 bones/5/position = Vector3(0.15046811, -0.049661037, -0.014043546)
-bones/5/rotation = Quaternion(0.049584456, 0.1650094, 0.98450226, -0.03268889)
+bones/5/rotation = Quaternion(0.050175417, 0.10125518, 0.99336964, -0.021134205)
 bones/5/scale = Vector3(1.0000029, 0.9999996, 1.0000741)
-bones/6/rotation = Quaternion(-0.31572106, -0.00014588282, -0.040334515, 0.94799435)
+bones/6/rotation = Quaternion(-0.18856157, -0.00015136349, -0.02408948, 0.9817659)
 bones/6/scale = Vector3(0.9999995, 0.9999997, 1.0000002)
 bones/7/position = Vector3(-2.4497272e-08, 0.40076756, -4.099143e-09)
-bones/7/rotation = Quaternion(0.75944996, 0.054415952, -0.014683261, 0.6481197)
+bones/7/rotation = Quaternion(0.71498126, 0.0468598, -0.02367163, 0.6971698)
 bones/7/scale = Vector3(1.000004, 1.0000167, 0.99999803)
-bones/8/rotation = Quaternion(-9.5223766e-07, -9.542438e-08, 0.98852426, 0.15106246)
+bones/8/rotation = Quaternion(-9.524615e-07, -9.574011e-08, 0.9933151, 0.11543448)
 bones/9/rotation = Quaternion(0.06098973, 0.0041871225, 0.11117564, 0.9919187)
 bones/11/position = Vector3(-0.15046811, -0.049661037, -0.014043561)
-bones/11/rotation = Quaternion(-0.04702473, 0.1650694, 0.98463035, 0.03230888)
+bones/11/rotation = Quaternion(-0.0475954, 0.10128609, 0.9934981, 0.020918146)
 bones/11/scale = Vector3(1.0000029, 0.99999976, 1.0000741)
-bones/12/rotation = Quaternion(-0.31572106, 0.0001459103, 0.040334523, 0.94799435)
+bones/12/rotation = Quaternion(-0.18856157, 0.00015139033, 0.024089487, 0.9817659)
 bones/12/scale = Vector3(0.99999976, 0.9999999, 1.0000002)
 bones/13/position = Vector3(4.1289947e-08, 0.4007676, -1.3423174e-09)
-bones/13/rotation = Quaternion(0.75959766, -0.05219577, 0.013355056, 0.648158)
+bones/13/rotation = Quaternion(0.7151066, -0.04473224, 0.022196895, 0.69722944)
 bones/13/scale = Vector3(1.000004, 1.0000168, 0.9999982)
 bones/14/position = Vector3(0.24436599, 0.4813246, 0.87825346)
 bones/14/rotation = Quaternion(-0.006855925, 0.7070735, 0.70707357, -0.006855925)
@@ -241,7 +249,7 @@ parameters/die/request = 0
 parameters/TimeScale/scale = 0.29999999999999716
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.99962884, 0.018977724, -0.019583965, 0.022722604, -0.97671586, 0.21333128, -0.015079414, -0.2136969, -0.9767835, 0.38758478, 0.06986117, -0.043388233)
+transform = Transform3D(0.9986784, -0.051237836, -0.004207809, -0.04914866, -0.97555554, 0.21418703, -0.015079417, -0.21369696, -0.97678345, 0.3357529, 0.08901417, -0.043388277)
 bone_name = "hand.r"
 bone_idx = 10
 use_external_skeleton = true
