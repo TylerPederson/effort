@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://da7uc6l3gvjq1"]
+[gd_scene load_steps=36 format=3 uid="uid://da7uc6l3gvjq1"]
 
 [ext_resource type="Script" uid="uid://bgv7o8b1m5rfj" path="res://action_player.gd" id="1_okpe7"]
 [ext_resource type="PackedScene" uid="uid://ctpmannwcqc02" path="res://stats-and-combat/Components/weapon_component.tscn" id="2_b2k0g"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://5ajj6hvux3jy" path="res://Inventory/Controllers/interaction_controller.tscn" id="13_3u1kb"]
 [ext_resource type="PackedScene" uid="uid://7hyg2hsh5jsl" path="res://Player/Hero_basic3.glb" id="13_ewxee"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://n2tolafmdf1b" path="res://Player/hero_animation.tres" id="14_3u1kb"]
+[ext_resource type="Texture2D" uid="uid://bjit3vwyrkc4v" path="res://stats-and-combat/Basic_HUD/Sprites/dust2_sprite_sheet.png" id="15_pvtks"]
 [ext_resource type="PackedScene" uid="uid://bfmeyvy22l5uk" path="res://Inventory/Items/Models/Axe.glb" id="17_02uis"]
 [ext_resource type="PackedScene" uid="uid://cy7dmedlthsis" path="res://Inventory/Items/Models/Crossbow.glb" id="18_x8p6m"]
 [ext_resource type="PackedScene" uid="uid://c40d0pnagtd2q" path="res://3D Models assets/bow_mesh.tscn" id="19_tvcsx"]
@@ -42,6 +43,53 @@ height = 3.1273193
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qmomh"]
 height = 3.1085205
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwrp5"]
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("15_pvtks")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_mpvi2"]
+offsets = PackedFloat32Array(0, 0.26244345, 0.74660635, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cav6h"]
+gradient = SubResource("Gradient_mpvi2")
+
+[sub_resource type="Curve" id="Curve_yjakb"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7406o"]
+curve = SubResource("Curve_yjakb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pvtks"]
+lifetime_randomness = 0.5
+angle_min = 1.0728835e-05
+angle_max = 30.000011
+direction = Vector3(0, 0, 5)
+spread = 20.0
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, 0.2, 0)
+scale_min = 0.099999994
+scale_max = 0.5
+scale_over_velocity_min = 1.0
+scale_over_velocity_max = 10.0
+scale_over_velocity_curve = SubResource("CurveTexture_7406o")
+color_ramp = SubResource("GradientTexture1D_cav6h")
+anim_speed_min = 1.0
+anim_speed_max = 1.5
+anim_offset_max = 0.29999998
+
+[sub_resource type="QuadMesh" id="QuadMesh_lwrp5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tvcsx"]
 size = Vector3(1.2, 3, 1.5)
@@ -195,28 +243,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Hero_Rig/Armature" index="0"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -1, 0)
-bones/0/position = Vector3(2.972136e-23, 0.931902, 4.2930676e-10)
+bones/0/position = Vector3(3.4230233e-23, 0.9339091, 3.6060516e-10)
 bones/0/rotation = Quaternion(-8.557139e-09, 1.7114278e-08, -2.9289851e-16, 1)
 bones/1/rotation = Quaternion(1.9820225e-14, -8.881784e-15, -2.6166074e-23, 1)
-bones/2/rotation = Quaternion(9.182084e-07, -9.262415e-08, 0.9953843, -0.0959705)
+bones/2/rotation = Quaternion(9.1793794e-07, -9.282165e-08, 0.99581844, -0.09135555)
 bones/3/rotation = Quaternion(0.06098973, -0.004187123, -0.11117566, 0.9919187)
 bones/5/position = Vector3(0.15046811, -0.049661037, -0.014043546)
-bones/5/rotation = Quaternion(0.050175417, 0.10125518, 0.99336964, -0.021134205)
+bones/5/rotation = Quaternion(0.0502243, 0.09476256, 0.99403185, -0.019960608)
 bones/5/scale = Vector3(1.0000029, 0.9999996, 1.0000741)
-bones/6/rotation = Quaternion(-0.18856157, -0.00015136349, -0.02408948, 0.9817659)
+bones/6/rotation = Quaternion(-0.17543505, -0.00015176034, -0.022412531, 0.9842358)
 bones/6/scale = Vector3(0.9999995, 0.9999997, 1.0000002)
 bones/7/position = Vector3(-2.4497272e-08, 0.40076756, -4.099143e-09)
-bones/7/rotation = Quaternion(0.71498126, 0.0468598, -0.02367163, 0.6971698)
+bones/7/rotation = Quaternion(0.7102805, 0.04608061, -0.024583, 0.70197856)
 bones/7/scale = Vector3(1.000004, 1.0000167, 0.99999803)
-bones/8/rotation = Quaternion(-9.524615e-07, -9.574011e-08, 0.9933151, 0.11543448)
+bones/8/rotation = Quaternion(-9.524782e-07, -9.096138e-08, 0.99361444, 0.11282906)
 bones/9/rotation = Quaternion(0.06098973, 0.0041871225, 0.11117564, 0.9919187)
 bones/11/position = Vector3(-0.15046811, -0.049661037, -0.014043561)
-bones/11/rotation = Quaternion(-0.0475954, 0.10128609, 0.9934981, 0.020918146)
+bones/11/rotation = Quaternion(-0.047642846, 0.09479048, 0.99416023, 0.019761292)
 bones/11/scale = Vector3(1.0000029, 0.99999976, 1.0000741)
-bones/12/rotation = Quaternion(-0.18856157, 0.00015139033, 0.024089487, 0.9817659)
+bones/12/rotation = Quaternion(-0.17543507, 0.00015179101, 0.022412539, 0.9842358)
 bones/12/scale = Vector3(0.99999976, 0.9999999, 1.0000002)
 bones/13/position = Vector3(4.1289947e-08, 0.4007676, -1.3423174e-09)
-bones/13/rotation = Quaternion(0.7151066, -0.04473224, 0.022196895, 0.69722944)
+bones/13/rotation = Quaternion(0.7104037, -0.043963004, 0.023093808, 0.7020404)
 bones/13/scale = Vector3(1.000004, 1.0000168, 0.9999982)
 bones/14/position = Vector3(0.24436599, 0.4813246, 0.87825346)
 bones/14/rotation = Quaternion(-0.006855925, 0.7070735, 0.70707357, -0.006855925)
@@ -225,6 +273,16 @@ bones/15/rotation = Quaternion(-4.858126e-06, 0.7071068, -0.7071068, 4.858126e-0
 bones/16/position = Vector3(-0.23973176, 0.4813246, 0.87825346)
 bones/17/position = Vector3(-0.15849304, 0.08128023, -6.9545486e-08)
 bones/17/rotation = Quaternion(4.858126e-06, 0.7071068, -0.7071068, -4.858126e-06)
+
+[node name="SprintParticles" type="GPUParticles3D" parent="Hero_Rig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7760742, 0)
+material_override = SubResource("StandardMaterial3D_lwrp5")
+amount = 24
+lifetime = 2.0
+explosiveness = 0.35
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_pvtks")
+draw_pass_1 = SubResource("QuadMesh_lwrp5")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Hero_Rig")
@@ -249,7 +307,7 @@ parameters/die/request = 0
 parameters/TimeScale/scale = 0.29999999999999716
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.9986784, -0.051237836, -0.004207809, -0.04914866, -0.97555554, 0.21418703, -0.015079417, -0.21369696, -0.97678345, 0.3357529, 0.08901417, -0.043388277)
+transform = Transform3D(0.9984069, -0.056354012, -0.0030843222, -0.05438613, -0.9752734, 0.21420617, -0.015079419, -0.21369699, -0.97678345, 0.3319503, 0.090557456, -0.043388285)
 bone_name = "hand.r"
 bone_idx = 10
 use_external_skeleton = true
