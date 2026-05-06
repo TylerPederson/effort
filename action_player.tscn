@@ -243,28 +243,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Hero_Rig/Armature" index="0"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -1, 0)
-bones/0/position = Vector3(-1.1618393e-23, 0.9059306, 1.3182719e-09)
+bones/0/position = Vector3(-4.3541872e-23, 0.9024358, 1.4378915e-09)
 bones/0/rotation = Quaternion(-8.557139e-09, 1.7114278e-08, -2.9289851e-16, 1)
 bones/1/rotation = Quaternion(1.9820225e-14, -8.881784e-15, -2.6166074e-23, 1)
-bones/2/rotation = Quaternion(8.9134977e-07, -6.558495e-10, 0.9878398, -0.15547545)
+bones/2/rotation = Quaternion(8.960432e-07, -3.0498995e-10, 0.9865298, -0.16358167)
 bones/3/rotation = Quaternion(0.06098973, -0.004187123, -0.11117566, 0.9919187)
 bones/5/position = Vector3(0.15046811, -0.049661037, -0.014043546)
-bones/5/rotation = Quaternion(0.049615595, 0.16212995, 0.98499626, -0.032165736)
+bones/5/rotation = Quaternion(0.04954404, 0.16868949, 0.983858, -0.033357736)
 bones/5/scale = Vector3(1.0000029, 0.9999996, 1.0000741)
-bones/6/rotation = Quaternion(-0.3100594, -0.00014618691, -0.03961121, 0.9498917)
+bones/6/rotation = Quaternion(-0.3229447, -0.00014547392, -0.041257348, 0.94551814)
 bones/6/scale = Vector3(0.9999995, 0.9999997, 1.0000002)
 bones/7/position = Vector3(-2.4497272e-08, 0.40076756, -4.099143e-09)
-bones/7/rotation = Quaternion(0.7575082, 0.054078348, -0.01509068, 0.65040696)
+bones/7/rotation = Quaternion(0.76192284, 0.054847013, -0.014162282, 0.64518595)
 bones/7/scale = Vector3(1.000004, 1.0000167, 0.99999803)
-bones/8/rotation = Quaternion(-9.5224976e-07, -9.544225e-08, 0.9888264, 0.1490718)
+bones/8/rotation = Quaternion(-9.522214e-07, -9.54009e-08, 0.9881226, 0.153668)
 bones/9/rotation = Quaternion(0.06098973, 0.0041871225, 0.11117564, 0.9919187)
 bones/11/position = Vector3(-0.15046811, -0.049661037, -0.014043561)
-bones/11/rotation = Quaternion(-0.047054738, 0.16218868, 0.9851244, 0.031793125)
+bones/11/rotation = Quaternion(-0.046985846, 0.1687512, 0.9839861, 0.032968305)
 bones/11/scale = Vector3(1.0000029, 0.99999976, 1.0000741)
-bones/12/rotation = Quaternion(-0.3100594, 0.00014621811, 0.039611224, 0.9498917)
+bones/12/rotation = Quaternion(-0.3229447, 0.00014551329, 0.04125737, 0.94551826)
 bones/12/scale = Vector3(0.99999976, 0.9999999, 1.0000002)
 bones/13/position = Vector3(4.1289947e-08, 0.4007676, -1.3423174e-09)
-bones/13/rotation = Quaternion(0.75765485, -0.051862143, 0.013755676, 0.6504462)
+bones/13/rotation = Quaternion(0.76207185, -0.052621763, 0.012842812, 0.6452229)
 bones/13/scale = Vector3(1.000004, 1.0000168, 0.9999982)
 bones/14/position = Vector3(0.24436599, 0.4813246, 0.87825346)
 bones/14/rotation = Quaternion(-0.006855925, 0.7070735, 0.70707357, -0.006855925)
@@ -276,9 +276,9 @@ bones/17/rotation = Quaternion(4.858126e-06, 0.7071068, -0.7071068, -4.858126e-0
 
 [node name="SprintParticles" type="GPUParticles3D" parent="Hero_Rig"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7760742, 0)
-visible = false
 material_override = SubResource("StandardMaterial3D_lwrp5")
-amount = 24
+emitting = false
+amount = 32
 lifetime = 2.0
 explosiveness = 0.35
 draw_order = 3
@@ -308,7 +308,7 @@ parameters/die/request = 0
 parameters/TimeScale/scale = 0.29999999999999716
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="."]
-transform = Transform3D(0.99971205, 0.015044428, -0.018724741, 0.01869702, -0.97678417, 0.21340838, -0.015079414, -0.2136969, -0.9767835, 0.38469878, 0.070836306, -0.043388236)
+transform = Transform3D(0.99949497, 0.024127308, -0.020708507, 0.02799299, -0.97660214, 0.21322504, -0.015079414, -0.2136969, -0.9767835, 0.39135998, 0.06866741, -0.043388233)
 bone_name = "hand.r"
 bone_idx = 10
 use_external_skeleton = true
