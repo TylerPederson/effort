@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=4 uid="uid://di4k0x1b5852r"]
+[gd_scene load_steps=106 format=4 uid="uid://di4k0x1b5852r"]
 
 [ext_resource type="Script" uid="uid://b8y7rivbw35ad" path="res://Boss/boss.gd" id="1_t20dt"]
 [ext_resource type="Script" uid="uid://dd4wpxl6enyas" path="res://Boss/BossStates/StateMachine.gd" id="2_4cnrr"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://dr363wmnya4g2" path="res://Boss/BossAudio/Stone Chain Walk 2.wav" id="9_myhfd"]
 [ext_resource type="AudioStream" uid="uid://cixwsicc7ekax" path="res://Boss/BossAudio/Sword Attack 1.wav" id="10_sri3m"]
 [ext_resource type="PackedScene" uid="uid://udnibojirirx" path="res://stats-and-combat/Basic_HUD/damage_number_component.tscn" id="13_tjlxr"]
+[ext_resource type="Texture2D" uid="uid://qq7ua5d3r7wm" path="res://Boss/BossModel/dark_energy_1a_spritesheet.png" id="14_klplh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7ba5a"]
 radius = 0.7963867
@@ -10644,6 +10645,47 @@ radius = 5.7307453
 height = 2.328125
 radius = 1.0820313
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r5hgr"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("14_klplh")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_fdnl6"]
+offsets = PackedFloat32Array(0, 0.26696834, 0.6696833, 0.97737557)
+colors = PackedColorArray(0, 0, 0, 0, 1, 0.043137256, 0, 1, 1, 0.039215688, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_71440"]
+gradient = SubResource("Gradient_fdnl6")
+
+[sub_resource type="Curve" id="Curve_4o1ob"]
+_data = [Vector2(0, 0.2043103), 0.0, 0.0, 0, 0, Vector2(0.49797565, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.249138), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_iht7o"]
+curve = SubResource("Curve_4o1ob")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d6ame"]
+angle_min = 1.0728835e-05
+angle_max = 360.00003
+direction = Vector3(0, 1, 0)
+spread = 60.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+angular_velocity_min = -200.00002
+angular_velocity_max = 199.99998
+scale_curve = SubResource("CurveTexture_iht7o")
+color_ramp = SubResource("GradientTexture1D_71440")
+anim_speed_min = 1.5
+anim_speed_max = 1.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_nlv3h"]
+size = Vector2(0.5, 0.5)
+
 [node name="Boss" type="CharacterBody3D"]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
 script = ExtResource("1_t20dt")
@@ -11246,6 +11288,17 @@ bus = &"SFX"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0947065, 0)
 
 [node name="DamageNumberComponent" parent="." instance=ExtResource("13_tjlxr")]
+
+[node name="Damage_Particles" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1458933, 0)
+material_override = SubResource("StandardMaterial3D_r5hgr")
+amount = 20
+amount_ratio = 0.0
+lifetime = 3.0
+explosiveness = 0.65
+process_material = SubResource("ParticleProcessMaterial_d6ame")
+draw_pass_1 = SubResource("QuadMesh_nlv3h")
 
 [connection signal="body_entered" from="BossV2/Armature_004/Skeleton3D/Left Hand/SwordL/PlayerHitL" to="." method="_on_player_hit_L"]
 [connection signal="body_entered" from="BossV2/Armature_004/Skeleton3D/Right Hand/SwordR/PlayerHitR" to="." method="_on_player_hit_R"]

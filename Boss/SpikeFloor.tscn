@@ -10,6 +10,7 @@ albedo_color = Color(0.4392157, 0.3647059, 0.27450982, 1)
 [node name="Floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.69849, 0.34859836, 0.33903217)
 use_collision = true
+collision_layer = 129
 size = Vector3(95, 0.05, 82)
 material = SubResource("StandardMaterial3D_4ve3l")
 

@@ -17,6 +17,7 @@ uv1_triplanar = true
 [node name="OutisidePath" type="CSGBox3D" parent="."]
 transform = Transform3D(-5.554281e-08, -0.99999994, 0, 1.2706714, -4.3711385e-08, 0, 0, 0, 0.99999994, 0, 0, 0)
 use_collision = true
+collision_layer = 129
 size = Vector3(1, 92, 12)
 material = SubResource("StandardMaterial3D_p2lmd")
 
@@ -59,11 +60,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -3, 5.499)
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5.4886975)
 use_collision = true
+collision_layer = 129
 size = Vector3(92, 1, 1)
 material = ExtResource("3_ye3u1")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5.489)
 use_collision = true
+collision_layer = 129
 size = Vector3(92, 1, 1)
 material = SubResource("StandardMaterial3D_ye3u1")

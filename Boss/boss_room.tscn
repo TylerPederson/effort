@@ -62,6 +62,7 @@ uv1_triplanar = true
 [node name="Floor" type="CSGCylinder3D" parent="."]
 transform = Transform3D(52.034283, -0.00017155311, -0.049354263, 0.008881279, 0.999999, -0.056142062, 0.045198873, 0.0009877544, 56.829308, 0, -10, 0)
 use_collision = true
+collision_layer = 129
 radius = 0.4
 height = 23.688477
 sides = 64
@@ -75,6 +76,7 @@ material = SubResource("StandardMaterial3D_j8hxa")
 [node name="Wall2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.692577, 17.474308, -1.6358681)
 use_collision = true
+collision_layer = 129
 size = Vector3(1, 56.890137, 93.50058)
 material = SubResource("StandardMaterial3D_8chxh")
 
@@ -103,6 +105,7 @@ script = ExtResource("1_0yjcu")
 [node name="Door" type="CSGBox3D" parent="DoorPivot"]
 transform = Transform3D(1.2706714, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.37241745, 9.276922, 0.00013196468)
 use_collision = true
+collision_layer = 129
 size = Vector3(1, 18, 10)
 material = SubResource("StandardMaterial3D_any6y")
 
