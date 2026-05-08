@@ -13,6 +13,8 @@ var dead: bool = false
 
 func _ready():
 	state_controller._change_state("Crouch loop")
+	%Damage_Particles.amount_ratio = 0.0
+	%Damage_Particles.emitting = true
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -63,7 +65,10 @@ func _on_player_hit_detection_body_entered(body):	# Damage player function
 
 func _hit(damage: int):	# Player damages boss function
 	health -= damage
-	if health < 0:
+	%Damage_Particles.amount_ratio = 1 - (health / 300.0)
+	if health <= 0:
+		%Damage_Particles.emitting = false
+		get_tree().get_first_node_in_group("Player").get_node("Basic_HUD").display_info("You won!", 3.0)
 		state_controller._change_state("Death")
 		_death()
 
